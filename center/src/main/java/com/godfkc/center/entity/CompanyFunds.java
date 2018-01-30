@@ -12,16 +12,16 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "cs_company_funds")
-public class CompanyFunds implements Serializable{
+public class CompanyFunds implements Serializable {
     @Id
     @GeneratedValue
     @Column(length = 10)
     private Long id;
-    @Column(length = 10)
+    @Column(name = "money", length = 10)
     private Long money; //账户余额
-    @Column(name = "pay_password")
+    @Column(name = "pay_password", length = 20)
     private String payPassword; //提现密码
-    @Column(length = 1)
+    @Column(name = "status", length = 1)
     private int status; //状态 1启用 0停用
     @Column(name = "create_time")
     private Date createTime;

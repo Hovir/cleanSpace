@@ -17,7 +17,7 @@ public class AddressDict implements Serializable {
     @GeneratedValue
     @Column(length = 10)
     private Long id;
-    @Column(length = 20)
+    @Column(name = "name", length = 20)
     private String name;
     @Column(name = "is_city", length = 1)
     private int isCity;

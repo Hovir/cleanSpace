@@ -18,15 +18,15 @@ public class User implements Serializable {
     @GeneratedValue
     @Column(length = 10)
     private Long id;
-    @Column(length = 32)
+    @Column(name = "name", length = 32)
     private String name;
-    @Column(length = 32)
+    @Column(name = "password", length = 32)
     private String password;
-    @Column(length = 20)
+    @Column(name = "phone", length = 20)
     private String phone;
     @Column(name = "head_img")
     private String headImg;
-    @Column(length = 1)
+    @Column(name = "status", length = 1)
     private int status; //状态 0停用 1启用
     @Column(name = "create_time")
     private Date createTime;

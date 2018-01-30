@@ -12,18 +12,18 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "cs_company_funds_withdraw")
-public class CompanyFundsWithdraw implements Serializable{
+public class CompanyFundsWithdraw implements Serializable {
     @Id
     @GeneratedValue
     @Column(length = 10)
     private Long id;
-    @Column(length = 10)
+    @Column(name = "money", length = 10)
     private Long money; //提现金额
-    @Column(name = "is_pay",length = 1)
+    @Column(name = "is_pay", length = 1)
     private int isPay;
-    @Column(length = 200)
+    @Column(name = "remark", length = 200)
     private String remark; //备注
-    @Column(length = 1)
+    @Column(name = "status", length = 1)
     private int status; //状态  0删除 1未删除
     @Column(name = "create_time")
     private Date createTime;

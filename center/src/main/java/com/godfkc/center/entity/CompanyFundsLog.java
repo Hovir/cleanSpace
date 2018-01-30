@@ -17,10 +17,13 @@ public class CompanyFundsLog implements Serializable {
     @GeneratedValue
     @Column(length = 10)
     private Long id;
-    @Column(length = 10)
+    @Column(name = "money", length = 10)
     private Long money; //操作的金额 增减值
+    @Column(name = "descreption", length = 200)
     private String descreption; //描述
+    @Column(name = "type", length = 1)
     private int type; //类型
+    @Column(name = "current_money", length = 10)
     private Long currentMoney; //剩余金额
     @Column(name = "create_time")
     private Date createTime;

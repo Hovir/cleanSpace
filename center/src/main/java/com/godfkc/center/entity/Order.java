@@ -17,23 +17,23 @@ public class Order implements Serializable {
     @GeneratedValue
     @Column(length = 10)
     private Long id;
-    @Column(length = 10)
+    @Column(name = "name", length = 10)
     private String name; //预约人姓名
-    @Column(length = 20)
+    @Column(name = "phone", length = 20)
     private String phone; //预约人电话
-    @Column(length = 30)
+    @Column(name = "state", length = 30)
     private String state; //省
-    @Column(length = 30)
+    @Column(name = "city", length = 30)
     private String city; //市
-    @Column(length = 30)
+    @Column(name = "district", length = 30)
     private String district; //区
-    @Column(length = 200)
+    @Column(name = "address", length = 200)
     private String address; //详细地址
     @Column(name = "appointment_time")
     private Date appointmentTime; //预约时间
-    @Column(length = 200)
+    @Column(name = "remark", length = 200)
     private String remark; //备注
-    @Column(length = 1)
+    @Column(name = "status", length = 1)
     private int status; //状态 1预约中 2出报告 0取消
     @Column(name = "create_time")
     private Date createTime;

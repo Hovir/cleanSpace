@@ -18,15 +18,15 @@ public class Company implements Serializable {
     @GeneratedValue
     @Column(length = 10)
     private Long id;
-    @Column(length = 30)
+    @Column(name = "name", length = 30)
     private String name;//公司名称
     @Column(name = "img_url")
     private String imgUrl; //公司图片
-    @Column(length = 255)
+    @Column(name = "profile")
     private String profile; //公司简介
-    @Column(length = 1)
+    @Column(name = "level", length = 1)
     private int level; //公司等级 1体验店 2联盟 3蚂蚁
-    @Column(length = 1)
+    @Column(name = "status", length = 1)
     private int status; //状态 1启用 0停用
     @Column(name = "create_time")
     private Date createTime;

@@ -7,22 +7,24 @@ import java.util.Date;
 /**
  * @version 1.0
  * @auther Administrator
- * @date 2018/1/29
+ * @date 2018/1/30
  * @description
  */
 @Entity
-@Table(name = "cs_news")
-public class News implements Serializable {
+@Table(name = "cs_content")
+public class Content implements Serializable {
     @Id
     @GeneratedValue
     @Column(length = 10)
     private Long id;
-    @Column(name = "title", length = 40)
+    @Column(name = "title", length = 32)
     private String title; //标题
-    @Column(name = "details", length = 2000)
-    private String details; //内容
+    @Column(name = "content", length = 500)
+    private String content;
+    @Column(name = "img_url", length = 200)
+    private String imgUrl;
     @Column(name = "status", length = 1)
-    private int status; //状态 1未删除 0删除
+    private String status;
     @Column(name = "create_time")
     private Date createTime;
     @Column(name = "update_time")
@@ -44,19 +46,27 @@ public class News implements Serializable {
         this.title = title;
     }
 
-    public String getDetails() {
-        return details;
+    public String getContent() {
+        return content;
     }
 
-    public void setDetails(String details) {
-        this.details = details;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public int getStatus() {
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

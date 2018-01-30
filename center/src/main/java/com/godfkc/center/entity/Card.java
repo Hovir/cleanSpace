@@ -17,13 +17,13 @@ public class Card implements Serializable {
     @GeneratedValue
     @Column(length = 10)
     private Long id;
-    @Column(length = 32)
+    @Column(name = "num", length = 32)
     private String num; //卡编码
-    @Column(length = 32)
+    @Column(name = "password", length = 32)
     private String password; //卡密码
-    @Column(length = 1)
+    @Column(name = "times", length = 1)
     private int times = 3; //卡可以预约的次数  默认3次
-    @Column(length = 1)
+    @Column(name = "status", length = 1)
     private int status; //状态 0停用 1未激活 2已激活
     @Column(name = "create_time")
     private Date createTime;
