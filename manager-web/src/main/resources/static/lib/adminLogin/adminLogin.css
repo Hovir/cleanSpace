@@ -1,0 +1,25 @@
+#row-cl-fail-message{
+    margin-top:11px;
+}
+#row-cl-login{
+    margin-top:11px;
+}
+#fail_message{
+    text-align:center;
+    color: #bd362f;
+    font-weight: bold;
+}
+.col-xs-offset-3{
+    margin-left: 11%;
+}
+#submit-login{
+    width:73%;
+}
+#row-cl-login-in{
+    margin-top: 1.5%;
+}
+.header-title{
+    margin:11px auto 11px 15px;
+    color: #ffffff;
+    font: bold 25px 微软雅黑;
+}

@@ -1,4 +1,3 @@
-<#assign path=springMacroRequestContext.getContextPath() />
 <#--
   Created by IntelliJ IDEA.
   com.godfkc.pojo.User: 刘洪宇
@@ -6,6 +5,8 @@
   Time: 17:46
   To change this templates use File | Settings | File Templates.
 -->
+<!DOCTYPE HTML>
+<#assign path=springMacroRequestContext.getContextPath() />
 <html>
 <head>
     <title>东方快车</title>
