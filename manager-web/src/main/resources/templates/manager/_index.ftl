@@ -32,14 +32,15 @@
 <#--/_footer /作为公共模版分离出去-->
 
 <script>
-    /*pageTurns("/userPage/starter");*/
+    /*加载首页*/
+    pageTurns("manager/_home");
 
     function pageTurns(url) {
         var data = {
-            url: "/page/" + url
+            url: url
         };
         $.ajax({
-            url: url,    //请求的url地址
+            url: "/page/" + url,    //请求的url地址
             dataType: "html",   //返回格式为html
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             async: true,    //请求是否异步，默认为异步，这也是ajax重要特性
