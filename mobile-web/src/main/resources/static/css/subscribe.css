@@ -1,0 +1,97 @@
+.content {
+  margin-top: 2.8125rem;
+  overflow: hidden;
+}
+body {
+  background-color: #f5f5f5;
+}
+.sub-cont .persion-name {
+  display: inline-block;
+  width: 80%;
+  height: 2.5rem;
+  margin-top: 1.25rem;
+  border: 1px solid #cccccc;
+}
+.sub-cont .persion-name input {
+  width: 100%;
+  height: 100%;
+  font-size: 1.125rem;
+  padding-left: 1.125rem;
+}
+.sub-cont .number,
+.sub-cont .address-detail {
+  display: inline-block;
+  width: 80%;
+  height: 2.5rem;
+  margin-top: 0.625rem;
+  border: 1px solid #cccccc;
+}
+.sub-cont .number input,
+.sub-cont .address-detail input {
+  width: 100%;
+  height: 100%;
+  font-size: 1.125rem;
+  padding-left: 1.125rem;
+}
+.sub-cont .font {
+  text-align: left;
+  padding-left: 12%;
+  font-size: 1.125rem;
+  margin: 0.625rem 0 0.1875rem 0;
+}
+.sub-cont .address select {
+  display: inline-block;
+  font-size: 0.9375rem;
+  overflow: hidden;
+  -webkit-background-size: 0.9375rem;
+  background-size: 0.9375rem;
+  background-position-x: 95%;
+  padding: 0.625rem 1.3rem 0.625rem 0.4rem;
+  background-color: #fff;
+  width: 25%;
+  border: 1px solid #cccccc;
+  margin: 0.3125rem;
+}
+.sub-cont .sub-time {
+  display: inline-block;
+  width: 80%;
+  margin-top: 0.625rem;
+}
+.sub-cont .sub-time span {
+  float: left;
+  padding-top: 0.625rem;
+  margin-left: 0.3125rem;
+  width: 30%;
+}
+.sub-cont .sub-time select {
+  display: inline-block;
+  font-size: 0.9375rem;
+  overflow: hidden;
+  width: 68%;
+  -webkit-background-size: 0.9375rem;
+  background-size: 0.9375rem;
+  background-position-x: 95%;
+  padding: 0.625rem 1.25rem;
+  background-color: #fff;
+  border: 1px solid #cccccc;
+}
+.sub-cont .message {
+  display: inline-block;
+  width: 80%;
+}
+.sub-cont .message textarea {
+  width: 100%;
+  height: 6.25rem;
+  border: 1px solid #cccccc;
+}
+.sub-cont .btn {
+  display: inline-block;
+  width: 12.5rem;
+  height: 3.125rem;
+  background-color: #4db748;
+  color: #fff;
+  font-size: 1.25rem;
+  padding-top: 0.75rem;
+  border-radius: 1.875rem;
+  margin-top: 1.25rem;
+}

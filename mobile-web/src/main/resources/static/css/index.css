@@ -1,0 +1,102 @@
+.content {
+  margin: 2.8125rem 0 3.375rem 0;
+  background-color: #f3f3f3;
+  display: inline-block;
+}
+.modules {
+  display: inline-block;
+  width: 100%;
+  margin: 0.625rem 0;
+  background-color: #fff;
+  overflow: hidden;
+}
+.modules .module {
+  display: inline-block;
+  width: 50%;
+  float: left;
+  box-sizing: border-box;
+  border: 1px solid #f8f8f8;
+}
+.modules .module .module-cont {
+  margin: 0.625rem;
+  display: inline-block;
+  text-align: center;
+}
+.modules .module .module-cont img {
+  display: inline-block;
+  width: 2.1875rem;
+  height: 2.1875rem;
+  float: left;
+}
+.modules .module .module-cont div {
+  display: inline-block;
+  float: left;
+  padding-top: 0.625rem;
+  margin-left: 0.625rem;
+}
+.product-type {
+  display: inline-block;
+  background-color: #fff;
+  width: 100%;
+  overflow: hidden;
+  float: left;
+}
+.product-type .product-title {
+  overflow: hidden;
+  border-bottom: 1px solid #dedede;
+}
+.product-type .product-title .title {
+  float: left;
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 1rem 0 0.5rem 1rem;
+}
+.product-type .product-title .title-right {
+  float: right;
+  padding: 1rem;
+}
+.product-type .product-title .title-right span {
+  display: inline-block;
+  height: 1.25rem;
+  float: left;
+  text-align: center;
+  font-size: 0.9375rem;
+  margin-left: 0.3125rem;
+  color: #999;
+}
+.product-type .product-title .title-right span img {
+  height: 1.25rem;
+}
+.product-type .col-detail {
+  display: inline-block;
+  border-bottom: 1px solid #f4f4f4;
+  padding: 4%;
+  overflow: hidden;
+  text-align: center;
+}
+.product-type .col-detail .detail img {
+  display: inline-block;
+  float: left;
+  width: 40%;
+  height: 6.25rem;
+}
+.product-type .col-detail .detail .introduce {
+  display: inline-block;
+  text-align: left;
+  width: 60%;
+  height: 6.25rem;
+  overflow: hidden;
+}
+.product-type .col-detail .detail .introduce .introduce-detail {
+  display: inline-block;
+  height: 75%;
+  overflow: hidden;
+  padding-left: 0.625rem;
+  padding-top: 3%;
+}
+.product-type .col-detail .detail .introduce .introduce-time {
+  display: inline-block;
+  height: 20%;
+  overflow: hidden;
+  padding-left: 0.625rem;
+}

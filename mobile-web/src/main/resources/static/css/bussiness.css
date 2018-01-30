@@ -1,0 +1,65 @@
+.content {
+  margin-top: 2.8125rem;
+}
+.sel {
+  display: inline-block;
+  margin-top: 0.625rem;
+}
+.sel select {
+  display: inline-block;
+  float: left;
+  font-size: 0.9375rem;
+  overflow: hidden;
+  -webkit-background-size: 0.8125rem;
+  background-size: 0.8125rem;
+  padding-left: 0.625rem;
+  max-width: 5.3125rem;
+}
+.product-type {
+  display: inline-block;
+  background-color: #fff;
+  width: 100%;
+  overflow: hidden;
+  float: left;
+}
+.product-type .col-detail {
+  display: inline-block;
+  border-bottom: 1px solid #f4f4f4;
+  padding: 4%;
+  overflow: hidden;
+  text-align: center;
+}
+.product-type .col-detail .detail img {
+  display: inline-block;
+  float: left;
+  width: 40%;
+  height: 6.25rem;
+}
+.product-type .col-detail .detail .introduce {
+  display: inline-block;
+  text-align: left;
+  width: 60%;
+  height: 6.25rem;
+  overflow: hidden;
+}
+.product-type .col-detail .detail .introduce .introduce-title {
+  display: inline-block;
+  overflow: hidden;
+  padding-left: 0.625rem;
+  font-weight: bold;
+  font-size: 1.0625rem;
+  margin-top: 0.125rem;
+}
+.product-type .col-detail .detail .introduce .introduce-detail {
+  display: inline-block;
+  overflow: hidden;
+  font-size: 0.9375rem;
+  padding-left: 0.625rem;
+  line-height: 0.9375rem;
+}
+.product-type .col-detail .detail .introduce .introduce-time {
+  display: inline-block;
+  height: 20%;
+  overflow: hidden;
+  padding-left: 0.625rem;
+}
