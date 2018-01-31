@@ -52,12 +52,35 @@
 		    </div>
 		    <div class="sign in">
 		    	<form action="" method="">
-		    		<input type="text" class="user-name" id="" placeholder="输入手机号" maxlength="11"/>
-		    		<input type="password" class="user-pwd" id="" placeholder="用户密码" />
-                    <div class="btn-login">立即登录</div>
+		    		<input type="text" class="user-name" id="phone" placeholder="输入手机号" maxlength="11"/>
+		    		<input type="password" class="user-pwd" id="password" placeholder="用户密码" />
+                    <div class="btn-login" id="login-btn">立即登录</div>
                     <div class="forgetpwd"><a href="">忘记密码？</a></div>
 		    	</form>
 		    </div>
 		</div>
+
+	<script type="text/javascript">
+		$("#login-btn").click(function(){
+			var phone = $("#phone").val();
+			var password = $("#password").val();
+
+			$.ajax({
+				url:"/user/login",
+				data:{phone:phone,password:password},
+				type:"post",
+				dataType:"json",
+				success:function (data) {
+					if(data.flag==0){
+					    alert(data.info);
+					}
+
+					if(data.flag==1){
+					    alert(data.user);
+					}
+                }
+			});
+        });
+	</script>
 	</body>
 </html>

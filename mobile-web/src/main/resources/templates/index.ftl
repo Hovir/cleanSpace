@@ -51,7 +51,7 @@
 				</div>
 				<div class="part">
 					<div class="part-cont">
-						<a class="" href="">
+						<a class="" href="/login">
 							<span class="icon"><img src="img/center.png"/></span>
 							<span class="font">个人</span>
 						</a>

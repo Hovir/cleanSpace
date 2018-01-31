@@ -1,3 +1,4 @@
+<#assign path=springMacroRequestContext.getContextPath() />
 <nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a>
     <span class="c-999 en">&gt;</span>
     <span class="c-666">我的桌面</span>
@@ -168,11 +169,5 @@
             </tbody>
         </table>
     </article>
-    <footer class="footer">
-        <p>
-            感谢jQuery、layer、laypage、Validform、UEditor、My97DatePicker、iconfont、Datatables、WebUploaded、icheck、highcharts、bootstrap-Switch<br>
-            Copyright &copy;2015 H-ui.admin v3.0 All Rights Reserved.<br>
-            本后台系统由<a href="http://www.h-ui.net/" target="_blank" title="H-ui前端框架">H-ui前端框架</a>提供前端技术支持
-        </p>
-    </footer>
+<#include "${path}/manager/_copyright.ftl"/>
 </div>
