@@ -21,4 +21,5 @@
     <#--请在下方写此页面业务相关的脚本-->
 
     </article>
+    <#include "${path}/manager/_copyright.ftl"/>
 </div>
