@@ -1,0 +1,59 @@
+.header-footer .header {
+  background-color: #4db748;
+}
+.header-footer .header .middle p {
+  color: #fff;
+}
+body {
+  background-color: #f5f5f5;
+}
+.content {
+  margin-top: 45px;
+}
+.line-cont {
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+}
+.line-cont .line {
+  display: inline-block;
+  height: 9.375rem;
+  overflow: hidden;
+  float: left;
+  margin-left: 1.25rem;
+}
+.line-cont .line img {
+  height: 100%;
+}
+.line-cont .cont {
+  display: inline-block;
+  width: 90%;
+  height: 9.375rem;
+  text-align: left;
+  padding: 0 0.625rem;
+}
+.line-cont .cont .font {
+  margin: 0.625rem 0;
+}
+.line-cont .cont .handle {
+  display: inline-block;
+  background-color: #fff;
+  min-width: 15.625rem;
+  padding: 0.3125rem 0.9375rem;
+}
+.line-cont .cont .handle .handle-name {
+  border-bottom: 1px solid #f5f5f5;
+  padding: 0.3125rem 0;
+}
+.line-cont .cont .handle .balance {
+  padding: 0.3125rem 0;
+}
+.line-cont .cont .handle .other {
+  padding: 0.3125rem 0;
+}
+.line-cont .cont .green {
+  color: #4db748;
+}
+.line-cont .cont .red {
+  color: red;
+}

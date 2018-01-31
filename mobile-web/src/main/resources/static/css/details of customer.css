@@ -1,0 +1,82 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	margin-top: 2.8125rem;
+    background: #F5F5F5;
+    text-align: left;	
+}
+.header-footer .header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    height: 2.8125rem;
+    padding: 0.625rem 1.25rem;
+    border-bottom: none; 
+    background-color: #4DB748;
+}
+.header-footer .middle p {
+    color: white;
+}
+.go a span{
+	text-align: right;
+	float: right;
+	line-height: 1.6rem;
+	color: white;
+}
+.header-footer .header .left .return img {
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+    float: left;
+}
+
+.time{
+	padding: 1rem 1rem 1rem 1rem ;
+	/*border-bottom: 0.1rem solid #F5F5F5;*/
+}
+.time div:nth-child(1){
+	text-align: left;
+	color: #666666;
+}
+.time div:nth-child(2){
+	color: #4DB748;
+	font-size: 1.4rem;
+	padding: 1.6rem;
+}
+.detail{
+	width: 100%;
+	/*padding: 0 1rem;*/
+}
+.detail dl{
+	display: block;
+	text-align: left;
+	overflow: hidden;
+	border-top: 0.1rem solid #F5F5F5;
+	padding: 0.8rem 1rem;
+}
+.detail dt,.detail dd{
+	float: left;
+	text-align: left;
+}
+.detail dt{
+	color: #333333;
+}
+.detail dd{
+	color: #999999;
+	
+}
+.detail dl:nth-child(1) dd,.detail dl:nth-child(2) dd,.detail dl:nth-child(3) dd{
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+	
+}
+.detail dl:nth-child(5) dd{
+	width: 80%;
+}
+
+
+

@@ -5,12 +5,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<title>乐美优享</title>
 		<link rel="stylesheet" type="text/css" href="css/header-footer.css"/>
-		<style type="text/css">
-			.content{
-				margin-top: 45px;
-				overflow: hidden;
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="css/bankCard.css"/>
 	</head>
 	<body>
 		<div class="header-footer">
@@ -18,12 +13,12 @@
 				<div class="left">
 					<div class="return">
 						<a href="">
-							<img src="img/back-black.png" />
+							<img src="img/back-white.png" />
 						</a>
 					</div>
 				</div>
 				<div class=" middle">
-					<p>环境保护（简称环保）</p>
+					<p>银行卡</p>
 				</div>
 				<div class=" right">
 					<div class="go">
@@ -35,7 +30,12 @@
 			</div>
 		</div>
 		<div class="content">
-			后台加载的新闻
+			<div class="bank_card">
+				<span>0326</span>
+			</div>
+			<div class="card-btn">
+				解除绑定
+			</div>
 		</div>
 		
 	</body>

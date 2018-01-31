@@ -1,0 +1,167 @@
+.content {
+  margin-top: 2.8125rem;
+  overflow: hidden;
+}
+.header-footer .header {
+  background-color: #4db748;
+}
+.header-footer .header .middle p,
+.header-footer .header .right .go p {
+  color: #fff;
+}
+body {
+  background-color: #f5f5f5;
+}
+.leave {
+  display: inline-block;
+  width: 90%;
+  margin-top: 1.25rem;
+}
+.leave textarea {
+  width: 100%;
+  height: 6.25rem;
+  padding: 0.625rem;
+}
+.uploadimg {
+  width: 18.75rem;
+  display: inline-block;
+  overflow: hidden;
+  text-align: center;
+}
+.upload-ul {
+  position: relative;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  max-width: 32.5rem;
+}
+.upload-ul li {
+  position: relative;
+  float: left;
+  display: inline-block;
+  width: 7.5rem;
+  height: 5.625rem;
+  margin: 1.25rem 1.25rem 1.25rem 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  -moz-border-radius: 0.125rem;
+  -webkit-border-radius: 0.125rem;
+  border-radius: 0.125rem;
+  overflow: hidden;
+}
+.upload-pick {
+  background: url(../img/upload-bj.png) no-repeat 0 0;
+}
+.upload-pick:hover {
+  background: url(../img/upload-bj.png) no-repeat 0 -5.625rem;
+}
+.webuploader-pick {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+  height: 100%;
+}
+.webuploader-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.webuploader-container label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.webuploader-element-invisible {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  clip: rect(0.0625rem 0.0625rem 0.0625rem 0.0625rem);
+  clip: rect(0.0625rem, 0.0625rem, 0.0625rem, 0.0625rem);
+}
+.viewThumb {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: .3rem;
+}
+.viewThumb img {
+  width: 100%;
+  height: 100%;
+}
+.diyBar {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+.diyProgress {
+  position: absolute;
+  left: 0;
+  top: 2.0625rem;
+  width: 100%;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  font-size: 0.875rem;
+  text-align: center;
+  color: #FFF;
+  background: rgba(10, 168, 241, 0.7);
+  z-index: 3;
+}
+.diyControl {
+  position: absolute;
+  display: none;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  font-size: 0.875rem;
+  z-index: 3;
+}
+.viewThumb:hover .diyControl {
+  display: block;
+}
+.diyControl span {
+  display: inline-block;
+  padding: 0.40625rem 0.8125rem;
+  width: 0.75rem;
+  height: 0.6875rem;
+}
+.diyControl span i {
+  display: block;
+  width: 0.75rem;
+  height: 0.6875rem;
+  opacity: .7;
+}
+.diyControl span i:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.diyLeft {
+  margin-left: 0.1875rem;
+}
+.diyLeft {
+  margin-right: 0.1875rem;
+}
+.diyLeft i {
+  margin-left: 0.1875rem;
+  background: url(../img/upload-icon1.png) no-repeat 0 0;
+}
+.diyCancel i {
+  background: url(../img/upload-icon1.png) no-repeat 0 -0.6875rem;
+}
+.diyRight i {
+  margin-right: 0.1875rem;
+  background: url(../img/upload-icon1.png) no-repeat 0 -1.375rem;
+}
+.goods-edit .upload-tip {
+  color: #a3a3a3;
+  vertical-align: top;
+}

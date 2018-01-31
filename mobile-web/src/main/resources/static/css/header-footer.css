@@ -64,7 +64,7 @@ body {
 }
 .header-footer .header .left .return img {
   display: inline-block;
-  width: 0.625rem;
+  width: 1.25rem;
   height: 1.25rem;
   float: left;
 }
@@ -94,6 +94,9 @@ body {
 .header-footer .header .right .go img {
   width: 1.25rem;
   height: 1.25rem;
+  float: right;
+}
+.header-footer .header .right .go p {
   float: right;
 }
 .header-footer .footer {
