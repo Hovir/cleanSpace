@@ -1,7 +1,7 @@
 <nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a>
     <span class="c-999 en">&gt;</span>
     <span class="c-666">我的桌面</span>
-    <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:void (0);" onclick="pageTurns('/commonality/_home')" title="刷新">
+    <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:void (0);" onclick="pageTurns('manager/_home')" title="刷新">
         <i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="Hui-article">
     <article class="cl pd-20">

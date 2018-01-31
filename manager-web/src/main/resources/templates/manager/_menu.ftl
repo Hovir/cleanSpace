@@ -1,6 +1,5 @@
 <#assign path=springMacroRequestContext.getContextPath() />
 <aside class="Hui-aside">
-
     <div class="menu_dropdown bk_2">
         <dl id="menu-article">
             <dt><i class="Hui-iconfont">&#xe616;</i> 资讯管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
