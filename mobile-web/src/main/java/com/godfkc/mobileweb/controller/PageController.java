@@ -14,7 +14,7 @@ public class PageController {
      * 首页
      */
     @RequestMapping("/index")
-    public String toHomePage(){
+    public String toHomePage() {
         return "index";
     }
 
@@ -22,7 +22,7 @@ public class PageController {
      * 跳转登录页面
      */
     @RequestMapping("/login")
-    public String toLogin(){
+    public String toLogin() {
         return "login";
     }
 
@@ -43,4 +43,48 @@ public class PageController {
         return "forgetpwd";
     }
 
+
+    /**
+     * 环保资讯页面
+     */
+    @RequestMapping("/news")
+    public String toNews() {
+        return "news";
+    }
+
+    /**
+     * 环保咨询页面
+     */
+
+    /**
+     * 预约检测页面
+     */
+    @RequestMapping("/bespeakLogin")
+    public String toBespeakLogin(){
+        return "bespeak-login";
+    }
+
+    /**
+     *环保商家页面
+     */
+    @RequestMapping("/bussiness")
+    public String bussiness(){
+        return "bussiness";
+    }
+
+    /**
+     * 企业登陆页面
+     */
+    @RequestMapping("/companyLogin")
+    public String toComLogin(){
+        return "com-login";
+    }
+
+    /**
+     * 更多页面
+     */
+    @RequestMapping("/more")
+    public String toMore(){
+        return "more";
+    }
 }

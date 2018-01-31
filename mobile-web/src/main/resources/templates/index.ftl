@@ -43,7 +43,7 @@
 				</div>
 				<div class="part">
 					<div class="part-cont">
-						<a class="" href="com-login.ftl">
+						<a class="" href="/companyLogin">
 							<span class="icon"><img src="img/business.png"/></span>
 							<span class="font">企业</span>
 						</a>
@@ -68,37 +68,47 @@
 			</div>
 			<div class="modules">
 				<div class="module">
-					<div class="module-cont">
-						<img src="img/information.png"/>
-						<div>环保资讯</div>
-					</div>
+					<a href="/news">
+						<div class="module-cont">
+							<img src="img/information.png"/>
+							<div>环保资讯</div>
+						</div>
+                    </a>
 				</div>
 				<div class="module">
-					<div class="module-cont">
-						<img src="img/service.png"/>
-						<div>环保咨询</div>
-					</div>
+					<a href=""></a>
+						<div class="module-cont">
+							<img src="img/service.png"/>
+							<div>环保咨询</div>
+						</div>
+                    </a>
 				</div>
 				<div class="module">
-					<div class="module-cont">
-						<img src="img/testing.png"/>
-						<div>预约检测</div>
-					</div>	
+					<a href="/bespeakLogin">
+						<div class="module-cont">
+							<img src="img/testing.png"/>
+							<div>预约检测</div>
+						</div>
+                    </a>
 				</div>
 				<div class="module">
-					<div class="module-cont">
-						<img src="img/shop-business.png"/>
-						<div>环保商家</div>
-					</div>	
+					<a href="/bussiness">
+						<div class="module-cont">
+							<img src="img/shop-business.png"/>
+							<div>环保商家</div>
+						</div>
+                    </a>
 				</div>
 			</div>
 			<div class="product-type">
 				<div class="product-title">
 					<div class="title">集团咨询</div>
-					<div class="title-right">
-						<span class="more">更多</span>
-						<span class="more-img"><img src="img/more.png"/></span>
-					</div>
+					<a href="/more">
+						<div class="title-right">
+							<span class="more">更多</span>
+							<span class="more-img"><img src="img/more.png"/></span>
+						</div>
+                    </a>
 				</div>
 				<div class="col-detail">
 					<div class="detail">
