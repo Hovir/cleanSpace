@@ -37,7 +37,7 @@
 				</div>
 				<div class=" right">
 					<div class="go">
-						<a href="">
+						<a href="/goToRegister">
 							<span>注册</span>
 							<!--<img src= "img/setting.png" />-->
 						</a>
@@ -55,7 +55,7 @@
 		    		<input type="text" class="user-name" id="phone" placeholder="输入手机号" maxlength="11"/>
 		    		<input type="password" class="user-pwd" id="password" placeholder="用户密码" />
                     <div class="btn-login" id="login-btn">立即登录</div>
-                    <div class="forgetpwd"><a href="">忘记密码？</a></div>
+                    <div class="forgetpwd"><a href="/goToForgetPwd">忘记密码？</a></div>
 		    	</form>
 		    </div>
 		</div>
