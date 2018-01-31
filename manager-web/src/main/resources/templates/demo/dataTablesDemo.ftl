@@ -31,7 +31,31 @@
         <script type="application/javascript" src="${path}/lib/datatables/1.10.15/jquery.dataTables.min.js"></script>
         <script type="application/javascript" src="${path}/lib/js/dataTables.js"></script>
         <script type="application/javascript">
-
+            var url = "${path}/demo/dataTables";
+            /*列对应表*/
+            var columns = [
+                {data: null},
+                {data: "id"},
+                {data: "name"}
+            ];
+            /*特殊列渲染*/
+            var columnDefs = [
+                {
+                    //表示第0列
+                    targets: 0,
+                    //渲染函数
+                    render: function (data) {
+                        return "<td><input type=\"checkbox\" name=\"cb\" value=\"" + data.id + "\"/></td>";
+                    }
+                }, {
+                    //禁用排序
+                    orderable: false,
+                    //指定的列
+                    targets: [0]
+                }
+            ];
+            /*初始化dataTables*/
+            dataTables(url, columns, columnDefs);
         </script>
     <#--请在下方写此页面业务相关的脚本-->
 
