@@ -25,4 +25,22 @@ public class PageController {
     public String toLogin(){
         return "login";
     }
+
+
+    /**
+     * 跳转注册页面
+     */
+    @RequestMapping("/goToRegister")
+    public String goToRegister(){
+        return "register";
+    }
+
+    /**
+     * 忘记密码页面
+     */
+    @RequestMapping("/goToForgetPwd")
+    public String goToForgetPwd(){
+        return "forgetpwd";
+    }
+
 }

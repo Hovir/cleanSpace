@@ -44,7 +44,7 @@
 				</div>
 				<div class=" right">
 					<div class="go">
-						<a href="">
+						<a href="/login">
 							<span>登录</span>
 							<!--<img src= "img/setting.png" />-->
 						</a>
@@ -58,19 +58,19 @@
 		    </div>
 		    <div class="sign in">
 		    	<form action="" method="">
-		    		<input type="text" class="user-name" placeholder="输入手机号" id="" />
+		    		<input type="text" class="user-name" placeholder="输入手机号" id="phone" />
 		    		<div>
 		    			<input type="text" class="user-yanzheng"/>
 		    			<span class="yanzheng">验证码</span>
 		    		</div>
 		    				    		
-		    		<input type="password" class="user-pwd" id="" placeholder="用户密码" />
+		    		<input type="password" class="user-pwd" id="password" placeholder="用户密码" />
 		    		
 		    		<div class="agreement">
 		    			<input type="checkbox" class="inp-agree"/><span>我已阅读并同意<em>环保空间用户协议</em></span>
 		    		</div>
 		    		<div class="btn-login">立即注册</div>
-                    <div class="forgetpwd"><a href="">忘记密码？</a></div>
+                    <div class="forgetpwd"><a href="/goToForgetPwd">忘记密码？</a></div>
 		    	</form>
 		    </div>
 		</div>
