@@ -1,9 +1,12 @@
 package com.godfkc.common.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import com.fasterxml.jackson.core.type.TypeReference;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @version 1.0
@@ -44,4 +47,17 @@ public class JsonUtils {
         return null;
     }
 
+    /**
+     * json转map
+     * @param json
+     * @return
+     */
+    public static Map<String, Object> JsonToMap(String json){
+        try{
+            return objectMapper.readValue(json, new TypeReference<HashMap<String,Object>>(){});
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
