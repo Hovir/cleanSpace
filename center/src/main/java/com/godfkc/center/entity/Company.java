@@ -20,12 +20,14 @@ public class Company implements Serializable {
     private Long id;
     @Column(name = "name", length = 30)
     private String name;//公司名称
+    @Column(name = "password",length = 20)
+    private String password; //登录密码
     @Column(name = "img_url")
     private String imgUrl; //公司图片
     @Column(name = "profile")
     private String profile; //公司简介
-    @Column(name = "level", length = 1)
-    private int level; //公司等级 1体验店 2联盟 3蚂蚁
+    @Column(name = "bn",length = 5)
+    private String bn;
     @Column(name = "status", length = 1)
     private int status; //状态 1启用 0停用
     @Column(name = "create_time")
@@ -59,6 +61,11 @@ public class Company implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
     private Set<CompanyFundsWithdraw> companyFundsWithdraws;
 
+    //多对一 等级
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
+    @JoinColumn(name = "level_id")
+    private Level level;
+
     public Long getId() {
         return id;
     }
@@ -73,6 +80,14 @@ public class Company implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getImgUrl() {
@@ -91,12 +106,12 @@ public class Company implements Serializable {
         this.profile = profile;
     }
 
-    public int getLevel() {
-        return level;
+    public String getBn() {
+        return bn;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
+    public void setBn(String bn) {
+        this.bn = bn;
     }
 
     public int getStatus() {
@@ -177,5 +192,13 @@ public class Company implements Serializable {
 
     public void setCompanyFundsWithdraws(Set<CompanyFundsWithdraw> companyFundsWithdraws) {
         this.companyFundsWithdraws = companyFundsWithdraws;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
     }
 }
