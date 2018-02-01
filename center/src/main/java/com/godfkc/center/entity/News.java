@@ -21,6 +21,8 @@ public class News implements Serializable {
     private String title; //标题
     @Column(name = "details", length = 2000)
     private String details; //内容
+    @Column(name = "img_url")
+    private String imgUrl; //图片
     @Column(name = "status", length = 1)
     private int status; //状态 1未删除 0删除
     @Column(name = "create_time")
