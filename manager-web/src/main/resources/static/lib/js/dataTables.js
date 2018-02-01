@@ -37,6 +37,8 @@ function dataTables(url, columns, columnDefs) {
         retrieve: true,
         //开启服务器模式
         serverSide: true,
+        //设置为true,就会有表格加载时的提示
+        processing: true,
         ajax: {
             url: url,
             type: 'POST'
