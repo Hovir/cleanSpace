@@ -9,4 +9,6 @@ package com.godfkc.mobileweb.service;
  */
 public interface UserService {
     String findByPhoneAndPassword(String phone, String password);
+
+    String doLogin(String phone, String password);
 }

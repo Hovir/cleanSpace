@@ -34,4 +34,14 @@ public class UserServiceImp implements UserService{
         String user = this.restTemplate.getForObject(url, String.class, map);
         return user;
     }
+
+    @Override
+    public String doLogin(String phone, String password) {
+        String url = centerUrl + "/doLogin/{phone}/{password}";
+        HashMap<String,String> map = new HashMap<>(16);
+        map.put("phone",phone);
+        map.put("password",password);
+        String user = this.restTemplate.getForObject(url, String.class, map);
+        return user;
+    }
 }
