@@ -8,7 +8,9 @@
 <#assign path=springMacroRequestContext.getContextPath() />
 <nav class="breadcrumb"><i class="Hui-iconfont"></i>
     <a href="javascript:;" onclick="pageTurns('manager/_home')" class="maincolor">首页</a>
-    <span class="c-999 en">&gt;</span><span class="c-666">派遣治理</span></nav>
+    <span class="c-999 en">&gt;</span><span class="c-666">派遣治理</span>
+   <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:;" onclick="pageTurns('dispatch/govern')" title="刷新" >
+       <i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="Hui-article">
     <article class="cl pd-20">
 

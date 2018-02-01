@@ -20,18 +20,13 @@ public class NewsServiceImpl implements NewsService {
     private NewsRepository newsRepository;
 
     @Override
-    public void addNews(News news) {
-        newsRepository.save(news);
-    }
-
-    @Override
-    public Page<News> selectNews(Integer status, Integer page, Integer size, String dir, String column, String search) {
+    public Page<News> selectNews(Integer status, Integer page, Integer size, String dir, String data, String search) {
         Sort sort = null;
         //判断排序规则
         if (dir.equals("desc")) {
-            sort = new Sort(Sort.Direction.DESC, column);
+            sort = new Sort(Sort.Direction.DESC, data);
         } else if (dir.equals("asc")) {
-            sort = new Sort(Sort.Direction.ASC, column);
+            sort = new Sort(Sort.Direction.ASC, data);
         }
         Pageable pageable = new PageRequest(page, size, sort);
         return newsRepository.findByStatusAndTitleLike(status, search, pageable);
