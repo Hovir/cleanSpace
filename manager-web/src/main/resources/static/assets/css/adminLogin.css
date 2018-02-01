@@ -1,0 +1,343 @@
+/*admin登录页面css*/
+
+/*全局*/
+body {
+    font-size: 14px;
+}
+html, body {
+    height: 100%;
+}
+body {
+    background-color: #fff;
+    color: #333;
+}
+body {
+    line-height: 1.6;
+    position: relative;
+}
+body, th, td, button, input, select, textarea {
+    font-family: "Microsoft Yahei","Hiragino Sans GB","Helvetica Neue",Helvetica,tahoma,arial,"WenQuanYi Micro Hei",Verdana,sans-serif,"\5B8B\4F53";
+    font-size: 12px;
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+html, body {
+}
+html, body, h1, h2, h3, h4, h5, h6, hr, p, iframe, dl, dt, dd, ul, ol, li, pre, form, button, input, textarea, th, td, fieldset {
+    margin: 0;
+    padding: 0;
+}
+* {
+    word-wrap: break-word;
+}
+user agent stylesheet
+body {
+    display: block;
+    margin: 8px;
+}
+
+html {
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+* {
+    word-wrap: break-word;
+}
+
+
+
+/*标签1*/
+body, th, td, button, input, select, textarea {
+    font-family: "Microsoft Yahei","Hiragino Sans GB","Helvetica Neue",Helvetica,tahoma,arial,"WenQuanYi Micro Hei",Verdana,sans-serif,"\5B8B\4F53";
+    font-size: 12px;
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+input, button {
+    overflow: visible;
+    vertical-align: middle;
+    outline: 0;
+}
+
+input, button, textarea, select, optgroup, option {
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+}
+
+html, body, h1, h2, h3, h4, h5, h6, hr, p, iframe, dl, dt, dd, ul, ol, li, pre, form, button, input, textarea, th, td, fieldset {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    word-wrap: break-word;
+}
+
+/*input:not([type="image" i]), textarea {
+    box-sizing: border-box;
+}
+
+input[type="hidden" i], input[type="image" i], input[type="file" i] {
+    -webkit-appearance: initial;
+    background-color: initial;
+    padding: initial;
+    border: initial;
+}
+input[type="hidden" i] {
+    display: none;
+}*/
+input {
+    -webkit-appearance: textfield;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    user-select: text;
+    cursor: auto;
+    padding: 1px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+}
+input, textarea, select, button {
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    margin: 0em;
+    font: 13.3333px Arial;
+}
+input, textarea, select, button, meter, progress {
+    -webkit-writing-mode: horizontal-tb;
+}
+body {
+    font-size: 14px;
+}
+body {
+    background-color: #fff;
+    color: #333;
+}
+body {
+    line-height: 1.6;
+    position: relative;
+}
+body, th, td, button, input, select, textarea {
+    font-family: "Microsoft Yahei","Hiragino Sans GB","Helvetica Neue",Helvetica,tahoma,arial,"WenQuanYi Micro Hei",Verdana,sans-serif,"\5B8B\4F53";
+    font-size: 12px;
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+* {
+    word-wrap: break-word;
+}
+html {
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+* {
+    word-wrap: break-word;
+}
+
+
+/*标签2*/
+.header {
+    top: 0;
+    height: 60px;
+    background-color: #426374;
+}
+
+.header, .footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 99;
+}
+
+* {
+    word-wrap: break-word;
+}
+
+div {
+    display: block;
+}
+Inherited from body
+
+body {
+    font-size: 14px;
+}
+
+body {
+    background-color: #fff;
+    color: #333;
+}
+
+body {
+    line-height: 1.6;
+    position: relative;
+}
+
+body, th, td, button, input, select, textarea {
+    font-family: "Microsoft Yahei","Hiragino Sans GB","Helvetica Neue",Helvetica,tahoma,arial,"WenQuanYi Micro Hei",Verdana,sans-serif,"\5B8B\4F53";
+    font-size: 12px;
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+    word-wrap: break-word;
+}
+Inherited from html
+
+html {
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+* {
+    word-wrap: break-word;
+}
+
+/*标签3*/
+.loginWraper {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    background: #3283AC url(../images/admin-login-bg.jpg) no-repeat center;
+}
+* {
+    word-wrap: break-word;
+}
+div {
+    display: block;
+}
+body {
+    font-size: 14px;
+}
+body {
+    background-color: #fff;
+    color: #333;
+}
+body {
+    line-height: 1.6;
+    position: relative;
+}
+body, th, td, button, input, select, textarea {
+    font-family: "Microsoft Yahei","Hiragino Sans GB","Helvetica Neue",Helvetica,tahoma,arial,"WenQuanYi Micro Hei",Verdana,sans-serif,"\5B8B\4F53";
+    font-size: 12px;
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+    word-wrap: break-word;
+}
+
+html {
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+* {
+    word-wrap: break-word;
+}
+
+
+
+/*页脚*/
+
+.footer {
+    height: 46px;
+    line-height: 46px;
+    bottom: 0;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+    background-color: #426374;
+}
+
+.header, .footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 99;
+}
+.footer {
+    border-top: 1px solid #e8e8e8;
+    padding: 15px 0;
+    font-family: tahoma,Arial;
+    font-size: 12px;
+    color: #999;
+    line-height: 22px;
+    text-align: center;
+}
+
+* {
+    word-wrap: break-word;
+}
+
+div {
+    display: block;
+}
+
+body {
+    font-size: 14px;
+}
+body {
+    background-color: #fff;
+    color: #333;
+}
+body {
+    line-height: 1.6;
+    position: relative;
+}
+body, th, td, button, input, select, textarea {
+    font-family: "Microsoft Yahei","Hiragino Sans GB","Helvetica Neue",Helvetica,tahoma,arial,"WenQuanYi Micro Hei",Verdana,sans-serif,"\5B8B\4F53";
+    font-size: 12px;
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+* {
+    word-wrap: break-word;
+}
+
+html {
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+* {
+    word-wrap: break-word;
+}
+
+/*
+.col-xs-offset-3-title{
+    color: #d2fbff;
+}*/
