@@ -24,4 +24,10 @@ public class PageController {
     public String index() {
         return "/manager/_index";
     }
+
+    /*test page*/
+    @RequestMapping(value = "/testPage")
+    public String testPage(){
+        return "/manager/_test";
+    }
 }

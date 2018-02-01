@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<title>乐美优享</title>
-		<script src="js/jquery.min.js"></script>
+		<script src="/js/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/header-footer.css"/>
 		<link rel="stylesheet" type="text/css" href="css/com-login.css"/>
 	</head>
@@ -77,10 +77,25 @@
 		    </div>
 		    <div class="sign in">
 		    	<form action="" method="">
-		    		<input type="text" class="user-name" id="" placeholder="企业账户" />
-		    		<input type="password" class="user-pwd" id="" placeholder="企业密码" />                   
+		    		<input type="text" class="user-name" id="comAccount" placeholder="企业账户" />
+		    		<input type="password" class="user-pwd" id="comPwd" placeholder="企业密码" />
+					<br/>
+					<span style="color: red;text-align: center;margin-top: 5px;">#这里是错误提示信息</span>
 		    	</form>
 		    </div>
 		</div>
+
 	</body>
+    <script type="text/javascript">
+        $("#comPwd").blur(function(){
+            var comAccount=$("#comAccount").val();
+            var comPwd=$("#comPwd").val();
+            $.post("/company/loginAjax",{"comAccount":comAccount,"comPwd":comPwd},function (result){
+                if(result){
+                    alert("success!!!!");
+                }
+            });
+
+        })
+    </script>
 </html>
