@@ -55,7 +55,7 @@
 				</div>
 				<div class="part">
 					<div class="part-cont">
-						<a class="" href="case.html">
+						<a class="" href="case.ftl">
 							<span class="icon"><img src="img/green-business.png"/></span>
 							<span class="font active">企业</span>
 						</a>

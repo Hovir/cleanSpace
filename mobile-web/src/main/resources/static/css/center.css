@@ -1,0 +1,128 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	background-color: #F5F5F5;
+}
+.content{
+	/*margin-top: 2.8125rem;*/
+	text-align: left;
+}
+.top{
+	background: white;
+}
+.top_personal_infor{
+	width: 100%;
+	position: relative;
+	top: 0;
+	left: 0;
+}
+.top-img .topimg{
+	width: 100%;
+	height: 9rem;
+	background: 100% 100%;
+}
+.headimg{
+	position: absolute;
+	top: -1rem;
+	left: 0;
+	padding: 1.55rem 1rem;
+	z-index: 1000;
+	width: 100%;
+}
+.notification{
+	width: 100%;
+	padding: 0;
+	overflow: hidden;
+}
+.notification img{
+	width: 2rem;
+	height: 2rem;
+	float: right;
+}
+.headimg span{
+	float: left;
+}
+.headimg span:nth-child(2) img{
+	width: 4.5rem;
+	height: 4.5rem;
+}
+.headimg span:nth-child(3){
+	width: 60%;
+	height: 4.5rem;
+	overflow: hidden;
+	/*margin-left: 0.5rem;
+	float: left;*/
+}
+.headimg span:nth-child(3) p{
+    font-size: 1.3rem;
+    color: white;
+    line-height: 1.75rem;
+    margin-top: 0.3rem;
+}
+
+
+
+.process {
+  clear: both;
+  display: inline-block;
+  width: 100%;
+  padding: 0.8125rem 0;
+}
+.process .parts {
+  display: inline-block;
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+.parts .parts-cont {
+    display: inline-block;
+}
+.parts-cont .process_icon {
+    width: 100%;
+}
+.parts-cont .process_icon img {
+    width: 2rem;
+    height: 2rem;
+    vertical-align: middle;
+}
+.parts-cont .process_font {
+	color: #666666;
+    vertical-align: middle;
+	line-height: 2rem;
+}
+
+
+.middle-con{
+	width: 100%;
+	margin-top: 1rem;
+}
+.middle-con>div:nth-child(1){
+	border-top: none;
+}
+
+.middle-part{
+	padding: 0.5rem 0.5rem 0.5rem 1rem;
+	border-top:0.1rem solid #F1F1F1 ;
+	background-color: white;
+}
+
+.middle-icon{
+	
+}
+
+.middle-icon img{
+	width: 2rem;
+	height: 2rem;
+	vertical-align: middle;
+}
+.middle-word{
+	vertical-align: middle;
+	line-height: 3rem;
+}
+
+
+
+
+

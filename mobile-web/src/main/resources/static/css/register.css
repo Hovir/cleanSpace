@@ -1,19 +1,16 @@
-* {
-    margin: 0;
-    padding: 0;
+*{
+	margin: 0;
+	padding: 0;
 }
-
-body {
-    margin-top: 2.8125rem;
+body{
+	margin-top: 2.8125rem;
     background: white;
-    text-align: left;
+    text-align: left;	
 }
-
-input {
-    border: none;
-    outline: none;
+input{
+	border: none;
+	outline: none;
 }
-
 .header-footer .header {
     width: 100%;
     position: fixed;
@@ -21,140 +18,124 @@ input {
     z-index: 10;
     height: 2.8125rem;
     padding: 0.625rem 1.25rem;
-    border-bottom: none;
+    border-bottom: none; 
     background-color: #4DB748;
 }
-
 .header-footer .middle p {
     color: white;
 }
-
-.go a span {
-    text-align: right;
-    float: right;
-    line-height: 1.6rem;
-    color: white;
+.go a span{
+	text-align: right;
+	float: right;
+	line-height: 1.6rem;
+	color: white;
+}
+.top-logo{
+	width: 100%;
+	margin-top: 5rem;
+}
+.top-logo img{
+	width: 10rem;
 }
 
-.top-logo {
-    width: 100%;
-    margin-top: 5rem;
+.sign{
+	margin: 1.5rem 0 2rem 0;
 }
-
-.top-logo img {
-    width: 10rem;
+.user-name,.user-pwd,.user-yanzheng{
+	width: 75%;
+	border: 1px solid #dddddd;
+	border-radius: 2rem;
+	margin-top: 1rem;
+	font-size: 1.1rem;
 }
-
-.sign {
-    margin: 1.5rem 0 2rem 0;
-}
-
-.user-name, .user-pwd, .user-yanzheng {
-    width: 75%;
-    border: 1px solid #dddddd;
-    border-radius: 2rem;
-    margin-top: 1rem;
-    font-size: 1.1rem;
-}
-
-input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
-    color: #cccccc;
+ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+　　color: #cccccc;
     text-align: center;
     /*border: none;
 	outline: none;*/
 }
-
-input {
+input{
     /*-webkit-appearance: none;*/
 }
-
-textarea {
+textarea{
     -webkit-appearance: none;
 }
-
-.user-name {
-    text-align: center;
-    padding: 0.8rem 2rem;
-    -webkit-appearance: none;
+.user-name{
+	 text-align: center;
+	 padding: 0.8rem 2rem;
+	 -webkit-appearance: none;
+}
+.user-pwd{
+	 text-align: center;
+	 padding: 0.8rem 2rem;
+	 -webkit-appearance: none;
+}
+.btn-login{
+	width: 75%;
+	height: 3.2rem;
+	border-radius: 2rem;
+	text-align: center;
+	line-height: 3.2rem;
+	margin: 0 auto;
+	margin-top: 1rem;
+	color: white;
+	background: #4db748;
+	font-size: 0.9rem;
+}
+.user-yanzheng{
+	height: 3rem;
+	padding: 0 7.5rem 0 2rem;
+	text-align: left;
+	vertical-align: middle;
+	-webkit-appearance: none;
+}
+.yanzheng{
+	width: 5.5rem;
+	height: 3rem;
+	border-radius: 0 1.5rem 1.5rem 0;
+	background: #4DB748;
+	display: inline-block;
+	color: white;
+	text-align: center;
+	line-height: 3rem;
+	margin-left: -5.8rem;
+	vertical-align: middle;
+	margin-top: 1rem;
 }
 
-.user-pwd {
-    text-align: center;
-    padding: 0.8rem 2rem;
-    -webkit-appearance: none;
-}
 
-.btn-login {
-    width: 75%;
-    height: 3.2rem;
-    border-radius: 2rem;
-    text-align: center;
-    line-height: 3.2rem;
-    margin: 0 auto;
-    margin-top: 1rem;
-    color: white;
-    background: #4db748;
-    font-size: 0.9rem;
-}
-
-.user-yanzheng {
-    height: 3rem;
-    padding: 0 7.5rem 0 2rem;
-    text-align: left;
-    vertical-align: middle;
-    -webkit-appearance: none;
-}
-
-.yanzheng {
-    width: 5.5rem;
-    height: 3rem;
-    border-radius: 0 1.5rem 1.5rem 0;
-    background: #4DB748;
-    display: inline-block;
-    color: white;
-    text-align: center;
-    line-height: 3rem;
-    margin-left: -5.8rem;
-    vertical-align: middle;
-    margin-top: 1rem;
-}
-
-.agreement {
-    width: 75%;
-    margin: 0 auto;
-    margin-top: 1rem;
+.agreement{
+	width: 75%;
+	margin: 0 auto;
+	margin-top: 1rem;
     /*overflow: hidden;*/
     white-space: nowrap;
     text-overflow: ellipsis;
     text-align: left;
 }
-
-.inp-agree {
-    width: 1.5rem;
-    height: 1.5rem;
-    vertical-align: middle;
-    border: 1px solid gray;
-    /*background: white;*/
+.inp-agree{
+	width: 1.5rem;
+	height: 1.5rem;
+	vertical-align: middle;
+	border: 1px solid gray;
+	/*background: white;*/
+}
+.agreement span{
+	vertical-align: middle;
+}
+.agreement em{
+	font-style: normal;
+	color: blue;
+	vertical-align: middle;
+	margin-top: -0.2rem;
+	display: inline-block;
 }
 
-.agreement span {
-    vertical-align: middle;
+.forgetpwd{
+	margin: 1rem 0;
+	
 }
-
-.agreement em {
-    font-style: normal;
-    color: blue;
-    vertical-align: middle;
-    margin-top: -0.2rem;
-    display: inline-block;
-}
-
-.forgetpwd {
-    margin: 1rem 0;
-
-}
-
-.forgetpwd a {
-    color: #aaaaaa;
-    font-size: 0.9rem;
+.forgetpwd a{
+	color: #aaaaaa;
+	font-size: 0.9rem;
 }

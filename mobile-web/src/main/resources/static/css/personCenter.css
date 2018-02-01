@@ -1,0 +1,76 @@
+.header-footer .header {
+  background-color: #4db748;
+}
+.header-footer .header .middle p {
+  color: #fff;
+}
+body {
+  background-color: #f5f5f5;
+}
+.content {
+  margin-top: 45px;
+}
+.person-cont {
+  background-color: #fff;
+}
+.person-cont .person-img {
+  display: inline-block;
+  width: 100%;
+  border-bottom: 1px solid #f5f5f5;
+}
+.person-cont .person-img .font {
+  display: inline-block;
+  float: left;
+  width: 30%;
+  padding-top: 2.1875rem;
+  font-size: 1.125rem;
+  text-align: left;
+  padding-left: 1.875rem;
+}
+.person-cont .person-img .img {
+  display: inline-block;
+  float: right;
+  width: 4.375rem;
+  height: 4.375rem;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 0.625rem 1.875rem;
+}
+.person-cont .person-img .img img {
+  width: 100%;
+  height: 100%;
+}
+.person-cont .person-name {
+  display: inline-block;
+  width: 100%;
+}
+.person-cont .person-name .font {
+  display: inline-block;
+  float: left;
+  width: 30%;
+  margin: 0.625rem 0;
+  font-size: 1.125rem;
+  text-align: left;
+  padding-left: 1.875rem;
+}
+.person-cont .person-name input {
+  display: inline-block;
+  width: 60%;
+  float: right;
+  text-align: right;
+  margin-right: 2.1875rem;
+  margin-top: 0.625rem;
+  font-size: 1.125rem;
+}
+.btn {
+  display: inline-block;
+  width: 80%;
+  background-color: #4db748;
+  padding: 0.9375rem 0;
+  position: fixed;
+  bottom: 1.875rem;
+  left: 10%;
+  border-radius: 0.3125rem;
+  color: #fff;
+  font-size: 1.25rem;
+}
