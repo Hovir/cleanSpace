@@ -1,6 +1,7 @@
 package com.godfkc.managerweb.controller;
 
 import com.godfkc.managerweb.service.AdminService;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,8 @@ public class AdminController {
     @RequestMapping(value="/admin/doLogin",method= RequestMethod.POST)
     public String adminDoLogin(String name, String password, HttpServletRequest request){
         System.out.println("name="+name);
+        password= DigestUtils.md5Hex(password);
+        System.out.println("password="+password);
         Boolean adminBoolean=adminService.getAdminLogin(name,password);
         if(adminBoolean){
             System.out.println("adminBoolean="+adminBoolean);
