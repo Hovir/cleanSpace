@@ -5,11 +5,13 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 
 
 @Controller
@@ -36,18 +38,26 @@ public class AdminController {
      */
     @RequestMapping(value="/admin/doLogin",method= RequestMethod.POST)
     public String adminDoLogin(String name, String password, HttpServletRequest request){
-        System.out.println("name="+name);
+        //System.out.println("name="+name);
         password= DigestUtils.md5Hex(password);
-        System.out.println("password="+password);
+        //System.out.println("password="+password);
         Boolean adminBoolean=adminService.getAdminLogin(name,password);
         if(adminBoolean){
             System.out.println("adminBoolean="+adminBoolean);
             HttpSession httpSession=request.getSession();
             httpSession.setAttribute(sessionKeyAdminName,name);
             httpSession.setAttribute(sessionKeyPwd,password);
-            return "redirect:/index";
+            return "redirect:/admin/index";
         }
-        System.out.println("adminBoolean="+adminBoolean);
+        //System.out.println("adminBoolean="+adminBoolean);
         return "admin/adminLgoin";
+    }
+
+    /*首页*/
+    @RequestMapping(value = "/admin/index")
+    public String adminIndex(HttpServletRequest request, Model model) {
+        String name=(String)request.getSession().getAttribute(sessionKeyAdminName);
+        model.addAttribute("name",name);
+        return "/manager/_index";
     }
 }
