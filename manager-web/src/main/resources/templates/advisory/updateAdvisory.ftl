@@ -122,6 +122,8 @@
             $("#demoText").html("<span style=\"color: #FF5722;\">请选择图片!</span>");
             return false;
         } else {
+            $(obj).parents("tr").remove();
+            layer.msg('已保存!', {icon: 1, time: 1000});
             $("#form-article-add").submit();
         }
     }

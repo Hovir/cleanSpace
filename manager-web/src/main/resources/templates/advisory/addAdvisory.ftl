@@ -45,7 +45,7 @@
         </div>
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-                <button onClick="sub();" class="btn btn-primary radius" type="button"><i
+                <button onClick="sub(this);" class="btn btn-primary radius" type="button"><i
                         class="Hui-iconfont">&#xe632;</i> 保存并提交
                 </button>
                 <button onClick="layer_close();" class="btn btn-default radius" type="button">
@@ -109,7 +109,7 @@
     })
 </script>
 <script type="application/javascript">
-    function sub() {
+    function sub(obj) {
 
         $("#titleError").empty();
         $("#demoText").empty();
@@ -122,6 +122,8 @@
             $("#demoText").html("<span style=\"color: #FF5722;\">请选择图片!</span>");
             return false;
         } else {
+            $(obj).parents("tr").remove();
+            layer.msg('已保存!', {icon: 1, time: 1000});
             $("#form-article-add").submit();
         }
     }

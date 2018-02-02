@@ -13,7 +13,7 @@
             <dt><i class="Hui-iconfont">&#xe613;</i> 图片管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a href="javascript:;" onclick="pageTurns('picture/picture')" title="图片管理">图片管理</a></li>
+                    <li><a href="javascript:;" onclick="pageTurns('picture/picture')" title="广告管理">广告管理</a></li>
                 </ul>
             </dd>
         </dl>
@@ -21,7 +21,8 @@
             <dt><i class="Hui-iconfont">&#xe602;</i> 卡片管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a href="javascript:;" onclick="pageTurns('card/card')" title="卡片管理">卡片管理</a></li>
+                    <li><a href="javascript:;" onclick="pageTurns('card/addCard')" title="制卡">制卡</a></li>
+                    <li><a href="javascript:;" onclick="pageTurns('card/card')" title="制卡">卡片列表</a></li>
                 </ul>
             </dd>
         </dl>
