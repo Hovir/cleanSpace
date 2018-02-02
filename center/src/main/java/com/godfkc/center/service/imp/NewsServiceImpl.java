@@ -11,6 +11,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 
 @Service
 @Transactional
@@ -30,5 +32,27 @@ public class NewsServiceImpl implements NewsService {
         }
         Pageable pageable = new PageRequest(page, size, sort);
         return newsRepository.findByStatusAndTitleLike(status, search, pageable);
+    }
+
+    @Override
+    public void insertNews(News news) {
+        news.setCreateTime(new Date());
+        news.setUpdateTime(new Date());
+        newsRepository.save(news);
+    }
+
+    @Override
+    public void deleteNews(Long id, int status) {
+        newsRepository.updateNewsById(id, status);
+    }
+
+    @Override
+    public News selectNewById(long id) {
+        return newsRepository.findNewsById(id);
+    }
+
+    @Override
+    public void saveUpdateNewsById(News news) {
+        newsRepository.saveUpdateNewsById(news.getTitle(), news.getImg_url(), news.getDetails(), new Date(), news.getId());
     }
 }

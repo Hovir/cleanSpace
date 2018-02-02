@@ -20,4 +20,33 @@ public interface NewsService {
      * @Des:查询未删除新闻
      */
     Page<News> selectNews(Integer status, Integer page, Integer size, String dir, String data, String search);
+
+    /**
+     * @Author:lhy
+     * @Data:2018/2/2 11:00
+     * @Version:V1.0
+     * @Des:添加资讯
+     */
+    void insertNews(News news);
+    /**
+     * @Author:lhy
+     * @Data:2018/2/2 13:02
+     * @Version:V1.0
+     * @Des:删除新闻
+     */
+    void deleteNews(Long id , int status);
+    /**
+     * @Author:lhy
+     * @Data:2018/2/2 14:04
+     * @Version:V1.0
+     * @Des:查询单条新闻数据
+     */
+    News selectNewById(long id);
+    /**
+     * @Author:lhy
+     * @Data:2018/2/2 14:55
+     * @Version:V1.0
+     * @Des:保存修改的新闻
+     */
+    void saveUpdateNewsById(News news);
 }

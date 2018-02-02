@@ -10,22 +10,24 @@
 <nav class="breadcrumb"><i class="Hui-iconfont"></i>
     <a href="javascript:;" onclick="pageTurns('manager/_home')" class="maincolor">首页</a>
     <span class="c-999 en">&gt;</span><span class="c-666">资讯管理</span>
-    <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:;" onclick="pageTurns('advisory/advisory')" title="刷新" >
+    <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:;"
+       onclick="pageTurns('advisory/advisory')" title="刷新">
         <i class="Hui-iconfont">&#xe68f;</i>
     </a></nav>
 <div class="Hui-article">
     <article class="cl pd-20">
         <div class="cl pd-5 bg-1 bk-gray mt-20">
 				<span class="l">
-				<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-				<a  href="javascript:;" class="btn btn-primary radius" data-title="添加资讯" onclick="layer_open('添加资讯','/news/openAddNews')"><i class="Hui-iconfont">&#xe600;</i> 添加资讯</a>
+				<a href="javascript:;" onclick="deleteAll(this)" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+				<a href="javascript:;" class="btn btn-primary radius" data-title="添加资讯"
+                   onclick="layer_open('添加资讯','/news/openAddNews')"><i class="Hui-iconfont">&#xe600;</i> 添加资讯</a>
 				</span>
         </div>
         <div class="mt-20">
             <table class="table table-border table-bordered table-bg table-hover table-sort" id="data_tables">
                 <thead>
                 <tr>
-                    <th width="25"><input type="checkbox"></th>
+                    <th width="25"><input onclick="switchAll()" type="checkbox"></th>
                     <th width="200">新闻标题</th>
                     <th>创建时间</th>
                     <th>修改时间</th>
@@ -61,7 +63,7 @@
                     targets: 0,
                     //渲染函数
                     render: function (data) {
-                        return "<input type=\"checkbox\" name=\"\" value=\"" + data.id + "\"/>";
+                        return "<input type=\"checkbox\" name=\"formvalue\" value=\"" + data.id + "\"/>";
                     }
                 },
                 {
@@ -69,15 +71,15 @@
                     targets: 4,
                     //渲染函数
                     render: function (data) {
-                        return "<a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"article_edit('资讯编辑','article-add.html','10001',1920,1080)\" href=\"javascript:;\" title=\"编辑\"><i class=\"Hui-iconfont\">&#xe6df;</i></a>" +
-                                "<a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"article_del(this,'10001')\" href=\"javascript:;\" title=\"删除\"><i class=\"Hui-iconfont\">&#xe6e2;</i></a>";
+                        return "<a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"layer_open('修改资讯','/news/updateNews/" + data.id + "')\" href=\"javascript:;\" title=\"编辑\"><i class=\"Hui-iconfont\">&#xe6df;</i></a>" +
+                                "<a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"del(this," + data.id + ")\" href=\"javascript:;\" title=\"删除\"><i class=\"Hui-iconfont\">&#xe6e2;</i></a>";
                     }
                 },
                 {
                     //禁用排序
                     orderable: false,
                     //指定的列
-                    targets: [0,4]
+                    targets: [0, 4]
                 },
                 {
                     //表示第2列
@@ -98,6 +100,58 @@
             ];
             /*初始化dataTables*/
             dataTables(url, columns, columnDefs);
+        </script>
+        <script type="application/javascript">
+            //复选框选择转换
+            function switchAll() {
+                var roomids = document.getElementsByName("formvalue");
+                for (var j = 0; j < roomids.length; j++) {
+                    roomids.item(j).checked = !roomids.item(j).checked;
+                }
+            }
+
+            //批量删除
+            function deleteAll(obj) {
+                layer.confirm('确认要删除吗？', function (index) {
+                    var id = new Array();
+                    var groupCheckbox = $("input[name='formvalue']");
+                    for (var i = 0; i < groupCheckbox.length; i++) {
+                        if (groupCheckbox[i].checked) {
+                            id.push(groupCheckbox[i].value);
+                        }
+                    }
+                    $.post("${path}/news/deleteNews", {id: id}, function (req) {
+                        if (req) {
+                            $(obj).parents("tr").remove();
+                            layer.msg('已删除!', {icon: 1, time: 1000});
+                            pageTurns("advisory/advisory");
+                        } else {
+                            $(obj).parents("tr").remove();
+                            layer.msg('删除失败!', {icon: 5, time: 1000});
+                            pageTurns("advisory/advisory");
+                        }
+                    })
+                })
+            }
+
+            //删除
+            function del(obj, i) {
+                layer.confirm('确认要删除吗？', function (index) {
+                    var id = new Array();
+                    id.push(i);
+                    $.post("${path}/news/deleteNews", {id: id}, function (req) {
+                        if (req) {
+                            $(obj).parents("tr").remove();
+                            layer.msg('已删除!', {icon: 1, time: 1000});
+                            pageTurns("advisory/advisory");
+                        } else {
+                            $(obj).parents("tr").remove();
+                            layer.msg('删除失败!', {icon: 5, time: 1000});
+                            pageTurns("advisory/advisory");
+                        }
+                    })
+                })
+            }
         </script>
         <script type="application/javascript">
             /*时间戳转时间*/

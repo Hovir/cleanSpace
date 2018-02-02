@@ -22,7 +22,7 @@ public class News implements Serializable {
     @Column(name = "details", length = 2000)
     private String details; //内容
     @Column(name = "img_url")
-    private String imgUrl; //图片
+    private String img_url; //图片
     @Column(name = "status", length = 1)
     private int status; //状态 1未删除 0删除
     @Column(name = "create_time")
@@ -52,6 +52,14 @@ public class News implements Serializable {
 
     public void setDetails(String details) {
         this.details = details;
+    }
+
+    public String getImg_url() {
+        return img_url;
+    }
+
+    public void setImg_url(String img_url) {
+        this.img_url = img_url;
     }
 
     public int getStatus() {
