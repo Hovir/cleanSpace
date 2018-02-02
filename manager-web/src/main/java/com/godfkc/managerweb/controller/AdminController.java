@@ -60,4 +60,5 @@ public class AdminController {
         model.addAttribute("name",name);
         return "/manager/_index";
     }
+
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class AdminController {
+public class AdminLoginController {
 
     @Autowired
     private AdminService adminService;
@@ -18,7 +18,7 @@ public class AdminController {
     @RequestMapping(value="/admin/doLogin/{name}/{password}",method = RequestMethod.POST)
     public Admin adminDoLogin(@PathVariable("name") String name, @PathVariable("password") String password){
         System.out.println("POST:name="+name);
-        Admin admin=adminService.getAdminLogin(name,password,1);
+        Admin admin=adminService.getAdminLogin(name,password);
         return admin;
     }
 }

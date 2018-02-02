@@ -12,8 +12,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface AdminRepository extends JpaRepository<Admin, Long> {
 
     //查询用户信息
-    Admin findByNameAndPassword(String name,String password);
-
-    //查询用户信息
     Admin findByNameAndPasswordAndStatus(String name,String password,int status);
 }

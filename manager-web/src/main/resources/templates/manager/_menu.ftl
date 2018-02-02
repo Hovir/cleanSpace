@@ -39,8 +39,19 @@
             <dt><i class="Hui-iconfont">&#xe621;</i>查看分级<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a href="javascript:;" onclick="pageTurns('examine/cassification')" title="查看">查看分级</a></li>
+                    <li><a href="javascript:;" onclick="pageTurns('examine/cassification')" title="查看分级">查看分级</a></li>
                 </ul>
+            </dd>
+        </dl>
+        <dl id="menu-tongji">
+            <dt><i class="Hui-iconfont">&#xe61a;</i>企业管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    <li><a href="javascript:;" onclick="pageTurns('company/companyList')" title="企业列表">企业列表</a></li>
+                </ul>
+    <#--            <ul>
+                    <li><a href="javascript:;" onclick="pageTurns('company/companyFounds')" title="企业收益">企业收益</a></li>
+                </ul>-->
             </dd>
         </dl>
     </div>
