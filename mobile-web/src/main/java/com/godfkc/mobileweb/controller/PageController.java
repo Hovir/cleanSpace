@@ -87,4 +87,38 @@ public class PageController {
     public String toMore(){
         return "more";
     }
+
+    /**
+     * 我的预约页面
+     */
+    @RequestMapping("/toMyReservation")
+    public String myReservation(){
+        return "my-reservation";
+    }
+
+    /**
+     * 企业收益等等
+     */
+    /*@RequestMapping("/enterprisePage")
+    public String enterprisePage(){
+        return "enterprise";
+    }*/
+
+    /**
+     * 预约检测填写页面跳转
+     */
+    /*@RequestMapping("/subscribePage")
+    public String subscribePage(){
+        return "subscribe";
+    }*/
+
+    /**
+     * 银行卡页面
+     */
+    /*@RequestMapping("/bankcardPage")
+    public String bankcardPage(){
+        return "bankcard";
+    }*/
+
+
 }

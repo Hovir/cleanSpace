@@ -1,5 +1,9 @@
 package com.godfkc.center.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -41,11 +45,15 @@ public class Order implements Serializable {
     private Date updateTime;
 
     //多对一 公司id
+    @NotFound(action= NotFoundAction.IGNORE)
+    @JsonIgnore
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
     @JoinColumn(name = "company_id")
     private Company company;
 
     //多对一 用户id
+    @NotFound(action= NotFoundAction.IGNORE)
+    @JsonIgnore
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
     @JoinColumn(name = "user_id")
     private User user;

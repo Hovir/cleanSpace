@@ -55,8 +55,8 @@
 		   <ul>
 		   	<li>
 		   		<div class="Today reservation">
-		   	    <div class="Subscribe-List">
-		   	    	<div class="list">
+		   	    <div class="Subscribe-List" id="orderList">
+		   	    	<#--<div class="list">
 		   	    		<div>
 		   	    			<span>艰苦撒旦哈</span>
 		   	    			<span>15604614102</span>
@@ -94,7 +94,7 @@
 		   	    			<span>预约时间：<em>2018-08-23 16:10</em></span>
 		   	    			<span>查看详情</span>
 		   	    		</div>
-		   	    	</div>
+		   	    	</div>-->
 		   	    </div>		   
 		   	</li>
 		   	
@@ -103,6 +103,27 @@
 		   	    		   
 		</div>
 	</body>
+<script>
+	$(function () {
+		$.ajax({
+			url:"/order/myReservation",
+			type:"post",
+			dataType:"json",
+			success:function (data) {
+			    $("#orderList").empty();
+				$.each(data,function (index, value) {
+				    var html ="<div class='list'><div><span>"+value.name+"</span>" +
+							"<span>"+value.phone+"</span></div><div calss='address'>"+value.state+value.city+value.district+value.address+"</div>" +
+							"<div><span>预约时间：<em>"+value.appointmentTime+"</em></span>" +
+							"<span>查看详情</span></div></div>"
+                    $("#orderList").append(html);
+                })
+            },error:function () {
+				//alert("请求失败");
+            }
+		})
+    })
+</script>
 </html>
 
 
