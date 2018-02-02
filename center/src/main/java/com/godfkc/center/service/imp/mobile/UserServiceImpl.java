@@ -23,4 +23,10 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByPhoneAndPassword(phone, password);
         return user;
     }
+
+    @Override
+    public Long selectUserIdByPhone(String phone) {
+        Long id = userRepository.selectIdByPhone(phone);
+        return id;
+    }
 }

@@ -1,6 +1,8 @@
 package com.godfkc.center.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -24,12 +26,14 @@ public class AddressDict implements Serializable {
     @Column(name = "is_city", length = 1)
     private int isCity;
 
+    @JsonIgnore
+    @NotFound(action= NotFoundAction.IGNORE)
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
     @JoinColumn(name = "parent_id")
     private AddressDict parent;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "parent")
     @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "parent")
     private Set<AddressDict> children;
 
     public Long getId() {

@@ -10,4 +10,6 @@ import com.godfkc.center.entity.User;
 
 public interface UserService {
     User doLogin(String phone,String password);
+
+    Long selectUserIdByPhone(String phone);
 }

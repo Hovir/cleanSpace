@@ -11,4 +11,6 @@ public interface UserService {
     String findByPhoneAndPassword(String phone, String password);
 
     String doLogin(String phone, String password);
+
+    Long selectUserIdByPhone(String phone);
 }

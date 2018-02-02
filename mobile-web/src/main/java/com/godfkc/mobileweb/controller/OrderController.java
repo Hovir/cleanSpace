@@ -1,8 +1,11 @@
 package com.godfkc.mobileweb.controller;
 
+import com.godfkc.common.pojo.mobile.OrderVo;
 import com.godfkc.common.utils.JsonUtils;
 import com.godfkc.mobileweb.service.OrderService;
+import com.godfkc.mobileweb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +28,12 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private UserService userService;
+
+    @Value("${session.key.userPhone}")
+    private String sessionKeyUserPhone;
+
     /**
      * 我的预约
      * @param request
@@ -39,6 +48,25 @@ public class OrderController {
         String orderListJson = orderService.findByCompanyIdOrUserId(companyId, userId);
         //System.out.println("返回第一个controller:"+orderListJson);
         return orderListJson;
+    }
+
+    @RequestMapping("/addOrder")
+    @ResponseBody
+    public String addOrder(HttpServletRequest request, OrderVo orderVo){
+        String phone = (String) request.getSession().getAttribute(sessionKeyUserPhone);
+        if(phone!=null&&phone.length()>0){
+            Long id=userService.selectUserIdByPhone(phone);
+            orderVo.setStatus(1);
+            orderVo.setUserId(id);
+            System.out.println(orderVo.getAppointmentTime());
+            if(orderService.addOrder(orderVo)){
+                return "1";
+            }else {
+                return "2";
+            }
+        }else {
+            return "3";
+        }
     }
 
     /**

@@ -1,6 +1,8 @@
 package com.godfkc.mobileweb.service;
 
 
+import com.godfkc.common.pojo.mobile.OrderVo;
+
 import java.util.List;
 
 /**
@@ -11,6 +13,8 @@ import java.util.List;
 public interface OrderService {
 
     String findByCompanyIdOrUserId(String companyId, String userId);
+
+    boolean addOrder(OrderVo orderVo);
 
     String findOrderById(String id);
 }

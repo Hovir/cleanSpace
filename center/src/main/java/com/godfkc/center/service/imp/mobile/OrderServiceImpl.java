@@ -1,13 +1,16 @@
 package com.godfkc.center.service.imp.mobile;
 
 import com.godfkc.center.entity.Order;
+import com.godfkc.center.entity.User;
 import com.godfkc.center.repository.OrderRepository;
 import com.godfkc.center.service.mobile.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Auther:zhw
@@ -36,6 +39,12 @@ public class OrderServiceImpl implements OrderService {
         }
         List<Order> orderList = this.orderRepository.findByCompanyIdOrUserId(companyIdLong, userIdLong);
         return orderList;
+    }
+
+    @Override
+    public Order addOrder(Order order) {
+        Order order1 = orderRepository.save(order);
+        return order1;
     }
 
     @Override

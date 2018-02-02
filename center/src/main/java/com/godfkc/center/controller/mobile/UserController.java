@@ -17,9 +17,17 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    //用户登陆验证
     @RequestMapping("/doLogin/{phone}/{password}")
     public User doLogin(@PathVariable("phone")String phone, @PathVariable("password")String password){
         User user = userService.doLogin(phone,password);
         return user;
+    }
+
+    //根据手机号查询useId
+    @RequestMapping("/selectUserIdByPhone/{phone}")
+    public Long selectUserIdByPhone(@PathVariable("phone")String phone){
+        Long id=userService.selectUserIdByPhone(phone);
+        return id;
     }
 }

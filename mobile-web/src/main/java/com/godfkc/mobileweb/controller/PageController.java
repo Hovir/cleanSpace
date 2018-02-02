@@ -89,6 +89,32 @@ public class PageController {
     }
 
     /**
+     * 添加银行卡
+     */
+    @RequestMapping("/addCard")
+    public String toAddCard(){
+        return "addCard";
+    }
+
+
+    /**
+     * 银行卡信息
+     */
+    @RequestMapping("/bankcard")
+    public String toBankcard(){
+        return "bankcard";
+    }
+
+
+    /**
+     * 预约信息填写
+     */
+    @RequestMapping("/subscribe")
+    public String toSubscribe(){
+        return "subscribe";
+    }
+
+    /**
      * 我的预约页面
      */
     @RequestMapping("/toMyReservation")

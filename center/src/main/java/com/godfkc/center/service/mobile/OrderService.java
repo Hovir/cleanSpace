@@ -3,6 +3,7 @@ package com.godfkc.center.service.mobile;
 import com.godfkc.center.entity.Order;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Auther:zhw
@@ -12,6 +13,8 @@ import java.util.List;
 public interface OrderService {
 
     List<Order> findByCompanyIdOrUserId(String companyId,String userId);
+
+    Order addOrder(Order order);
 
     Order findOrderById(Long id);
 

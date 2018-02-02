@@ -37,11 +37,21 @@ public class UserServiceImp implements UserService{
 
     @Override
     public String doLogin(String phone, String password) {
-        String url = centerUrl + "/doLogin/{phone}/{password}";
+        String url = centerUrl + "doLogin/{phone}/{password}";
         HashMap<String,String> map = new HashMap<>(16);
         map.put("phone",phone);
         map.put("password",password);
         String user = this.restTemplate.getForObject(url, String.class, map);
         return user;
+    }
+
+    @Override
+    public Long selectUserIdByPhone(String phone) {
+        String url = centerUrl + "selectUserIdByPhone/{phone}";
+        HashMap<String,String> map = new HashMap<>(16);
+        map.put("phone",phone);
+        Long id = this.restTemplate.getForObject(url, Long.class, map);
+        System.out.println(id);
+        return id;
     }
 }
