@@ -28,4 +28,10 @@ public class OrderController {
         List<Order> orderList = orderService.findByCompanyIdOrUserId(companyId, userId);
         return orderList;
     }
+
+    @RequestMapping("/findOrderById")
+    public Order findOrderById(@RequestBody String id){
+        Long logId = Long.parseLong(id);
+        return orderService.findOrderById(logId);
+    }
 }

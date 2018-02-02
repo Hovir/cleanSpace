@@ -115,7 +115,7 @@
 				    var html ="<div class='list'><div><span>"+value.name+"</span>" +
 							"<span>"+value.phone+"</span></div><div calss='address'>"+value.state+value.city+value.district+value.address+"</div>" +
 							"<div><span>预约时间：<em>"+value.appointmentTime+"</em></span>" +
-							"<span>查看详情</span></div></div>"
+							"<span><a href='/order/customerDetails?id="+value.id+"'>查看详情</a></span></div></div>"
                     $("#orderList").append(html);
                 })
             },error:function () {

@@ -9,5 +9,8 @@ import java.util.List;
  * @Date:Created in 18:44 2018/2/1
  **/
 public interface OrderService {
+
     String findByCompanyIdOrUserId(String companyId, String userId);
+
+    String findOrderById(String id);
 }

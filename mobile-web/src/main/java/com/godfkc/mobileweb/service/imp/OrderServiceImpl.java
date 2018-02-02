@@ -34,4 +34,11 @@ public class OrderServiceImpl implements OrderService{
         String s = this.restTemplate.postForObject(url, map, String.class);
         return s;
     }
+
+    @Override
+    public String findOrderById(String id) {
+        String url = centerUrl + "findOrderById";
+        return this.restTemplate.postForObject(url,id,String.class);
+    }
+
 }

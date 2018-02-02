@@ -37,4 +37,9 @@ public class OrderServiceImpl implements OrderService {
         List<Order> orderList = this.orderRepository.findByCompanyIdOrUserId(companyIdLong, userIdLong);
         return orderList;
     }
+
+    @Override
+    public Order findOrderById(Long id) {
+        return this.orderRepository.findOrderById(id);
+    }
 }

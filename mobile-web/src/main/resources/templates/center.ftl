@@ -59,7 +59,7 @@
 			  
 			    <div class="process">
 				    <div class="parts">
-				    	<a href="">
+				    	<a href="/toMyReservation">
 				    		<div class="parts-cont">
 						       <span class="process_icon"><img src="img/testing.png"/></span>
 						       <span class="process_font">我的预约</span>

@@ -120,5 +120,12 @@ public class PageController {
         return "bankcard";
     }*/
 
-
+    /**
+     * 个人中心跳转
+     * @return
+     */
+    @RequestMapping("/centerPage")
+    public String personCenterPage(){
+        return "center";
+    }
 }
