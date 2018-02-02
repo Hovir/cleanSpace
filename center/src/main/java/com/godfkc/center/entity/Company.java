@@ -1,5 +1,7 @@
 package com.godfkc.center.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -20,13 +22,13 @@ public class Company implements Serializable {
     private Long id;
     @Column(name = "name", length = 30)
     private String name;//公司名称
-    @Column(name = "password",length = 20)
+    @Column(name = "password", length = 20)
     private String password; //登录密码
     @Column(name = "img_url")
     private String imgUrl; //公司图片
     @Column(name = "profile")
     private String profile; //公司简介
-    @Column(name = "bn",length = 5)
+    @Column(name = "bn", length = 5)
     private String bn;
     @Column(name = "status", length = 1)
     private int status; //状态 1启用 0停用
@@ -40,25 +42,31 @@ public class Company implements Serializable {
     @JoinColumn(name = "parent_id")
     private Company parent;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "parent")
+    @JsonIgnore
     private Set<Company> Children;
 
     //一对多 激活卡
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
+    @JsonIgnore
     private Set<Card> cards;
 
     //一对多 预约订单
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
+    @JsonIgnore
     private Set<Order> orders;
 
-    @OneToOne(mappedBy = "company")
+    @OneToOne(mappedBy = "company", fetch = FetchType.LAZY)
+    @JsonIgnore
     private CompanyFunds companyFunds;
 
     //一对多 账户日志
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
+    @JsonIgnore
     private Set<CompanyFundsLog> companyFundsLogs;
 
     //一对多 提现
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
+    @JsonIgnore
     private Set<CompanyFundsWithdraw> companyFundsWithdraws;
 
     //多对一 等级

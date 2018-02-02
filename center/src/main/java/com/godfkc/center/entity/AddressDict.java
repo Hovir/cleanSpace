@@ -1,5 +1,7 @@
 package com.godfkc.center.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
@@ -27,6 +29,7 @@ public class AddressDict implements Serializable {
     private AddressDict parent;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "parent")
+    @JsonIgnore
     private Set<AddressDict> children;
 
     public Long getId() {

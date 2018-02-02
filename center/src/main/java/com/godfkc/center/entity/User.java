@@ -1,5 +1,7 @@
 package com.godfkc.center.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -38,6 +40,7 @@ public class User implements Serializable {
 
     //一对多 订单
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
+    @JsonIgnore
     private Set<Order> orders;
 
     public Long getId() {

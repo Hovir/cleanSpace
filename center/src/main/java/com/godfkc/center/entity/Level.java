@@ -1,5 +1,7 @@
 package com.godfkc.center.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -29,6 +31,7 @@ public class Level implements Serializable {
 
     //一对多 公司
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "level")
+    @JsonIgnore
     private Set<Company> companies;
 
     public Long getId() {
