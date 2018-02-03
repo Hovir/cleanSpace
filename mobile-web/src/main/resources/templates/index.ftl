@@ -43,7 +43,7 @@
 				</div>
 				<div class="part">
 					<div class="part-cont">
-						<a class="" href="/companyLogin">
+						<a class="" href="/company/myCompany">
 							<span class="icon"><img src="img/business.png"/></span>
 							<span class="font">企业</span>
 						</a>

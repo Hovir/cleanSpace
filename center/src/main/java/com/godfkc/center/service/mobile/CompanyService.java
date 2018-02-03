@@ -11,4 +11,5 @@ import com.godfkc.center.entity.Company;
  */
 public interface CompanyService {
     Company findByNameAndPassword(String name, String password);
+    Company findByName(String name);
 }

@@ -8,5 +8,7 @@ package com.godfkc.mobileweb.service;
  * @date: 2018/2/1
  */
 public interface CompanyService {
-    String findByNameAndPassword(String name,String password);
+    boolean findByNameAndPassword(String name,String password);
+
+    String findCompanyDetailByName(String companyName);
 }

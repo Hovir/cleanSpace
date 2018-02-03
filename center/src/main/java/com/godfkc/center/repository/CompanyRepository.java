@@ -2,6 +2,7 @@ package com.godfkc.center.repository;
 
 import com.godfkc.center.entity.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  * @version 1.0
@@ -10,5 +11,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @description
  */
 public interface CompanyRepository extends JpaRepository<Company, Long> {
+    @Query(nativeQuery = true,value = "select c.* from cs_company c where c.name=?1 and c.password=?2")
     Company findByNameAndPassword(String name, String password);
+
+    Company findByName(String name);
 }

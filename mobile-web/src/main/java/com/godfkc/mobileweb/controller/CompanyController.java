@@ -1,10 +1,19 @@
 package com.godfkc.mobileweb.controller;
 
+import com.godfkc.common.utils.JsonUtils;
 import com.godfkc.mobileweb.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.view.AbstractTemplateView;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * @param:
@@ -17,11 +26,49 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class CompanyController {
     @Autowired
     private CompanyService companyService;
+    @Value("${session.key.companyName}")
+    private String companyNameSessionKey;
+    @Value("${session.key.companyId}")
+    private String companyIdSessionKey;
+
+    /**
+     * 下边栏，点选企业
+     *
+     * @param:
+     * @return:
+     * @author: Qi Zining
+     * @date: 2018/2/2
+     */
+    @RequestMapping("/myCompany")
+    public ModelAndView turnToMyCompany(HttpServletRequest request) {
+        String companyName = (String) request.getSession().getAttribute(companyNameSessionKey);
+        System.out.println("/myCompany: name in session " + companyName);
+        //
+        ModelAndView companyPageTurn = null;
+        if (null == companyName || companyName.trim().length() <= 0) {
+            companyPageTurn= new ModelAndView("com-login");
+        } else {//if exist companyName in session, turn to company index page;
+            companyPageTurn = new ModelAndView("enterprise");
+            String companyDetailByName = companyService.findCompanyDetailByName(companyName);
+            System.out.println(companyDetailByName);
+            /* set companyId into session*/
+            Map<String, Object> stringDetailMap = JsonUtils.JsonToMap(companyDetailByName);
+            Integer id = (Integer)stringDetailMap.get("id");
+            request.getSession().setAttribute(companyIdSessionKey,id.longValue());
+
+            companyPageTurn.addObject("company", companyDetailByName);
+        }
+        return companyPageTurn;
+    }
 
     @RequestMapping("/loginAjax")
     @ResponseBody
-    public boolean checkCompanyName(String comAccount, String comPwd) {
-        String byNameAndPassword = companyService.findByNameAndPassword(comAccount, comPwd);
-        return (null == byNameAndPassword || byNameAndPassword.trim().length() == 0) ? false : true;
+    public boolean checkCompanyName(HttpServletRequest request, String comAccount, String comPwd) {
+        boolean flag_login = companyService.findByNameAndPassword(comAccount, comPwd);
+        if (flag_login) {
+            request.getSession().setAttribute(companyNameSessionKey, comAccount);
+        }
+        return flag_login;
     }
+
 }

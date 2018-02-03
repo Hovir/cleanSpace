@@ -1,13 +1,9 @@
 package com.godfkc.mobileweb.service.imp;
 
-import com.godfkc.common.utils.JsonUtils;
 import com.godfkc.mobileweb.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
@@ -24,9 +20,11 @@ public class CompanyServiceImp implements CompanyService {
     @Value("${center.url}")
     private String centerUrl;
     @Override
-    public String findByNameAndPassword(String name,String password) {
-        String url=centerUrl+"company/doLogin/{name}/{password}";
-        System.out.println("url of \"findBynameAndPassword\" in company service: "+url);
+    public boolean findByNameAndPassword(String name,String password) {
+        String url=centerUrl+"companyLoginCheck/{name}/{password}";
+        System.out.println("url of \"findBynameAndPassword\" in company service: "+url+"params are :"+name+"**"+password);
+        String test = restTemplate.postForObject(centerUrl + "companyTest",null,String.class);
+        System.out.println("test b: "+test);
 
         Map<String ,Object> paramMap = new HashMap();
         paramMap.put("name",name);
@@ -42,6 +40,16 @@ public class CompanyServiceImp implements CompanyService {
         */
         String result = restTemplate.postForObject(url, null, String.class, paramMap);
         System.out.println("result is :========="+result);
+
+        return null != result && "" != result.trim();
+    }
+
+    @Override
+    public String findCompanyDetailByName(String companyName) {
+        String url= centerUrl+"/getCompanyDetailByname/{name}";
+        Map paramMap= new HashMap();
+        paramMap.put("name",companyName);
+        String result = restTemplate.postForObject(url,null,String.class,paramMap);
         return result;
     }
 }

@@ -38,7 +38,8 @@ public class Company implements Serializable {
     private Date updateTime;
 
     //自关联
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
+    @JsonIgnore
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false,fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Company parent;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "parent")
@@ -70,7 +71,8 @@ public class Company implements Serializable {
     private Set<CompanyFundsWithdraw> companyFundsWithdraws;
 
     //多对一 等级
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
+    @JsonIgnore
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY,optional = false)
     @JoinColumn(name = "level_id")
     private Level level;
 

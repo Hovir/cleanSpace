@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "cs_admin")
-public class Admin implements Serializable {
+public class   Admin implements Serializable {
     @Id
     @GeneratedValue
     @Column(length = 10)

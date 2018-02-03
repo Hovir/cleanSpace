@@ -19,4 +19,9 @@ public class CompanyServiceImp implements CompanyService{
         Company company = companyRepository.findByNameAndPassword(name,password);
         return company;
     }
+
+    @Override
+    public Company findByName(String name) {
+        return companyRepository.findByName(name);
+    }
 }
