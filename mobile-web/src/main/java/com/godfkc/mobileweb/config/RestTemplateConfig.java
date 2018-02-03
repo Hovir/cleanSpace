@@ -1,4 +1,4 @@
-package com.godfkc.mobileweb;
+package com.godfkc.mobileweb.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

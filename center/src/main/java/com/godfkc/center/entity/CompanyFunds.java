@@ -29,7 +29,8 @@ public class CompanyFunds implements Serializable {
     private Date updateTime;
 
     //一对一 公司
-    @OneToOne
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
+    @JoinColumn(name = "company_id")
     private Company company;
 
     public Long getId() {

@@ -1,4 +1,4 @@
-package com.godfkc.managerweb;
+package com.godfkc.managerweb.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

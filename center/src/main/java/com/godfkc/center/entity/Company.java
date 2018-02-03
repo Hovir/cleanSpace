@@ -55,9 +55,9 @@ public class Company implements Serializable {
     @JsonIgnore
     private Set<Order> orders;
 
-    @OneToOne(mappedBy = "company", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
     @JsonIgnore
-    private CompanyFunds companyFunds;
+    private Set<CompanyFunds> companyFundsSet;
 
     //一对多 账户日志
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
@@ -178,12 +178,12 @@ public class Company implements Serializable {
         this.orders = orders;
     }
 
-    public CompanyFunds getCompanyFunds() {
-        return companyFunds;
+    public Set<CompanyFunds> getCompanyFundsSet() {
+        return companyFundsSet;
     }
 
-    public void setCompanyFunds(CompanyFunds companyFunds) {
-        this.companyFunds = companyFunds;
+    public void setCompanyFundsSet(Set<CompanyFunds> companyFundsSet) {
+        this.companyFundsSet = companyFundsSet;
     }
 
     public Set<CompanyFundsLog> getCompanyFundsLogs() {
