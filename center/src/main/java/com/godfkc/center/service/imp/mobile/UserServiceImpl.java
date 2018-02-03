@@ -29,4 +29,14 @@ public class UserServiceImpl implements UserService {
         Long id = userRepository.selectIdByPhone(phone);
         return id;
     }
+
+    @Override
+    public User saveUserInfo(User user) {
+        return userRepository.save(user);
+    }
+
+    @Override
+    public int updatePwdByPhone(String phone, String password) {
+        return userRepository.updatePwdByPhone(password,phone);
+    }
 }

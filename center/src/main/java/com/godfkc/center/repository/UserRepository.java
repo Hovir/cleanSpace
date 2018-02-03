@@ -4,6 +4,7 @@ import com.godfkc.center.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 /**
@@ -17,4 +18,8 @@ public interface UserRepository extends JpaRepository<User,Long>{
 
     @Query("select id from User where phone=?1")
     Long selectIdByPhone(String phone);
+
+    @Modifying
+    @Query(" update User set password = ?1 where phone = ?2 ")
+    int updatePwdByPhone(String password,String phone);
 }

@@ -43,11 +43,15 @@ public class OrderController {
     @RequestMapping("/myReservation")
     @ResponseBody
     public String myReservation(HttpServletRequest request, Model model){
-        String companyId = "4";
-        String userId = null;
-        String orderListJson = orderService.findByCompanyIdOrUserId(companyId, userId);
-        //System.out.println("返回第一个controller:"+orderListJson);
-        return orderListJson;
+        String phone = (String) request.getSession().getAttribute(sessionKeyUserPhone);
+        if(phone!=null&&phone.length()>0){
+            Long userId=userService.selectUserIdByPhone(phone);
+            Long companyId = null;
+            String orderListJson = orderService.findByCompanyIdOrUserId(companyId, userId);
+            //System.out.println("返回第一个controller:"+orderListJson);
+            return orderListJson;
+        }
+        return "1";
     }
 
     @RequestMapping("/addOrder")

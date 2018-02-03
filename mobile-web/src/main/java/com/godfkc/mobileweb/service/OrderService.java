@@ -12,7 +12,7 @@ import java.util.List;
  **/
 public interface OrderService {
 
-    String findByCompanyIdOrUserId(String companyId, String userId);
+    String findByCompanyIdOrUserId(Long companyId, Long userId);
 
     boolean addOrder(OrderVo orderVo);
 

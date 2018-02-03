@@ -13,4 +13,8 @@ public interface UserService {
     String doLogin(String phone, String password);
 
     Long selectUserIdByPhone(String phone);
+
+    boolean insertUserInfo(String phone, String password);
+
+    boolean updatePwdByPhone(String phone,String password);
 }

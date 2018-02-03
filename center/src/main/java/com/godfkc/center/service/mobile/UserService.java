@@ -12,4 +12,8 @@ public interface UserService {
     User doLogin(String phone,String password);
 
     Long selectUserIdByPhone(String phone);
+
+    User saveUserInfo(User user);
+
+    int updatePwdByPhone(String password,String phone);
 }

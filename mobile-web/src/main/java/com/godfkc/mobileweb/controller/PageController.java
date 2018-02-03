@@ -81,7 +81,7 @@ public class PageController {
     }
 
     /**
-     * 更多页面
+     * 下级代理页面
      */
     @RequestMapping("/more")
     public String toMore(){
@@ -123,12 +123,12 @@ public class PageController {
     }
 
     /**
-     * 企业收益等等
+     * 企业中心
      */
-    /*@RequestMapping("/enterprisePage")
+    @RequestMapping("/enterprisePage")
     public String enterprisePage(){
         return "enterprise";
-    }*/
+    }
 
     /**
      * 预约检测填写页面跳转
@@ -153,5 +153,23 @@ public class PageController {
     @RequestMapping("/centerPage")
     public String personCenterPage(){
         return "center";
+    }
+
+    /**
+     * 明细页跳转
+     * @return
+     */
+    @RequestMapping("/detailPage")
+    public String detailPage(){
+        return "detail";
+    }
+
+    /**
+     * 检测与管理页
+     * @return
+     */
+    @RequestMapping("/detectionManagementPage")
+    public String detectionManagementPage(){
+        return "detection and management";
     }
 }

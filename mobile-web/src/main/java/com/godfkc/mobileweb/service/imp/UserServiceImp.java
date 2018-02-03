@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -54,4 +55,27 @@ public class UserServiceImp implements UserService{
         System.out.println(id);
         return id;
     }
+
+    @Override
+    public boolean insertUserInfo(String phone, String password) {
+        String url = centerUrl +"saveUserInfo";
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("phone",phone);
+        map.put("password",password);
+        map.put("name","昵称");
+        map.put("headImg","默认头像地址");
+        map.put("createTime",new Date());
+        return this.restTemplate.postForObject(url,map,boolean.class);
+    }
+
+    @Override
+    public boolean updatePwdByPhone(String phone, String password) {
+        String url = centerUrl + "updatePwdByPhone";
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("phone",phone);
+        map.put("password",password);
+        return this.restTemplate.postForObject(url,map,boolean.class);
+    }
+
+
 }

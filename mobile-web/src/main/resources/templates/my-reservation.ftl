@@ -110,6 +110,9 @@
 			type:"post",
 			dataType:"json",
 			success:function (data) {
+			    if(data == "1"){
+			        window.location.href = "/login"
+				}
 			    $("#orderList").empty();
 				$.each(data,function (index, value) {
 				    var html ="<div class='list'><div><span>"+value.name+"</span>" +

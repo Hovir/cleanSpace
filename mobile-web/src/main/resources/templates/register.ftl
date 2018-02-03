@@ -58,21 +58,163 @@
 		    </div>
 		    <div class="sign in">
 		    	<form action="" method="">
-		    		<input type="text" class="user-name" placeholder="输入手机号" id="phone" />
+		    		<input type="text" class="user-name" placeholder="输入手机号" onfocus="clearInfo()" id="phone" />
 		    		<div>
-		    			<input type="text" class="user-yanzheng"/>
-		    			<span class="yanzheng">验证码</span>
+		    			<input type="text" class="user-yanzheng" id="verfiy" onfocus="clearInfo()"/>
+		    			<span class="yanzheng" id="quick1">验证码</span>
+                        <div type="button" id="quick2" class="yanzheng" style="display: none;">
+                            <span id="quick3" >60</span>秒
+                        </div>
 		    		</div>
 		    				    		
-		    		<input type="password" class="user-pwd" id="password" placeholder="用户密码" />
+		    		<input type="password" class="user-pwd" id="pwd" placeholder="用户密码" onfocus="clearInfo()" />
 		    		
 		    		<div class="agreement">
-		    			<input type="checkbox" class="inp-agree"/><span>我已阅读并同意<em>环保空间用户协议</em></span>
+		    			<input type="checkbox" name="agreement" class="inp-agree" onfocus="clearInfo()"/><span>我已阅读并同意<em>环保空间用户协议</em></span>
 		    		</div>
-		    		<div class="btn-login">立即注册</div>
+					<div id="info"></div>
+		    		<div class="btn-login" id="registBut">立即注册</div>
                     <div class="forgetpwd"><a href="/goToForgetPwd">忘记密码？</a></div>
 		    	</form>
 		    </div>
 		</div>
 	</body>
+<script>
+    $("#quick1").click(function () {
+        var phone = $("#phone").val(); //手机号
+        if ($.trim(phone) == "") {
+            $("#info").html("请输入手机号!").css("color", "red");
+            return;
+        }
+        if (!checkPhone(phone)) {
+            return;
+        }
+        //验证手机号是否存在
+        $.ajax({
+            url: "/user/isExist",
+            type: "POST",
+            dataType: "text",
+            data: {"phone": phone},
+            success: function (data) {
+                if (data == "1") {
+                    $("#info").html("手机号码已注册!").css("color", "red");
+                    return;
+                } else {
+                    $("#info").html("");
+                    getResetMessage(phone);
+                }
+            },
+            error: function (data) {
+                //alert('请求失败!');
+            }
+        });
+
+        //发送验证码
+        function getResetMessage(phone) {
+            $("#quick2").show();
+            $("#quick1").hide();
+            $.ajax({
+                url: "/user/getRegisterMessage",
+                type: "POST",
+                dataType: "json",
+                data: {"phone": phone},
+                success: function (data) {
+                    return;
+                },
+                error: function (data) {
+                    //alert('获取验证码请求失败!');
+                }
+            });
+            var obj = this;
+            var timer = setInterval(function () {
+                var tir = $("#quick3");
+                var temp = tir.html();
+                if (temp > 0) {
+                    temp = temp - 1;
+                    tir.html(temp);
+                }
+                else {
+                    $("#quick2").hide();
+                    $("#quick1").show();
+                    clearInterval(timer);//关闭定时器
+                    tir.html(60);
+                }
+            }, 1000);
+        }
+    })
+
+    //点击注册按钮
+    $("#registBut").click(function () {
+        if ( !$("[name='agreement']").prop("checked") ){
+            return;
+        }
+        var phone = $("#phone").val(); //手机号
+        var verfiy = $("#verfiy").val(); //验证码
+        var pwd = $("#pwd").val(); //密码第一次
+        if ($.trim(phone) == "") {
+            $("#info").html("请输入手机号!").css("color", "red");
+            return;
+        }
+        if ($.trim(verfiy) == "") {
+            $("#info").html("请输入验证码!").css("color", "red");
+            return;
+        }
+        if (!checkPwd(pwd)) {
+            return;
+        }
+        if (!checkPhone(phone)) {
+            return;
+        }
+        $.ajax({
+            url:"/user/userRegist",
+            dataType:"text",
+            data:{phone:phone,verfiy:verfiy,pwd:pwd},
+            type:"POST",
+            success:function (data) {
+                if(data == "1"){
+                    $("#info").html("手机号已注册!").css("color", "red");
+                }else if(data == "2"){
+                    $("#info").html("验证码失效或手机号不正确!").css("color", "red");
+                }else if(data == "3"){
+                    alert("注册成功!");
+                    window.location.href = "/login";
+                }else if(data == "4"){
+                    $("#info").html("注册失败!").css("color", "red");
+                }
+            },
+            error:function (data) {
+                //alert("请求失败!!");
+            }
+        });
+    });
+
+    //验证手机号
+    function checkPhone(phone) {
+        var phoneTest = /^(((13[0-9]{1})|(17[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+        if (!(phoneTest.test(phone))) {
+            $("#info").html("手机号输入有误!!").css("color", "red");
+            return false;
+        } else {
+            $("#info").html("");
+            return true;
+        }
+    }
+
+    //验证密码
+    function checkPwd(password) {
+        var pwdTest = /^(\w){5,20}$/;
+        if (!(pwdTest.test(password))) {
+            $("#info").html("密码只能是5-20个字符").css("color", "red");
+            return false;
+        } else {
+            $("#info").html("");
+            return true;
+        }
+    }
+
+    //清除提示信息
+    function clearInfo() {
+        $("#info").html("");
+    }
+</script>
 </html>
