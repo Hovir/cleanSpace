@@ -36,6 +36,7 @@ public class User implements Serializable {
     private Date updateTime;
 
     @OneToOne(mappedBy = "user")
+    @JsonIgnore
     private Card card;
 
     //一对多 订单

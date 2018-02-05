@@ -57,6 +57,9 @@ public class AdminController {
     @RequestMapping(value = "/admin/index")
     public String adminIndex(HttpServletRequest request, Model model) {
         String name=(String)request.getSession().getAttribute(sessionKeyAdminName);
+        if(name==null){
+            return "admin/adminLgoin";
+        }
         model.addAttribute("name",name);
         return "/manager/_index";
     }

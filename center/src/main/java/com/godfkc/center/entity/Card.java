@@ -1,5 +1,7 @@
 package com.godfkc.center.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -33,10 +35,12 @@ public class Card implements Serializable {
     //多对一 公司id
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
+    @JsonIgnore
     private Company company;
 
     //一对一 用户
     @OneToOne
+    @JsonIgnore
     private User user;
 
     public Long getId() {

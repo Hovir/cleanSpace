@@ -1,12 +1,18 @@
 package com.godfkc.center.repository;
 
 import com.godfkc.center.entity.Company;
+import com.godfkc.center.entity.CompanyVo;
+import com.godfkc.center.entity.Level;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 /**
  * @version 1.0

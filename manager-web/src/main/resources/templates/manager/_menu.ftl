@@ -36,10 +36,10 @@
             </dd>
         </dl>
         <dl id="menu-member">
-            <dt><i class="Hui-iconfont">&#xe621;</i>查看分级<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe621;</i>修改佣金<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a href="javascript:;" onclick="pageTurns('examine/cassification')" title="查看分级">查看分级</a></li>
+                    <li><a href="javascript:;" onclick="pageTurns('examine/cassification')" title="修改佣金">修改佣金</a></li>
                 </ul>
             </dd>
         </dl>
