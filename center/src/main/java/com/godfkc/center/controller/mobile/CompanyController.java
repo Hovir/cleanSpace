@@ -6,6 +6,8 @@ import com.godfkc.common.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import java.util.*;
 
 /**
@@ -36,6 +38,12 @@ public class CompanyController {
     public String test() {
         System.out.println("come in");
         return "b";
+    }
+
+    @RequestMapping("/company/selectUnderCompany/{companyId}")
+    public List<Company> selectUnderCompany(@PathVariable(value = "companyId")Long companyId){
+        List<Company> companyList=companyService.selectUnderCompany(companyId);
+        return companyList;
     }
 
     @RequestMapping(value = "/getCompanyDetailByname/{name}", method = RequestMethod.POST)

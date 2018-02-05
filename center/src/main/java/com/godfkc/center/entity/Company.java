@@ -1,6 +1,8 @@
 package com.godfkc.center.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -39,9 +41,13 @@ public class Company implements Serializable {
 
     //自关联
     @JsonIgnore
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false,fetch = FetchType.LAZY)
+    @NotFound(action= NotFoundAction.IGNORE)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
     @JoinColumn(name = "parent_id")
     private Company parent;
+
+
+    @NotFound(action= NotFoundAction.IGNORE)
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "parent")
     @JsonIgnore
     private Set<Company> Children;
@@ -71,8 +77,7 @@ public class Company implements Serializable {
     private Set<CompanyFundsWithdraw> companyFundsWithdraws;
 
     //多对一 等级
-    @JsonIgnore
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY,optional = false)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
     @JoinColumn(name = "level_id")
     private Level level;
 

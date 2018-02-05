@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class CompanyServiceImp implements CompanyService{
@@ -18,6 +20,12 @@ public class CompanyServiceImp implements CompanyService{
     public Company findByNameAndPassword(String name, String password) {
         Company company = companyRepository.findByNameAndPassword(name,password);
         return company;
+    }
+
+    @Override
+    public List<Company> selectUnderCompany(Long companyId) {
+        List<Company> companyList = companyRepository.selectUnderCompany(companyId);
+        return companyList;
     }
 
     @Override

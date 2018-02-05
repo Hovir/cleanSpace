@@ -52,4 +52,14 @@ public class CompanyServiceImp implements CompanyService {
         String result = restTemplate.postForObject(url,null,String.class,paramMap);
         return result;
     }
+
+    @Override
+    public String selectUnderCompany(Long id) {
+        String url=centerUrl+"company/selectUnderCompany/{companyId}";
+        Map<String ,Object> map = new HashMap();
+        map.put("companyId",id);
+        String json = restTemplate.getForObject(url,String.class, map);
+        System.out.println(json);
+        return json;
+    }
 }

@@ -11,4 +11,5 @@ public interface CompanyService {
     boolean findByNameAndPassword(String name,String password);
 
     String findCompanyDetailByName(String companyName);
+    String selectUnderCompany(Long id);
 }

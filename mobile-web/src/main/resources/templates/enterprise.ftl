@@ -94,10 +94,12 @@ ${company!"abc"}
                 </div>
             </div>
             <div class="parts">
+                <a href="/more">
                 <div class="parts-cont">
                     <span class="process_icon"><img src="${base}/img/nextagent.png"/></span>
                     <span class="process_font">下级代理</span>
                 </div>
+                </a>
             </div>
         </div>
     </div>

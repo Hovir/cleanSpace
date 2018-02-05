@@ -172,4 +172,27 @@ public class PageController {
     public String detectionManagementPage(){
         return "detection and management";
     }
+
+
+    /**
+     * 修改个人信息跳转
+     * @return
+     */
+    @RequestMapping("/personCenter")
+    public String toPersonCenter(){
+        return "personCenter";
+    }
+
+
+    /**
+     * 修改个人信息跳转
+     * @return
+     */
+    @RequestMapping("/screen")
+    public String toScreen(){
+        return "screen";
+    }
+
+
+
 }

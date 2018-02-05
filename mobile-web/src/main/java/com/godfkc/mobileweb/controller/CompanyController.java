@@ -15,6 +15,10 @@ import org.springframework.web.servlet.view.AbstractTemplateView;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @param:
  * @return:
@@ -61,6 +65,9 @@ public class CompanyController {
         return companyPageTurn;
     }
 
+    @Value("${session.key.companyId}")
+    private String sessionKeyCompanyId;
+
     @RequestMapping("/loginAjax")
     @ResponseBody
     public boolean checkCompanyName(HttpServletRequest request, String comAccount, String comPwd) {
@@ -69,6 +76,21 @@ public class CompanyController {
             request.getSession().setAttribute(companyNameSessionKey, comAccount);
         }
         return flag_login;
+    }
+
+    @RequestMapping("/showUnderCompany")
+    @ResponseBody
+    public Map<String,Object> showUnderCompany(HttpServletRequest request){
+        Long id = (Long) request.getSession().getAttribute(sessionKeyCompanyId);
+        Map<String,Object> map=new HashMap<>();
+        if(id!=null){
+           map.put("flag","1");
+           String json=companyService.selectUnderCompany(id);
+           map.put("companies",json);
+        }else {
+          map.put("flag","2");
+        }
+        return map;
     }
 
 }
