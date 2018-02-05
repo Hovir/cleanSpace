@@ -151,4 +151,47 @@ public class UserController {
             return "4";
         }
     }
+
+    //密码管理修改密码
+    @RequestMapping("/changeUserPwd")
+    @ResponseBody
+    public String changeUserPwd(String oldPassword,String password,HttpServletRequest request){
+        String phone = (String) request.getSession().getAttribute(sessionKeyUserPhone);
+        if(phone!=null&&phone.length()>0){
+            String pwd = DigestUtils.md5Hex(password);
+            String oldPwd = DigestUtils.md5Hex(oldPassword);
+            String json = userService.doLogin(phone, oldPwd);
+            if(json==null||json.length()==0){
+                return "4";
+            }
+            boolean sign = userService.updatePwdByPhone(phone, pwd);
+            if(sign){
+                //修改成功
+                HttpSession httpSession = request.getSession();
+                Map<String, Object> map = JsonUtils.JsonToMap(json);
+                httpSession.setAttribute(sessionKeyUserName,map.get("name"));
+                httpSession.setAttribute(sessionKeyUserPhone, phone);
+                httpSession.setAttribute(sessionKeyUserPwd, password);
+                httpSession.setAttribute(sessionKeyUserHeadImg,map.get("headImg"));
+                return "1";
+            }else {
+                //修改失败
+                return "2";
+            }
+        }else {
+            //登陆超时
+            return "3";
+        }
+    }
+
+
+    @RequestMapping("/exitLogon")
+    public String exitLogon(HttpServletRequest request){
+        HttpSession httpSession = request.getSession();
+        httpSession.removeAttribute(sessionKeyUserName);
+        httpSession.removeAttribute(sessionKeyUserPhone);
+        httpSession.removeAttribute(sessionKeyUserPwd);
+        httpSession.removeAttribute(sessionKeyUserHeadImg);
+        return "index";
+    }
 }

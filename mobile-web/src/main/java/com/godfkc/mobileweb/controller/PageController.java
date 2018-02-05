@@ -1,7 +1,10 @@
 package com.godfkc.mobileweb.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author wj
@@ -10,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class PageController {
+
+    @Value("${session.key.userPhone}")
+    private String sessionKeyUserPhone;
     /**
      * 首页
      */
@@ -107,7 +113,16 @@ public class PageController {
 
 
     /**
-     * 预约信息填写
+     * 预约检测信息填写
+     */
+    @RequestMapping("/subscribe1")
+    public String toSubscribe1(){
+        return "subscribe1";
+    }
+
+
+    /**
+     * 预约治理信息填写
      */
     @RequestMapping("/subscribe")
     public String toSubscribe(){
@@ -151,8 +166,13 @@ public class PageController {
      * @return
      */
     @RequestMapping("/centerPage")
-    public String personCenterPage(){
-        return "center";
+    public String personCenterPage(HttpServletRequest request){
+        String phone = (String) request.getSession().getAttribute(sessionKeyUserPhone);
+        if(phone!=null&&phone.length()>0){
+            return "center";
+        }else {
+           return "login";
+        }
     }
 
     /**
@@ -179,8 +199,13 @@ public class PageController {
      * @return
      */
     @RequestMapping("/personCenter")
-    public String toPersonCenter(){
-        return "personCenter";
+    public String toPersonCenter(HttpServletRequest request){
+        String phone = (String) request.getSession().getAttribute(sessionKeyUserPhone);
+        if(phone!=null&&phone.length()>0){
+            return "personCenter";
+        }else {
+            return "login";
+        }
     }
 
 
@@ -199,5 +224,12 @@ public class PageController {
     @RequestMapping("/upload")
     public String toUpload(){return "upload";}
 
-
+    /**
+     * 密码管理跳转
+     * @return
+     */
+    @RequestMapping("/changePwd")
+    public String toChangePwd(){
+        return "changePwd";
+    }
 }

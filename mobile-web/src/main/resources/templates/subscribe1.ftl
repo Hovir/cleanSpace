@@ -21,7 +21,7 @@
 					</div>
 				</div>
 				<div class=" middle">
-					<p>预约治理</p>
+					<p>预约检测</p>
 				</div>
 				<div class=" right">
 					<div class="go">
@@ -66,7 +66,7 @@
 				<div class="message">
 					<textarea name="" rows="" cols="" id="remark"></textarea>
 				</div>
-				<div class="btn" id="goToAppoint">预约治理</div>
+				<div class="btn" id="goToAppoint">预约检测</div>
 			</div>
 		</div>
 		
@@ -166,7 +166,7 @@
             //请求URL
             url:"/order/addOrder",
             //传入服务器端的参数值
-            data:{name:name,phone:phone,state:state,city:city,district:district,address:address,appointmentTime:appointmentTime,remark:remark,type:2},
+            data:{name:name,phone:phone,state:state,city:city,district:district,address:address,appointmentTime:appointmentTime,remark:remark,type:1},
             //从ajax异步对象中获取服务器响应的html数据
             success:function(data){
                 if(data=="1"){

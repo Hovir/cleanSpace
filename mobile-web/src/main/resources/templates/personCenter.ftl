@@ -12,7 +12,7 @@
 		<div class="header">
 			<div class="left">
 				<div class="return">
-					<a href="">
+					<a href="/centerPage">
 						<img src="img/back-white.png" />
 					</a>
 				</div>
@@ -34,12 +34,12 @@
 			<div class="person-img">
 				<span class="font">头像上传</span>
 				<span class="img">
-					<img src="img/case.jpg"/>
+					<img src="${Session.userHeadImg!'img/center.png'}"/>
 				</span>
 			</div>
 			<div class="person-name">
 				<span class="font">昵称</span>
-				<input type="text" value="DNA"/>
+				<input type="text" value="${Session.userName!''}"/>
 			</div>
 		</div>
 		<div class="btn">确认</div>

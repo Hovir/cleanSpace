@@ -33,8 +33,8 @@ public class OrderController {
         return orderList;
     }
 
-    @RequestMapping("/addOrder/{name}/{phone}/{state}/{city}/{district}/{address}/{appointmentTime}/{remark}/{userId}/{status}")
-    public boolean addOrder(@PathVariable("name") String name,@PathVariable("phone")String phone,@PathVariable("state")String state,@PathVariable("city")String city,@PathVariable("district")String district, @PathVariable("address")String address,@PathVariable("appointmentTime")String appointmentTime,@PathVariable("remark")String remark,@PathVariable("userId")Long userId,@PathVariable("status")Integer status) throws Exception{
+    @RequestMapping("/addOrder/{name}/{phone}/{state}/{city}/{district}/{address}/{appointmentTime}/{remark}/{userId}/{type}")
+    public boolean addOrder(@PathVariable("name") String name,@PathVariable("phone")String phone,@PathVariable("state")String state,@PathVariable("city")String city,@PathVariable("district")String district, @PathVariable("address")String address,@PathVariable("appointmentTime")String appointmentTime,@PathVariable("remark")String remark,@PathVariable("userId")Long userId,@PathVariable("type")Integer type) throws Exception{
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = sdf.parse(appointmentTime);
         Order order=new Order();
@@ -49,9 +49,10 @@ public class OrderController {
         User user=new User();
         user.setId(userId);
         order.setUser(user);
-        order.setStatus(status);
+        order.setStatus(1);
         order.setCreateTime(new Date());
         order.setUpdateTime(new Date());
+        order.setType(type);
         Order order1=orderService.addOrder(order);
         return order1 == null?false:true;
     }

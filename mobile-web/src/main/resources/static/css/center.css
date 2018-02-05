@@ -123,6 +123,21 @@ body{
 }
 
 
+.btn {
+	display: inline-block;
+	width: 80%;
+	padding: 0.9375rem 3.75rem;
+	border-radius: 0.3125rem;
+	position: fixed;
+	text-align: center;
+	left: 10%;
+	bottom: 4.875rem;
+	color: #fff;
+	background-color: #4db748;
+	font-size: 1.25rem;
+}
+
+
 
 
 

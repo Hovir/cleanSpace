@@ -38,7 +38,7 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public boolean addOrder(OrderVo orderVo) {
-        String url = centerUrl + "addOrder/{name}/{phone}/{state}/{city}/{district}/{address}/{appointmentTime}/{remark}/{userId}/{status}";
+        String url = centerUrl + "addOrder/{name}/{phone}/{state}/{city}/{district}/{address}/{appointmentTime}/{remark}/{userId}/{type}";
         Map<String,Object> map = new HashMap<>();
         map.put("name",orderVo.getName());
         map.put("phone",orderVo.getPhone());
@@ -50,6 +50,7 @@ public class OrderServiceImpl implements OrderService{
         map.put("remark",orderVo.getRemark());
         map.put("userId",orderVo.getUserId());
         map.put("status",orderVo.getStatus());
+        map.put("type",orderVo.getType());
         boolean s = this.restTemplate.getForObject(url,boolean.class, map);
         return s;
     }

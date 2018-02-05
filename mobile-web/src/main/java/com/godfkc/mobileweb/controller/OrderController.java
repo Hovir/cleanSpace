@@ -54,6 +54,7 @@ public class OrderController {
         return "1";
     }
 
+    //预约
     @RequestMapping("/addOrder")
     @ResponseBody
     public String addOrder(HttpServletRequest request, OrderVo orderVo){
@@ -62,7 +63,6 @@ public class OrderController {
             Long id=userService.selectUserIdByPhone(phone);
             orderVo.setStatus(1);
             orderVo.setUserId(id);
-            System.out.println(orderVo.getAppointmentTime());
             if(orderService.addOrder(orderVo)){
                 return "1";
             }else {

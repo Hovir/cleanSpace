@@ -19,6 +19,7 @@ public class OrderVo implements Serializable{
     private String remark;
     private Long userId;
     private Integer status;
+    private Integer type;
 
     public String getName() {
         return name;
@@ -98,5 +99,13 @@ public class OrderVo implements Serializable{
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

@@ -4,12 +4,12 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<title>环保空间</title>
-		<link rel="stylesheet" type="text/css" href="css/header-footer.css"/>
-		<link rel="stylesheet" type="text/css" href="css/index.css"/>
-		<link rel="stylesheet" type="text/css" href="css/lb.css"/>
-		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/lb.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="/css/header-footer.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/lb.css"/>
+		<script src="/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/lb.js" type="text/javascript" charset="utf-8"></script>
+		<#--<script src="/js/index.js" type="text/javascript" charset="utf-8"></script>-->
 	</head>
 	<body>
 		<div class="header-footer">
@@ -35,8 +35,8 @@
 			<div class="footer">
 				<div class="part">
 					<div class="part-cont">
-						<a class="" href="index.ftl">
-							<span class="icon"><img src="img/green-homepage.png"/></span>
+						<a class="" href="javascript:void(0)">
+							<span class="icon"><img src="/img/green-homepage.png"/></span>
 							<span class="font active">首页</span>
 						</a>
 					</div>
@@ -44,7 +44,7 @@
 				<div class="part">
 					<div class="part-cont">
 						<a class="" href="/company/myCompany">
-							<span class="icon"><img src="img/business.png"/></span>
+							<span class="icon"><img src="/img/business.png"/></span>
 							<span class="font">企业</span>
 						</a>
 					</div>
@@ -52,7 +52,7 @@
 				<div class="part">
 					<div class="part-cont">
 						<a class="" href="/centerPage">
-							<span class="icon"><img src="img/center.png"/></span>
+							<span class="icon"><img src="/img/center.png"/></span>
 							<span class="font">个人</span>
 						</a>
 					</div>
@@ -70,7 +70,7 @@
 				<div class="module">
 					<a href="/news">
 						<div class="module-cont">
-							<img src="img/information.png"/>
+							<img src="/img/information.png"/>
 							<div>环保资讯</div>
 						</div>
                     </a>
@@ -78,7 +78,7 @@
 				<div class="module">
 					<a href=""></a>
 						<div class="module-cont">
-							<img src="img/service.png"/>
+							<img src="/img/service.png"/>
 							<div>环保咨询</div>
 						</div>
                     </a>
@@ -86,7 +86,7 @@
 				<div class="module">
 					<a href="/bespeakLogin">
 						<div class="module-cont">
-							<img src="img/testing.png"/>
+							<img src="/img/testing.png"/>
 							<div>预约检测</div>
 						</div>
                     </a>
@@ -94,7 +94,7 @@
 				<div class="module">
 					<a href="/bussiness">
 						<div class="module-cont">
-							<img src="img/shop-business.png"/>
+							<img src="/img/shop-business.png"/>
 							<div>环保商家</div>
 						</div>
                     </a>
@@ -106,13 +106,14 @@
 					<a href="/more">
 						<div class="title-right">
 							<span class="more">更多</span>
-							<span class="more-img"><img src="img/more.png"/></span>
+							<span class="more-img"><img src="/img/more.png"/></span>
 						</div>
                     </a>
 				</div>
+                <div class="product-cont">
 				<div class="col-detail">
 					<div class="detail">
-						<img src="img/case.jpg"/>
+						<img src="/img/case.jpg"/>
 						<div class="introduce">
 							<div class="introduce-detail">圣罗兰口红YL圣罗兰口红YL圣罗兰口红圣罗兰口红圣罗兰口红YL圣罗兰口红YL圣罗兰口红YL</div>
 							<div class="introduce-time">
@@ -124,7 +125,7 @@
 				</div>
 				<div class="col-detail">
 					<div class="detail">
-						<img src="img/case.jpg"/>
+						<img src="/img/case.jpg"/>
 						<div class="introduce">
 							<div class="introduce-detail">圣罗兰口红YL</div>
 							<div class="introduce-time">
@@ -133,6 +134,7 @@
 							</div>
 						</div>
 					</div>
+				</div>
 				</div>
 			</div>
 		</div>

@@ -94,7 +94,7 @@
         var phone=$("#phone").val();
         var password=$("#password").val();
         var phoneTest=/^[1][3,4,5,7,8][0-9]{9}$/;
-        var  pwdTest=/^(\w){4,50}$/;
+        var  pwdTest=/^(\w){6,12}$/;
         if(!phoneTest.test(phone)){
             alert("电话格式不正确");
             return false;
