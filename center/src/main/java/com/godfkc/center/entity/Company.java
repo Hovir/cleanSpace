@@ -81,6 +81,10 @@ public class Company implements Serializable {
     @JoinColumn(name = "level_id")
     private Level level;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
+    @JsonIgnore
+    private Set<CompanyBankCard> companyBankCards;
+
     public Long getId() {
         return id;
     }
@@ -215,5 +219,13 @@ public class Company implements Serializable {
 
     public void setLevel(Level level) {
         this.level = level;
+    }
+
+    public Set<CompanyBankCard> getCompanyBankCards() {
+        return companyBankCards;
+    }
+
+    public void setCompanyBankCards(Set<CompanyBankCard> companyBankCards) {
+        this.companyBankCards = companyBankCards;
     }
 }
