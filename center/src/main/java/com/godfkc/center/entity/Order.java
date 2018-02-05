@@ -39,6 +39,8 @@ public class Order implements Serializable {
     private String remark; //备注
     @Column(name = "report", length = 200)
     private String report; //报告
+    @Column(name = "type",length = 1)
+    private int type; //预约状态 1检查 2治理
     @Column(name = "status", length = 1)
     private int status; //状态 1预约中 2出报告 0取消
     @Column(name = "create_time")
