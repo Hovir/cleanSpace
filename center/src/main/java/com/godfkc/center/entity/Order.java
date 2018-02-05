@@ -37,6 +37,8 @@ public class Order implements Serializable {
     private Date appointmentTime; //预约时间
     @Column(name = "remark", length = 200)
     private String remark; //备注
+    @Column(name = "report", length = 200)
+    private String report; //报告
     @Column(name = "status", length = 1)
     private int status; //状态 1预约中 2出报告 0取消
     @Column(name = "create_time")
@@ -168,5 +170,13 @@ public class Order implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getReport() {
+        return report;
+    }
+
+    public void setReport(String report) {
+        this.report = report;
     }
 }
