@@ -49,7 +49,6 @@ public class CardController {
             xssfSheet.setForceFormulaRecalculation(true);
             int i = 1;
             for (CardVo cardVo : cardVoList) {
-                System.out.println(cardVo.getNum());
                 /*卡状态*/
                 String type = "";
                 if (cardVo.getStatus() == 0) {
