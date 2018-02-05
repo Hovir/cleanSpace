@@ -24,14 +24,14 @@ public class OrderServiceImpl implements OrderService {
     private OrderRepository orderRepository;
 
     @Override
-    public List<Order> findByCompanyIdOrUserId(String companyId, String userId) {
+    public List<Order> findByCompanyIdOrUserId(Integer companyId, Integer userId) {
         Long companyIdLong = null;
         Long userIdLong = null;
         if(companyId!=null){
-            companyIdLong = Long.parseLong(companyId);
+            companyIdLong = Long.parseLong(companyId.toString());
         }
         if (userId != null){
-            userIdLong = Long.parseLong(userId);
+            userIdLong = Long.parseLong(userId.toString());
         }
         if (companyId!=null && userId!=null){
             List<Order> orderList1 = this.orderRepository.findByCompanyIdAndUserId(companyIdLong, userIdLong);
