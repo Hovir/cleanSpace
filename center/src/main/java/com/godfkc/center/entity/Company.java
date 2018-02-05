@@ -85,6 +85,10 @@ public class Company implements Serializable {
     @JsonIgnore
     private Set<CompanyBankCard> companyBankCards;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
+    @JsonIgnore
+    private Set<CompanyAddress> companyAddresses;
+
     public Long getId() {
         return id;
     }
@@ -227,5 +231,13 @@ public class Company implements Serializable {
 
     public void setCompanyBankCards(Set<CompanyBankCard> companyBankCards) {
         this.companyBankCards = companyBankCards;
+    }
+
+    public Set<CompanyAddress> getCompanyAddresses() {
+        return companyAddresses;
+    }
+
+    public void setCompanyAddresses(Set<CompanyAddress> companyAddresses) {
+        this.companyAddresses = companyAddresses;
     }
 }
