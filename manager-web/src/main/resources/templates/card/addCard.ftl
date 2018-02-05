@@ -20,7 +20,7 @@
         <table class="table">
             <tr>
                 <td width="200" class="va-t">
-                    <ul id="treeDemo" class="ztree"></ul>
+                    <ul id="ztree" class="ztree"></ul>
                 </td>
                 <td>
                     <div class="pd-20">
@@ -57,14 +57,7 @@
                 },
                 callback: {
                     beforeClick: function (treeId, treeNode) {
-                        var zTree = $.fn.zTree.getZTreeObj("tree");
-                        if (treeNode.isParent) {
-                            zTree.expandNode(treeNode);
-                            return false;
-                        } else {
-                            demoIframe.attr("src", treeNode.file + ".html");
-                            return true;
-                        }
+
                     }
                 }
             };
