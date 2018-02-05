@@ -42,9 +42,9 @@ public class CardController {
     @RequestMapping(value = "insertCard/{id}/{num}", method = {RequestMethod.GET})
     public List<CardVo> insertCard(@PathVariable("id") Long id, @PathVariable("num") Integer num) {
         List<CardVo> cardVoList = new ArrayList<>();
-        CardVo cardVo = new CardVo();
         List<Card> cardList = cardService.insertCard(id, num);
         for (Card card : cardList) {
+            CardVo cardVo = new CardVo();
             cardVo.setId(card.getId());
             cardVo.setNum(card.getNum());
             cardVo.setPassword(card.getPassword());
