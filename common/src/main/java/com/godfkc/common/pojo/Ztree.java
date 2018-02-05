@@ -1,6 +1,8 @@
 package com.godfkc.common.pojo;
 
-public class Ztree {
+import java.io.Serializable;
+
+public class Ztree implements Serializable {
     private long id;
     private long pId;
     private String name;

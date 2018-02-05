@@ -1,5 +1,6 @@
 package com.godfkc.center.service;
 
+import com.godfkc.center.entity.Card;
 import com.godfkc.common.pojo.Ztree;
 
 import java.util.List;
@@ -13,4 +14,11 @@ public interface CardService {
      */
     List<Ztree> selectLevel();
 
+    /**
+     * @Author:lhy
+     * @Data:2018/2/5 10:48
+     * @Version:V1.0
+     * @Des:生成卡号
+     */
+    List<Card> insertCard(long id, Integer num);
 }

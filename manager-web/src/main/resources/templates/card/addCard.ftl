@@ -21,17 +21,30 @@
             <tr>
                 <td width="200" class="va-t">
                     <ul id="ztree" class="ztree"></ul>
+                    <div id="error"></div>
                 </td>
-                <td>
+                <td class="va-t">
                     <div class="pd-20">
-                        <form action="" method="post" class="form form-horizontal" id="form-user-add">
-                            <div class="row cl">
-
+                        <div class="row cl">
+                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>数量：</label>
+                            <div class="formControls col-5">
+                                <select class="select" id="num">
+                                    <option value="50" selected="selected">50</option>
+                                    <option value="100">100</option>
+                                    <option value="150">150</option>
+                                    <option value="200">200</option>
+                                </select>
                             </div>
-                            <div class="row cl">
-
+                            <div class="col-5"></div>
+                        </div>
+                        <br/>
+                        <div class="row cl">
+                            <div class="col-9 col-offset-2">
+                                <input class="btn btn-primary radius" type="button" onclick="sub()"
+                                       value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                                <div id="create"></div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </td>
             </tr>
@@ -41,56 +54,50 @@
         <script type="text/javascript" src="${path}/lib/zTree/v3/js/jquery.ztree.all-3.5.min.js"></script>
 
         <script type="text/javascript">
+            //公司id
+            var zTreeId = "";
+            //zTree配置文件
             var setting = {
-                view: {
-                    dblClickExpand: false,
-                    showLine: false,
-                    selectedMulti: false
+                check: {
+                    enable: true,
+                    chkStyle: "radio",
+                    radioType: "all"
                 },
                 data: {
                     simpleData: {
-                        enable: true,
-                        idKey: "id",
-                        pIdKey: "pId",
-                        rootPId: ""
+                        enable: true
                     }
                 },
                 callback: {
-                    beforeClick: function (treeId, treeNode) {
-
-                    }
+                    onCheck: zTreeonCheck
                 }
             };
 
-            var zNodes = [
-                {id: 1, pId: 0, name: "一级分类", open: true},
-                {id: 11, pId: 1, name: "二级分类"},
-                {id: 111, pId: 11, name: "三级分类"},
-                {id: 112, pId: 11, name: "三级分类"},
-                {id: 113, pId: 11, name: "三级分类"},
-                {id: 114, pId: 11, name: "三级分类"},
-                {id: 115, pId: 11, name: "三级分类"},
-                {id: 12, pId: 1, name: "二级分类 1-2"},
-                {id: 121, pId: 12, name: "三级分类 1-2-1"},
-                {id: 122, pId: 12, name: "三级分类 1-2-2"},
-            ];
-
-            var code;
-
-            function showCode(str) {
-                if (!code) code = $("#code");
-                code.empty();
-                code.append("<li>" + str + "</li>");
+            function zTreeonCheck(event, treeId, treeNode) {
+                zTreeId = "";
+                var treeObj = $.fn.zTree.getZTreeObj("ztree"),
+                        nodes = treeObj.getCheckedNodes(true);
+                for (var i = 0; i < nodes.length; i++) {
+                    zTreeId = nodes[i].id;
+                }
             }
 
-            $(document).ready(function () {
-                var t = $("#treeDemo");
-                t = $.fn.zTree.init(t, setting, zNodes);
-                demoIframe = $("#testIframe");
-                demoIframe.bind("load", loadReady);
-                var zTree = $.fn.zTree.getZTreeObj("tree");
-                zTree.selectNode(zTree.getNodeByParam("id", '11'));
-            });
+            //json数据
+            $.post("${path}/card/allCompany", function (obj) {
+                $.fn.zTree.init($("#ztree"), setting, obj);
+            }, "json");
+        </script>
+        <script>
+            function sub() {
+                var data;
+                $("#error").empty();
+                if (zTreeId === "" || zTreeId === undefined) {
+                    $("#error").html("<span style=\"color: #FF5722;\">请先选择公司!</span>");
+                    return null;
+                }
+                $("#create").html("<span style=\"color: #FF5722;\">请稍等,卡号生成中...!</span>");
+                window.open("${path}/card/insertCard/" + zTreeId + "/" + $("#num").val());
+            }
         </script>
     <#--请在下方写此页面业务相关的脚本-->
 
