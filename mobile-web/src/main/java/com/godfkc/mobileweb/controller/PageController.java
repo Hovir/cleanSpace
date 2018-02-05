@@ -193,6 +193,11 @@ public class PageController {
         return "screen";
     }
 
+    /**
+     * 上传检测报告
+     */
+    @RequestMapping("/upload")
+    public String toUpload(){return "upload";}
 
 
 }

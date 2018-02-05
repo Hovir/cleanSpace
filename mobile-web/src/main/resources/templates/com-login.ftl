@@ -89,33 +89,43 @@
 
 </body>
 <script type="text/javascript">
-    $("#comPwd").blur(function () {
-        var comAccount = $("#comAccount").val();
-        var comPwd = $("#comPwd").val();
-        if(null==comAccount||null==comPwd||comAccount.trim()==""||comPwd.trim()==""){
-            $("#errorMessage").html("#您输入的企业名称或密码错误！").show();
-            return;
+    $("#comAccount").blur(function(){
+        if($("#comPwd").val()){
+            doLoginCheck();
         }
-        $.post("/company/loginAjax", {"comAccount": comAccount, "comPwd": comPwd}, function (result) {
-            if (result) {
-                alert("success!!!!");
-                window.location.href = "/company/myCompany";
-            } else {
-                $("#errorMessage").html("#您输入的企业名称或密码错误！").show();
-            }
-        });
+    });
+    $("#comPwd").blur(function(){
+        doLoginCheck();
+    });
 
-    })
     $("#comPwd").focus(function () {
         clearErrorMessage();
     })
     $("#comAccount").focus(function () {
         clearErrorMessage();
     })
-
+    //清空错误信息
     function clearErrorMessage() {
         var error_message = "";
         $("#errorMessage").html(error_message).hide();
     }
+    //
+    function doLoginCheck(){
+
+        var comAccount = $("#comAccount").val();
+        var comPwd = $("#comPwd").val();
+        if (null == comAccount || null == comPwd || comAccount.trim() == "" || comPwd.trim() == "") {
+            $("#errorMessage").html("#您输入的企业名称或密码错误！").show();
+            return;
+        }
+        $.post("/company/loginAjax", {"comAccount": comAccount, "comPwd": comPwd}, function (result) {
+            if (result) {
+                window.location.href = "/company/myCompany";
+            } else {
+                $("#errorMessage").html("#您输入的企业名称或密码错误！").show();
+            }
+        });
+    }
+
 </script>
 </html>

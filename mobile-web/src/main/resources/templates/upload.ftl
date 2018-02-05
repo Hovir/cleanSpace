@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>乐美优享</title>
+	<title>环保空间</title>
     <link rel="stylesheet" type="text/css" href="css/header-footer.css"/>
 	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 	<link rel="stylesheet" type="text/css" href="css/upload.css"/>
@@ -19,7 +19,7 @@
 				</div>
 			</div>
 			<div class=" middle">
-				<p>银行卡</p>
+				<p>提交实验报告</p>
 			</div>
 			<div class=" right">
 				<div class="go">
@@ -47,8 +47,8 @@
     $(function(){
         //上传图片
         var $tgaUpload = $('#goodsUpload').diyUpload({
-            url:'/uploadFilePath',
-            success:function( data ) { },
+            url:'/uploadReport',
+            success:function( data ) { alert(data); },
             error:function( err ) { },
             buttonText : '',
             accept: {

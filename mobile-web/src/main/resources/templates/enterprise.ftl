@@ -3,8 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>乐美优享</title>
+    <title>环保空间</title>
 <#assign base=springMacroRequestContext.contextPath/>
+<#setting classic_compatible=true>
     <script src="${base}/js/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="${base}/css/header-footer.css"/>
     <link rel="stylesheet" type="text/css" href="${base}/css/enterprise.css"/>
@@ -42,8 +43,9 @@
 </div>
 <!-- jsonString to json-->
 <#assign jsonString>
-${company!"abc"}
+${company}
 </#assign>
+
 <#assign jsonCompany=jsonString?eval/>
 
 <#assign companyId=jsonCompany.id/>
@@ -95,10 +97,10 @@ ${company!"abc"}
             </div>
             <div class="parts">
                 <a href="/more">
-                <div class="parts-cont">
-                    <span class="process_icon"><img src="${base}/img/nextagent.png"/></span>
-                    <span class="process_font">下级代理</span>
-                </div>
+                    <div class="parts-cont">
+                        <span class="process_icon"><img src="${base}/img/nextagent.png"/></span>
+                        <span class="process_font">下级代理</span>
+                    </div>
                 </a>
             </div>
         </div>
@@ -111,45 +113,47 @@ ${company!"abc"}
             </a>
         </div>
         <div class="Subscribe-List">
-        <#list jsonCompany.orders?sort_by("createTime") as order>
+        <#list jsonCompany.ordersToday?sort_by("createTime") as order>
             <div class="list">
                 <div>
                     <span>${order.name}</span>
                     <span>${order.phone}</span>
                 </div>
                 <div calss="address">
-                    ${order.state} ${order.city} ${order.district} ${order.address}
+                ${order.state} ${order.city} ${order.district} ${order.address}
                 </div>
                 <div>
                     <span>预约时间：<em>${order.appointmentTime?number_to_date?string("yyyy-MM-dd HH:mm")}</em></span>
-                    <span>查看详情</span>
+                    <!-- 上传报告或者查看详情-->
+                    <#if (order.status==2)>
+                        <a href="javascript:alert('detail');"><span>查看详情</span></a>
+                    </#if>
+                    <#if (order.status==1)>
+                        <a href="${base}/upload"><span>提交报告</span></a>
+                    </#if>
                 </div>
             </div>
         </#list>
-        <#--<div class="list">
-            <div>
-                <span>谢娜</span>
-                <span>15604614102</span>
-            </div>
-            <div calss="address">
-                黑龙江省哈尔滨市 南岗区 学府路4号哈尔滨理工大学
-            </div>
-            <div>
-                <span>预约时间：<em>2018-08-23 16:10</em></span>
-                <span>查看详情</span>
-            </div>
-        </div>-->
+            <!--<div class="list">
+                <div>
+                    <span>谢娜</span>
+                    <span>15604614102</span>
+                </div>
+                <div calss="address">
+                    黑龙江省哈尔滨市 南岗区 学府路4号哈尔滨理工大学
+                </div>
+                <div>
+                    <span>预约时间：<em>2018-08-23 16:10</em></span>
+                    <span>查看详情</span>
+                </div>
+            </div>-->
         </div>
     </div>
 
 
 </div>
 </body>
-<script>
-    alert(${jsonCompany.money});
-    //alert(${jsonCompany.id});
-    alert("This is the id"+${companyId})
-</script>
+
 </html>
 
 

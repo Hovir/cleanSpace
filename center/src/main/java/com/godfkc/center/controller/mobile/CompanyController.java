@@ -68,9 +68,7 @@ public class CompanyController {
                 money = cf.getMoney();
             }
             returnMap.put("money", money);
-            //获取公司订单
-            Set<Order> orders = company.getOrders();
-            returnMap.put("orders", orders);
+
 
             //获取公司总收入
 
@@ -93,6 +91,17 @@ public class CompanyController {
                     }
                 }
             }
+            //获取公司订单
+            Set<Order> orders = company.getOrders();
+            Set<Order> ordersToday = new HashSet<>();
+            for (Order order:orders
+                 ) {
+                if(order.getAppointmentTime().compareTo(time_day_starter)>0){
+                    ordersToday.add(order);
+                }
+            }
+            returnMap.put("ordersToday",ordersToday);
+            //returnMap.put("orders", orders);
             returnMap.put("sumMoney", sumMoney);
             returnMap.put("moneyToday", moneyToday);
         }

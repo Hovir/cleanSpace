@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<title>乐美优享</title>
+		<title>环保空间_用户个人中心</title>
 		<script src="js/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/header-footer.css"/>
 		<!--<link rel="stylesheet" type="text/css" href="css/index.css"/>-->

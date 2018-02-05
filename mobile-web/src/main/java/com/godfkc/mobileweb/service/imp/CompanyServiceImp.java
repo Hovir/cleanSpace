@@ -22,9 +22,6 @@ public class CompanyServiceImp implements CompanyService {
     @Override
     public boolean findByNameAndPassword(String name,String password) {
         String url=centerUrl+"companyLoginCheck/{name}/{password}";
-        System.out.println("url of \"findBynameAndPassword\" in company service: "+url+"params are :"+name+"**"+password);
-        String test = restTemplate.postForObject(centerUrl + "companyTest",null,String.class);
-        System.out.println("test b: "+test);
 
         Map<String ,Object> paramMap = new HashMap();
         paramMap.put("name",name);
@@ -39,8 +36,6 @@ public class CompanyServiceImp implements CompanyService {
         String result = restTemplate.postForObject(url, formEntity, String.class);
         */
         String result = restTemplate.postForObject(url, null, String.class, paramMap);
-        System.out.println("result is :========="+result);
-
         return null != result && "" != result.trim();
     }
 

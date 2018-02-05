@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<title>乐美优享</title>
+		<title>环保空间</title>
 		<script src="js/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/header-footer.css"/>
 		<link rel="stylesheet" type="text/css" href="css/detection and management.css"/>
@@ -76,8 +76,8 @@
 			    </div>
 			    <div class=" right">
 					<div class="go">
-						<a href="">
-							<span>注册</span>
+						<a href="javascript:void(0)">
+							<span>筛选</span>
 							<!--<!--<img src= "img/setting.png" />-->
 						</a>
 					</div>
@@ -99,7 +99,7 @@
 		   	    		</div>
 		   	    		<div>
 		   	    			<span>预约时间：<em>2018-08-23 16:10</em></span>
-		   	    			<span id="reports">查看详情</span>
+		   	    			<span id="reports">上传报告</span>
 		   	    		</div>
 		   	    	</div>
 		   	    	<div class="list">
