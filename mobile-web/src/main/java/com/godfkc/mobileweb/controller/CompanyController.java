@@ -35,7 +35,8 @@ public class CompanyController {
     private String companyNameSessionKey;
     @Value("${session.key.companyId}")
     private String companyIdSessionKey;
-
+    @Value("${session.key.userName}")
+    private String sessionkeyuserName;
     /**
      * 下边栏，点选企业
      *
@@ -101,4 +102,70 @@ public class CompanyController {
         return "success";
     }
 
+    /**
+     * 根据公司id判断是否绑定银行卡
+     * @param request
+     * @return
+     */
+    @RequestMapping("/findBandCardByCompanyId")
+    @ResponseBody
+    public String findByCompanyId(HttpServletRequest request){
+        Long id = (Long) request.getSession().getAttribute(sessionKeyCompanyId);
+        if(id != null){
+            String byCompanyId = companyService.findByCompanyId(id);
+            if (byCompanyId == null){//没有绑定银行卡
+                return "2";
+            }
+            return byCompanyId;
+        }
+        return "1";
+    }
+
+    /**
+     * 点击解绑
+     */
+    @RequestMapping("/unbindMod")
+    @ResponseBody
+    public String unbindMod(String id){
+        if (null != id){
+            Long bankCardId = Long.parseLong(id);
+            boolean b = companyService.unbindMod(bankCardId);
+            if (b){
+                return "success";
+            }else {
+                return "falied";
+            }
+        }
+        return "falied";
+    }
+
+    /**
+     * 查询所有银行
+     */
+    @RequestMapping("/findBankDictAll")
+    @ResponseBody
+    public String findBankDictAll(){
+        return companyService.findBankDictAll();
+    }
+
+
+    @RequestMapping("/bindBankCard")
+    @ResponseBody
+    public String bindBankCard(String cardNo,String bankDictId,String phone,HttpServletRequest request){
+        Long compayId = (Long) request.getSession().getAttribute(sessionKeyCompanyId);
+        if (null != compayId){
+            String byCompanyId = companyService.findByCompanyId(compayId);
+            if (byCompanyId != null){
+                return "4";
+            }
+            boolean b = companyService.bindBankCard(cardNo, phone, compayId, bankDictId);
+            if (b){
+               return "2";
+            }else {
+                return "3";
+            }
+
+        }
+        return "1";
+    }
 }

@@ -117,7 +117,7 @@
 				$.each(data,function (index, value) {
 				    var html ="<div class='list'><div><span>"+value.name+"</span>" +
 							"<span>"+value.phone+"</span></div><div calss='address'>"+value.state+value.city+value.district+value.address+"</div>" +
-							"<div><span>预约时间：<em>"+value.appointmentTime+"</em></span>" +
+							"<div><span>预约时间：<em>"+getMyDate(value.appointmentTime)+"</em></span>" +
 							"<span><a href='/order/customerDetails?id="+value.id+"'>查看详情</a></span></div></div>"
                     $("#orderList").append(html);
                 })
@@ -126,6 +126,26 @@
             }
 		})
     })
+
+    /*时间戳转时间*/
+    function getMyDate(str) {
+        var oDate = new Date(str),
+                oYear = oDate.getFullYear(),
+                oMonth = oDate.getMonth() + 1,
+                oDay = oDate.getDate(),
+                oHour = oDate.getHours(),
+                oMin = oDate.getMinutes(),
+                oSen = oDate.getSeconds(),
+                oTime = oYear + '-' + getzf(oMonth) + '-' + getzf(oDay) + ' ' + getzf(oHour) + ':' + getzf(oMin) + ':' + getzf(oSen);//最后拼接时间
+        return oTime;
+    }
+
+    function getzf(num) {
+        if (parseInt(num) < 10) {
+            num = '0' + num;
+        }
+        return num;
+    }
 </script>
 </html>
 

@@ -62,8 +62,8 @@ public class UserServiceImp implements UserService{
         HashMap<String,Object> map = new HashMap<>();
         map.put("phone",phone);
         map.put("password",password);
-        map.put("name","昵称");
-        map.put("headImg","默认头像地址");
+        map.put("name","user");
+        map.put("headImg","/img/center.png");
         map.put("createTime",new Date());
         return this.restTemplate.postForObject(url,map,boolean.class);
     }

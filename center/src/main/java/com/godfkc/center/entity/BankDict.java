@@ -1,6 +1,8 @@
 package com.godfkc.center.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -23,6 +25,7 @@ public class BankDict {
     @Column(name = "bank_code")
     private String bankCode; //银行编号
 
+    //@NotFound(action= NotFoundAction.IGNORE)
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "bankDict")
     @JsonIgnore
     private Set<CompanyBankCard> companyBankCards;

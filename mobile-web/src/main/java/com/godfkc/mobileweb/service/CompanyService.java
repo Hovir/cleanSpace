@@ -12,4 +12,8 @@ public interface CompanyService {
 
     String findCompanyDetailByName(String companyName);
     String selectUnderCompany(Long id);
+    String findByCompanyId(Long companyId);
+    boolean unbindMod(Long bankCardId);
+    String findBankDictAll();
+    boolean bindBankCard(String cardNo,String phone,Long compayId,String bankDictId);
 }

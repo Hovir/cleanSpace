@@ -103,12 +103,10 @@
 			<div class="product-type">
 				<div class="product-title">
 					<div class="title">集团咨询</div>
-					<a href="/more">
-						<div class="title-right">
-							<span class="more">更多</span>
-							<span class="more-img"><img src="/img/more.png"/></span>
-						</div>
-                    </a>
+					<div class="title-right">
+						<span class="more">更多</span>
+						<span class="more-img"><img src="img/more.png"/></span>
+					</div>
 				</div>
                 <div class="product-cont">
 				<div class="col-detail">

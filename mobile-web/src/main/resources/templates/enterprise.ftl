@@ -55,7 +55,9 @@ ${company}
             <img src="${base}/img/enterprise-banner.jpg" alt=""/>
         </div>
         <div class="topProfit">
+            <a href="/detailPage">
             <span class="detail">明细</span>
+            </a>
             <span>今日收益</span>
             <div class="tmoney">
                 <span class="money">${jsonCompany.moneyToday}</span>
@@ -84,10 +86,12 @@ ${company}
                 </a>
             </div>
             <div class="parts">
-                <div class="parts-cont">
-                    <span class="process_icon"><img src="${base}/img/bankcard.png"/></span>
-                    <span class="process_font">银行卡</span>
-                </div>
+                <a href="/bankCardPage">
+                    <div class="parts-cont">
+                        <span class="process_icon"><img src="${base}/img/bankcard.png"/></span>
+                        <span class="process_font">银行卡</span>
+                    </div>
+                </a>
             </div>
             <div class="parts">
                 <div class="parts-cont">
@@ -153,7 +157,6 @@ ${company}
 
 </div>
 </body>
-
 </html>
 
 

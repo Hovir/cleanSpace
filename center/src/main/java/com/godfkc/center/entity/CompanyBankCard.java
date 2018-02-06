@@ -1,6 +1,8 @@
 package com.godfkc.center.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 
@@ -17,13 +19,14 @@ public class CompanyBankCard {
     @GeneratedValue
     @Column(name = "id",length = 10)
     private Long id;
-    @Column(name = "username",length = 10)
-    private String username;
     @Column(name = "card_no",length = 30)
     private String cardNo;
     @Column(name = "phone",length = 15)
     private String phone;
+    @Column(name = "status",length = 2)
+    private String status;
 
+    @NotFound(action= NotFoundAction.IGNORE)
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
     @JoinColumn(name = "company_id")
     @JsonIgnore
@@ -31,7 +34,6 @@ public class CompanyBankCard {
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
     @JoinColumn(name = "bankDict_id")
-    @JsonIgnore
     private BankDict bankDict;
 
     public Long getId() {
@@ -40,14 +42,6 @@ public class CompanyBankCard {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getCardNo() {
@@ -80,5 +74,13 @@ public class CompanyBankCard {
 
     public void setBankDict(BankDict bankDict) {
         this.bankDict = bankDict;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

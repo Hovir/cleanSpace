@@ -106,18 +106,9 @@ public class PageController {
     }
 
     /**
-     * 添加银行卡
-     */
-    @RequestMapping("/addCard")
-    public String toAddCard(){
-        return "addCard";
-    }
-
-
-    /**
      * 银行卡信息
      */
-    @RequestMapping("/bankcard")
+    @RequestMapping("/bankCardPage")
     public String toBankcard(){
         return "bankcard";
     }
@@ -171,27 +162,11 @@ public class PageController {
     }
 
     /**
-     * 企业中心
-     */
-    @RequestMapping("/enterprisePage")
-    public String enterprisePage(){
-        return "enterprise";
-    }
-
-    /**
      * 预约检测填写页面跳转
      */
     /*@RequestMapping("/subscribePage")
     public String subscribePage(){
         return "subscribe";
-    }*/
-
-    /**
-     * 银行卡页面
-     */
-    /*@RequestMapping("/bankcardPage")
-    public String bankcardPage(){
-        return "bankcard";
     }*/
 
     /**
@@ -258,6 +233,14 @@ public class PageController {
     public String toUpload(){return "upload";}
 
     /**
+     * 绑定银行卡
+     * @return
+     */
+    @RequestMapping("/bindCardPage")
+    public String bindCardPage(){
+        return "bindCard";
+    }
+    /**
      * 密码管理跳转
      * @return
      */
@@ -283,4 +266,11 @@ public class PageController {
     }
 
 
+    /**
+     * 提现
+     */
+    @RequestMapping("/moneyPage")
+    public String moneyPage(){
+        return "money";
+    }
 }

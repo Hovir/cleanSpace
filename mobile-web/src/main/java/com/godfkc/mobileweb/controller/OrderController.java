@@ -34,6 +34,9 @@ public class OrderController {
     @Value("${session.key.userPhone}")
     private String sessionKeyUserPhone;
 
+    @Value("${session.key.companyId}")
+    private String sessionKeyCompanyId;
+
     /**
      * 我的预约
      * @param request
@@ -44,9 +47,9 @@ public class OrderController {
     @ResponseBody
     public String myReservation(HttpServletRequest request, Model model){
         String phone = (String) request.getSession().getAttribute(sessionKeyUserPhone);
+        Long companyId = (Long) request.getSession().getAttribute(sessionKeyCompanyId);
         if(phone!=null&&phone.length()>0){
             Long userId=userService.selectUserIdByPhone(phone);
-            Long companyId = null;
             String orderListJson = orderService.findByCompanyIdOrUserId(companyId, userId);
             //System.out.println("返回第一个controller:"+orderListJson);
             return orderListJson;

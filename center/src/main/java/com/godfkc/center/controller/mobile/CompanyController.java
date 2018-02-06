@@ -108,4 +108,54 @@ public class CompanyController {
         return returnMap;
 
     }
+
+    /**
+     * 根据公司id判断是否绑定银行卡
+     * @param companyId
+     * @return
+     */
+    @RequestMapping("/findByCompanyId")
+    public CompanyBankCard findByCompanyId(@RequestBody Long companyId){
+        return companyService.findByCompanyId(companyId);
+    }
+
+    /**
+     * 解绑银行卡
+     * @param bankCardId
+     * @return
+     */
+    @RequestMapping("/unbindMod")
+    public boolean unbindMod(@RequestBody Long bankCardId){
+        int i = companyService.unbindMod(bankCardId);
+        if(i == 1){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 查询所有银行
+     * @return
+     */
+    @RequestMapping("/findBankDictAll")
+    public List<BankDict> findBankDictAll(){
+        return companyService.findBankDictAll();
+    }
+
+
+    @RequestMapping("/bindBankCard")
+    public CompanyBankCard bindBankCard(@RequestBody Map map){
+        CompanyBankCard companyBankCard = new CompanyBankCard();
+        Company company = new Company();
+        company.setId(Long.parseLong(map.get("compayId").toString()));
+        BankDict bankDict = new BankDict();
+        bankDict.setId(Long.parseLong(map.get("bankDictId").toString()));
+        companyBankCard.setCardNo((String) map.get("cardNo"));
+        companyBankCard.setPhone((String)map.get("phone"));
+        companyBankCard.setCompany(company);
+        companyBankCard.setBankDict(bankDict);
+        companyBankCard.setStatus("1");
+        return companyService.bindBankCard(companyBankCard);
+    }
+
 }

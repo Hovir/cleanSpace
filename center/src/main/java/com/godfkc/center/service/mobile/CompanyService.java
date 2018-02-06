@@ -1,6 +1,8 @@
 package com.godfkc.center.service.mobile;
 
+import com.godfkc.center.entity.BankDict;
 import com.godfkc.center.entity.Company;
+import com.godfkc.center.entity.CompanyBankCard;
 
 import java.util.List;
 
@@ -16,4 +18,13 @@ public interface CompanyService {
 
     List<Company> selectUnderCompany(Long companyId);
     Company findByName(String name);
+
+    CompanyBankCard findByCompanyId(Long companyId);
+
+    int unbindMod(Long bankCardId);
+
+    List<BankDict> findBankDictAll();
+
+    //绑定银行卡
+    CompanyBankCard bindBankCard(CompanyBankCard companyBankCard);
 }

@@ -57,4 +57,43 @@ public class CompanyServiceImp implements CompanyService {
         System.out.println(json);
         return json;
     }
+
+    @Override
+    public String findByCompanyId(Long companyId) {
+        String url = centerUrl + "findByCompanyId";
+        String json = restTemplate.postForObject(url,companyId,String.class);
+        System.out.println("查询的绑定的企业银行卡："+json);
+        return json;
+    }
+
+    @Override
+    public boolean unbindMod(Long bankCardId) {
+        String url = centerUrl + "unbindMod";
+        return restTemplate.postForObject(url,bankCardId,boolean.class);
+    }
+
+    @Override
+    public String findBankDictAll() {
+        String url = centerUrl + "findBankDictAll";
+        String bankDictJson = restTemplate.getForObject(url, String.class);
+        System.out.println("返回的所有银行信息：" + bankDictJson);
+        return bankDictJson;
+    }
+
+    @Override
+    public boolean bindBankCard(String cardNo, String phone, Long compayId, String bankDictId) {
+        String url = centerUrl + "bindBankCard";
+        Map<String,Object> map = new HashMap<>();
+        map.put("cardNo",cardNo);
+        map.put("phone",phone);
+        map.put("compayId",compayId);
+        map.put("bankDictId",Long.parseLong(bankDictId));
+        String s = restTemplate.postForObject(url,map,String.class);
+        if (s != null){
+            return true;
+        }
+        return false;
+    }
+
+
 }
