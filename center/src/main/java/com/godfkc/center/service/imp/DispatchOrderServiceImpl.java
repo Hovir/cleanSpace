@@ -1,6 +1,8 @@
 package com.godfkc.center.service.imp;
 
+import com.godfkc.center.entity.Company;
 import com.godfkc.center.entity.Order;
+import com.godfkc.center.repository.CompanyRepository;
 import com.godfkc.center.repository.OrderRepository;
 import com.godfkc.center.service.DispatchOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ import java.util.Map;
 public class DispatchOrderServiceImpl implements DispatchOrderService{
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    private CompanyRepository companyRepository;
 
     //通过状态（status）查询派遣订单表(order) lqj add 2018-2-1
     @Override
@@ -40,6 +45,12 @@ public class DispatchOrderServiceImpl implements DispatchOrderService{
     public List<Order> findOrderByStatus(Integer status) {
         List<Order> ordersByStatus = orderRepository.findAllByStatus(status);
         return ordersByStatus;
+    }
+
+    @Override
+    public void saveCompany(Long ztreeId, Long id) {
+        Company company = companyRepository.findById(ztreeId);
+        orderRepository.updateCompanyById(company,id);
     }
 
 

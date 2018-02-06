@@ -4,6 +4,7 @@ import com.godfkc.common.pojo.dataTables.SentParameters;
 import com.godfkc.managerweb.service.ManagerDispatchOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,6 +31,19 @@ public class ManagerDispatchOrderController {
     public String toAddPicture( @PathVariable("id")Integer id){
         System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZ"+id);
         return "dispatch/addPicture";
+    }
+
+    //跳转添加检测公司 zhaozhb
+    @RequestMapping("/addCompany/{id}")
+    public String addCompany(@PathVariable("id")Integer id, Model model){
+        model.addAttribute("id",id);
+        return "dispatch/deteCompany";
+    }
+
+    //添加派遣公司 zhaozhb
+    @RequestMapping("saveDeteCompany/{ztreeId}/{id}")
+    public void saveDeteCompany(@PathVariable("ztreeId")Long ztreeId,@PathVariable("id")Long id){
+        managerDispatchService.saveCompany(ztreeId,id);
     }
 
 }

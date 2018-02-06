@@ -9,6 +9,8 @@ import com.godfkc.center.repository.LevelRepository;
 import com.godfkc.center.service.CardService;
 import com.godfkc.common.pojo.Ztree;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -82,4 +84,18 @@ public class CardServiceImpl implements CardService {
         }
         return list;
     }
+
+    @Override
+    public Page<Card> findCard(Integer status,Integer page, Integer size, String dir, String data, String search) {
+        Sort sort = null;
+        //判断排序规则
+        if (dir.equals("desc")) {
+            sort = new Sort(Sort.Direction.DESC, data);
+        } else if (dir.equals("asc")) {
+            sort = new Sort(Sort.Direction.ASC, data);
+        }
+        Pageable pageable = new PageRequest(page, size, sort);
+        return cardRepository.findByStatusAndNumLike(status,search, pageable);
+    }
+
 }

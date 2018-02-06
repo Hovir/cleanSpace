@@ -22,7 +22,8 @@
             <dd>
                 <ul>
                     <li><a href="javascript:;" onclick="pageTurns('card/addCard')" title="制卡">制卡</a></li>
-                    <li><a href="javascript:;" onclick="pageTurns('card/card')" title="制卡">卡片列表</a></li>
+                    <li><a href="javascript:;" onclick="pageTurns('card/card')" title="未激活">未激活列表</a></li>
+                    <li><a href="javascript:;" onclick="pageTurns('card/acCard')" title="已激活">已激活列表</a></li>
                 </ul>
             </dd>
         </dl>

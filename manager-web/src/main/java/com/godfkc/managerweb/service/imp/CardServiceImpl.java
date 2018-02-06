@@ -1,5 +1,6 @@
 package com.godfkc.managerweb.service.imp;
 
+import com.godfkc.common.pojo.dataTables.SentParameters;
 import com.godfkc.common.pojo.manager.CardVo;
 import com.godfkc.managerweb.service.CardService;
 import com.google.gson.Gson;
@@ -38,4 +39,11 @@ public class CardServiceImpl implements CardService {
         String json = restTemplate.getForObject(url, String.class, id, num);
         return new Gson().fromJson(json , new TypeToken<List<CardVo>>(){}.getType());
     }
+
+    @Override
+    public String findCard(SentParameters sentParameters,Integer status) {
+        String url = centerUrl + "card/cardList/{status}";
+        return restTemplate.postForObject(url,sentParameters,String.class,status);
+    }
+
 }

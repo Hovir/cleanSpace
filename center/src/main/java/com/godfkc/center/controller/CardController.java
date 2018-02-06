@@ -4,12 +4,14 @@ import com.godfkc.center.entity.Card;
 import com.godfkc.center.entity.Level;
 import com.godfkc.center.service.CardService;
 import com.godfkc.common.pojo.Ztree;
+import com.godfkc.common.pojo.dataTables.DataTablesReturn;
+import com.godfkc.common.pojo.dataTables.ReturnedData;
+import com.godfkc.common.pojo.dataTables.SentParameters;
 import com.godfkc.common.pojo.manager.CardVo;
+import com.godfkc.common.utils.dataTables.ReturnedDataUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -56,5 +58,20 @@ public class CardController {
             cardVoList.add(cardVo);
         }
         return cardVoList;
+    }
+
+    @RequestMapping(value = "cardList/{status}",method = {RequestMethod.POST})
+    public ReturnedData cardList(@RequestBody SentParameters sentParameters,@PathVariable Integer status){
+        //返回到前台的数据
+        ReturnedData<Card> returnedData = new ReturnedData<>();
+        DataTablesReturn dataTablesReturn = new ReturnedDataUtil().DataRequestRequest(sentParameters);
+        Page<Card> page = cardService.findCard(status,dataTablesReturn.getPage(), dataTablesReturn.getSize(), dataTablesReturn.getDir(), dataTablesReturn.getData(), dataTablesReturn.getSearch());
+        //返回到前台的数据
+        returnedData.setDraw(sentParameters.getDraw());
+        returnedData.setRecordsTotal((int) page.getTotalElements());
+        returnedData.setRecordsFiltered((int) page.getTotalElements());
+        returnedData.setData(page.getContent());
+
+        return returnedData;
     }
 }

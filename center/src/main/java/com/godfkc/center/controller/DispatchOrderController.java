@@ -52,4 +52,14 @@ public class DispatchOrderController {
         return orderByStatus;
     }
 
+    /**
+     * 添加公司
+     * @param ztreeId
+     * @param id
+     */
+    @ResponseBody
+    @RequestMapping("saveCompany/{ztreeId}/{id}")
+    public void saveCompany(@PathVariable("ztreeId") Long ztreeId,@PathVariable("id") Long id){
+        dispatchOrderService.saveCompany(ztreeId,id);
+    }
 }
