@@ -6,3 +6,7 @@
 <script type="text/javascript" src="${path}/lib/jquery.validation/1.14.0/messages_zh.js"></script>
 <script type="text/javascript" src="${path}/lib/static/h-ui/js/H-ui.js"></script>
 <script type="text/javascript" src="${path}/lib/static/h-ui.admin/js/H-ui.admin.page.js"></script>
+
+<script type="text/javascript" src="${path}/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="${path}/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="${path}/lib/laypage/1.2/laypage.js"></script>

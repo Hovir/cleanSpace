@@ -50,9 +50,6 @@
                 <ul>
                     <li><a href="javascript:;" onclick="pageTurns('company/companyList')" title="企业列表">企业列表</a></li>
                 </ul>
-    <#--            <ul>
-                    <li><a href="javascript:;" onclick="pageTurns('company/companyFounds')" title="企业收益">企业收益</a></li>
-                </ul>-->
             </dd>
         </dl>
     </div>
