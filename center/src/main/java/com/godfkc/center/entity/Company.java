@@ -60,6 +60,7 @@ public class Company implements Serializable {
     private Set<Card> cards;
 
     //一对多 预约订单
+    @NotFound(action = NotFoundAction.IGNORE)
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
     @JsonIgnore
     private Set<Order> orders;

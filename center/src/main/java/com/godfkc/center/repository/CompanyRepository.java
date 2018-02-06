@@ -4,7 +4,6 @@ import com.godfkc.center.entity.Company;
 import com.godfkc.center.entity.Level;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
 import java.util.List;
 
 /**

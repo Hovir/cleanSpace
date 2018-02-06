@@ -2,12 +2,13 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<#assign base=springMacroRequestContext.contextPath/>
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<title>环保空间</title>
-		<script src="js/jquery.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="css/header-footer.css"/>
-		<link rel="stylesheet" type="text/css" href="css/detection and management.css"/>
-	    <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<title>环保空间_公司预约列表</title>
+		<script src="${base}/js/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="${base}/css/header-footer.css"/>
+		<link rel="stylesheet" type="text/css" href="${base}/css/detection and management.css"/>
+	    <script src="${base}/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 
 	</head>
 	<script>
@@ -36,7 +37,7 @@
 				<div class="left">
 					<div class="return">
 						<a href="">
-							<img src="img/back.png" />
+							<img src="${base}/img/back.png" />
 						</a>
 					</div>
 				</div>
@@ -51,7 +52,7 @@
 					<div class="go">
 						<a href="">
 							<!--<span>注册</span>-->
-							<!--<!--<img src= "img/setting.png" />-->
+							<!--<!--<img src= "${base}/img/setting.png" />-->
 						<!--</a>
 					</div>
 				</div>
@@ -63,7 +64,7 @@
 					<div class="left">
 				        <div class="return">
 					        <a href="">
-						        <img src="img/back.png" />
+						        <img src="${base}/img/back.png" />
 					        </a>
 				        </div>
 				    </div>					
@@ -78,7 +79,7 @@
 					<div class="go">
 						<a href="javascript:void(0)">
 							<span>筛选</span>
-							<!--<!--<img src= "img/setting.png" />-->
+							<!--<!--<img src= "${base}/img/setting.png" />-->
 						</a>
 					</div>
 				</div>
@@ -159,13 +160,16 @@
 		   	    			<span>查看详情</span>
 		   	    		</div>
 		   	    	</div>
-		   	    	
+				${orderList}
 		   	    </div>		   	    	
 		   	</li>
 		   </ul>
 		   	    	
 		   	    		   
 		</div>
+	<script>
+		console.log("${orderList}");
+	</script>
 	</body>
 </html>
 

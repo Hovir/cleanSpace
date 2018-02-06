@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -94,5 +96,13 @@ public class OrderController {
         map.put("appointmentTime",format);
         model.addAttribute("order",map);
         return "details of customer";
+    }
+
+    @RequestMapping("/updateOrderInfo")
+    public String updateOrderInfo(OrderVo orderVo){
+        boolean flag=orderService.updateReportAndRemark(orderVo.getId().longValue(),orderVo.getRemark(),orderVo.getReport());
+        System.out.println(orderVo);
+        if(flag) System.out.println("success");
+        return "redirect :/company/myCompany";
     }
 }
