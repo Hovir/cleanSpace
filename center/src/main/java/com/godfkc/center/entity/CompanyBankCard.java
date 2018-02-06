@@ -19,6 +19,8 @@ public class CompanyBankCard {
     @GeneratedValue
     @Column(name = "id",length = 10)
     private Long id;
+    @Column(name = "username",length = 10)
+    private String username; //持卡人名
     @Column(name = "card_no",length = 30)
     private String cardNo;
     @Column(name = "phone",length = 15)
@@ -42,6 +44,14 @@ public class CompanyBankCard {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getCardNo() {

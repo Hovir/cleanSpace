@@ -40,6 +40,10 @@
         </select>
     </div>
     <div class="settext">
+        <span>持卡人姓名</span>
+        <input type="text" name="" id="username" value="" placeholder="请输入银行持卡人姓名" onfocus="clearInfo()"/>
+    </div>
+    <div class="settext">
         <span>手机号</span>
         <input type="text" name="" id="phone" value="" placeholder="请输入银行预留手机号" onfocus="clearInfo()"/>
     </div>
@@ -85,6 +89,7 @@
         var bankCardNo = $("#cardNo").val(); //银行卡号
         var banksel = $("#bankDict").val(); //选中的银行id
         var phone = $("#phone").val(); //手机号
+        var username = $("#username").val();
         if (checkBankNo(bankCardNo)) {
             return;
         }
@@ -97,6 +102,10 @@
             return;
         }
         if (!checkPhone(phone)) {
+            return;
+        }
+        if ($.trim(username) == ""){
+            $("#info").html("请输入持卡人姓名!").css("color", "red");
             return;
         }
         $("#quick2").show();
@@ -134,6 +143,7 @@
         var bankCardNo = $("#cardNo").val(); //银行卡号
         var banksel = $("option:selected").val(); //选中的银行id
         var phone = $("#phone").val(); //手机号
+        var username = $("#username").val();
         if (checkBankNo(bankCardNo)) {
             return;
         }
@@ -147,11 +157,15 @@
         if (!checkPhone(phone)) {
             return;
         }
+        if ($.trim(username) == ""){
+            $("#info").html("请输入持卡人姓名!").css("color", "red");
+            return;
+        }
         $.ajax({
             url:"/company/bindBankCard",
             type:"post",
             dataType:"text",
-            data:{cardNo:bankCardNo,bankDictId:banksel,phone:phone},
+            data:{cardNo:bankCardNo,bankDictId:banksel,phone:phone,username:username},
             success:function (data) {
                 if (data == "1"){
                     alert("链接超时，请重新登录!");

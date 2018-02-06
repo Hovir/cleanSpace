@@ -151,14 +151,14 @@ public class CompanyController {
 
     @RequestMapping("/bindBankCard")
     @ResponseBody
-    public String bindBankCard(String cardNo,String bankDictId,String phone,HttpServletRequest request){
+    public String bindBankCard(String cardNo,String bankDictId,String phone,String username,HttpServletRequest request){
         Long compayId = (Long) request.getSession().getAttribute(sessionKeyCompanyId);
         if (null != compayId){
             String byCompanyId = companyService.findByCompanyId(compayId);
             if (byCompanyId != null){
                 return "4";
             }
-            boolean b = companyService.bindBankCard(cardNo, phone, compayId, bankDictId);
+            boolean b = companyService.bindBankCard(cardNo, phone, compayId, bankDictId,username);
             if (b){
                return "2";
             }else {

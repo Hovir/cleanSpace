@@ -151,6 +151,7 @@ public class CompanyController {
         BankDict bankDict = new BankDict();
         bankDict.setId(Long.parseLong(map.get("bankDictId").toString()));
         companyBankCard.setCardNo((String) map.get("cardNo"));
+        companyBankCard.setUsername((String)map.get("username"));
         companyBankCard.setPhone((String)map.get("phone"));
         companyBankCard.setCompany(company);
         companyBankCard.setBankDict(bankDict);

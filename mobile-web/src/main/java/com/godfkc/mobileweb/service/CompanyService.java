@@ -15,5 +15,5 @@ public interface CompanyService {
     String findByCompanyId(Long companyId);
     boolean unbindMod(Long bankCardId);
     String findBankDictAll();
-    boolean bindBankCard(String cardNo,String phone,Long compayId,String bankDictId);
+    boolean bindBankCard(String cardNo,String phone,Long compayId,String bankDictId,String username);
 }

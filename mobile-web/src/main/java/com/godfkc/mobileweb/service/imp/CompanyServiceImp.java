@@ -81,13 +81,14 @@ public class CompanyServiceImp implements CompanyService {
     }
 
     @Override
-    public boolean bindBankCard(String cardNo, String phone, Long compayId, String bankDictId) {
+    public boolean bindBankCard(String cardNo, String phone, Long compayId, String bankDictId,String username) {
         String url = centerUrl + "bindBankCard";
         Map<String,Object> map = new HashMap<>();
         map.put("cardNo",cardNo);
         map.put("phone",phone);
         map.put("compayId",compayId);
         map.put("bankDictId",Long.parseLong(bankDictId));
+        map.put("username",username);
         String s = restTemplate.postForObject(url,map,String.class);
         if (s != null){
             return true;

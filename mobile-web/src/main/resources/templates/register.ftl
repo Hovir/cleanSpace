@@ -146,6 +146,7 @@
     //点击注册按钮
     $("#registBut").click(function () {
         if ( !$("[name='agreement']").prop("checked") ){
+            alert("请同意环保空间用户协议");
             return;
         }
         var phone = $("#phone").val(); //手机号
