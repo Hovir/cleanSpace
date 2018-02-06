@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>demo</title>
-    <#include "${path}/manager/_meta.jsp"/>
+    <#include "${path}/manager/_meta.ftl"/>
 </head>
 <body>
 
@@ -18,7 +18,7 @@
 <!--/代码写在这里-->
 
 <!--_footer 作为公共模版分离出去-->
-<#include "${path}/manager/_footer.jsp"/>
+<#include "${path}/manager/_footer.ftl"/>
 <!--/_footer /作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
