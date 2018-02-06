@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     @Override
     public User doLogin(String phone, String password) {
-        User user = userRepository.findByPhoneAndPassword(phone, password);
+        User user = userRepository.findByPhoneAndPasswordAndStatus(phone, password,1);
         return user;
     }
 

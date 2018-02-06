@@ -67,10 +67,12 @@
 				    	</a>				    
 				    </div>
 				    <div class="parts">
+                        <a href="/subscribe">
 					    <div class="parts-cont">						
 						    <span class="process_icon"><img src="img/governance.png"/></span>
 						    <span class="process_font">预约治理</span>
-					    </div>			   
+					    </div>
+						</a>
 				    </div>				   			
 			    </div>
 			</div>

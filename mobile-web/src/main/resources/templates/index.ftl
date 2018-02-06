@@ -84,7 +84,7 @@
                     </a>
 				</div>
 				<div class="module">
-					<a href="/bespeakLogin">
+					<a href="/subscribe1">
 						<div class="module-cont">
 							<img src="/img/testing.png"/>
 							<div>预约检测</div>

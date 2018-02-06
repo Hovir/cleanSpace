@@ -1,7 +1,11 @@
 package com.godfkc.mobileweb.controller;
 
+import com.godfkc.mobileweb.service.CardService;
+import com.godfkc.mobileweb.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +17,13 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 public class PageController {
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private CardService cardService;
+
 
     @Value("${session.key.userPhone}")
     private String sessionKeyUserPhone;
@@ -116,8 +127,19 @@ public class PageController {
      * 预约检测信息填写
      */
     @RequestMapping("/subscribe1")
-    public String toSubscribe1(){
-        return "subscribe1";
+    public String toSubscribe1(HttpServletRequest request){
+        String phone = (String) request.getSession().getAttribute(sessionKeyUserPhone);
+        if(phone!=null&&phone.length()>0){
+            Long id=userService.selectUserIdByPhone(phone);
+            boolean flag=cardService.selectUserCard(id);
+            if(flag){
+                return "subscribe1";
+            }else {
+                return "bespeak-login";
+            }
+        }else {
+            return "login";
+        }
     }
 
 
@@ -125,8 +147,19 @@ public class PageController {
      * 预约治理信息填写
      */
     @RequestMapping("/subscribe")
-    public String toSubscribe(){
-        return "subscribe";
+    public String toSubscribe(HttpServletRequest request){
+        String phone = (String) request.getSession().getAttribute(sessionKeyUserPhone);
+        if(phone!=null&&phone.length()>0){
+            Long id=userService.selectUserIdByPhone(phone);
+            boolean flag=cardService.selectUserCard(id);
+            if(flag){
+                return "subscribe";
+            }else {
+                return "bespeak-login";
+            }
+        }else {
+            return "login";
+        }
     }
 
     /**
@@ -232,4 +265,22 @@ public class PageController {
     public String toChangePwd(){
         return "changePwd";
     }
+
+
+    /**
+     * 激活卡付款页面
+     * @return
+     */
+    @RequestMapping("/pay")
+    public String toPay(HttpServletRequest request, Model model,Long cardId){
+        String phone = (String) request.getSession().getAttribute(sessionKeyUserPhone);
+        if(phone!=null&&phone.length()>0){
+            model.addAttribute("cardId",cardId);
+            return "pay";
+        }else {
+            return "login";
+        }
+    }
+
+
 }

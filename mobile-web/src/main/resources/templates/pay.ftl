@@ -14,7 +14,7 @@
 			<div class="header">
 				<div class="left">
 					<div class="return">
-						<a href="">
+						<a href="javascript:void(0)"  onclick="huiTui()">
 							<img src="img/back-black.png" />
 						</a>
 					</div>
@@ -53,7 +53,7 @@
                 </span>
                 
             </a>
-           
+
             <div class="bottom-footer">
            	    <div class="total">
             	   合计：<span>￥200.00</span>
@@ -67,7 +67,7 @@
                   
 			</div>
 			
-			
+			<input type="hidden" value="${cardId!''}" id="cardId">
 
 <script type="text/javascript">
 
@@ -78,6 +78,13 @@
     });
 
 
+</script>
+<script>
+	function huiTui () {
+		if (/(iPhone|iPad|iPod)/i.test(navigator.userAgent)) {
+			window.location.href = window.document.referrer;
+		} else { window.history.go(-1); };
+	}
 </script>
 
 	</body>

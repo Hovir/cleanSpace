@@ -1,6 +1,8 @@
 package com.godfkc.center.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -35,11 +37,14 @@ public class User implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
+
+    @NotFound(action= NotFoundAction.IGNORE)
     @OneToOne(mappedBy = "user")
     @JsonIgnore
     private Card card;
 
     //一对多 订单
+    @NotFound(action= NotFoundAction.IGNORE)
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
     @JsonIgnore
     private Set<Order> orders;

@@ -2,6 +2,10 @@ package com.godfkc.center.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -33,14 +37,16 @@ public class Card implements Serializable {
     private Date updateTime;
 
     //多对一 公司id
+    @NotFound(action= NotFoundAction.IGNORE)
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
     @JsonIgnore
     private Company company;
 
     //一对一 用户
-    @OneToOne
+    @NotFound(action= NotFoundAction.IGNORE)
     @JsonIgnore
+    @OneToOne
     private User user;
 
     public Long getId() {
