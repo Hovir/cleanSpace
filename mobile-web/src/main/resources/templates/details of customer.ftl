@@ -8,6 +8,7 @@
 		<link rel="stylesheet" type="text/css" href="/css/header-footer.css"/>
 		<link rel="stylesheet" type="text/css" href="/css/details of customer.css"/>
 	</head>
+	<#assign orderType=order.type/>
 	<script type="text/javascript">
 		  
 	</script>
@@ -22,7 +23,12 @@
 					</div>
 				</div>
 				<div class=" middle">
-					<p>预约检测</p>
+					<#if (orderType == 1)>
+                        <p>预约检测</p>
+					</#if>
+					<#if (orderType == 2)>
+                        <p>预约治理</p>
+					</#if>
 				</div>
 				<div class=" right">
 					<div class="go">

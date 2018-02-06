@@ -115,10 +115,18 @@
 				}
 			    $("#orderList").empty();
 				$.each(data,function (index, value) {
-				    var html ="<div class='list'><div><span>"+value.name+"</span>" +
-							"<span>"+value.phone+"</span></div><div calss='address'>"+value.state+value.city+value.district+value.address+"</div>" +
-							"<div><span>预约时间：<em>"+getMyDate(value.appointmentTime)+"</em></span>" +
-							"<span><a href='/order/customerDetails?id="+value.id+"'>查看详情</a></span></div></div>"
+				    if (value.type == "1"){
+                        var html ="<div class='list'><div><span>"+value.name+"</span>" +
+                                "<span>"+value.phone+"</span></div><div calss='address'>"+value.state+value.city+value.district+value.address+"</div>" +
+                                "<div><span>预约时间：<em>"+getMyDate(value.appointmentTime)+"</em></span>" +
+                                "<span><a href='/order/customerDetails?id="+value.id+"'>查看详情</a></span></div><span style='font-size: 14px'>预约检测</span></div>"
+                    }
+                    if (value.type == "2"){
+                        var html ="<div class='list'><div><span>"+value.name+"</span>" +
+                                "<span>"+value.phone+"</span></div><div calss='address'>"+value.state+value.city+value.district+value.address+"</div>" +
+                                "<div><span>预约时间：<em>"+getMyDate(value.appointmentTime)+"</em></span>" +
+                                "<span><a href='/order/customerDetails?id="+value.id+"'>查看详情</a></span></div><span style='font-size: 14px'>预约治理</span></div>"
+					}
                     $("#orderList").append(html);
                 })
             },error:function () {
