@@ -30,11 +30,11 @@
 		<div class="header-footer">
 			<div class="header">
 				<div class="left">
-					<div class="return">
-						<a href="">
-							<img src="/img/back-white.png" />
-						</a>
-					</div>
+                    <div class="return">
+                        <a href="/company/myCompany" >
+                            <img src="/img/back.png" />
+                        </a>
+                    </div>
 				</div>
 				<div class=" middle">
 					<p>银行卡</p>
@@ -51,9 +51,6 @@
 		<div class="content" id="bankCardList">
 			<#--<div class="bank_card">
 				<span>0326</span>
-			</div>
-			<div >
-				+ 添加银行卡
 			</div>
 			<div class="card-btn">
 				解除绑定
@@ -178,6 +175,12 @@
 	//绑定银行卡
 	function addBankCard() {
 		window.location.href = "/bindCardPage";
+    }
+
+    function huiTui () {
+        if (/(iPhone|iPad|iPod)/i.test(navigator.userAgent)) {
+            window.location.href = window.document.referrer;
+        } else { window.history.go(-1); };
     }
 </script>
 </html>

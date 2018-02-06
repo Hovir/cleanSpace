@@ -13,8 +13,8 @@
     <div class="header">
         <div class="left">
             <div class="return">
-                <a href="">
-                    <img src="/img/back-white.png"/>
+                <a href="javascript:void(0)"  onclick="huiTui()">
+                    <img src="/img/back.png" />
                 </a>
             </div>
         </div>
@@ -23,9 +23,9 @@
         </div>
         <div class=" right">
             <div class="go">
-                <a href="">
+                <#--<a href="">
                     <p>明细</p>
-                </a>
+                </a>-->
             </div>
         </div>
     </div>
@@ -228,6 +228,12 @@
     //清除提示信息
     function clearInfo() {
         $("#info").html("");
+    }
+
+    function huiTui () {
+        if (/(iPhone|iPad|iPod)/i.test(navigator.userAgent)) {
+            window.location.href = window.document.referrer;
+        } else { window.history.go(-1); };
     }
 </script>
 </body>

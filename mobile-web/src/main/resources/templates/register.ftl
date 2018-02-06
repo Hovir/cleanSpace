@@ -63,7 +63,7 @@
 		    			<input type="text" class="user-yanzheng" id="verfiy" onfocus="clearInfo()"/>
 		    			<span class="yanzheng" id="quick1">验证码</span>
                         <div type="button" id="quick2" class="yanzheng" style="display: none;">
-                            <span id="quick3" >60</span>秒
+                            <span id="quick3" style="color: rgba(255,251,251,0.77);">60</span>秒
                         </div>
 		    		</div>
 		    				    		
