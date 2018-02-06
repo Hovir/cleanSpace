@@ -237,9 +237,10 @@ public class CompanyController {
 
     @RequestMapping(value = "/getOrderListOfCompany")
     public String getOrderListOfCompany(HttpServletRequest request) {
-        Long id = (Long) request.getSession().getAttribute(sessionKeyCompanyId);
-        if (null != id) {
-            String json_orderList = orderService.findAllOrderByCompanyId(id);
+        Long companyId = (Long) request.getSession().getAttribute(sessionKeyCompanyId);
+        if (null != companyId) {
+            String json_orderList = orderService.findAllOrderByCompanyId(companyId);
+            System.out.println("jsonList: of company " +json_orderList);
             request.setAttribute("orderList", json_orderList);
             return "detection_and_management";
         } else {

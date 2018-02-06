@@ -1,7 +1,10 @@
 package com.godfkc.mobileweb.service;
 
 
+import com.godfkc.common.pojo.dataTables.Order;
 import com.godfkc.common.pojo.mobile.OrderVo;
+
+import java.util.List;
 
 /**
  * @Auther:zhw
@@ -20,5 +23,5 @@ public interface OrderService {
 
     boolean updateReportAndRemark(Long id, String remark, String report);
 
-    String findAllOrderByCompanyId(Long id);
+    String findAllOrderByCompanyId(Long companyId);
 }

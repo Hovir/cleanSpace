@@ -98,6 +98,11 @@ public class OrderController {
         return "details of customer";
     }
 
+    /**
+     * 更新订单报告、留言、状态
+     * @param orderVo
+     * @return
+     */
     @RequestMapping("/updateOrderInfo")
     public String updateOrderInfo(OrderVo orderVo){
         boolean flag=orderService.updateReportAndRemark(orderVo.getId().longValue(),orderVo.getRemark(),orderVo.getReport());

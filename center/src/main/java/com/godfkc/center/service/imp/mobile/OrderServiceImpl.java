@@ -58,4 +58,8 @@ public class OrderServiceImpl implements OrderService {
         return save;
     }
 
+    @Override
+    public List<Order> findAllOrderByCompanyId(Long companyId) {
+        return orderRepository.findAllByCompanyId(companyId);
+    }
 }
