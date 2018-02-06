@@ -40,7 +40,6 @@ public class Card implements Serializable {
     @NotFound(action= NotFoundAction.IGNORE)
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
-    @JsonIgnore
     private Company company;
 
     //一对一 用户
