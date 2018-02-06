@@ -1,6 +1,7 @@
 package com.godfkc.mobileweb.service;
 
 
+import com.godfkc.common.pojo.dataTables.Order;
 import com.godfkc.common.pojo.mobile.OrderVo;
 
 import java.util.List;
@@ -17,4 +18,10 @@ public interface OrderService {
     boolean addOrder(OrderVo orderVo);
 
     String findOrderById(String id);
+
+    boolean updateReport(Long orderId, Long companyId, String url);
+
+    boolean updateReportAndRemark(Long id, String remark, String report);
+
+    String findAllOrderByCompanyId(Long companyId);
 }

@@ -1,5 +1,6 @@
 package com.godfkc.managerweb.controller;
 
+import com.godfkc.common.pojo.dataTables.SentParameters;
 import com.godfkc.common.pojo.manager.CardVo;
 import com.godfkc.managerweb.service.CardService;
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -93,4 +94,16 @@ public class CardController {
             }
         }
     }
+
+    /**
+     * 查看卡片 zhaozhb
+     * @param sentParameters
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("cardList")
+    public String cardList(SentParameters sentParameters,Integer status){
+        return cardService.findCard(sentParameters,status);
+    }
+
 }

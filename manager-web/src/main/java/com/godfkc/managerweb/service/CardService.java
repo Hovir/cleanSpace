@@ -1,5 +1,6 @@
 package com.godfkc.managerweb.service;
 
+import com.godfkc.common.pojo.dataTables.SentParameters;
 import com.godfkc.common.pojo.manager.CardVo;
 
 import java.util.List;
@@ -20,4 +21,12 @@ public interface CardService {
      * @Des:添加卡号
      */
     List<CardVo> insertCard(long id, Integer num);
+
+    /**
+     * 查看卡片 zhaozhb
+     * @param sentParameters
+     * @return
+     */
+    String findCard(SentParameters sentParameters,Integer status);
+
 }

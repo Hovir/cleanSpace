@@ -36,4 +36,15 @@ public class ManagerDispatchOrderServiceImpl implements ManagerDispatchOrderServ
         return this.restTemplate.postForObject(url,sentParameters,String.class,type);
     }
 
+    /**
+     * 添加公司 zhaozhb
+     * @param ztreeId
+     * @param id
+     */
+    @Override
+    public void saveCompany(Long ztreeId, Long id) {
+        String url = centerUrl + "saveCompany/{ztreeId}/{id}";
+        String json = restTemplate.getForObject(url, String.class, ztreeId, id);
+    }
+
 }

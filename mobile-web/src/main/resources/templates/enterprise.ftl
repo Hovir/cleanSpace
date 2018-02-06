@@ -45,7 +45,6 @@
 <#assign jsonString>
 ${company}
 </#assign>
-
 <#assign jsonCompany=jsonString?eval/>
 
 <#assign companyId=jsonCompany.id/>
@@ -56,7 +55,7 @@ ${company}
         </div>
         <div class="topProfit">
             <a href="/detailPage">
-            <span class="detail">明细</span>
+                <span class="detail">明细</span>
             </a>
             <span>今日收益</span>
             <div class="tmoney">
@@ -96,7 +95,7 @@ ${company}
             <div class="parts">
                 <div class="parts-cont">
                     <span class="process_icon"><img src="${base}/img/Reservations.png"/></span>
-                    <span class="process_font">预约客户</span>
+                    <a href="${base}/company/getOrderListOfCompany"><span class="process_font">预约客户</span></a>
                 </div>
             </div>
             <div class="parts">
@@ -111,9 +110,9 @@ ${company}
     </div>
     <div class="Today reservation">
         <div class="words">
-            <a href="">
+            <a href="${base}/company/getOrderListOfCompany">
                 <span>今日预约</span>
-                <span><img src="${base}/img/more.png" alt=""/></span>
+                <span ><img src="${base}/img/more.png" alt=""/></span>
             </a>
         </div>
         <div class="Subscribe-List">
@@ -130,10 +129,10 @@ ${company}
                     <span>预约时间：<em>${order.appointmentTime?number_to_date?string("yyyy-MM-dd HH:mm")}</em></span>
                     <!-- 上传报告或者查看详情-->
                     <#if (order.status==2)>
-                        <a href="javascript:alert('detail');"><span>查看详情</span></a>
+                        <span><a href="/order/customerDetails?id=${order.id}">查看详情</a></span>
                     </#if>
                     <#if (order.status==1)>
-                        <a href="${base}/upload"><span>提交报告</span></a>
+                        <span><a href="${base}/upload/${order.id}">提交报告</a></span>
                     </#if>
                 </div>
             </div>
@@ -153,9 +152,12 @@ ${company}
             </div>-->
         </div>
     </div>
-
-
 </div>
+<script type="text/javascript">
+    /*$("#rightArrow").click(function () {
+
+    })*/
+</script>
 </body>
 </html>
 

@@ -45,7 +45,7 @@ public class User implements Serializable {
 
     //一对多 订单
     @NotFound(action= NotFoundAction.IGNORE)
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     @JsonIgnore
     private Set<Order> orders;
 

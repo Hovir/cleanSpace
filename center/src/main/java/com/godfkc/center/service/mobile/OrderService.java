@@ -18,4 +18,7 @@ public interface OrderService {
 
     Order findOrderById(Long id);
 
+    Order saveOrder(Order order);
+
+    List<Order> findAllOrderByCompanyId(Long companyId);
 }
