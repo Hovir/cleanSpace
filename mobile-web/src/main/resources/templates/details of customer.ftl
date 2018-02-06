@@ -16,7 +16,7 @@
 			<div class="header">
 				<div class="left">
 					<div class="return">
-						<a href="">
+                        <a href="javascript:void(0)"  onclick="huiTui()">
 							<img src="/img/back.png" />
 						</a>
 					</div>
@@ -65,4 +65,12 @@
 		    
 		</div>
 	</body>
+
+<script>
+	function huiTui () {
+		if (/(iPhone|iPad|iPod)/i.test(navigator.userAgent)) {
+			window.location.href = window.document.referrer;
+		} else { window.history.go(-1); };
+	}
+</script>
 </html>

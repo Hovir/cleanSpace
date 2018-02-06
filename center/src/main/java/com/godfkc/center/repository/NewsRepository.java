@@ -53,4 +53,7 @@ public interface NewsRepository extends JpaRepository<News, Long> {
     @Modifying
     @Query(value = "UPDATE News SET title = :title , img_url = :img_url , details = :details , updateTime = :updateTime WHERE id = :id")
     void saveUpdateNewsById(@Param("title") String title, @Param("img_url") String img_url, @Param("details") String details, @Param("updateTime") Date updateTime, @Param("id") long id);
+
+    //查询所有新闻
+    List<News> findByStatus(Integer status);
 }

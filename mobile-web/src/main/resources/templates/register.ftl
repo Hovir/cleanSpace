@@ -34,8 +34,8 @@
 			<div class="header">
 				<div class="left">
 					<div class="return">
-						<a href="">
-							<!--<img src="img/return.png" />-->
+                        <a href="javascript:void(0)"  onclick="huiTui()">
+							<img src="/img/back.png" />
 						</a>
 					</div>
 				</div>
@@ -215,6 +215,13 @@
     //清除提示信息
     function clearInfo() {
         $("#info").html("");
+    }
+</script>
+<script>
+    function huiTui () {
+        if (/(iPhone|iPad|iPod)/i.test(navigator.userAgent)) {
+            window.location.href = window.document.referrer;
+        } else { window.history.go(-1); };
     }
 </script>
 </html>

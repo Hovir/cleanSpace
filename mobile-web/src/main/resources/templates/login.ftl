@@ -27,8 +27,8 @@
 			<div class="header">
 				<div class="left">
 					<div class="return">
-						<a href="">
-							<!--<img src="img/return.png" />-->
+                        <a href="javascript:void(0)"  onclick="huiTui()">
+							<img src="/img/back.png" />
 						</a>
 					</div>
 				</div>
@@ -37,7 +37,7 @@
 				</div>
 				<div class=" right">
 					<div class="go">
-						<a href="">
+						<a href="/goToRegister">
 							<span>注册</span>
 							<!--<img src= "img/setting.png" />-->
 						</a>
@@ -105,5 +105,12 @@
             return true;
         }
     }
+</script>
+<script>
+	function huiTui () {
+		if (/(iPhone|iPad|iPod)/i.test(navigator.userAgent)) {
+			window.location.href = window.document.referrer;
+		} else { window.history.go(-1); };
+	}
 </script>
 </html>

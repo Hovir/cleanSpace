@@ -48,7 +48,7 @@
     <div class="footer">
         <div class="part">
             <div class="part-cont">
-                <a class="" href="index.ftl">
+                <a class="" href="/index">
                     <span class="icon"><img src="${base}/img/homepage.png"/></span>
                     <span class="font">首页</span>
                 </a>
@@ -56,7 +56,7 @@
         </div>
         <div class="part">
             <div class="part-cont">
-                <a class="" href="case.ftl">
+                <a class="" href="javascript:void(0)">
                     <span class="icon"><img src="${base}/img/green-business.png"/></span>
                     <span class="font active">企业</span>
                 </a>
@@ -64,7 +64,7 @@
         </div>
         <div class="part">
             <div class="part-cont">
-                <a class="" href="">
+                <a class="" href="/centerPage">
                     <span class="icon"><img src="${base}/img/center.png"/></span>
                     <span class="font">个人</span>
                 </a>

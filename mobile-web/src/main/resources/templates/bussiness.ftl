@@ -12,7 +12,7 @@
 			<div class="header">
 				<div class="left">
 					<div class="return">
-						<a href="">
+						<a href="/index">
 							<img src="img/back-black.png" />
 						</a>
 					</div>

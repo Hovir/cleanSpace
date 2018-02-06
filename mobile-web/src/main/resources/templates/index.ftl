@@ -105,7 +105,7 @@
 					<div class="title">集团咨询</div>
 					<div class="title-right">
 						<span class="more">更多</span>
-						<span class="more-img"><img src="img/more.png"/></span>
+						<span class="more-img"><img src="/img/more.png"/></span>
 					</div>
 				</div>
                 <div class="product-cont">

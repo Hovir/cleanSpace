@@ -35,7 +35,7 @@
 			<div class="header">
 				<div class="left">
 					<div class="return">
-						<a href="">
+						<a href="/centerPage">
 							<img src="img/back.png" />
 						</a>
 					</div>
