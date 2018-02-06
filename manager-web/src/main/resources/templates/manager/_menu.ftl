@@ -10,10 +10,10 @@
             </dd>
         </dl>
         <dl id="menu-picture">
-            <dt><i class="Hui-iconfont">&#xe613;</i> 图片管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe613;</i> 广告管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a href="javascript:;" onclick="pageTurns('picture/picture')" title="广告管理">广告管理</a></li>
+                    <li><a href="javascript:;" onclick="pageTurns('picture/picture')" title="广告管理">首页广告</a></li>
                 </ul>
             </dd>
         </dl>
