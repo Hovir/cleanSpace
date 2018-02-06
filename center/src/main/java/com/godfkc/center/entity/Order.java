@@ -48,6 +48,8 @@ public class Order implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
+
+
     //多对一 公司id
     @NotFound(action= NotFoundAction.IGNORE)
     @JsonIgnore
@@ -57,7 +59,6 @@ public class Order implements Serializable {
 
     //多对一 用户id
     @NotFound(action= NotFoundAction.IGNORE)
-    @JsonIgnore
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
     @JoinColumn(name = "user_id")
     private User user;
@@ -189,4 +190,5 @@ public class Order implements Serializable {
     public void setType(int type) {
         this.type = type;
     }
+
 }
