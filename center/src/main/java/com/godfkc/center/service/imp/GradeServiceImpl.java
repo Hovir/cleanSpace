@@ -1,7 +1,5 @@
 package com.godfkc.center.service.imp;
 
-import com.godfkc.center.entity.Company;
-import com.godfkc.center.entity.CompanyVo;
 import com.godfkc.center.entity.Level;
 import com.godfkc.center.repository.CompanyRepository;
 import com.godfkc.center.repository.LevelRepository;

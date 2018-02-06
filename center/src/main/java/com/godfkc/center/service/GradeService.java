@@ -1,7 +1,5 @@
 package com.godfkc.center.service;
 
-import com.godfkc.center.entity.Company;
-import com.godfkc.center.entity.CompanyVo;
 import com.godfkc.center.entity.Level;
 
 import java.util.List;

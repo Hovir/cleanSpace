@@ -1,10 +1,7 @@
 package com.godfkc.center.controller;
 
-import com.godfkc.center.entity.Company;
-import com.godfkc.center.entity.CompanyVo;
 import com.godfkc.center.entity.Level;
 import com.godfkc.center.service.GradeService;
-import com.godfkc.common.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
