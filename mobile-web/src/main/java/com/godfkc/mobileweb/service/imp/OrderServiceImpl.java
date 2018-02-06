@@ -83,9 +83,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public String findAllOrderByCompanyId(Long id) {
-        //String url = centerUrl + "findAllOrderByCompanyId";
-        //this.restTemplate.getForObject(url,String.class,id);
-        return "this is orderList";
+    public String findAllOrderByCompanyId(Long companyId) {
+        String url = centerUrl + "findAllOrderByCompanyId/{companyId}";
+        Map<String,Object> paramMap= new HashMap<>();
+        paramMap.put("companyId",companyId);
+        String returnJson= this.restTemplate.getForObject(url,String.class,paramMap);
+        return returnJson;
     }
 }

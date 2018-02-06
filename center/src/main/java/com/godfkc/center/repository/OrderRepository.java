@@ -38,8 +38,8 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     //测试
     List<Order> findAllByStatus(Integer status);
 
-
-
+    @Query(value = "select o from Order o where o.company.id=:companyId")
+    List<Order> findAllByCompanyId(@Param("companyId") Long companyId);
 
 
     //根据id查询预约信息

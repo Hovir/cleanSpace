@@ -45,7 +45,6 @@
 <#assign jsonString>
 ${company}
 </#assign>
-
 <#assign jsonCompany=jsonString?eval/>
 
 <#assign companyId=jsonCompany.id/>
@@ -56,7 +55,7 @@ ${company}
         </div>
         <div class="topProfit">
             <a href="/detailPage">
-            <span class="detail">明细</span>
+                <span class="detail">明细</span>
             </a>
             <span>今日收益</span>
             <div class="tmoney">
@@ -111,9 +110,9 @@ ${company}
     </div>
     <div class="Today reservation">
         <div class="words">
-            <a href="">
+            <a href="${base}/company/getOrderListOfCompany">
                 <span>今日预约</span>
-                <span id="rightArrow"><img src="${base}/img/more.png" alt=""/></span>
+                <span ><img src="${base}/img/more.png" alt=""/></span>
             </a>
         </div>
         <div class="Subscribe-List">
@@ -130,7 +129,7 @@ ${company}
                     <span>预约时间：<em>${order.appointmentTime?number_to_date?string("yyyy-MM-dd HH:mm")}</em></span>
                     <!-- 上传报告或者查看详情-->
                     <#if (order.status==2)>
-                        <span><a href="javascript:alert('detail');">查看详情</a></span>
+                        <span><a href="/order/customerDetails?id=${order.id}">查看详情</a></span>
                     </#if>
                     <#if (order.status==1)>
                         <span><a href="${base}/upload/${order.id}">提交报告</a></span>
@@ -154,11 +153,10 @@ ${company}
         </div>
     </div>
 </div>
-<script>
-    $("#rightArrow").click(function () {
-        alert("click arrow");
-        window.location.href="${base}/company/getOrderListOfCompany";
-    })
+<script type="text/javascript">
+    /*$("#rightArrow").click(function () {
+
+    })*/
 </script>
 </body>
 </html>

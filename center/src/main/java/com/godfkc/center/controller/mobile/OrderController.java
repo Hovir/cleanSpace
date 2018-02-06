@@ -105,4 +105,9 @@ public class OrderController {
             return false;
         }
     }
+    @RequestMapping(value = "/findAllOrderByCompanyId/{companyId}")
+    public List<Order> findAllOrderByCompanyId(@PathVariable Long companyId){
+        List<Order> orderList=orderService.findAllOrderByCompanyId(companyId);
+        return orderList;
+    }
 }
