@@ -32,63 +32,117 @@
 
     <title>添加编辑-企业管理</title>
 </head>
-<style type="text/css">
-
-</style>
 <body>
-<article class="cl pd-20">
-    <div>
-        <form action="" method="post" class="form form-horizontal" id="form-member-add">
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>企业名称：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="" placeholder="" id="username" name="username">
-                </div>
+<article class="page-container">
+    <form class="form form-horizontal" id="form-article-add" action="${path}/news/addNews" method="post">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>企业名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" placeholder="" id="title" name="title">
+                <div id="titleError"></div>
             </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3">公司图片：</label>
-                <div class="formControls col-xs-8 col-sm-9">
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>公司图片：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <div class="layui-upload">
                     <span class="btn-upload form-group">
-                        <input class="input-text upload-url" type="text" name="uploadfile" id="uploadfile" readonly nullmsg="公司图片" style="width:200px">
-                        <a href="javascript:void();" class="btn btn-primary radius upload-btn"><i class="Hui-iconfont">&#xe642;</i> 上传图片</a>
-                    <#--<input type="file" multiple name="file-2" class="input-file">-->
-                        <input type="file" id="upImage" class="input-file" onchange="newFile()" name="file"  multiple="true" />
-                    </span>
-                    <div class="btn-upload form-group" style="margin-top:5px;height: 10%;width: 58%;">
-                    <#--<img class="input-text upload-url"  name="uploadfile" id="uploadfile" readonly nullmsg="公司图片！"src="">-->
-                        <img id="showImage" name="image" alt="" src="${path}/lib/image/favicon.ico" />
-                    </div>
-                </div>
-            </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3">公司级别：</label>
-                <div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-            <select class="select" size="1" name="city">
-                <option value="" selected>请选择级别</option>
-                <option value="1">体验店</option>
-                <option value="2">联盟</option>
-                <option value="3">蚂蚁</option>
-            </select>
-            </span> </div>
-            </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3">公司简介：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <textarea name="beizhu" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" onKeyUp="textarealength(this,100)"></textarea>
-                    <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
-                </div>
-            </div>
-            <div class="row cl">
-                <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                    <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
-               <#--     <input class="btn btn-primary radius" type="reset" value="&nbsp;&nbsp;重置&nbsp;&nbsp;">
-                    <input class="btn btn-primary radius" type="reset" value="&nbsp;&nbsp;取消&nbsp;&nbsp;">-->
-                </div>
-            </div>
-        </form>
-    </div>
-</article>
+                        <input class="input-text upload-url" type="text" value="" name="uploadfile" id="uploadfile" readonly nullmsg="公司图片" style="width:200px">
+                        <a href="javascript:void();" class="btn btn-primary" ><i class="Hui-iconfont" style="width: 100%">&#xe642;</i> 上传图片</a>
 
+                        <input type="hidden" name="imgUrl" id="imgUrl">
+                    </span>
+                    <div class="layui-upload-list">
+                        <div id="img"></div>
+                        <p id="demoText"></p>
+                    </div>
+                    <#--<input type="hidden" name="imgUrl" id="imgUrl">-->
+                </div>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>公司简介：</label>
+            <div class="formControls col-xs-8 col-sm-9" id="editor">
+            </div>
+            <input type="hidden" name="details" id="details"/>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+<#--                <button onClick="sub(this);" class="btn btn-primary radius" type="button"><i
+                        class="Hui-iconfont">&#xe632;</i> 保存并提交
+                </button>-->
+                <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                <button onClick="layer_close();" class="btn btn-default radius" type="button">
+                    &nbsp;&nbsp;取消&nbsp;&nbsp;
+                </button>
+            </div>
+        </div>
+    </form>
+</article>
+<script type="application/javascript" src="${path}/lib/wangeditor3/wangEditor.min.js"></script>
+<script type="application/javascript" src="${path}/lib/layui/layui.js"></script>
+<script type="application/javascript">
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    // 上传图片到服务器
+    editor.customConfig.uploadImgServer = '${path}/news/uploader';
+    // 将图片大小限制为 3M
+    editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024;
+    // 限制一次最多上传 5 张图片
+    editor.customConfig.uploadImgMaxLength = 5;
+    //自定义 fileName
+    editor.customConfig.uploadFileName = 'file';
+    editor.create();
+</script>
+<script type="application/javascript">
+    layui.use('upload', function () {
+        var $ = layui.jquery
+                , upload = layui.upload;
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#but'
+            , url: '/news/uploader'
+            , size: 200
+            , exts: 'jpg|png|jpeg'
+            //上传成功回调函数 res为服务器返回的json
+            , done: function (res) {
+                var url = res.data[0];
+                $('#img').empty();
+                $('#img').html("<img src='" + url + "' class='layui-upload-img radius' height='100' width='100'>");
+                $("#imgUrl").val(url);
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span>');
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
+    })
+</script>
+<script type="application/javascript">
+    function sub(obj) {
+
+        $("#titleError").empty();
+        $("#demoText").empty();
+
+        $("#details").val(editor.txt.html());
+        if ($("#title").val() == "") {
+            $("#titleError").html("<span style=\"color: #FF5722;\">标题不能为空!</span>");
+            return false;
+        } else if ($("#imgUrl").val() == "") {
+            $("#demoText").html("<span style=\"color: #FF5722;\">请选择图片!</span>");
+            return false;
+        } else {
+            $(obj).parents("tr").remove();
+            layer.msg('已保存!', {icon: 1, time: 1000});
+            $("#form-article-add").submit();
+        }
+    }
+</script>
 <#--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="${path}/lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="${path}/lib/layer/2.4/layer.js"></script>

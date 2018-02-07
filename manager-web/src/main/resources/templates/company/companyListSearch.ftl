@@ -98,7 +98,7 @@
                     //渲染函数
                     render: function (data) {
                         //alert(data);
-                        return "<img  name=\'image\' alt=\'公司图片\' src=\'"+data.imgUrl+"\' />";
+                        return "<img  name=\'image\' alt=\'公司图片\' src=\'"+data.imgUrl+"\' height=\"25\" width=\"25\"' />";
                     }
                 },
                 {
