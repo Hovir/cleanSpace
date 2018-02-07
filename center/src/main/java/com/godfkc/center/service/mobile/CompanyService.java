@@ -27,4 +27,6 @@ public interface CompanyService {
 
     //绑定银行卡
     CompanyBankCard bindBankCard(CompanyBankCard companyBankCard);
+
+    List<Company> selectCompanies(Long levelId, String state, String city, String district);
 }

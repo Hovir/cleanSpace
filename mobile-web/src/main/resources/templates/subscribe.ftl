@@ -7,8 +7,8 @@
         <script src="/js/timejs/jquery.min.js"></script>
         <script src="/js/timejs/jquer_shijian.js"></script>
         <link rel="stylesheet" type="text/css" href="/css/timecss/shijian.css"/>
-		<link rel="stylesheet" type="text/css" href="css/header-footer.css"/>
-		<link rel="stylesheet" href="css/subscribe.css" />
+		<link rel="stylesheet" type="text/css" href="/css/header-footer.css"/>
+		<link rel="stylesheet" href="/css/subscribe.css" />
 	</head>
 	<body>
 		<div class="header-footer">
@@ -158,6 +158,13 @@
         var city=$("#cit option:selected").text();
         var district=$("#dis option:selected").text();
         appointmentTime=appointmentTime+":00";
+        var date=getMyDate(appointmentTime);
+        var d=new Date(Date.parse(date .replace(/-/g,"/")));
+        var curDate=new Date();
+        if(d <=curDate){
+            alert("请选择大于今天的时间");
+            return;
+        }
         $.ajax({
             //请求类型
             type:"POST",
@@ -201,6 +208,26 @@
         if (/(iPhone|iPad|iPod)/i.test(navigator.userAgent)) {
             window.location.href = window.document.referrer;
         } else { window.history.go(-1); };
+    }
+</script>
+<script>
+    function getMyDate(str) {
+        var oDate = new Date(str),
+                oYear = oDate.getFullYear(),
+                oMonth = oDate.getMonth() + 1,
+                oDay = oDate.getDate(),
+                oHour = oDate.getHours(),
+                oMin = oDate.getMinutes(),
+                oSen = oDate.getSeconds(),
+                oTime = oYear + '-' + getzf(oMonth) + '-' + getzf(oDay) ;//最后拼接时间
+        return oTime;
+    }
+
+    function getzf(num) {
+        if (parseInt(num) < 10) {
+            num = '0' + num;
+        }
+        return num;
     }
 </script>
 </html>

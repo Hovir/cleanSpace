@@ -96,5 +96,18 @@ public class CompanyServiceImp implements CompanyService {
         return false;
     }
 
+    @Override
+    public String selectCompanies(Long levelId, String state, String city, String district) {
+        String url = centerUrl + "selectCompanies/{levelId}/{state}/{city}/{district}";
+        Map<String,Object> map = new HashMap<>();
+        map.put("levelId",levelId);
+        map.put("state",state);
+        map.put("city",city);
+        map.put("district",district);
+        String json = restTemplate.getForObject(url,String.class,map);
+        System.out.println(json);
+        return json;
+    }
+
 
 }

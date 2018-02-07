@@ -75,6 +75,21 @@ body {
   background-color: #fff;
   border: 1px solid #cccccc;
 }
+
+.sub-cont .sub-time input {
+  display: inline-block;
+  font-size: 0.9375rem;
+  overflow: hidden;
+  width: 68%;
+  -webkit-background-size: 0.9375rem;
+  background-size: 0.9375rem;
+  background-position-x: 95%;
+  padding: 0.625rem 1.25rem;
+  background-color: #fff;
+  border: 1px solid #cccccc;
+}
+
+
 .sub-cont .message {
   display: inline-block;
   width: 80%;

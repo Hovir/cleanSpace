@@ -49,6 +49,21 @@ public class CompanyController {
         System.out.println("companyName="+companyName);
         return companyService.getCompaniesSearch(sentParameters,dateFrom,dateTo,companyName);
     }
+
+    /*企业列表-（1）添加数据*/
+    @RequestMapping(value = "/admin/compListAddData/add/edit",method = RequestMethod.POST)
+    @ResponseBody
+    public String getCompanyAdd(@RequestParam("id") Long id,Model model){
+        System.out.println("编辑id="+id);
+        String companyOneDetails=companyService.getCompanyOneDetails(id);
+        Map<String,Object> editmap= JsonUtils.JsonToMap(companyOneDetails);
+        System.out.println("editmap-name="+editmap.get("name"));
+        System.out.println("editmap-imgUrl="+editmap.get("imgUrl"));
+        System.out.println("editmap-profile="+editmap.get("profile"));
+        model.addAttribute("companyShow",editmap);
+        return "company/companyListShow";
+    }
+
     /*企业列表-（1）详情-页面-数据+显示*/
     @RequestMapping(value = "/admin/compListShow/{id}/edit",method = {RequestMethod.GET,RequestMethod.POST},produces = "text/html;charset=UTF-8")
     public String getCompanyShow(@PathVariable("id") Long id,Model model){

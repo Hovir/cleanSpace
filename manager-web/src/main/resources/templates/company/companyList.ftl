@@ -25,7 +25,7 @@
                 <input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d'})" id="datemax" name="dateTo" class="input-text Wdate" style="width:120px;cursor:pointer;" value="" />
                 <input type="text" class="input-text" style="width:250px" placeholder="请输入企业名称" id="companyName" name="companyName" value="">
                 <button type="submit" class="btn btn-success radius" id="searchFormBt" name=""><i class="Hui-iconfont">&#xe665;</i> 搜&nbsp;索</button>
-                <a href="javascript:;" onclick="member_add('添加企业','${path}/page/company/companyListAdd','','510')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添&nbsp;加</a>
+                <a href="javascript:;" onclick="member_add('添加企业','${path}/page/company/companyListAdd','1000','510')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添&nbsp;加</a>
             </div>
         </div>
         <div class="mt-20">
@@ -92,7 +92,7 @@
                     //渲染函数
                     render: function (data) {
                         //alert(data);
-                        return "<img  name=\'image\' alt=\'公司图片\' src=\'"+data.imgUrl+"\' />";
+                        return "<img  name=\'image\' alt=\'公司图片\' src=\'"+data.imgUrl+"\' height=\"25\" width=\"25\"' />";
                     }
                 },
                 {

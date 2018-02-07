@@ -248,4 +248,13 @@ public class CompanyController {
         }
     }
 
+
+
+    //bussiness多条件查询商家
+    @RequestMapping("/selectCompanies")
+    @ResponseBody
+    public String selectCompanies(Long levelId,String state,String city,String district){
+        String json=companyService.selectCompanies(levelId,state,city,district);
+        return json;
+    }
 }

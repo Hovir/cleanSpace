@@ -159,4 +159,10 @@ public class CompanyController {
         return companyService.bindBankCard(companyBankCard);
     }
 
+
+    @RequestMapping("/selectCompanies/{levelId}/{state}/{city}/{district}")
+    public List<Company> selectCompanies(@PathVariable(value = "levelId") Long levelId,@PathVariable(value = "state") String state,@PathVariable(value = "city") String city,@PathVariable(value = "district") String district){
+        List<Company> companyList=companyService.selectCompanies(levelId,state,city,district);
+        return companyList;
+    }
 }

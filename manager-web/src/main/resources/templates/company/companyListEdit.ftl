@@ -32,9 +32,6 @@
 
     <title>编辑-企业管理</title>
 </head>
-<style type="text/css">
-
-</style>
 <body>
 <article class="cl pd-20">
     <div>
@@ -58,7 +55,7 @@
                     </span>
                     <div class="btn-upload form-group" style="margin-top:5px;height: 10%;width: 58%;">
                     <#--<img class="input-text upload-url"  name="uploadfile" id="uploadfile" readonly nullmsg="公司图片！"src="">-->
-                        <img id="showImage" name="companyUrl" alt="" src="${companyEdit.imgUrl!''}" />
+                        <img id="showImage" name="companyUrl" alt="" src="${companyEdit.imgUrl!''}" height="50" width="50"/>
                     </div>
                 </div>
             </div>
