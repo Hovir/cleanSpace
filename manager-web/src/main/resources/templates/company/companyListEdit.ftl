@@ -30,7 +30,7 @@
     <script>DD_belatedPNG.fix('*');</script><![endif]-->
     <!--/meta 作为公共模版分离出去-->
 
-    <title>添加编辑-企业管理</title>
+    <title>编辑-企业管理</title>
 </head>
 <style type="text/css">
 
@@ -38,71 +38,42 @@
 <body>
 <article class="cl pd-20">
     <div>
-        <form action="" method="post" class="form form-horizontal" id="form-member-add">
+        <#--<form action="/user/userUpdateData"  method="post" enctype="multipart/form-data" onsubmit="return myImage()">-->
+        <form action="/admin/compListEditData/update/edit" method="post" class="form form-horizontal" id="form-member-add" enctype="multipart/form-data" onsubmit="return myImage()">
+            <input type="hidden" id="" name="id" value="${companyEdit.id!'0'}"/>
             <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户名：</label>
+                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>企业名称：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="" placeholder="" id="username" name="username">
+                    <input type="text" class="input-text" value="${companyEdit.name!'公司名为空'}" placeholder="" id="username" name="companyName">
                 </div>
             </div>
             <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>性别：</label>
-                <div class="formControls col-xs-8 col-sm-9 skin-minimal">
-                    <div class="radio-box">
-                        <input name="sex" type="radio" id="sex-1" checked>
-                        <label for="sex-1">男</label>
+                <label class="form-label col-xs-4 col-sm-3">公司图片：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <span class="btn-upload form-group">
+                        <input class="input-text upload-url" type="text" name="uploadfile" id="uploadfile" readonly nullmsg="公司图片" style="width:200px">
+                        <a href="javascript:void();" class="btn btn-primary radius upload-btn"><i class="Hui-iconfont">&#xe642;</i> 修改图片</a>
+                    <#--<input type="file" multiple name="file-2" class="input-file">-->
+                        <input type="file" id="upImage" class="input-file" onchange="newFile()" name="file"  multiple="true" value="${companyEdit.imgUrl!''}"/>
+                    </span>
+                    <div class="btn-upload form-group" style="margin-top:5px;height: 10%;width: 58%;">
+                    <#--<img class="input-text upload-url"  name="uploadfile" id="uploadfile" readonly nullmsg="公司图片！"src="">-->
+                        <img id="showImage" name="companyUrl" alt="" src="${companyEdit.imgUrl!''}" />
                     </div>
-                    <div class="radio-box">
-                        <input type="radio" id="sex-2" name="sex">
-                        <label for="sex-2">女</label>
-                    </div>
-                    <div class="radio-box">
-                        <input type="radio" id="sex-3" name="sex">
-                        <label for="sex-3">保密</label>
-                    </div>
                 </div>
             </div>
             <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>手机：</label>
+                <label class="form-label col-xs-4 col-sm-3">公司简介：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="" placeholder="" id="mobile" name="mobile">
-                </div>
-            </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>邮箱：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" placeholder="@" name="email" id="email">
-                </div>
-            </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3">附件：</label>
-                <div class="formControls col-xs-8 col-sm-9"> <span class="btn-upload form-group">
-            <input class="input-text upload-url" type="text" name="uploadfile" id="uploadfile" readonly nullmsg="请添加附件！" style="width:200px">
-            <a href="javascript:void();" class="btn btn-primary radius upload-btn"><i class="Hui-iconfont">&#xe642;</i> 浏览文件</a>
-            <input type="file" multiple name="file-2" class="input-file">
-            </span> </div>
-            </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3">所在城市：</label>
-                <div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-            <select class="select" size="1" name="city">
-                <option value="" selected>请选择城市</option>
-                <option value="1">北京</option>
-                <option value="2">上海</option>
-                <option value="3">广州</option>
-            </select>
-            </span> </div>
-            </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3">备注：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <textarea name="beizhu" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" onKeyUp="textarealength(this,100)"></textarea>
-                    <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
+                    <textarea   id="profile-area" onkeydown="myArea()" name="beizhu" cols="" rows="" class="textarea"  placeholder="" maxlength="100" onKeyUp="this.value=this.value.substring(0, 100)">${(companyEdit.profile)!"......"}</textarea>
+                    <p class="textarea-numberbar"><em class="textarea-length" id="profile-length">0</em>/100</p>
+                    <input type="hidden" id="profile-value" name="companyProfile" value="${(companyEdit.profile)!''}"/>
                 </div>
             </div>
             <div class="row cl">
                 <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
                     <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                    <#--<input class="btn btn-primary radius" type="reset" value="&nbsp;&nbsp;取消&nbsp;&nbsp;">-->
                 </div>
             </div>
         </form>
@@ -163,6 +134,37 @@
             }
         });
     });
+</script>
+<script type="text/javascript">
+    //照片回显
+    function newFile() {
+        var windowURL = window.URL || window.webkitURL;
+        var loadImg = windowURL.createObjectURL(document.getElementById('upImage').files[0]);
+        document.getElementById('showImage').setAttribute('src',loadImg);
+    }
+
+    function myImage(){
+        var windowURL = window.URL || window.webkitURL;
+        var loadImg = windowURL.createObjectURL(document.getElementById("upImage").files[0]);
+        if(loadImg!=null){
+            var url = $('#showImage').attr("src");
+            $("#upImage").val(url);
+            //alert(url);
+            return true;
+        }
+        return false;
+    }
+</script>
+<script type="text/javascript">
+    $(function () {
+        myArea();
+    });
+    function myArea() {
+        var $profileAreaVal=$("#profile-area").val();
+        var $profileAreaLength=$profileAreaVal.length;
+        $("#profile-length").html($profileAreaLength);
+        $("#profile-value").val($profileAreaVal);
+    }
 </script>
 <#--/请在上方写此页面业务相关的脚本-->
 </body>

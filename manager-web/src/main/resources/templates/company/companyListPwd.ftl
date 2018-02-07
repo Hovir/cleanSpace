@@ -17,7 +17,7 @@
     <link rel="Bookmark" href="favicon.ico" >
     <link rel="Shortcut Icon" href="favicon.ico" />
     <#--[if lt IE 9]-->
-    <script type="text/javascript" src="${path}/lib/html5.js"></script>
+    <#--<script type="text/javascript" src="${path}/lib/html5.js"></script>-->
     <script type="text/javascript" src="${path}/lib/respond.min.js"></script>
     <#--[endif]-->
     <link rel="stylesheet" type="text/css" href="${path}/lib/static/h-ui/css/H-ui.min.css" />
@@ -40,15 +40,16 @@
 </style>
 <body>
 <article class="cl pd-20">
-    <form action="/" method="post" class="form form-horizontal" id="form-change-password">
+    <form action="/admin/compListPwdData/update/edit" method="post" class="form form-horizontal" id="form-change-password">
+        <input type="hidden"  id="" name="id" value="${companyPwd.id!'0'}"/>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>账户：</label>
-            <div class="formControls col-xs-8 col-sm-9"> 张三 </div>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>公司名称：</label>
+            <div class="formControls col-xs-8 col-sm-9"> ${companyPwd.name!''} </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>新密码：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="password" class="input-text" autocomplete="off" placeholder="不修改请留空" name="newpassword" id="newpassword">
+                <input type="password" class="input-text" autocomplete="off" placeholder="不修改请留空" name="password" id="newpassword">
             </div>
         </div>
         <div class="row cl">

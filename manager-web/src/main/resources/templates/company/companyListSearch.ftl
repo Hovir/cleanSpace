@@ -12,7 +12,7 @@
     <span class="c-999 en">&gt;</span><span class="c-666">企业管理</span>
     <span class="c-999 en">&gt;</span><span class="c-666">企业列表</span>
     <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:;"
-       onclick="pageTurns('company/companyList')"  title="刷新">
+         id="current_flush" title="刷新">
         <i class="Hui-iconfont">&#xe68f;</i>
     </a></nav>
 <div class="Hui-article">
@@ -20,10 +20,10 @@
         <div style="margin-top: 5%;">
             <div id="search-f" class="text-c">
                 日期范围：
-                <input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})" id="datemin" name="dateFrom" class="input-text Wdate" style="width:120px;cursor:pointer;"value=""/>
+                <input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})" id="datemin" name="dateFrom" class="input-text Wdate" style="width:120px;cursor:pointer;"value="${dateFrom}"/>
                 -
-                <input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d'})" id="datemax" name="dateTo" class="input-text Wdate" style="width:120px;cursor:pointer;" value="" />
-                <input type="text" class="input-text" style="width:250px" placeholder="请输入企业名称" id="companyName" name="companyName" value="">
+                <input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d'})" id="datemax" name="dateTo" class="input-text Wdate" style="width:120px;cursor:pointer;" value="${dateTo}" />
+                <input type="text" class="input-text" style="width:250px" placeholder="请输入企业名称" id="companyName" name="companyName" value="${companyName}">
                 <button type="submit" class="btn btn-success radius" id="searchFormBt" name=""><i class="Hui-iconfont">&#xe665;</i> 搜&nbsp;索</button>
                 <a href="javascript:;" onclick="member_add('添加企业','${path}/page/company/companyListAdd','','510')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添&nbsp;加</a>
             </div>
@@ -36,7 +36,7 @@
                     <th width="300">公司名称</th>
                     <th width="150">公司图片</th>
                     <th width="">公司简介</th>
-                    <th width="100">公司级别</th>
+                    <th width="100">公司等级</th>
                     <th width="130">加入时间</th>
                     <th width="100">操作</th>
                 </tr>
@@ -50,7 +50,13 @@
         <script type="application/javascript" src="${path}/lib/datatables/1.10.15/jquery.dataTables.min.js"></script>
         <script type="application/javascript" src="${path}/lib/js/dataTables.js"></script>
         <script type="application/javascript">
-            var url = "${path}/admin/compList";
+            var $datefromVal=$("#datemin").val();
+            var $datetoVal=$("#datemax").val();
+            var $companyNameVal=$("#companyName").val();
+            alert("$datefromVal="+$datefromVal);
+            alert("$datetoVal="+$datetoVal);
+            alert("$companyNameVal="+$companyNameVal);
+            var url = "${path}/admin/compSearchData/"+$datefromVal+"/"+$datetoVal+"/"+$companyNameVal;
             /*列对应表*/
             var columns = [
                 {data: null},
@@ -134,8 +140,15 @@
             /*初始化dataTables*/
             dataTablesSearch(url, columns, columnDefs);
 
+            /*刷新1*/
+            $("#current_flush").click(function () {
+                pageTurnsSearchSend();
+            });
             /*搜索1*/
             $("#searchFormBt").click(function () {
+                pageTurnsSearchSend();
+            });
+            function pageTurnsSearchSend() {
                 var $datefromVal=$("#datemin").val();
                 var $datetoVal=$("#datemax").val();
                 var $companyNameVal=$("#companyName").val();
@@ -145,7 +158,7 @@
                 if($datefromVal.length!=0&&$datetoVal.length!=0&&$companyNameVal.length!=0) {
                     pageTurnsSearch($datefromVal+"/"+$datetoVal+"/"+$companyNameVal);
                 }
-            });
+            }
             function pageTurnsSearch(url) {
                 var data = {
                     url: url
@@ -185,7 +198,7 @@
                 return num;
             }
         </script>
-        <script type="text/javascript">
+        <script type="application/javascript">
             /*用户-添加*/
             function member_add(title,url,w,h){
                 layer_show(title,url,w,h);

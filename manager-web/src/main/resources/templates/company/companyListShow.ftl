@@ -24,44 +24,33 @@
     <#--[if IE 6]-->
     <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
     <script>DD_belatedPNG.fix('*');</script><![endif]-->
-    <title>查看-企业管理</title>
+    <title>详情-企业管理</title>
 </head>
 <body>
 <article class="cl pd-20">
     <div>
+        <input type="hidden" id="" name="" value="${companyShow.id!''}"/>
         <div class="cl pd-20" style=" background-color:#5bacb6">
-            <img class="avatar size-XL l" src="${path}/lib/static/h-ui/images/user.png">
+            <img class="avatar size-XL l" src="${companyShow.imgUrl!''}">
             <dl style="margin-left:80px; color:#fff">
-                <dt><span class="f-18">张三</span> <span class="pl-10 f-12">余额：40</span></dt>
-                <dd class="pt-10 f-12" style="margin-left:0">这家伙很懒，什么也没有留下</dd>
+                <dt><span class="f-18">${companyShow.name!'公司名'}</span> <span class="pl-10 f-12"></span></dt>
+                <dd class="pt-10 f-12" style="margin-left:0"></dd>
             </dl>
         </div>
         <div class="pd-20">
             <table class="table">
                 <tbody>
                 <tr>
-                    <th class="text-r" width="80">性别：</th>
-                    <td>男</td>
+                    <th class="text-r">公司简介：</th>
+                    <td>${(companyShow.profile)!''}</td>
                 </tr>
                 <tr>
-                    <th class="text-r">手机：</th>
-                    <td>13000000000</td>
+                    <th class="text-r">公司级别：</th>
+                    <td>${companyShow.level.name!''}</td>
                 </tr>
                 <tr>
-                    <th class="text-r">邮箱：</th>
-                    <td>admin@mail.com</td>
-                </tr>
-                <tr>
-                    <th class="text-r">地址：</th>
-                    <td>北京市 海淀区</td>
-                </tr>
-                <tr>
-                    <th class="text-r">注册时间：</th>
-                    <td>2014.12.20</td>
-                </tr>
-                <tr>
-                    <th class="text-r">积分：</th>
-                    <td>330</td>
+                    <th class="text-r">加入时间：</th>
+                    <td id="companyCreateTime">${(companyShow.createTime)!''}</td>
                 </tr>
                 </tbody>
             </table>
@@ -74,5 +63,34 @@
 <script type="text/javascript" src="${path}/lib/static/h-ui/js/H-ui.js"></script>
 <script type="text/javascript" src="${path}/lib/static/h-ui.admin/js/H-ui.admin.page.js"></script>
 <!--/_footer /作为公共模版分离出去-->
+<script type="application/javascript">
+    /*时间戳转时间*/
+    var $companyCreateTime=$("#companyCreateTime").html();
+    alert("$companyCreateTime="+$companyCreateTime);
+    alert("length="+$companyCreateTime.length)
+    if($companyCreateTime.length!=0){
+        alert("1="+$companyCreateTime)
+        var time=getMyDate(${companyShow.createTime});
+        alert("time="+time);
+        $("#companyCreateTime").html(time);
+    }
+    function getMyDate(str) {
+        var oDate = new Date(str),
+                oYear = oDate.getFullYear(),
+                oMonth = oDate.getMonth() + 1,
+                oDay = oDate.getDate(),
+                oHour = oDate.getHours(),
+                oMin = oDate.getMinutes(),
+                oSen = oDate.getSeconds(),
+                oTime = oYear + '-' + getzf(oMonth) + '-' + getzf(oDay) + ' ' + getzf(oHour) + ':' + getzf(oMin) + ':' + getzf(oSen);//最后拼接时间
+        return oTime;
+    }
+    function getzf(num) {
+        if (parseInt(num) < 10) {
+            num = '0' + num;
+        }
+        return num;
+    }
+</script>
 </body>
 </html>
