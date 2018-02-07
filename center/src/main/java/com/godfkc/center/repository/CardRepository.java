@@ -24,5 +24,7 @@ public interface CardRepository extends JpaRepository<Card, Long> {
     List<Card> selectUserCard(Long userId);
 
     @Query("select c from Card c where c.num=?1 and c.password=?2 and c.status=1")
-    Card checkCard(String num,String password);
+    Card checkCard(String num, String password);
+
+    long countByStatusAfter(Integer status);
 }

@@ -16,4 +16,6 @@ public interface HeadPageImgRepository extends JpaRepository<HeadPageImg, Long> 
     @Modifying
     @Query(value = "update HeadPageImg set status = :status , updateTime = :updateTime where id = :id")
     void updateHeadImg(@Param("status") Integer status, @Param("updateTime") Date updateTime, @Param("id") long id);
+
+    long countByStatusAfter(Integer status);
 }

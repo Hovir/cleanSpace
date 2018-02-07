@@ -56,4 +56,6 @@ public interface NewsRepository extends JpaRepository<News, Long> {
 
     //查询所有新闻
     List<News> findByStatus(Integer status);
+
+    long countByStatusAfter(Integer status);
 }
