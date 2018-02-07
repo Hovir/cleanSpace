@@ -199,7 +199,7 @@ public class PageController {
      */
     @RequestMapping("/detectionManagementPage")
     public String detectionManagementPage(){
-        return "detection and management";
+        return "detection_and_management";
     }
 
 

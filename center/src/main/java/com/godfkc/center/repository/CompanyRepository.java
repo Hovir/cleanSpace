@@ -59,4 +59,30 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
     @Modifying
     @Query("UPDATE Company SET status=:status  WHERE id=:id")
     int updateCompanyStatusById(@Param("id") Long id, @Param("status") int status);
+
+
+
+    @Query("select coy from Company coy where coy.level.id=?1 and coy.status=1")
+    List<Company> selectCompanyByLevelId(Long levelId);
+
+    List<Company> findByStatus(Integer status);
+
+   /* @Query(value ="SELECT csc.* FROM cs_company csc INNER JOIN cs_company_address cca ON csc.`id`=cca.`company_id` WHERE csc.`level_id`=?1 AND cca.`state`=?2",nativeQuery = true)*/
+    @Query("select coy from Company coy join coy.companyAddresses ca where coy.level.id=?1 and ca.state=?2 and coy.status=1")
+    List<Company> selectCompanyByLevelIdByState(Long levelId,String state);
+
+   @Query("select coy from Company coy join coy.companyAddresses ca where coy.level.id=?1 and ca.state=?2 and ca.city=?3 and coy.status=1")
+    List<Company> selectCompanyByLevelIdByStateByCity(Long levelId,String state,String city);
+
+    @Query("select coy from Company coy join coy.companyAddresses ca where coy.level.id=?1 and ca.state=?2 and ca.city=?3 and ca.district=?4 and coy.status=1")
+    List<Company> selectCompanyByLevelIdByStateByCityByDistrict(Long levelId,String state,String city,String district);
+
+    @Query("select coy from Company coy join coy.companyAddresses ca where ca.state=?1 and coy.status=1")
+    List<Company> selectCompanyByState(String state);
+
+    @Query("select coy from Company coy join coy.companyAddresses ca where ca.state=?1 and ca.city=?2 and coy.status=3")
+    List<Company> selectCompanyByStateByCity(String state, String city);
+
+    @Query("select coy from Company coy join coy.companyAddresses ca where ca.state=?1 and ca.city=?2 and ca.district=?3 and coy.status=1")
+    List<Company> selectCompanyByStateByCityByDistrict(String state, String city, String district);
 }

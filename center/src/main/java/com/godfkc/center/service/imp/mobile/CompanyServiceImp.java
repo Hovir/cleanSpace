@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -57,5 +58,32 @@ public class CompanyServiceImp implements CompanyService{
     @Override
     public CompanyBankCard bindBankCard(CompanyBankCard companyBankCard) {
         return companyBankCardRepository.save(companyBankCard);
+    }
+
+    @Override
+    public List<Company> selectCompanies(Long levelId, String state, String city, String district) {
+        List<Company> companyList=new ArrayList<>();
+        if(levelId==111){
+            if(("---省---".equals(state))&&("---市---".equals(city))&&("---区---".equals(district))){
+                companyList = companyRepository.findByStatus(1);
+            }else if(("---市---".equals(city))&&("---区---".equals(district))){
+                companyList=companyRepository.selectCompanyByState(state);
+            }else if(("---区---".equals(district))){
+                companyList=companyRepository.selectCompanyByStateByCity(state,city);
+            }else {
+                companyList=companyRepository.selectCompanyByStateByCityByDistrict(state,city,district);
+            }
+        }else{
+            if(("---省---".equals(state))&&("---市---".equals(city))&&("---区---".equals(district))){
+                companyList = companyRepository.selectCompanyByLevelId(levelId);
+            }else if(("---市---".equals(city))&&("---区---".equals(district))){
+                companyList=companyRepository.selectCompanyByLevelIdByState(levelId,state);
+            }else if(("---区---".equals(district))){
+                companyList=companyRepository.selectCompanyByLevelIdByStateByCity(levelId,state,city);
+            }else {
+                companyList=companyRepository.selectCompanyByLevelIdByStateByCityByDistrict(levelId,state,city,district);
+            }
+        }
+        return companyList;
     }
 }

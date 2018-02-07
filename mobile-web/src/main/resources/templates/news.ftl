@@ -112,7 +112,7 @@
                             "<div class='detail'>\n" +
                             "<img src='"+value.img_url+"'/>\n" +
                             "<div class='introduce'>\n" +
-                            "<div class='introduce-detail'>"+value.details+"</div>\n" +
+                            "<div class='introduce-detail'>"+value.title+value.details+"</div>\n" +
                             "<div class='introduce-time'>\n" +
                             "<date>"+getMyDate(value.updateTime)+"</date>\n" +
                             "<date>"+getMyTime(value.updateTime)+"</date>\n" +
