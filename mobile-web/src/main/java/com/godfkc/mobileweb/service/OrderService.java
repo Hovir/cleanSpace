@@ -5,6 +5,7 @@ import com.godfkc.common.pojo.dataTables.Order;
 import com.godfkc.common.pojo.mobile.OrderVo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Auther:zhw
@@ -24,4 +25,6 @@ public interface OrderService {
     boolean updateReportAndRemark(Long id, String remark, String report);
 
     String findAllOrderByCompanyId(Long companyId);
+
+    String findOrderByCondition(Map<String, Object> param_map);
 }

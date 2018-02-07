@@ -66,9 +66,9 @@ public class OrderServiceImpl implements OrderService {
 
         String url = centerUrl + "updateReportById";
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("id",orderId);
-        paramMap.put("report",report);
-        paramMap.put("companyId",companyId);
+        paramMap.put("id", orderId);
+        paramMap.put("report", report);
+        paramMap.put("companyId", companyId);
         return this.restTemplate.postForObject(url, paramMap, boolean.class);
     }
 
@@ -76,18 +76,25 @@ public class OrderServiceImpl implements OrderService {
     public boolean updateReportAndRemark(Long id, String remark, String report) {
         String url = centerUrl + "updateReportAndRemark";
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("id",id);
-        paramMap.put("report",report);
-        paramMap.put("remark",remark);
+        paramMap.put("id", id);
+        paramMap.put("report", report);
+        paramMap.put("remark", remark);
         return this.restTemplate.postForObject(url, paramMap, boolean.class);
+    }
+
+    @Override
+    public String findOrderByCondition(Map<String, Object> param_map) {
+        String url = centerUrl + "findOrderByCondition";
+        String returnJson = this.restTemplate.postForObject(url, param_map, String.class);
+        return returnJson;
     }
 
     @Override
     public String findAllOrderByCompanyId(Long companyId) {
         String url = centerUrl + "findAllOrderByCompanyId/{companyId}";
-        Map<String,Object> paramMap= new HashMap<>();
-        paramMap.put("companyId",companyId);
-        String returnJson= this.restTemplate.getForObject(url,String.class,paramMap);
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("companyId", companyId);
+        String returnJson = this.restTemplate.getForObject(url, String.class, paramMap);
         return returnJson;
     }
 }

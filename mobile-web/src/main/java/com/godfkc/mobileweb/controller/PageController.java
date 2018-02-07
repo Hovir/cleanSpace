@@ -274,4 +274,18 @@ public class PageController {
         }
     }
 
+
+    /**
+     * 提现
+     */
+    @RequestMapping("/moneyPage")
+    public String moneyPage(){
+        return "money";
+    }
+
+    /**筛选
+     *
+     */
+    @RequestMapping("/filter")
+    public String screenPage(){return "screen";}
 }

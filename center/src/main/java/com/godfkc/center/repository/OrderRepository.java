@@ -3,6 +3,7 @@ package com.godfkc.center.repository;
 import com.godfkc.center.entity.Company;
 import com.godfkc.center.entity.Order;
 import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
+import org.hibernate.annotations.NamedQuery;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,9 +11,10 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Date;
 import java.util.List;
-
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Map;
@@ -50,6 +52,9 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Modifying
     @Query("update Order o set o.company = ?1 where o.id = ?2")
     void updateCompanyById(Company company, Long id);
+
+    @Query("select o from Order o where o.company.id=?1 and o.status=?2")
+    List<Order> findAllByCompanyIdAndStatus(Long companyId,Integer status);
 
     long countByStatusAfter(Integer status);
 }

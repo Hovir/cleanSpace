@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Auther:zhw
@@ -109,5 +107,28 @@ public class OrderController {
     public List<Order> findAllOrderByCompanyId(@PathVariable Long companyId){
         List<Order> orderList=orderService.findAllOrderByCompanyId(companyId);
         return orderList;
+    }
+
+    @RequestMapping(value = "/findOrderByCondition")
+    public List<Order> findOrderByCondition(@RequestBody Map paramMap){
+        Long companyId= ((Integer)paramMap.get("companyId")).longValue();
+        Integer status=(Integer)paramMap.get("status");
+        List<Order> allOrderByCompanyIdAndStatus = orderService.findAllOrderByCompanyIdAndStatus(companyId,status);
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat sdf= new SimpleDateFormat();
+        c.setTimeInMillis((Long)paramMap.get("startDate"));
+        Date startDate = c.getTime();
+        System.out.println("$$$$$$$$$$startDate"+sdf.format(startDate));
+        c.setTimeInMillis((Long)paramMap.get("endDate"));
+        Date endDate=c.getTime();
+        System.out.println("$$$$$$$$$$endDate"+sdf.format(endDate));
+        List<Order> temp_list= new LinkedList<>();
+        for (Order order:allOrderByCompanyIdAndStatus
+             ) {
+            if(order.getAppointmentTime().compareTo(startDate)>0&&order.getAppointmentTime().compareTo(endDate)<0)
+            temp_list.add(order);
+        }
+        System.out.println("^^^^^^^^^^^^^^^^^^^"+JsonUtils.Object2Json(temp_list));
+        return temp_list;
     }
 }

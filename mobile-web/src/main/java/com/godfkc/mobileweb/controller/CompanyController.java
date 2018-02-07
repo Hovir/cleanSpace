@@ -57,8 +57,6 @@ public class CompanyController {
     @RequestMapping("/myCompany")
     public ModelAndView turnToMyCompany(HttpServletRequest request) {
         String companyName = (String) request.getSession().getAttribute(companyNameSessionKey);
-        System.out.println("/myCompany: name in session " + companyName);
-        //
         ModelAndView companyPageTurn = null;
         if (null == companyName || companyName.trim().length() <= 0) {
             companyPageTurn = new ModelAndView("com-login");
@@ -84,6 +82,7 @@ public class CompanyController {
     @ResponseBody
     public boolean checkCompanyName(HttpServletRequest request, String comAccount, String comPwd) {
         boolean flag_login = companyService.findByNameAndPassword(comAccount, comPwd);
+        System.out.println("request come in "+comAccount+"|"+comPwd);
         if (flag_login) {
             request.getSession().setAttribute(companyNameSessionKey, comAccount);
         }

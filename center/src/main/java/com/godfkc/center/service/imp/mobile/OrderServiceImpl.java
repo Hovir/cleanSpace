@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -61,5 +63,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> findAllOrderByCompanyId(Long companyId) {
         return orderRepository.findAllByCompanyId(companyId);
+    }
+
+    @Override
+    public List<Order> findAllOrderByCompanyIdAndStatus(Long companyId, Integer status) {
+        return orderRepository.findAllByCompanyIdAndStatus(companyId,status);
     }
 }

@@ -4,6 +4,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<title>环保空间</title>
+		<#assign base=springMacroRequestContext.contextPath/>
+        <script src="${base}/js/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="${base}/css/header-footer.css"/>
+		<link rel="stylesheet" type="text/css" href="${base}/css/bankCard.css"/>
 	<#setting classic_compatible=true>
         <script src="/js/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="/css/header-footer.css"/>
@@ -31,7 +35,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="content">
 			
 			<div class="card_font">

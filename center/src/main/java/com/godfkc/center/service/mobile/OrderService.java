@@ -21,4 +21,7 @@ public interface OrderService {
     Order saveOrder(Order order);
 
     List<Order> findAllOrderByCompanyId(Long companyId);
+
+
+    List<Order> findAllOrderByCompanyIdAndStatus(Long companyId,Integer status);
 }

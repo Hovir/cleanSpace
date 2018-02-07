@@ -77,7 +77,7 @@
         </div>
         <div class=" right">
             <div class="go">
-                <a href="javascript:void(0)">
+                <a href="${base}/filter">
                     <span>筛选</span>
                     <!--<!--<img src= "${base}/img/setting.png" />-->
                 </a>
@@ -92,24 +92,25 @@
     ${orderList}
     </#assign>
     <#assign jsonOrderList=jsonString?eval/>
-        <li>
-            <div class="Today reservation">
-                <div class="Subscribe-List">
-                <#--<div class="list">
-                    <div>
-                        <span>艰苦撒旦哈</span>
-                        <span>15604614102</span>
-                    </div>
-                    <div calss="address">
-                        黑龙江省哈尔滨市 南岗区 学府路4号哈尔滨理工大学
-                    </div>
-                    <div>
-                        <span>预约时间：<em>2018-08-23 16:10</em></span>
-                        <span id="reports">上传报告</span>
-                    </div>
-                </div>-->
-                <#list jsonOrderList?sort_by("createTime") as order>
-                    <#if (order.type==1)>
+    <#list jsonOrderList?sort_by("createTime") as order>
+        <#if (order.type==1)>
+            <li>
+                <div class="Today reservation">
+                    <div class="Subscribe-List">
+                    <#--<div class="list">
+                        <div>
+                            <span>艰苦撒旦哈</span>
+                            <span>15604614102</span>
+                        </div>
+                        <div calss="address">
+                            黑龙江省哈尔滨市 南岗区 学府路4号哈尔滨理工大学
+                        </div>
+                        <div>
+                            <span>预约时间：<em>2018-08-23 16:10</em></span>
+                            <span id="reports">上传报告</span>
+                        </div>
+                    </div>-->
+
                         <div class="list">
                             <div>
                                 <span>${order.name}</span>
@@ -130,30 +131,28 @@
                             </div>
                         </div>
 
-                    </#if>
-                </#list>
 
-                </div>
-        </li>
-        <li>
-            <div class="Today reservation">
-                <div class="Subscribe-List">
-                <#--<div class="list">
-                    <div>
-                        <span>谢娜</span>
-                        <span>15604614102</span>
                     </div>
-                    <div calss="address">
-                        黑龙江省哈尔滨市 南岗区 学府路4号哈尔滨理工大学
-                    </div>
-                    <div>
-                        <span>预约时间：<em>2018-08-23 16:10</em></span>
-                        <span id="reports">查看详情</span>
-                    </div>
-                </div>-->
+            </li>
+        </#if>
+        <#if (order.type==2)>
+            <li>
+                <div class="Today reservation">
+                    <div class="Subscribe-List">
+                    <#--<div class="list">
+                        <div>
+                            <span>谢娜</span>
+                            <span>15604614102</span>
+                        </div>
+                        <div calss="address">
+                            黑龙江省哈尔滨市 南岗区 学府路4号哈尔滨理工大学
+                        </div>
+                        <div>
+                            <span>预约时间：<em>2018-08-23 16:10</em></span>
+                            <span id="reports">查看详情</span>
+                        </div>
+                    </div>-->
 
-                <#list jsonOrderList?sort_by("createTime") as order>
-                    <#if (order.type==2)>
                         <div class="list">
                             <div>
                                 <span>${order.name}</span>
@@ -174,10 +173,11 @@
                             </div>
                         </div>
 
-                    </#if>
-                </#list>
-                </div>
-        </li>
+
+                    </div>
+            </li>
+        </#if>
+    </#list>
     </ul>
 
 

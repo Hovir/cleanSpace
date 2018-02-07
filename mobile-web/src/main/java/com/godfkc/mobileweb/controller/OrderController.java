@@ -8,14 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -109,5 +107,39 @@ public class OrderController {
         System.out.println(orderVo);
         if(flag) System.out.println("success");
         return "redirect :/company/myCompany";
+    }
+
+    /**
+     * 条件查询预约
+     */
+    @RequestMapping("/orderFilter/{status}/{date1}/{date2}")
+    public String orderFilter(HttpServletRequest request, @PathVariable Integer status,@PathVariable String date1,@PathVariable String date2)  {
+        System.out.println(status);
+        System.out.println(date1);
+        System.out.println(date2);
+
+        Long companyId = (Long) request.getSession().getAttribute(sessionKeyCompanyId);
+        if (null != companyId) {
+            Map<String,Object> param_map=new HashMap<>();
+            param_map.put("companyId",companyId);
+            param_map.put("status",status);
+            SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
+            Date startDate= null;
+            Date endDate= null;
+            try{//parse string to date
+            startDate=sdf.parse(date1);
+            endDate=sdf.parse(date2);
+            }catch (Exception e){
+                System.out.println("Error when parsing string to date");
+            }
+            param_map.put("startDate",startDate);
+            param_map.put("endDate",endDate);
+            String json_orderList =  orderService.findOrderByCondition(param_map);
+            System.out.println("test json: ****** "+json_orderList);
+            request.setAttribute("orderList", json_orderList);
+            return "detection_and_management";
+        } else {
+            return "com-login";
+        }
     }
 }
