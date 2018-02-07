@@ -25,4 +25,11 @@ public class NewsController {
         return json;
     }
 
+    @RequestMapping("/selectNewsById")
+    @ResponseBody
+    public String selectNewsById(Long newId){
+        String json=newsService.selectNewsById(newId);
+        return json;
+    }
+
 }

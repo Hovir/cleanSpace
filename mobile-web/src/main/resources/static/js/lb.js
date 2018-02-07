@@ -4,11 +4,28 @@ $(function(){ //页面加载完毕才执行
 		//图片统一高度：
 		var images_height = '200px';
 		//图片路径/链接(数组形式):
-		var images_url = [
+    	var images_url = [];
+		/*var images_url = [
 			'img/index.jpg',
 			'img/case.jpg',
 			'img/index.jpg'
-		];
+		];*/
+		$.ajax({
+			url:"/headPageImg/selectHeadPageImg",
+			type:"GET",
+			dataType:"json",
+			async: false,
+			success:function (data) {
+				$.each(data,function (index, value) {
+					images_url.push(value.imgUrl);
+				})
+			},
+			error:function (data) {
+				//alert('请求出岔子了..');
+			}
+		});
+
+
 		var images_count = images_url.length;
 		//alert(images_count);
 		//创建节点

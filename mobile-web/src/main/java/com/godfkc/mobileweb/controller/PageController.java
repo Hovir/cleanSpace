@@ -71,8 +71,13 @@ public class PageController {
     }
 
     /**
-     * 环保咨询页面
+     * 环保咨询详情页面
      */
+    @RequestMapping("/newsDetails")
+    public String toNewsDetails(Long newId,Model model) {
+        model.addAttribute("newId",newId);
+        return "news-detal";
+    }
 
     /**
      * 预约检测页面

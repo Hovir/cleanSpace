@@ -24,7 +24,13 @@ public class MobileNewsServiceImpl implements MobileNewsService{
 
     @Override
     public List<News> selectNews() {
-        List<News> newsList = newsRepository.findByStatus(1);
+        List<News> newsList = newsRepository.findByStatusOrderByCreateTimeDesc(1);
         return newsList;
+    }
+
+    @Override
+    public News selectNewsById(Long newId) {
+        News news = newsRepository.findById(newId);
+        return news;
     }
 }

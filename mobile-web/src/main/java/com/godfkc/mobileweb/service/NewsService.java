@@ -7,4 +7,6 @@ package com.godfkc.mobileweb.service;
  */
 public interface NewsService {
     String selectNews();
+
+    String selectNewsById(Long newId);
 }

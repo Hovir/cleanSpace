@@ -3,6 +3,7 @@ package com.godfkc.center.controller.mobile;
 import com.godfkc.center.entity.News;
 import com.godfkc.center.service.mobile.MobileNewsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,5 +24,11 @@ public class MobileNewsController {
     public List<News> selectNews(){
         List<News> newsList= mobileNewsService.selectNews();
         return newsList;
+    }
+
+    @RequestMapping("/selectNewsById/{newId}")
+    public News selectNewsById(@PathVariable("newId") Long newId){
+        News news=mobileNewsService.selectNewsById(newId);
+        return news;
     }
 }

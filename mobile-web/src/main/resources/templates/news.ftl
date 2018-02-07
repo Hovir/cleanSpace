@@ -108,14 +108,14 @@
             success:function(data){
                 $(".col-detail").remove();
 				$.each(data,function (index,value) {
-					$div=$("<div class='col-detail'>\n" +
+					$div=$("<div class='col-detail' onclick=goToNew('"+value.id+"')>\n" +
                             "<div class='detail'>\n" +
                             "<img src='"+value.img_url+"'/>\n" +
                             "<div class='introduce'>\n" +
-                            "<div class='introduce-detail'>"+value.title+value.details+"</div>\n" +
+                            "<div class='introduce-detail'>"+value.title+"</div>\n" +
                             "<div class='introduce-time'>\n" +
-                            "<date>"+getMyDate(value.updateTime)+"</date>\n" +
-                            "<date>"+getMyTime(value.updateTime)+"</date>\n" +
+                            "<date>"+getMyDate(value.createTime)+"</date>\n" +
+                            "<date>"+getMyTime(value.createTime)+"</date>\n" +
                             "</div>\n" +
                             "</div>\n" +
                             "</div>\n" +
@@ -158,6 +158,10 @@
             num = '0' + num;
         }
         return num;
+    }
+
+    function goToNew(newId) {
+		window.location.href="/newsDetails?newId="+newId;
     }
 </script>
 </html>

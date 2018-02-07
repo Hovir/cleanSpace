@@ -45,7 +45,7 @@
                     <option value="666" selected="selected">---区---</option>
                 </select>
 			</div>
-			<div class="product-type">
+			<#--<div class="product-type">
 				<div class="col-detail">
 					<div class="detail">
 						<img src="img/case.jpg"/>
@@ -74,7 +74,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>-->
 		</div>
 		
 	</body>

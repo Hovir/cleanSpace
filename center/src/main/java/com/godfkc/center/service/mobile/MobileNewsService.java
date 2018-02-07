@@ -11,4 +11,6 @@ import java.util.List;
  */
 public interface MobileNewsService {
     List<News> selectNews();
+
+    News selectNewsById(Long newId);
 }
