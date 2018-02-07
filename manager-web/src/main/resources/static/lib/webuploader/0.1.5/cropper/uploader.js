@@ -154,13 +154,13 @@ var Uploader = (function() {
 
 var Croper = (function() {
     var container = $('.cropper-wraper');
-    var $image = container.find('.images-container images');
+    var $image = container.find('.img-container img');
     var btn = $('.upload-btn');
     var isBase64Supported, callback;
 
     $image.cropper({
         aspectRatio: 16 / 9,
-        preview: ".images-preview",
+        preview: ".img-preview",
         done: function(data) {
             // console.log(data);
         }

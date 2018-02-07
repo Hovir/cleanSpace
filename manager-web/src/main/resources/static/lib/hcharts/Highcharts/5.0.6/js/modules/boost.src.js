@@ -36,7 +36,7 @@
          * - Check reversed axes.
          * - Chart callback should be async after last series is drawn. (But not necessarily, we don't do
         	 that with initial series animation).
-         * - Cache full-size images so we don't have to redraw on hide/show and zoom up. But k-d-tree still
+         * - Cache full-size image so we don't have to redraw on hide/show and zoom up. But k-d-tree still
          *   needs to be built.
          * - Test IE9 and IE10.
          * - Stacking is not perhaps not correct since it doesn't use the translation given in 
@@ -128,7 +128,7 @@
                 if ((this.processedXData || this.options.data).length < (this.options.boostThreshold || Number.MAX_VALUE) ||
                     letItPass) {
 
-                    // Clear images
+                    // Clear image
                     if (method === 'render' && this.image) {
                         this.image.attr({
                             href: ''
@@ -217,7 +217,7 @@
 
             /**
              * Create a hidden canvas to draw the graph on. The contents is later copied over 
-             * to an SVG images element.
+             * to an SVG image element.
              */
             getContext: function() {
                 var chart = this.chart,
@@ -252,11 +252,11 @@
             },
 
             /** 
-             * Draw the canvas images inside an SVG images
+             * Draw the canvas image inside an SVG image
              */
             canvasToSVG: function() {
                 this.image.attr({
-                    href: this.canvas.toDataURL('images/png')
+                    href: this.canvas.toDataURL('image/png')
                 });
             },
 

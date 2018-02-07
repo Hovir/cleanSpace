@@ -1015,7 +1015,7 @@ function stopDefault(e) {
 		 *
 		 * The advantages of using this method instead of ajaxSubmit() are:
 		 *
-		 * 1: This method will include coordinates for <input type="images" /> elements (if the element
+		 * 1: This method will include coordinates for <input type="image" /> elements (if the element
 		 *    is used to submit the form).
 		 * 2. This method will include the submit element's name/value data (for the element that was
 		 *    used to submit the form).
@@ -1069,7 +1069,7 @@ function stopDefault(e) {
 		/*jshint validthis:true */
 		var target = e.target;
 		var $el = $(target);
-		if (! ($el.is("[type=submit],[type=images]"))) {
+		if (! ($el.is("[type=submit],[type=image]"))) {
 			// is this a child element of the submit el?  (ex: a span within a button)
 			var t = $el.closest('[type=submit]');
 			if (t.length === 0) {
@@ -1151,7 +1151,7 @@ function stopDefault(e) {
 			}
 
 			if (semantic && form.clk && el.type == "image") {
-				// handle images inputs on the fly when semantic == true
+				// handle image inputs on the fly when semantic == true
 				if (form.clk == el) {
 					a.push({
 						name: n,
@@ -1216,7 +1216,7 @@ function stopDefault(e) {
 		}
 
 		if (!semantic && form.clk) {
-			// input type=='images' are not found in elements array! handle it here
+			// input type=='image' are not found in elements array! handle it here
 			var $input = $(form.clk),
 			input = $input[0];
 			n = input.name;
@@ -1505,7 +1505,7 @@ function stopDefault(e) {
 			skip_invisible: true,
 			appear: null,
 			load: null,
-			placeholder: "data:images/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
+			placeholder: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
 		};
 		function update() {
 			var counter = 0;
@@ -1518,7 +1518,7 @@ function stopDefault(e) {
 					/* Nothing. */
 				} else if (!$.belowthefold(this, settings) && !$.rightoffold(this, settings)) {
 					$this.trigger("appear");
-					/* if we found an images we'll load, reset the counter */
+					/* if we found an image we'll load, reset the counter */
 					counter = 0;
 				} else {
 					if (++counter > settings.failure_limit) {
@@ -1543,7 +1543,7 @@ function stopDefault(e) {
 		/* Cache container as jQuery as object. */
 		$container = (settings.container === undefined || settings.container === window) ? $window: $(settings.container);
 
-		/* Fire one scroll event per scroll. Not one scroll event per images. */
+		/* Fire one scroll event per scroll. Not one scroll event per image. */
 		if (0 === settings.event.indexOf("scroll")) {
 			$container.on(settings.event,
 			function() {
@@ -1562,7 +1562,7 @@ function stopDefault(e) {
 				}
 			}
 
-			/* When appear is triggered load original images. */
+			/* When appear is triggered load original image. */
 			$self.one("appear",
 			function() {
 				if (!this.loaded) {
@@ -1570,7 +1570,7 @@ function stopDefault(e) {
 						var elements_left = elements.length;
 						settings.appear.call(self, elements_left, settings);
 					}
-					$("<images />").on("load",
+					$("<img />").on("load",
 					function() {
 						var original = $self.attr("data-" + settings.data_attribute);
 						$self.hide();
@@ -1582,7 +1582,7 @@ function stopDefault(e) {
 						$self[settings.effect](settings.effect_speed);
 						self.loaded = true;
 
-						/* Remove images from array so it is not looped next time. */
+						/* Remove image from array so it is not looped next time. */
 						var temp = $.grep(elements,
 						function(element) {
 							return ! element.loaded;
@@ -1596,7 +1596,7 @@ function stopDefault(e) {
 				}
 			});
 
-			/* When wanted event is triggered load original images */
+			/* When wanted event is triggered load original image */
 			/* by triggering appear.                              */
 			if (0 !== settings.event.indexOf("scroll")) {
 				$self.on(settings.event,
@@ -1681,8 +1681,8 @@ function stopDefault(e) {
 	};
 
 	/* Custom selectors for your convenience.   */
-	/* Use as $("images:below-the-fold").something() or */
-	/* $("images").filter(":below-the-fold").something() which is faster */
+	/* Use as $("img:below-the-fold").something() or */
+	/* $("img").filter(":below-the-fold").something() which is faster */
 	$.extend($.expr[":"], {
 		"below-the-fold": function(a) {
 			return $.belowthefold(a, {
@@ -3486,7 +3486,7 @@ function stopDefault(e) {
 					self.opt.score = methods.between(self.opt.score, 0, self.opt.number);
 				}
 				for (var i = 1; i <= self.opt.number; i++) {
-					$('<images />', {
+					$('<img />', {
 						src: self.opt.path + ((!self.opt.score || self.opt.score < i) ? self.opt.starOff: self.opt.starOn),
 						alt: i,
 						title: (i <= self.opt.hints.length && self.opt.hints[i - 1] !== null) ? self.opt.hints[i - 1] : i
@@ -3497,7 +3497,7 @@ function stopDefault(e) {
 					}
 				}
 
-				self.stars = $this.children('images:not(".raty-cancel")');
+				self.stars = $this.children('img:not(".raty-cancel")');
 				self.score = $('<input />', {
 					type: 'hidden',
 					name: self.opt.scoreName
@@ -3512,7 +3512,7 @@ function stopDefault(e) {
 				var space = self.opt.space ? 4 : 0,
 				width = self.opt.width || (self.opt.number * self.opt.size + self.opt.number * space);
 				if (self.opt.cancel) {
-					self.cancel = $('<images />', {
+					self.cancel = $('<img />', {
 						src: self.opt.path + self.opt.cancelOff,
 						alt: 'x',
 						title: self.opt.cancelHint,
@@ -4765,7 +4765,7 @@ function displaynavbar(obj){
 						} else {						
 							var tooltip_keleyi_com = 
 							'<div id="preview-wraper" style="position: absolute;width:'+options.bigImgWidth+'px;height:auto;top:' + imgT + 'px;right:' + tooltipRight + ';left:' + tooltipLeft + '">'+
-								'<images src="'+smallImg+'" width="'+options.bigImgWidth+'">'+
+								'<img src="'+smallImg+'" width="'+options.bigImgWidth+'">'+
 							'</div>';
 							$("body").append(tooltip_keleyi_com);
 							/*图片预加载*/
@@ -4773,7 +4773,7 @@ function displaynavbar(obj){
 							image.src = bigImg;
 							/*创建一个Image对象*/
 							image.onload = function() {
-								$('#preview-wraper').find("images").attr("src",bigImg).css("width",options.bigImgWidth);
+								$('#preview-wraper').find("img").attr("src",bigImg).css("width",options.bigImgWidth);
 							};
 						}
 					},500);

@@ -48,10 +48,10 @@
         // Add language
         extend(defaultOptions.lang, {
             printChart: 'Print chart',
-            downloadPNG: 'Download PNG images',
-            downloadJPEG: 'Download JPEG images',
+            downloadPNG: 'Download PNG image',
+            downloadJPEG: 'Download JPEG image',
             downloadPDF: 'Download PDF document',
-            downloadSVG: 'Download SVG vector images',
+            downloadSVG: 'Download SVG vector image',
             contextButtonTitle: 'Chart context menu'
         });
 
@@ -79,7 +79,7 @@
         defaultOptions.exporting = {
             //enabled: true,
             //filename: 'chart',
-            type: 'images/png',
+            type: 'image/png',
             url: 'https://export.highcharts.com/',
             //width: undefined,
             printMaxWidth: 780,
@@ -107,7 +107,7 @@
                             textKey: 'downloadJPEG',
                             onclick: function() {
                                 this.exportChart({
-                                    type: 'images/jpeg'
+                                    type: 'image/jpeg'
                                 });
                             }
                         }, {
@@ -121,7 +121,7 @@
                             textKey: 'downloadSVG',
                             onclick: function() {
                                 this.exportChart({
-                                    type: 'images/svg+xml'
+                                    type: 'image/svg+xml'
                                 });
                             }
                         }

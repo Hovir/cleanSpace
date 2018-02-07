@@ -48,7 +48,7 @@
                         support = false;
                     }
                 }
-                data.src = "data:images/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+                data.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
                 return support;
             } )(),
 
@@ -128,7 +128,7 @@
 
             // 压根就没有安转。
             } else {
-                $wrap.html('<a href="http://www.adobe.com/go/getflashplayer" target="_blank" border="0"><images alt="get flash player" src="http://www.adobe.com/macromedia/style_guide/images/160x41_Get_Flash_Player.jpg" /></a>');
+                $wrap.html('<a href="http://www.adobe.com/go/getflashplayer" target="_blank" border="0"><img alt="get flash player" src="http://www.adobe.com/macromedia/style_guide/images/160x41_Get_Flash_Player.jpg" /></a>');
             }
 
             return;
@@ -157,7 +157,7 @@
             // accept: {
             //     title: 'Images',
             //     extensions: 'gif,jpg,jpeg,bmp,png',
-            //     mimeTypes: 'images/*'
+            //     mimeTypes: 'image/*'
             // },
 
             // 禁掉全局的拖拽功能。这样不会出现图片拖进页面的时候，把图片打开。
@@ -258,7 +258,7 @@
                     }
 
                     if( isSupportBase64 ) {
-                        img = $('<images src="'+src+'">');
+                        img = $('<img src="'+src+'">');
                         $wrap.empty().append( img );
                     } else {
                         $.ajax('../server/preview.php', {
@@ -267,7 +267,7 @@
                             dataType:'json'
                         }).done(function( response ) {
                             if (response.result) {
-                                img = $('<images src="'+response.result+'">');
+                                img = $('<img src="'+response.result+'">');
                                 $wrap.empty().append( img );
                             } else {
                                 $wrap.text("预览出错");
