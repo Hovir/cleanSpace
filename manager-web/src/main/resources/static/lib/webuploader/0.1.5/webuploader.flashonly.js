@@ -1172,7 +1172,7 @@
             // 如果没有指定 mimetype, 但是知道文件后缀。
             if ( !source.type && this.ext &&
                     ~'jpg,jpeg,png,gif,bmp'.indexOf( this.ext ) ) {
-                this.type = 'images/' + (this.ext === 'jpg' ? 'jpeg' : this.ext);
+                this.type = 'image/' + (this.ext === 'jpg' ? 'jpeg' : this.ext);
             } else {
                 this.type = source.type || 'application/octet-stream';
             }
@@ -1649,14 +1649,14 @@
              * {
              *     title: 'Images',
              *     extensions: 'gif,jpg,jpeg,bmp,png',
-             *     mimeTypes: 'images/*'
+             *     mimeTypes: 'image/*'
              * }
              * ```
              */
             accept: null/*{
                 title: 'Images',
                 extensions: 'gif,jpg,jpeg,bmp,png',
-                mimeTypes: 'images/*'
+                mimeTypes: 'image/*'
             }*/
         });
     
@@ -1852,7 +1852,7 @@
     define('widgets/image',[
         'base',
         'uploader',
-        'lib/images',
+        'lib/image',
         'widgets/widget'
     ], function( Base, Uploader, Image ) {
     
@@ -1898,7 +1898,7 @@
              *     width: 110,
              *     height: 110,
              *
-             *     // 图片质量，只有type为`images/jpeg`的时候才有效。
+             *     // 图片质量，只有type为`image/jpeg`的时候才有效。
              *     quality: 70,
              *
              *     // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
@@ -1909,7 +1909,7 @@
              *
              *     // 为空的话则保留原有图片格式。
              *     // 否则强制转换成指定的类型。
-             *     type: 'images/jpeg'
+             *     type: 'image/jpeg'
              * }
              * ```
              */
@@ -1924,8 +1924,8 @@
                 // 为空的话则保留原有图片格式。
                 // 否则强制转换成指定的类型。
                 // IE 8下面 base64 大小不能超过 32K 否则预览失败，而非 jpeg 编码的图片很可
-                // 能会超过 32k, 所以这里设置成预览的时候都是 images/jpeg
-                type: 'images/jpeg'
+                // 能会超过 32k, 所以这里设置成预览的时候都是 image/jpeg
+                type: 'image/jpeg'
             },
     
             /**
@@ -1941,7 +1941,7 @@
              *     width: 1600,
              *     height: 1600,
              *
-             *     // 图片质量，只有type为`images/jpeg`的时候才有效。
+             *     // 图片质量，只有type为`image/jpeg`的时候才有效。
              *     quality: 90,
              *
              *     // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
@@ -2004,7 +2004,7 @@
              *         if ( error ) {
              *             $li.text('预览错误');
              *         } else {
-             *             $li.append('<images alt="" src="' + ret + '" />');
+             *             $li.append('<img alt="" src="' + ret + '" />');
              *         }
              *     });
              *
@@ -2081,7 +2081,7 @@
                 // 只压缩 jpeg 图片格式。
                 // gif 可能会丢失针
                 // bmp png 基本上尺寸都不大，且压缩比比较小。
-                if ( !opts || !~'images/jpeg,images/jpg'.indexOf( file.type ) ||
+                if ( !opts || !~'image/jpeg,image/jpg'.indexOf( file.type ) ||
                         file.size < compressSize ||
                         file._compressed ) {
                     return;
@@ -4597,7 +4597,7 @@
     
         // widgets
         'widgets/filepicker',
-        'widgets/images',
+        'widgets/image',
         'widgets/queue',
         'widgets/runtime',
         'widgets/upload',
@@ -4607,7 +4607,7 @@
     
         // flash
         'runtime/flash/filepicker',
-        'runtime/flash/images',
+        'runtime/flash/image',
         'runtime/flash/blob',
         'runtime/flash/transport'
     ], function( Base ) {

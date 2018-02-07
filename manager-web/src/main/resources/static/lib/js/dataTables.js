@@ -75,7 +75,6 @@ function dataTables(url, columns, columnDefs) {
         }
     });
 }
-
 /*自定义搜索页面使用*/
 function dataTablesSearch(url, columns, columnDefs) {
     $.extend( $('#data_tables').dataTable.defaults, {
@@ -125,3 +124,4 @@ function dataTablesSearch(url, columns, columnDefs) {
         }
     });
 }
+

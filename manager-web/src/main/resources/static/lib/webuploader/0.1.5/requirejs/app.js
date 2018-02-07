@@ -1,7 +1,7 @@
 requirejs.config({
     baseUrl: '../../dist',
     paths: {
-        jquery: '../examples/images-upload/jquery'
+        jquery: '../examples/image-upload/jquery'
     }
 });
 
@@ -132,7 +132,7 @@ require([ 'webuploader.flashonly' ], function( WebUploader ) {
                         return;
                     }
 
-                    var img = $('<images src="'+src+'">');
+                    var img = $('<img src="'+src+'">');
                     $wrap.empty().append( img );
                 }, thumbnailWidth, thumbnailHeight );
 

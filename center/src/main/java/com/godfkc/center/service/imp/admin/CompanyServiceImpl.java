@@ -1,0 +1,82 @@
+package com.godfkc.center.service.imp.admin;
+
+import com.godfkc.center.entity.Company;
+import com.godfkc.center.entity.vo.CompanySearchEmp;
+import com.godfkc.center.repository.CompanyRepository;
+import com.godfkc.center.service.admin.CompanyService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+
+@Service
+@Transactional
+public class CompanyServiceImpl implements CompanyService {
+
+    @Autowired
+    private CompanyRepository companyRepository;
+
+
+    @Override
+    public Page<Company> getCompaniesList(Integer page, Integer size, String dir, String data, String search){
+        Sort sort = null;
+        //判断排序规则
+        if (dir.equals("desc")) {
+            sort = new Sort(Sort.Direction.DESC, data);
+        } else if (dir.equals("asc")) {
+            sort = new Sort(Sort.Direction.ASC, data);
+        }
+        Pageable pageable = new PageRequest(page, size, sort);
+        return companyRepository.findCompaniesByStatus(1, pageable);
+    }
+
+    @Override
+    public Page<Company> getCompaniesSearch(CompanySearchEmp companySearchEmp){
+        Sort sort = null;
+        if(companySearchEmp!=null){
+            Integer page=companySearchEmp.getPage();
+            Integer size=companySearchEmp.getSize();
+            String dir=companySearchEmp.getDir();
+            String data= companySearchEmp.getData();
+            String search=companySearchEmp.getSearch();
+            String companyName=companySearchEmp.getCompanyName();
+            Date dateFrom=companySearchEmp.getDateFrom();
+            Date dateTo=companySearchEmp.getDateTo();
+            //判断排序规则
+            if (dir.equals("desc")) {
+                sort = new Sort(Sort.Direction.DESC, data);
+            } else if (dir.equals("asc")) {
+                sort = new Sort(Sort.Direction.ASC, data);
+            }
+            Pageable pageable = new PageRequest(page, size, sort);
+            return companyRepository.findCompaniesByCreateTimeBetweenAndNameAndStatus(dateFrom,dateTo,companyName,1,pageable);
+        }
+        return null;
+    }
+
+
+    @Override
+    public Company getCompanyOneDetails(Long id){
+        return companyRepository.findCompanyById(id);
+    }
+
+    @Override
+    public int updateCompanyOneDetails(Long id,String name,String imgUrl,String profile){
+       return   companyRepository.updateCompanyById(id,name,imgUrl,profile);
+    }
+
+    @Override
+    public int updateCompanyOnePwd(Long id, String password) {
+        return companyRepository.updateCompanyPwdById(id,password);
+    }
+
+    @Override
+    public int updateCompanyOneStatus(Long id, int status) {
+        return companyRepository.updateCompanyStatusById(id,status);
+    }
+}
