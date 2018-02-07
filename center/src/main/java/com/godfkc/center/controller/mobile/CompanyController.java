@@ -104,6 +104,7 @@ public class CompanyController {
             //returnMap.put("orders", orders);
             returnMap.put("sumMoney", sumMoney);
             returnMap.put("moneyToday", moneyToday);
+            returnMap.put("companyImg", company.getImgUrl());
         }
         return returnMap;
 
@@ -142,7 +143,11 @@ public class CompanyController {
         return companyService.findBankDictAll();
     }
 
-
+    /**
+     * 绑定银行卡
+     * @param map
+     * @return
+     */
     @RequestMapping("/bindBankCard")
     public CompanyBankCard bindBankCard(@RequestBody Map map){
         CompanyBankCard companyBankCard = new CompanyBankCard();
@@ -165,4 +170,74 @@ public class CompanyController {
         List<Company> companyList=companyService.selectCompanies(levelId,state,city,district);
         return companyList;
     }
+    /**
+     * 查询余额
+     * @param companyId
+     * @return
+     */
+    @RequestMapping("/findCompanyFundsByCompanyId")
+    public CompanyFunds findCompanyFundsByCompanyId(@RequestBody Long companyId){
+        return companyService.findCompanyFundsByCompanyId(companyId);
+    }
+
+    /**
+     * 根据企业id查询CompanyBankCard
+     * @param companyId
+     * @return
+     */
+    @RequestMapping("/findCompanyBankCardByCompanyId")
+    public CompanyBankCard findCompanyBankCardByCompanyId(@RequestBody Long companyId){
+        return companyService.findCompanyBankCardByCompanyId(companyId);
+    }
+
+    /**
+     * 提现改变余额
+     * @param map
+     * @return
+     */
+    @RequestMapping("/changeBalance")
+    public boolean changeBalance(@RequestBody Map map){
+        Long money = Long.parseLong(map.get("money").toString());
+        Long companyId = Long.parseLong(map.get("companyId").toString());
+        int i = companyService.changeBalance(money, new Date(), companyId);
+        if (i == 1){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 插入提现表
+     * @param map
+     * @return
+     */
+    @RequestMapping("/insertFundsWithdraw")
+    public CompanyFundsWithdraw insertFundsWithdraw(@RequestBody Map map){
+        CompanyFundsWithdraw companyFundsWithdraw = new CompanyFundsWithdraw();
+        Company company = new Company();
+        company.setId(Long.parseLong(map.get("companyId").toString()));
+        companyFundsWithdraw.setCreateTime(new Date());
+        companyFundsWithdraw.setIsPay(0);
+        companyFundsWithdraw.setMoney(Long.parseLong(map.get("money").toString()));
+        companyFundsWithdraw.setStatus(1);
+        companyFundsWithdraw.setUpdateTime(new Date());
+        companyFundsWithdraw.setCompany(company);
+        return companyService.insertFundsWithdraw(companyFundsWithdraw);
+    }
+
+
+    @RequestMapping("/insertFundsLog")
+    public CompanyFundsLog insertFundsLog(@RequestBody Map map){
+        Company company = new Company();
+        company.setId(Long.parseLong(map.get("companyId").toString()));
+        CompanyFundsLog companyFundsLog = new CompanyFundsLog();
+        companyFundsLog.setCompany(company);
+        companyFundsLog.setCreateTime(new Date());
+        companyFundsLog.setCurrentMoney(Long.parseLong(map.get("currentMoney").toString()));
+        companyFundsLog.setMoney(Long.parseLong(map.get("money").toString()));
+        companyFundsLog.setType(1);
+        companyFundsLog.setUpdateTime(new Date());
+        return companyService.insertFundsLog(companyFundsLog);
+    }
+
 }

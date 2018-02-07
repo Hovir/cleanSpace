@@ -20,4 +20,9 @@ public interface CompanyBankCardRepository extends JpaRepository<CompanyBankCard
     @Query("update CompanyBankCard cbc set cbc.status = 0 where cbc.id = ?1")
     int unbindMod(Long bankCardId);
 
+
+    //根据companyId查询
+    @Query("select cbc from CompanyBankCard cbc where cbc.company.id = ?1 and cbc.status<>0")
+    CompanyBankCard findCompanyBankCardByCompanyId(Long companyId);
+
 }

@@ -1,5 +1,9 @@
 package com.godfkc.center.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -29,6 +33,8 @@ public class CompanyFunds implements Serializable {
     private Date updateTime;
 
     //一对一 公司
+    @NotFound(action= NotFoundAction.IGNORE)
+    @JsonIgnore
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
     @JoinColumn(name = "company_id")
     private Company company;

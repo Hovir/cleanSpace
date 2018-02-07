@@ -1,16 +1,13 @@
 package com.godfkc.center.service.imp.mobile;
 
-import com.godfkc.center.entity.BankDict;
-import com.godfkc.center.entity.Company;
-import com.godfkc.center.entity.CompanyBankCard;
-import com.godfkc.center.repository.BankDictRepository;
-import com.godfkc.center.repository.CompanyBankCardRepository;
-import com.godfkc.center.repository.CompanyRepository;
+import com.godfkc.center.entity.*;
+import com.godfkc.center.repository.*;
 import com.godfkc.center.service.mobile.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +20,12 @@ public class CompanyServiceImp implements CompanyService{
     private CompanyBankCardRepository companyBankCardRepository;
     @Autowired
     private BankDictRepository bankDictRepository;
+    @Autowired
+    private CompanyFundsRepository companyFundsRepository;
+    @Autowired
+    private CompanyFundsWithdrawRepository companyFundsWithdrawRepository;
+    @Autowired
+    private CompanyFundsLogRepository companyFundsLogRepository;
     @Override
     public Company findByNameAndPassword(String name, String password) {
         Company company = companyRepository.findByNameAndPassword(name,password);
@@ -86,4 +89,30 @@ public class CompanyServiceImp implements CompanyService{
         }
         return companyList;
     }
+
+    @Override
+    public CompanyFunds findCompanyFundsByCompanyId(Long companyId) {
+        return companyFundsRepository.findCompanyFundsByCompanyId(companyId);
+    }
+
+    @Override
+    public CompanyBankCard findCompanyBankCardByCompanyId(Long companyId) {
+        return companyBankCardRepository.findCompanyBankCardByCompanyId(companyId);
+    }
+
+    @Override
+    public int changeBalance(Long money, Date updateTime, Long companyId) {
+        return companyFundsRepository.changeBalance(money,updateTime,companyId);
+    }
+
+    @Override
+    public CompanyFundsWithdraw insertFundsWithdraw(CompanyFundsWithdraw companyFundsWithdraw) {
+        return companyFundsWithdrawRepository.save(companyFundsWithdraw);
+    }
+
+    @Override
+    public CompanyFundsLog insertFundsLog(CompanyFundsLog companyFundsLog) {
+        return companyFundsLogRepository.save(companyFundsLog);
+    }
+
 }

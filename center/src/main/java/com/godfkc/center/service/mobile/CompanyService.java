@@ -1,9 +1,8 @@
 package com.godfkc.center.service.mobile;
 
-import com.godfkc.center.entity.BankDict;
-import com.godfkc.center.entity.Company;
-import com.godfkc.center.entity.CompanyBankCard;
+import com.godfkc.center.entity.*;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,4 +28,14 @@ public interface CompanyService {
     CompanyBankCard bindBankCard(CompanyBankCard companyBankCard);
 
     List<Company> selectCompanies(Long levelId, String state, String city, String district);
+    //根据企业id查询company_funds
+    CompanyFunds findCompanyFundsByCompanyId(Long companyId);
+    //根据企业id查询CompanyBankCard
+    CompanyBankCard findCompanyBankCardByCompanyId(Long companyId);
+    //提现 改变余额
+    int changeBalance(Long money, Date updateTime, Long companyId);
+    //插入提现表
+    CompanyFundsWithdraw insertFundsWithdraw(CompanyFundsWithdraw companyFundsWithdraw);
+
+    CompanyFundsLog insertFundsLog(CompanyFundsLog companyFundsLog);
 }

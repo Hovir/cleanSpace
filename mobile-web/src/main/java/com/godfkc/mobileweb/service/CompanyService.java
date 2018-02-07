@@ -18,4 +18,11 @@ public interface CompanyService {
     boolean bindBankCard(String cardNo,String phone,Long compayId,String bankDictId,String username);
 
     String selectCompanies(Long levelId, String state, String city, String district);
+    String findCompanyFundsByCompanyId(Long companyId);
+    //根据企业id查询CompanyBankCard
+    String findCompanyBankCardByCompanyId(Long companyId);
+    boolean changeBalance(int money,Long companyId);
+    boolean insertFundsWithdraw(String withdrawlMoney,Long companyId);
+
+    boolean insertFundsLog(int afterWithdrawInt, String withdrawlMoney, Long companyId);
 }

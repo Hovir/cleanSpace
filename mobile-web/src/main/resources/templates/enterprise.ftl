@@ -77,7 +77,7 @@ ${company}
     <div>
         <div class="process">
             <div class="parts">
-                <a href="">
+                <a href="/company/moneyPage/${jsonCompany.money}">
                     <div class="parts-cont">
                         <span class="process_icon"><img src="${base}/img/Withdrawals.png"/></span>
                         <span class="process_font">现金提现</span>

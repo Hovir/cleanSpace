@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -90,6 +91,56 @@ public class CompanyServiceImp implements CompanyService {
         map.put("bankDictId",Long.parseLong(bankDictId));
         map.put("username",username);
         String s = restTemplate.postForObject(url,map,String.class);
+        if (s != null){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String findCompanyFundsByCompanyId(Long companyId) {
+        String url = centerUrl + "findCompanyFundsByCompanyId";
+        return restTemplate.postForObject(url,companyId,String.class);
+    }
+
+    @Override
+    public String findCompanyBankCardByCompanyId(Long companyId) {
+        String url = centerUrl + "findCompanyBankCardByCompanyId";
+        String s = restTemplate.postForObject(url,companyId,String.class);
+        System.out.println("返回的企业银行卡json:"+s);
+        return s;
+    }
+
+    @Override
+    public boolean changeBalance(int money, Long companyId) {
+        String url = centerUrl + "changeBalance";
+        Map<String,Object> map = new HashMap<>();
+        map.put("money",money);
+        map.put("companyId",companyId);
+        return restTemplate.postForObject(url,map,boolean.class);
+    }
+
+    @Override
+    public boolean insertFundsWithdraw(String withdrawlMoney, Long companyId) {
+        String url = centerUrl + "insertFundsWithdraw";
+        Map<String,Object> map = new HashMap<>();
+        map.put("money",withdrawlMoney);
+        map.put("companyId",companyId);
+        String s = restTemplate.postForObject(url, map, String.class);
+        if (s != null){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean insertFundsLog(int afterWithdrawInt, String withdrawlMoney, Long companyId) {
+        String url = centerUrl + "insertFundsLog";
+        Map<String,Object> map = new HashMap<>();
+        map.put("currentMoney",afterWithdrawInt);
+        map.put("money",withdrawlMoney);
+        map.put("companyId",companyId);
+        String s = restTemplate.postForObject(url, map, String.class);
         if (s != null){
             return true;
         }

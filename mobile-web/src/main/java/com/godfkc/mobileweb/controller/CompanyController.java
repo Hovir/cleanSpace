@@ -43,6 +43,8 @@ public class CompanyController {
     private String companyIdSessionKey;
     @Value("${session.key.userName}")
     private String sessionkeyuserName;
+    @Value("${session.key.companyImg}")
+    private String sessionkeycompanyImg;
 
     /**
      * 下边栏，点选企业
@@ -63,12 +65,13 @@ public class CompanyController {
         } else {//if exist companyName in session, turn to company index page;
             companyPageTurn = new ModelAndView("enterprise");
             String companyDetailByName = companyService.findCompanyDetailByName(companyName);
-            System.out.println(companyDetailByName);
+            System.out.println("企业登录返回json:" + companyDetailByName);
             /* set companyId into session*/
             Map<String, Object> stringDetailMap = JsonUtils.JsonToMap(companyDetailByName);
             Integer id = (Integer) stringDetailMap.get("id");
             request.getSession().setAttribute(companyIdSessionKey, id.longValue());
-
+            String companyImg = (String) stringDetailMap.get("companyImg");
+            request.getSession().setAttribute(sessionkeycompanyImg, companyImg);
             companyPageTurn.addObject("company", companyDetailByName);
         }
         return companyPageTurn;
@@ -214,7 +217,16 @@ public class CompanyController {
         return companyService.findBankDictAll();
     }
 
-
+    /**
+     * 绑定银行卡
+     *
+     * @param cardNo
+     * @param bankDictId
+     * @param phone
+     * @param username
+     * @param request
+     * @return
+     */
     @RequestMapping("/bindBankCard")
     @ResponseBody
     public String bindBankCard(String cardNo, String bankDictId, String phone, String username, HttpServletRequest request) {
@@ -256,5 +268,98 @@ public class CompanyController {
     public String selectCompanies(Long levelId,String state,String city,String district){
         String json=companyService.selectCompanies(levelId,state,city,district);
         return json;
+    }
+
+   /* public String moneyPage(HttpServletRequest request,Model model){
+       Long companyId = (Long) request.getSession().getAttribute(sessionKeyCompanyId);
+       String companyImg = (String) request.getSession().getAttribute(sessionkeycompanyImg);
+        if (null!=companyId && null!=companyImg){
+           String companyFundsByCompanyId = companyService.findCompanyFundsByCompanyId(companyId);
+           System.out.println("返回的银行资金信息："+companyFundsByCompanyId);
+           String companyBankCardByCompanyId = companyService.findCompanyBankCardByCompanyId(companyId);
+           Map<String, Object> map1 = JsonUtils.JsonToMap(companyFundsByCompanyId);
+           Map<String, Object> map2 = JsonUtils.JsonToMap(companyBankCardByCompanyId);
+            String cardNo = (String) map2.get("cardNo");
+            System.out.println("加*之前卡号："+cardNo);
+            String str1 = cardNo.substring(0, 3);
+            String str2 = cardNo.substring(cardNo.length()-3);
+            String BankCardNo = str1 + "********" + str2;
+            System.out.println("加*之后卡号：" + BankCardNo);
+           model.addAttribute("BankCardNo",BankCardNo);
+           model.addAttribute("FundsInfo",companyFundsByCompanyId);
+           model.addAttribute("BankCardInfo",companyBankCardByCompanyId);
+           model.addAttribute("companyImg",companyImg);
+       }
+       return "money";
+    }*/
+
+    /**
+     * 点击现金提现
+     *
+     * @param request
+     * @param money
+     * @return
+     */
+    @RequestMapping("/moneyPage/{money}")
+    public String toMoney(HttpServletRequest request, @PathVariable String money) {
+        Long companyId = (Long) request.getSession().getAttribute(sessionKeyCompanyId);
+        String companyImg = (String) request.getSession().getAttribute(sessionkeycompanyImg);
+        if (null != companyId && null != companyImg) {
+            request.setAttribute("money", money);
+            request.setAttribute("companyImg", companyImg);
+            return "money";
+        } else {
+            return "com-login";
+        }
+    }
+
+
+    @RequestMapping("/confirmWithdrawals")
+    @ResponseBody
+    public String confirmWithdrawals(String withdrawlMoney,HttpServletRequest request){
+        Long companyId = (Long) request.getSession().getAttribute(sessionKeyCompanyId);
+        System.out.println("要提现的金额："+withdrawlMoney);
+        if (companyId != null){
+            String companyFundsByCompanyId = companyService.findCompanyFundsByCompanyId(companyId);
+            System.out.println("返回的银行资金信息："+companyFundsByCompanyId);
+            Map<String, Object> map1 = JsonUtils.JsonToMap(companyFundsByCompanyId);
+            int bMoney = (Integer) map1.get("money");
+            System.out.println("数据库查出的余额："+bMoney);
+            int withdraw = Integer.parseInt(withdrawlMoney);
+            if (bMoney < withdraw){
+                System.out.println("余额不足");
+                return "2";
+            }else {
+                int afterWithdrawInt = bMoney - withdraw;
+                System.out.println("提现后的余额："+ afterWithdrawInt);
+                boolean chagBal = companyService.changeBalance(afterWithdrawInt, companyId);
+                if(!chagBal){
+                    System.out.println("提现改变余额失败");
+                    return "3";
+                }else {
+                    System.out.println("提现改变余额成功");
+                    //插入提现表
+                    boolean insertFunwith = companyService.insertFundsWithdraw(withdrawlMoney, companyId);
+                   if (!insertFunwith){
+                       System.out.println("插入提现表失败");
+                       return "3";
+                   }else {
+                       System.out.println("插入提现表成功");
+                       //插入业务日志表
+                       boolean fundsLog = companyService.insertFundsLog(afterWithdrawInt, withdrawlMoney, companyId);
+                        if (!fundsLog){
+                            System.out.println("插入业务日志表失败");
+                            return "3";
+                        }else {
+                            System.out.println("插入业务日志表成功");
+                            return "4";
+                        }
+                   }
+                }
+            }
+        }else {
+            System.out.println("连接超时");
+            return "1";
+        }
     }
 }

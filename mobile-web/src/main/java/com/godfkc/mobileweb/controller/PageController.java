@@ -269,12 +269,4 @@ public class PageController {
         }
     }
 
-
-    /**
-     * 提现
-     */
-    @RequestMapping("/moneyPage")
-    public String moneyPage(){
-        return "money";
-    }
 }
