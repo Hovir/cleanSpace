@@ -1,13 +1,12 @@
 package com.godfkc.center.controller.mobile;
 
+import com.godfkc.center.entity.Company;
 import com.godfkc.center.entity.Order;
 import com.godfkc.center.entity.User;
 import com.godfkc.center.service.mobile.OrderService;
+import com.godfkc.common.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,18 +25,18 @@ public class OrderController {
     private OrderService orderService;
 
     @RequestMapping("/findOrderList")
-    public List<Order> findOrderList(@RequestBody Map map){
-        Integer companyId = (Integer)map.get("companyId");
+    public List<Order> findOrderList(@RequestBody Map map) {
+        Integer companyId = (Integer) map.get("companyId");
         Integer userId = (Integer) map.get("userId");
         List<Order> orderList = orderService.findByCompanyIdOrUserId(companyId, userId);
         return orderList;
     }
 
     @RequestMapping("/addOrder/{name}/{phone}/{state}/{city}/{district}/{address}/{appointmentTime}/{remark}/{userId}/{type}")
-    public boolean addOrder(@PathVariable("name") String name,@PathVariable("phone")String phone,@PathVariable("state")String state,@PathVariable("city")String city,@PathVariable("district")String district, @PathVariable("address")String address,@PathVariable("appointmentTime")String appointmentTime,@PathVariable("remark")String remark,@PathVariable("userId")Long userId,@PathVariable("type")Integer type) throws Exception{
+    public boolean addOrder(@PathVariable("name") String name, @PathVariable("phone") String phone, @PathVariable("state") String state, @PathVariable("city") String city, @PathVariable("district") String district, @PathVariable("address") String address, @PathVariable("appointmentTime") String appointmentTime, @PathVariable("remark") String remark, @PathVariable("userId") Long userId, @PathVariable("type") Integer type) throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = sdf.parse(appointmentTime);
-        Order order=new Order();
+        Order order = new Order();
         order.setName(name);
         order.setPhone(phone);
         order.setState(state);
@@ -46,20 +45,69 @@ public class OrderController {
         order.setAddress(address);
         order.setAppointmentTime(date);
         order.setRemark(remark);
-        User user=new User();
+        User user = new User();
         user.setId(userId);
         order.setUser(user);
         order.setStatus(1);
         order.setCreateTime(new Date());
         order.setUpdateTime(new Date());
         order.setType(type);
-        Order order1=orderService.addOrder(order);
-        return order1 == null?false:true;
+        Order order1 = orderService.addOrder(order);
+        return order1 == null ? false : true;
     }
 
     @RequestMapping("/findOrderById")
-    public Order findOrderById(@RequestBody String id){
+    public Order findOrderById(@RequestBody String id) {
         Long logId = Long.parseLong(id);
         return orderService.findOrderById(logId);
+    }
+
+    @RequestMapping("/updateReportById")
+    public boolean updateReportById(@RequestBody Map<String, Object> map) {
+        boolean flag_return = false;
+        try {
+            Long id = ((Integer) map.get("id")).longValue();
+            String report = (String) map.get("report");
+            Long companyId = ((Integer) map.get("companyId")).longValue();
+            System.out.println("Param map: " + JsonUtils.Object2Json(map));
+            Order order = orderService.findOrderById(id);
+            if (order.getCompany().getId() == companyId) {
+                order.setId(id);
+                order.setReport(report);
+                order.setStatus(1);
+                Order save = orderService.saveOrder(order);
+                System.out.println(JsonUtils.Object2Json(order));
+                flag_return=(save!=null);
+            }
+        } catch (Exception e) {
+            System.out.println("error!!!!!");
+        }finally {
+            return flag_return;
+        }
+    }
+
+    @RequestMapping(value = "/updateReportAndRemark")
+    public boolean updateReportAndRemark(@RequestBody Map map){
+        try{
+            Long id = ((Integer) map.get("id")).longValue();
+            String report = (String) map.get("report");
+            String remark = (String) map.get("remark");
+            Order paramOrder = orderService.findOrderById(id);
+            paramOrder.setId(id);
+            paramOrder.setReport(report);
+            paramOrder.setRemark(remark);
+            //提交报告状态
+            paramOrder.setStatus(2);
+            //调试用
+            Order returnOrder= orderService.saveOrder(paramOrder);
+            return  null!=returnOrder;
+        }catch (Exception e){
+            return false;
+        }
+    }
+    @RequestMapping(value = "/findAllOrderByCompanyId/{companyId}")
+    public List<Order> findAllOrderByCompanyId(@PathVariable Long companyId){
+        List<Order> orderList=orderService.findAllOrderByCompanyId(companyId);
+        return orderList;
     }
 }

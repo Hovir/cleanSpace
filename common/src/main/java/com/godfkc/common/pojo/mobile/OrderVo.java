@@ -8,7 +8,8 @@ import java.util.Date;
  * @date 16:24 2018-2-2
  * @description
  */
-public class OrderVo implements Serializable{
+public class OrderVo implements Serializable {
+    private Integer id;
     private String name;
     private String phone;
     private String state;
@@ -17,9 +18,27 @@ public class OrderVo implements Serializable{
     private String address;
     private String appointmentTime;
     private String remark;
+    private String report;
     private Long userId;
     private Integer status;
     private Integer type;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getReport() {
+        return report;
+    }
+
+    public void setReport(String report) {
+        this.report = report;
+    }
+
 
     public String getName() {
         return name;

@@ -1475,7 +1475,7 @@
             // 如果没有指定 mimetype, 但是知道文件后缀。
             if ( !source.type && this.ext &&
                     ~'jpg,jpeg,png,gif,bmp'.indexOf( this.ext ) ) {
-                this.type = 'image/' + (this.ext === 'jpg' ? 'jpeg' : this.ext);
+                this.type = 'images/' + (this.ext === 'jpg' ? 'jpeg' : this.ext);
             } else {
                 this.type = source.type || 'application/octet-stream';
             }
@@ -1952,14 +1952,14 @@
              * {
              *     title: 'Images',
              *     extensions: 'gif,jpg,jpeg,bmp,png',
-             *     mimeTypes: 'image/*'
+             *     mimeTypes: 'images/*'
              * }
              * ```
              */
             accept: null/*{
                 title: 'Images',
                 extensions: 'gif,jpg,jpeg,bmp,png',
-                mimeTypes: 'image/*'
+                mimeTypes: 'images/*'
             }*/
         });
     
@@ -2155,7 +2155,7 @@
     define('widgets/image',[
         'base',
         'uploader',
-        'lib/image',
+        'lib/images',
         'widgets/widget'
     ], function( Base, Uploader, Image ) {
     
@@ -2201,7 +2201,7 @@
              *     width: 110,
              *     height: 110,
              *
-             *     // 图片质量，只有type为`image/jpeg`的时候才有效。
+             *     // 图片质量，只有type为`images/jpeg`的时候才有效。
              *     quality: 70,
              *
              *     // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
@@ -2212,7 +2212,7 @@
              *
              *     // 为空的话则保留原有图片格式。
              *     // 否则强制转换成指定的类型。
-             *     type: 'image/jpeg'
+             *     type: 'images/jpeg'
              * }
              * ```
              */
@@ -2227,8 +2227,8 @@
                 // 为空的话则保留原有图片格式。
                 // 否则强制转换成指定的类型。
                 // IE 8下面 base64 大小不能超过 32K 否则预览失败，而非 jpeg 编码的图片很可
-                // 能会超过 32k, 所以这里设置成预览的时候都是 image/jpeg
-                type: 'image/jpeg'
+                // 能会超过 32k, 所以这里设置成预览的时候都是 images/jpeg
+                type: 'images/jpeg'
             },
     
             /**
@@ -2244,7 +2244,7 @@
              *     width: 1600,
              *     height: 1600,
              *
-             *     // 图片质量，只有type为`image/jpeg`的时候才有效。
+             *     // 图片质量，只有type为`images/jpeg`的时候才有效。
              *     quality: 90,
              *
              *     // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
@@ -2307,7 +2307,7 @@
              *         if ( error ) {
              *             $li.text('预览错误');
              *         } else {
-             *             $li.append('<img alt="" src="' + ret + '" />');
+             *             $li.append('<images alt="" src="' + ret + '" />');
              *         }
              *     });
              *
@@ -2384,7 +2384,7 @@
                 // 只压缩 jpeg 图片格式。
                 // gif 可能会丢失针
                 // bmp png 基本上尺寸都不大，且压缩比比较小。
-                if ( !opts || !~'image/jpeg,image/jpg'.indexOf( file.type ) ||
+                if ( !opts || !~'images/jpeg,images/jpg'.indexOf( file.type ) ||
                         file.size < compressSize ||
                         file._compressed ) {
                     return;
@@ -4252,7 +4252,7 @@
         'widgets/widget'
     ], function( Base, Uploader ) {
         var $ = Base.$,
-            logUrl = ' http://static.tieba.baidu.com/tb/pms/img/st.gif??',
+            logUrl = ' http://static.tieba.baidu.com/tb/pms/images/st.gif??',
             product = (location.hostname || location.host || 'protected').toLowerCase(),
     
             // 只针对 baidu 内部产品用户做统计功能。
@@ -4995,7 +4995,7 @@
         //         b = dataView.getUint8(offset + i);
         //         hexData.push((b < 16 ? '0' : '') + b.toString(16));
         //     }
-        //     return 'data:image/jpeg,%' + hexData.join('%');
+        //     return 'data:images/jpeg,%' + hexData.join('%');
         // };
     
         EXIF.parseExifData = function( dataView, offset, length, data ) {
@@ -5044,7 +5044,7 @@
             dirOffset = dataView.getUint32( tiffOffset + 4, littleEndian );
             // Create the exif object to store the tags:
             data.exif = new EXIF.ExifMap();
-            // Parse the tags of the main image directory and retrieve the
+            // Parse the tags of the main images directory and retrieve the
             // offset to the next directory, usually the thumbnail directory:
             dirOffset = EXIF.parseExifTags( dataView, tiffOffset,
                     tiffOffset + dirOffset, littleEndian, data );
@@ -5083,7 +5083,7 @@
         'runtime/html5/utils'
     ], function( Base, Html5Runtime, Util ) {
     
-        var BLANK = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D';
+        var BLANK = 'data:images/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D';
     
         return Html5Runtime.register( 'Image', {
     
@@ -5103,7 +5103,7 @@
                     };
     
                     // 读取meta信息。
-                    if ( !me._metas && 'image/jpeg' === me.type ) {
+                    if ( !me._metas && 'images/jpeg' === me.type ) {
                         Util.parseMeta( me._blob, function( error, ret ) {
                             me._metas = ret;
                             me.owner.trigger('load');
@@ -5191,7 +5191,7 @@
                 if ( this.modified || this.type !== type ) {
                     canvas = this._canvas;
     
-                    if ( type === 'image/jpeg' ) {
+                    if ( type === 'images/jpeg' ) {
     
                         blob = Util.canvasToDataUrl( canvas, type, opts.quality );
     
@@ -5219,7 +5219,7 @@
     
                 type = type || this.type;
     
-                if ( type === 'image/jpeg' ) {
+                if ( type === 'images/jpeg' ) {
                     return Util.canvasToDataUrl( this._canvas, type, opts.quality );
                 } else {
                     return this._canvas.toDataURL( type );
@@ -5367,7 +5367,7 @@
             },
     
             // https://github.com/stomita/ios-imagefile-megapixel/
-            // blob/master/src/megapix-image.js
+            // blob/master/src/megapix-images.js
             _renderImageToCanvas: (function() {
     
                 // 如果不是ios, 不需要这么复杂！
@@ -5381,8 +5381,8 @@
                 }
     
                 /**
-                 * Detecting vertical squash in loaded image.
-                 * Fixes a bug which squash image vertically while drawing into
+                 * Detecting vertical squash in loaded images.
+                 * Fixes a bug which squash images vertically while drawing into
                  * canvas for some images.
                  */
                 function detectVerticalSquash( img, iw, ih ) {
@@ -5399,7 +5399,7 @@
                     ctx.drawImage( img, 0, 0 );
                     data = ctx.getImageData( 0, 0, 1, ih ).data;
     
-                    // search image edge pixel position in case
+                    // search images edge pixel position in case
                     // it is squashed vertically.
                     while ( py > sy ) {
                         alpha = data[ (py - 1) * 4 + 3 ];
@@ -5433,7 +5433,7 @@
                 }
     
                 /**
-                 * Detect subsampling in loaded image.
+                 * Detect subsampling in loaded images.
                  * In iOS, larger images than 2M pixels may be
                  * subsampled in rendering.
                  */
@@ -5442,17 +5442,17 @@
                         ih = img.naturalHeight,
                         canvas, ctx;
     
-                    // subsampling may happen overmegapixel image
+                    // subsampling may happen overmegapixel images
                     if ( iw * ih > 1024 * 1024 ) {
                         canvas = document.createElement('canvas');
                         canvas.width = canvas.height = 1;
                         ctx = canvas.getContext('2d');
                         ctx.drawImage( img, -iw + 1, 0 );
     
-                        // subsampled image becomes half smaller in rendering size.
-                        // check alpha channel value to confirm image is covering
+                        // subsampled images becomes half smaller in rendering size.
+                        // check alpha channel value to confirm images is covering
                         // edge pixel or not. if alpha value is 0
-                        // image is not covering, hence subsampled.
+                        // images is not covering, hence subsampled.
                         return ctx.getImageData( 0, 0, 1, 1 ).data[ 3 ] === 0;
                     } else {
                         return false;
@@ -5465,7 +5465,7 @@
                         ih = img.naturalHeight,
                         ctx = canvas.getContext('2d'),
                         subsampled = detectSubsampling( img ),
-                        doSquash = this.type === 'image/jpeg',
+                        doSquash = this.type === 'images/jpeg',
                         d = 1024,
                         sy = 0,
                         dy = 0,
@@ -5509,7 +5509,7 @@
     });
     /**
      * 这个方式性能不行，但是可以解决android里面的toDataUrl的bug
-     * android里面toDataUrl('image/jpege')得到的结果却是png.
+     * android里面toDataUrl('images/jpege')得到的结果却是png.
      *
      * 所以这里没辙，只能借助这个工具
      * @fileOverview jpeg encoder
@@ -6098,7 +6098,7 @@
                     }
                 }
     
-                this.encode = function(image,quality) // image data object
+                this.encode = function(image,quality) // images data object
                 {
                     // var time_start = new Date().getTime();
     
@@ -6199,7 +6199,7 @@
     
                     writeWord(0xFFD9); //EOI
     
-                    var jpegDataUri = 'data:image/jpeg;base64,' + btoa(byteout.join(''));
+                    var jpegDataUri = 'data:images/jpeg;base64,' + btoa(byteout.join(''));
     
                     byteout = [];
     
@@ -6280,7 +6280,7 @@
     
             // 检测是否canvas支持jpeg导出，根据数据格式来判断。
             // JPEG 前两位分别是：255, 216
-            if ( type === 'image/jpeg' && typeof supportJpeg === 'undefined' ) {
+            if ( type === 'images/jpeg' && typeof supportJpeg === 'undefined' ) {
                 fragement = origin.apply( null, arguments );
     
                 parts = fragement.split(',');
@@ -6298,7 +6298,7 @@
             }
     
             // 只有在android环境下才修复
-            if ( type === 'image/jpeg' && !supportJpeg ) {
+            if ( type === 'images/jpeg' && !supportJpeg ) {
                 w = canvas.width;
                 h = canvas.height;
                 ctx = canvas.getContext('2d');
@@ -6484,7 +6484,7 @@
     define('webuploader',[
         'base',
         'widgets/filepicker',
-        'widgets/image',
+        'widgets/images',
         'widgets/queue',
         'widgets/runtime',
         'widgets/upload',
@@ -6492,7 +6492,7 @@
         'runtime/html5/blob',
         'runtime/html5/filepicker',
         'runtime/html5/imagemeta/exif',
-        'runtime/html5/image',
+        'runtime/html5/images',
         'runtime/html5/androidpatch',
         'runtime/html5/transport'
     ], function( Base ) {

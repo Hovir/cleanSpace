@@ -80,6 +80,7 @@
             <form action="" method="">
                 <input type="text" class="user-name" id="comAccount" placeholder="企业账户"/>
                 <input type="password" class="user-pwd" id="comPwd" placeholder="企业密码"/>
+                <div class="btn-login" id="doLogin">立即登录</div>
                 <br/>
                 <span style="color: red;text-align: center;padding: 5px;display: none"
                       id="errorMessage">#这里是错误提示信息</span>
@@ -89,20 +90,14 @@
 
 </body>
 <script type="text/javascript">
-    $("#comAccount").blur(function(){
-        if($("#comPwd").val()){
-            doLoginCheck();
-        }
-    });
-    $("#comPwd").blur(function(){
-        doLoginCheck();
-    });
-
-    $("#comPwd").focus(function () {
-        clearErrorMessage();
+    $("#comAccount").focus(function(){
+        $("#comAccount").val("");
     })
-    $("#comAccount").focus(function () {
-        clearErrorMessage();
+    $("#comPwd").focus(function(){
+        $("#comPwd").val("");
+    })
+    $("#doLogin").click(function(){
+        doLoginCheck();
     })
     //清空错误信息
     function clearErrorMessage() {

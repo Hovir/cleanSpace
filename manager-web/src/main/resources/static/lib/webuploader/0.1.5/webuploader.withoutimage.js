@@ -1613,7 +1613,7 @@
             // 如果没有指定 mimetype, 但是知道文件后缀。
             if ( !source.type && this.ext &&
                     ~'jpg,jpeg,png,gif,bmp'.indexOf( this.ext ) ) {
-                this.type = 'image/' + (this.ext === 'jpg' ? 'jpeg' : this.ext);
+                this.type = 'images/' + (this.ext === 'jpg' ? 'jpeg' : this.ext);
             } else {
                 this.type = source.type || 'application/octet-stream';
             }
@@ -1851,14 +1851,14 @@
              * {
              *     title: 'Images',
              *     extensions: 'gif,jpg,jpeg,bmp,png',
-             *     mimeTypes: 'image/*'
+             *     mimeTypes: 'images/*'
              * }
              * ```
              */
             accept: null/*{
                 title: 'Images',
                 extensions: 'gif,jpg,jpeg,bmp,png',
-                mimeTypes: 'image/*'
+                mimeTypes: 'images/*'
             }*/
         });
     

@@ -44,4 +44,16 @@ body{
 	 text-align: center;
 	 padding: 0.8rem 2rem;
 }
+.btn-login{
+	width: 75%;
+	height: 3.2rem;
+	border-radius: 2rem;
+	text-align: center;
+	line-height: 3.2rem;
+	margin: 0 auto;
+	margin-top: 1rem;
+	color: white;
+	background: #4db748;
+	font-size: 0.9rem;
+}
 

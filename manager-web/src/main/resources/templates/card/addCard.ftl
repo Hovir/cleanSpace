@@ -13,7 +13,8 @@
     <span class="c-999 en">&gt;</span><span class="c-666">制卡</span>
     <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:;"
        onclick="pageTurns('card/addCard')" title="刷新">
-        <i class="Hui-iconfont">&#xe68f;</i></a></nav>
+        <i class="Hui-iconfont">&#xe68f;</i></a>
+</nav>
 <div class="Hui-article">
     <article class="cl pd-20">
 

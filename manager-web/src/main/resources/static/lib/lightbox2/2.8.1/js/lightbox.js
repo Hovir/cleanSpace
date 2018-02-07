@@ -78,7 +78,7 @@
   // Attach event handlers to the new DOM elements. click click click
   Lightbox.prototype.build = function() {
     var self = this;
-    $('<div id="lightboxOverlay" class="lightboxOverlay"></div><div id="lightbox" class="lightbox"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" /><div class="lb-nav"><a class="lb-prev" href="" ></a><a class="lb-next" href="" ></a></div><div class="lb-loader"><a class="lb-cancel"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div></div>').appendTo($('body'));
+    $('<div id="lightboxOverlay" class="lightboxOverlay"></div><div id="lightbox" class="lightbox"><div class="lb-outerContainer"><div class="lb-container"><images class="lb-images" src="data:images/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" /><div class="lb-nav"><a class="lb-prev" href="" ></a><a class="lb-next" href="" ></a></div><div class="lb-loader"><a class="lb-cancel"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div></div>').appendTo($('body'));
 
     // Cache jQuery objects
     this.$lightbox       = $('#lightbox');
@@ -136,7 +136,7 @@
     });
   };
 
-  // Show overlay and lightbox. If the image is part of a set, add siblings to album array.
+  // Show overlay and lightbox. If the images is part of a set, add siblings to album array.
   Lightbox.prototype.start = function($link) {
     var self    = this;
     var $window = $(window);
@@ -173,10 +173,10 @@
       }
     } else {
       if ($link.attr('rel') === 'lightbox') {
-        // If image is not part of a set
+        // If images is not part of a set
         addToAlbum($link);
       } else {
-        // If image is part of a set
+        // If images is part of a set
         $links = $($link.prop('tagName') + '[rel="' + $link.attr('rel') + '"]');
         for (var j = 0; j < $links.length; j = ++j) {
           addToAlbum($($links[j]));
@@ -203,16 +203,16 @@
     var self = this;
 
     this.disableKeyboardNav();
-    var $image = this.$lightbox.find('.lb-image');
+    var $image = this.$lightbox.find('.lb-images');
 
     this.$overlay.fadeIn(this.options.fadeDuration);
 
     $('.lb-loader').fadeIn('slow');
-    this.$lightbox.find('.lb-image, .lb-nav, .lb-prev, .lb-next, .lb-dataContainer, .lb-numbers, .lb-caption').hide();
+    this.$lightbox.find('.lb-images, .lb-nav, .lb-prev, .lb-next, .lb-dataContainer, .lb-numbers, .lb-caption').hide();
 
     this.$outerContainer.addClass('animating');
 
-    // When image to show is preloaded, we send the width and height to sizeContainer()
+    // When images to show is preloaded, we send the width and height to sizeContainer()
     var preloader = new Image();
     preloader.onload = function() {
       var $preloader;
@@ -231,15 +231,15 @@
       $image.height(preloader.height);
 
       if (self.options.fitImagesInViewport) {
-        // Fit image inside the viewport.
-        // Take into account the border around the image and an additional 10px gutter on each side.
+        // Fit images inside the viewport.
+        // Take into account the border around the images and an additional 10px gutter on each side.
 
         windowWidth    = $(window).width();
         windowHeight   = $(window).height();
         maxImageWidth  = windowWidth - self.containerLeftPadding - self.containerRightPadding - 20;
         maxImageHeight = windowHeight - self.containerTopPadding - self.containerBottomPadding - 120;
 
-        // Check if image size is larger then maxWidth|maxHeight in settings
+        // Check if images size is larger then maxWidth|maxHeight in settings
         if (self.options.maxWidth && self.options.maxWidth < maxImageWidth) {
           maxImageWidth = self.options.maxWidth;
         }
@@ -276,7 +276,7 @@
       .height($(document).height());
   };
 
-  // Animate the size of the lightbox to fit the image we are showing
+  // Animate the size of the lightbox to fit the images we are showing
   Lightbox.prototype.sizeContainer = function(imageWidth, imageHeight) {
     var self = this;
 
@@ -304,10 +304,10 @@
     }
   };
 
-  // Display the image and its details and begin preload neighboring images.
+  // Display the images and its details and begin preload neighboring images.
   Lightbox.prototype.showImage = function() {
     this.$lightbox.find('.lb-loader').stop(true).hide();
-    this.$lightbox.find('.lb-image').fadeIn('slow');
+    this.$lightbox.find('.lb-images').fadeIn('slow');
 
     this.updateNav();
     this.updateDetails();
@@ -319,7 +319,7 @@
   Lightbox.prototype.updateNav = function() {
     // Check to see if the browser supports touch events. If so, we take the conservative approach
     // and assume that mouse hover events are not supported and always show prev/next navigation
-    // arrows in image sets.
+    // arrows in images sets.
     var alwaysShowNav = false;
     try {
       document.createEvent('TouchEvent');
@@ -351,7 +351,7 @@
     }
   };
 
-  // Display caption, image number, and closing button.
+  // Display caption, images number, and closing button.
   Lightbox.prototype.updateDetails = function() {
     var self = this;
 

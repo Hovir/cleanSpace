@@ -31,7 +31,7 @@
             type: 'text/css'
         }, null, document.getElementsByTagName('head')[0]);
 
-        // Add the background image to the container
+        // Add the background images to the container
         Highcharts.wrap(Highcharts.Chart.prototype, 'getContainer', function(proceed) {
             proceed.call(this);
             this.container.style.background = 'url(http://www.highcharts.com/samples/graphics/sand.png)';

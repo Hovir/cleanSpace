@@ -33,6 +33,7 @@
                        <th>变更时间</th>
                        <#--<th>服务公司</th>-->
                        <th>添加检测报告</th>
+                       <th>选择检测公司</th>
                 </tr>
                 </thead>
             </table>
@@ -57,6 +58,7 @@
                 {data: "status"},
                 {data: "createTime"},
                 {data: "updateTime"},
+                {data: null},
                 {data: null}
             ];
             /*特殊列渲染*/
@@ -74,6 +76,7 @@
                 {name: "createTime", targets: 7},
                 {name: "updateTime", targets: 8},
                 {name: "id", targets: 9},
+                {name: "id", targets: 10},
 
                 /*{
                     //表示第0列
@@ -136,6 +139,15 @@
                         //return '<a href="#" onclick="toAddPicture(data.id)" >添加</a>'
                         //return "<a onClick=\"toAddPicture(data.id)\">+</a>";
                         return "<a  onClick=\"layer_open('添加检测结果','/toAddPicture/" + data.id + "')\")\" href=\"javascript:;\" >添加</a>";
+
+                    }
+                },
+                {
+                    //表示第9列
+                    targets: 10,
+                    //渲染函数
+                    render: function (data) {
+                        return "<a  onClick=\"layer_open('添加检测公司','/addCompany/" + data.id + "')\")\" href=\"javascript:;\" >去选择</a>";
 
                     }
                 },

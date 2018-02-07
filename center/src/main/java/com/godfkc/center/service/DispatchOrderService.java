@@ -18,4 +18,6 @@ public interface DispatchOrderService {
 
     //测试
     List<Order> findOrderByStatus(Integer status);
+
+    void saveCompany(Long ztreeId, Long id);
 }

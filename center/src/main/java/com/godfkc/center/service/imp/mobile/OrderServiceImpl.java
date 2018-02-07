@@ -51,4 +51,15 @@ public class OrderServiceImpl implements OrderService {
     public Order findOrderById(Long id) {
         return this.orderRepository.findOrderById(id);
     }
+
+    @Override
+    public Order saveOrder(Order order) {
+        Order save = this.orderRepository.saveAndFlush(order);
+        return save;
+    }
+
+    @Override
+    public List<Order> findAllOrderByCompanyId(Long companyId) {
+        return orderRepository.findAllByCompanyId(companyId);
+    }
 }

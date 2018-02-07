@@ -14,4 +14,6 @@ public interface ManagerDispatchOrderService {
     //通过状态（status）查询派遣订单表(order) lqj add 2018-2-1
     String findAllOrderByType(SentParameters sentParameters,Integer type);
 
+    //添加检测公司 zhaozhb
+    void saveCompany(Long ztreeId, Long id);
 }

@@ -18,8 +18,8 @@
     <link type="text/css" href="${path}/assets/css/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet"/>
     <link type="text/css" href="${path}/assets/adminLogin/adminLogin.css" rel="stylesheet"/>
 
-    <script type="text/javascript" src="${path}/assets/js/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" src="${path}/assets/js/H-ui.min.js"></script>
+    <script type="text/javascript" src="${path}/assets/adminLogin/js/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="${path}/assets/adminLogin/js/H-ui.min.js"></script>
     <script type="text/javascript" src="${path}/assets/adminLogin/adminLogin.js"></script>
 </head>
 <body>

@@ -1,5 +1,5 @@
 <#assign path=springMacroRequestContext.getContextPath() />
-<nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a>
+<nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="javascript:;" onclick="pageTurns('manager/_home')" class="maincolor">首页</a>
     <span class="c-999 en">&gt;</span>
     <span class="c-666">我的桌面</span>
     <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:void (0);" onclick="pageTurns('manager/_home')" title="刷新">

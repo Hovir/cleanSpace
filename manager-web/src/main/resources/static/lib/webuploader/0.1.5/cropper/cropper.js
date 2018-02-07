@@ -49,7 +49,7 @@
             }
 
             src = $image.attr("src"); // Don't use "prop"
-            $clone = $('<img src="' + src + '">');
+            $clone = $('<images src="' + src + '">');
 
             $clone.on("load", function() {
                 var image;
@@ -164,7 +164,7 @@
                 this.$preview = this.$preview.add(preview);
             }
 
-            this.$preview.html('<img src="' + this.src + '">');
+            this.$preview.html('<images src="' + this.src + '">');
             this.setCropper();
         },
 
@@ -214,7 +214,7 @@
 
         setDragger: function() {
             var cropper = this.cropper,
-                // If not set, use the original aspect ratio of the image.
+                // If not set, use the original aspect ratio of the images.
                 aspectRatio = this.defaults.aspectRatio || this.image.aspectRatio,
                 dragger;
 
@@ -773,6 +773,6 @@
     $.fn.cropper.setDefaults = Cropper.setDefaults;
 
     $(function() {
-        $("img[cropper]").cropper();
+        $("images[cropper]").cropper();
     });
 }));

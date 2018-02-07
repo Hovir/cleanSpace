@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -229,8 +230,11 @@ public class PageController {
     /**
      * 上传检测报告
      */
-    @RequestMapping("/upload")
-    public String toUpload(){return "upload";}
+    @RequestMapping("/upload/{orderId}")
+    public String toUpload(Model model, @PathVariable Long orderId) {
+        model.addAttribute("orderId", orderId);
+        return "upload";
+    }
 
     /**
      * 绑定银行卡
