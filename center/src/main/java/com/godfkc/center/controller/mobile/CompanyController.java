@@ -234,10 +234,15 @@ public class CompanyController {
         companyFundsLog.setCompany(company);
         companyFundsLog.setCreateTime(new Date());
         companyFundsLog.setCurrentMoney(Long.parseLong(map.get("currentMoney").toString()));
+        companyFundsLog.setDescreption((String)map.get("descreption"));
         companyFundsLog.setMoney(Long.parseLong(map.get("money").toString()));
         companyFundsLog.setType(1);
         companyFundsLog.setUpdateTime(new Date());
         return companyService.insertFundsLog(companyFundsLog);
     }
 
+    @RequestMapping("/findAllByCompanyId/{companyId}")
+    public List<CompanyFundsLog> findAllByCompanyId(@PathVariable Long companyId){
+        return companyService.findAllByCompanyId(companyId);
+    }
 }

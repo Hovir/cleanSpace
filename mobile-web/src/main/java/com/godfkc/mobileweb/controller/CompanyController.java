@@ -269,29 +269,6 @@ public class CompanyController {
         return json;
     }
 
-   /* public String moneyPage(HttpServletRequest request,Model model){
-       Long companyId = (Long) request.getSession().getAttribute(sessionKeyCompanyId);
-       String companyImg = (String) request.getSession().getAttribute(sessionkeycompanyImg);
-        if (null!=companyId && null!=companyImg){
-           String companyFundsByCompanyId = companyService.findCompanyFundsByCompanyId(companyId);
-           System.out.println("返回的银行资金信息："+companyFundsByCompanyId);
-           String companyBankCardByCompanyId = companyService.findCompanyBankCardByCompanyId(companyId);
-           Map<String, Object> map1 = JsonUtils.JsonToMap(companyFundsByCompanyId);
-           Map<String, Object> map2 = JsonUtils.JsonToMap(companyBankCardByCompanyId);
-            String cardNo = (String) map2.get("cardNo");
-            System.out.println("加*之前卡号："+cardNo);
-            String str1 = cardNo.substring(0, 3);
-            String str2 = cardNo.substring(cardNo.length()-3);
-            String BankCardNo = str1 + "********" + str2;
-            System.out.println("加*之后卡号：" + BankCardNo);
-           model.addAttribute("BankCardNo",BankCardNo);
-           model.addAttribute("FundsInfo",companyFundsByCompanyId);
-           model.addAttribute("BankCardInfo",companyBankCardByCompanyId);
-           model.addAttribute("companyImg",companyImg);
-       }
-       return "money";
-    }*/
-
     /**
      * 点击现金提现
      *
@@ -312,7 +289,12 @@ public class CompanyController {
         }
     }
 
-
+    /**
+     * 确认提现
+     * @param withdrawlMoney
+     * @param request
+     * @return
+     */
     @RequestMapping("/confirmWithdrawals")
     @ResponseBody
     public String confirmWithdrawals(String withdrawlMoney,HttpServletRequest request){
@@ -345,7 +327,8 @@ public class CompanyController {
                    }else {
                        System.out.println("插入提现表成功");
                        //插入业务日志表
-                       boolean fundsLog = companyService.insertFundsLog(afterWithdrawInt, withdrawlMoney, companyId);
+                       String descreption = "提现中";
+                       boolean fundsLog = companyService.insertFundsLog(afterWithdrawInt, withdrawlMoney, companyId,descreption);
                         if (!fundsLog){
                             System.out.println("插入业务日志表失败");
                             return "3";
@@ -356,6 +339,19 @@ public class CompanyController {
                    }
                 }
             }
+        }else {
+            System.out.println("连接超时");
+            return "1";
+        }
+    }
+
+    @RequestMapping("/detailed")
+    @ResponseBody
+    public String detailedMethod(HttpServletRequest request){
+        Long companyId = (Long) request.getSession().getAttribute(sessionKeyCompanyId);
+        if (companyId != null){
+            String fundsLogList = companyService.findFundsLogByCompanyId(companyId);
+            return fundsLogList;
         }else {
             System.out.println("连接超时");
             return "1";

@@ -38,4 +38,6 @@ public interface CompanyService {
     CompanyFundsWithdraw insertFundsWithdraw(CompanyFundsWithdraw companyFundsWithdraw);
 
     CompanyFundsLog insertFundsLog(CompanyFundsLog companyFundsLog);
+
+    List<CompanyFundsLog> findAllByCompanyId (Long companyId);
 }

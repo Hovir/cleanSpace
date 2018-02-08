@@ -63,6 +63,7 @@ public class UserServiceImp implements UserService{
         map.put("phone",phone);
         map.put("password",password);
         map.put("name","user");
+        map.put("status",1);
         map.put("headImg","/img/center.png");
         map.put("createTime",new Date());
         return this.restTemplate.postForObject(url,map,boolean.class);

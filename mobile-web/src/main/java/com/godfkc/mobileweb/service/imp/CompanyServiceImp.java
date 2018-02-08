@@ -134,17 +134,26 @@ public class CompanyServiceImp implements CompanyService {
     }
 
     @Override
-    public boolean insertFundsLog(int afterWithdrawInt, String withdrawlMoney, Long companyId) {
+    public boolean insertFundsLog(int afterWithdrawInt, String withdrawlMoney, Long companyId,String descreption) {
         String url = centerUrl + "insertFundsLog";
         Map<String,Object> map = new HashMap<>();
         map.put("currentMoney",afterWithdrawInt);
         map.put("money",withdrawlMoney);
         map.put("companyId",companyId);
+        map.put("descreption",descreption);
         String s = restTemplate.postForObject(url, map, String.class);
         if (s != null){
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String findFundsLogByCompanyId(Long companyId) {
+        String url = centerUrl + "findAllByCompanyId/{companyId}";
+        String fundsLogList = restTemplate.getForObject(url, String.class, companyId);
+        System.out.println("明细json数据:"+fundsLogList);
+        return fundsLogList;
     }
 
     @Override

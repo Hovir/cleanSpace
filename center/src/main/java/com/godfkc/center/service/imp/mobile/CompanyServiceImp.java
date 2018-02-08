@@ -115,4 +115,10 @@ public class CompanyServiceImp implements CompanyService{
         return companyFundsLogRepository.save(companyFundsLog);
     }
 
+    @Override
+    public List<CompanyFundsLog> findAllByCompanyId(Long companyId) {
+        return companyFundsLogRepository.findAllByCompanyId(companyId);
+    }
+
+
 }

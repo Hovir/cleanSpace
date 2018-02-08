@@ -24,5 +24,6 @@ public interface CompanyService {
     boolean changeBalance(int money,Long companyId);
     boolean insertFundsWithdraw(String withdrawlMoney,Long companyId);
 
-    boolean insertFundsLog(int afterWithdrawInt, String withdrawlMoney, Long companyId);
+    boolean insertFundsLog(int afterWithdrawInt, String withdrawlMoney, Long companyId,String descreption);
+    String findFundsLogByCompanyId(Long companyId);
 }
