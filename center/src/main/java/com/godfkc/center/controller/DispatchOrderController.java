@@ -62,4 +62,9 @@ public class DispatchOrderController {
     public void saveCompany(@PathVariable("ztreeId") Long ztreeId,@PathVariable("id") Long id){
         dispatchOrderService.saveCompany(ztreeId,id);
     }
+
+    @RequestMapping(value = "/dispatch/updateReprot",method ={RequestMethod.POST} )
+    public void updateReprot(@RequestBody Order order){
+        dispatchOrderService.updateReprot(order);
+    }
 }

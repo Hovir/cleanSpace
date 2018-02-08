@@ -16,4 +16,7 @@ public interface ManagerDispatchOrderService {
 
     //添加检测公司 zhaozhb
     void saveCompany(Long ztreeId, Long id);
+
+    //上传报告 zhaozhb
+    void updateReprot(Map<String,Object> map);
 }

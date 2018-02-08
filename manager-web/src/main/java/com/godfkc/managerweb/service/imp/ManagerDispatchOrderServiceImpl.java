@@ -47,4 +47,14 @@ public class ManagerDispatchOrderServiceImpl implements ManagerDispatchOrderServ
         String json = restTemplate.getForObject(url, String.class, ztreeId, id);
     }
 
+    /**
+     * 上传报告 zhaozhb
+     *
+     */
+    @Override
+    public void updateReprot(Map<String,Object> map) {
+        String url = centerUrl + "dispatch/updateReprot";
+        String json = this.restTemplate.postForObject(url,map,String.class);
+    }
+
 }

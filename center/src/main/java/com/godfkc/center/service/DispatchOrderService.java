@@ -20,4 +20,6 @@ public interface DispatchOrderService {
     List<Order> findOrderByStatus(Integer status);
 
     void saveCompany(Long ztreeId, Long id);
+
+    void updateReprot(Order order);
 }

@@ -53,5 +53,11 @@ public class DispatchOrderServiceImpl implements DispatchOrderService{
         orderRepository.updateCompanyById(company,id);
     }
 
+    @Override
+    public void updateReprot(Order order) {
+        Order orderInfo = orderRepository.findOrderById(order.getId());
+        orderRepository.updateReportById(order.getReport(),order.getId());
+    }
+
 
 }

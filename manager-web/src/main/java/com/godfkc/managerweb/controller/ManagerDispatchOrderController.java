@@ -7,9 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class ManagerDispatchOrderController {
@@ -28,8 +31,9 @@ public class ManagerDispatchOrderController {
 
     //跳转添加检测报告页 lqj add 2018-2-6
     @RequestMapping("/toAddPicture/{id}")
-    public String toAddPicture( @PathVariable("id")Integer id){
+    public String toAddPicture( @PathVariable("id")Integer id,Model model){
         System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZ"+id);
+        model.addAttribute("id",id);
         return "dispatch/addPicture";
     }
 
@@ -44,6 +48,16 @@ public class ManagerDispatchOrderController {
     @RequestMapping("saveDeteCompany/{ztreeId}/{id}")
     public void saveDeteCompany(@PathVariable("ztreeId")Long ztreeId,@PathVariable("id")Long id){
         managerDispatchService.saveCompany(ztreeId,id);
+    }
+
+    //上传报告
+    @RequestMapping("dispatch/addPicture")
+    public void addPicture(String report,Long id,Model model){
+        model.addAttribute("id",id);
+        Map<String,Object> map = new HashMap<>();
+        map.put("id",id);
+        map.put("report",report);
+        managerDispatchService.updateReprot(map);
     }
 
 }

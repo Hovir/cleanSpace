@@ -57,4 +57,8 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     List<Order> findAllByCompanyIdAndStatus(Long companyId,Integer status);
 
     long countByStatusAfter(Integer status);
+
+    @Modifying
+    @Query("update Order o set o.report = ?1,o.status = 2 where o.id = ?2")
+    void updateReportById(String imgUrl, Long orderId);
 }
