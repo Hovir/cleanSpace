@@ -76,8 +76,6 @@
                 {name: "createTime", targets: 7},
                 {name: "updateTime", targets: 8},
                 {name: "id", targets: 9},
-                {name: "id", targets: 10},
-
                 /*{
                     //表示第0列
                     targets: 0,
@@ -136,8 +134,10 @@
                     targets: 9,
                     //渲染函数
                     render: function (data) {
-                        //return '<a href="#" onclick="toAddPicture(data.id)" >添加</a>'
-                        //return "<a onClick=\"toAddPicture(data.id)\">+</a>";
+                        var company1 = data.company;
+                        if(company1 == null){
+                            return "暂时无法添加";
+                        }
                         return "<a  onClick=\"layer_open('添加检测结果','/toAddPicture/" + data.id + "')\")\" href=\"javascript:;\" >添加</a>";
 
                     }
@@ -147,8 +147,11 @@
                     targets: 10,
                     //渲染函数
                     render: function (data) {
-                        return "<a  onClick=\"layer_open('添加检测公司','/addCompany/" + data.id + "')\")\" href=\"javascript:;\" >去选择</a>";
-
+                       var company = data.company;
+                       if(company == null) {
+                           return "<button class='btn-primary'  onClick=\"layer_open('添加检测公司','/addCompany/" + data.id + "')\")\" href=\"javascript:;\" >去选择</button>";
+                       }
+                       return "<button class='btn-default' style='cursor: not-allowed;' disabled >去选择</button>";
                     }
                 },
             ];

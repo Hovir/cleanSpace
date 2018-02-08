@@ -5,10 +5,7 @@ import com.godfkc.managerweb.service.ManagerDispatchOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -25,8 +22,8 @@ public class ManagerDispatchOrderController {
     public String findAllOrderByType(SentParameters sentParameters,Integer type){
         System.out.println("qqqqqqqqqqqqqqqqqqqqq"+type);
         System.out.println(managerDispatchService.findAllOrderByType(sentParameters , type)+"wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
-        return managerDispatchService.findAllOrderByType(sentParameters , type);
-
+        String json = managerDispatchService.findAllOrderByType(sentParameters , type);
+        return json;
     }
 
     //跳转添加检测报告页 lqj add 2018-2-6
@@ -45,6 +42,7 @@ public class ManagerDispatchOrderController {
     }
 
     //添加派遣公司 zhaozhb
+    @ResponseBody
     @RequestMapping("saveDeteCompany/{ztreeId}/{id}")
     public void saveDeteCompany(@PathVariable("ztreeId")Long ztreeId,@PathVariable("id")Long id){
         managerDispatchService.saveCompany(ztreeId,id);

@@ -13,7 +13,6 @@
     <#include "${path}/manager/_meta.ftl"/>
 </head>
 <body>
-
 <!--/代码写在这里-->
 <table class="table" style="margin: auto">
     <tr>
@@ -87,6 +86,8 @@
         }
         $("#error").html("<span style=\"color: #FF5722;\">选择成功</span>");
         $.get("${path}/saveDeteCompany/"+zTreeId+"/"+id ,function () {
+            alert("指派成功，请点击屏幕刷新按钮刷新页面");
+            layer_close();
         })
     }
 </script>
