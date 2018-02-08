@@ -134,13 +134,14 @@ public class CompanyServiceImp implements CompanyService {
     }
 
     @Override
-    public boolean insertFundsLog(int afterWithdrawInt, String withdrawlMoney, Long companyId,String descreption) {
+    public boolean insertFundsLog(int afterWithdrawInt, String withdrawlMoney, Long companyId,String descreption,Integer type) {
         String url = centerUrl + "insertFundsLog";
         Map<String,Object> map = new HashMap<>();
         map.put("currentMoney",afterWithdrawInt);
         map.put("money",withdrawlMoney);
         map.put("companyId",companyId);
         map.put("descreption",descreption);
+        map.put("type",type);
         String s = restTemplate.postForObject(url, map, String.class);
         if (s != null){
             return true;

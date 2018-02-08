@@ -46,7 +46,7 @@
 		    	    <div class="top-img">
 		    		    <img src="img/enterprise-banner.jpg" alt="" class="topimg"/>	    
 		    		    <div class="headimg">
-		    		    	<div class="notification"><img src="img/notification.png" alt="" /></div>
+		    		    	<div class="notification"><img src="<#--img/notification.png-->" alt="" /></div>
 		    			    <span><img src="${Session.userHeadImg!'img/center.png'}" alt="" /></span>
 		    			    <span>
 		    			    	<p>${Session.userName!''}</p>

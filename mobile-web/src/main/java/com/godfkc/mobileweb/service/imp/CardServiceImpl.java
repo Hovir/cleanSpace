@@ -44,4 +44,24 @@ public class CardServiceImpl implements CardService{
         String json = this.restTemplate.getForObject(url, String.class, map);
         return json;
     }
+
+
+    //根据cardId查询companyId
+    @Override
+    public Long selectCompanyIdByCard(Long cardId) {
+        String url = centerUrl + "selectCompanyIdByCard/{cardId}";
+        Long companyId=restTemplate.getForObject(url,Long.class,cardId);
+        return companyId;
+    }
+
+    //修改userId和status
+    @Override
+    public boolean updateUserIdAndStatus(Long userId,Long cardId) {
+        String url = centerUrl + "updateUserIdAndStatus/{userId}/{cardId}";
+        Map<String,Object> map=new HashMap<>();
+        map.put("userId",userId);
+        map.put("cardId",cardId);
+        boolean flag=restTemplate.getForObject(url,boolean.class,map);
+        return flag;
+    }
 }

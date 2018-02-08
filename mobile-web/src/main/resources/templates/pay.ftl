@@ -58,7 +58,7 @@
            	    <div class="total">
             	   合计：<span>￥200.00</span>
                 </div>
-                <span href="javascript:mysubmit()"  class="payMoney_confirm" >确认支付</span>
+                <span <#--href="javascript:mysubmit()"--> onclick="goToPay()" class="payMoney_confirm" >确认支付</span>
             </div>
             
             
@@ -67,7 +67,9 @@
                   
 			</div>
 			
-			<input type="hidden" value="${cardId!''}" id="cardId">
+			<input type="hidden" value="${cardId?c!''}" id="cardId">
+        	<input type="hidden" value="${Session.userPhone!'123'}" id="phone">
+			<input type="hidden" value="20000" id="money">
 
 <script type="text/javascript">
 
@@ -85,6 +87,42 @@
 			window.location.href = window.document.referrer;
 		} else { window.history.go(-1); };
 	}
+</script>
+
+<script>
+	function goToPay() {
+       var a=$("#weixin-radio").prop("checked");
+       var phone=$("#phone").val();
+       var money=$("#money").val();
+       var cardId=$("#cardId").val();
+       alert(cardId);
+       if(phone=="123"){
+           alert("登录超时请重新登录");
+           window.location.href="/login";
+	   }
+        if(!a){
+            alert("请选择支付方式！");
+            return;
+		}
+
+        $.ajax({
+            //请求类型
+            type:"POST",
+            //预期服务器返回的数据类型
+            dataType:"text",
+            //请求URL
+            url:"/pay/payOk",
+            //传入服务器端的参数值
+            data:{phone:phone,money:money,cardId:cardId},
+            //从ajax异步对象中获取服务器响应的html数据
+            success:function(data){
+				alert(data);
+            },
+            error:function(data){
+				alert("请求失败");
+            }
+        });
+    }
 </script>
 
 	</body>

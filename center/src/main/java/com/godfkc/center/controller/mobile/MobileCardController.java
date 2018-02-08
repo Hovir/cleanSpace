@@ -36,4 +36,23 @@ public class MobileCardController {
         Card card=cardService.checkCard(num,password);
         return card;
     }
+
+
+    //根据cardId查询companyId
+    @RequestMapping("/selectCompanyIdByCard/{cardId}")
+    public Long selectCompanyIdByCard(@PathVariable("cardId") Long cardId){
+        Long companyId=cardService.selectCompanyIdByCard(cardId);
+        return companyId;
+    }
+
+    //修改userId和status
+    @RequestMapping("/updateUserIdAndStatus/{userId}/{cardId}")
+    public boolean updateUserIdAndStatus(@PathVariable("userId") Long userId,@PathVariable("cardId") Long cardId){
+        int i=cardService.updateUserIdAndStatus(userId,cardId);
+        if (i>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

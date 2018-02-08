@@ -6,8 +6,16 @@ package com.godfkc.mobileweb.service;
  * @description
  */
 public interface CardService {
+    //根据UserId查询检测卡
     boolean selectUserCard(Long id);
 
+    //检测卡的账号密码
     String checkCard(String num, String password);
+
+    //根据cardId查询companyId
+    Long selectCompanyIdByCard(Long cardId);
+
+    //修改userId和status
+    boolean updateUserIdAndStatus(Long userId,Long cardId);
 
 }

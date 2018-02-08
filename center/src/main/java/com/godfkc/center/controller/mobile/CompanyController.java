@@ -236,7 +236,7 @@ public class CompanyController {
         companyFundsLog.setCurrentMoney(Long.parseLong(map.get("currentMoney").toString()));
         companyFundsLog.setDescreption((String)map.get("descreption"));
         companyFundsLog.setMoney(Long.parseLong(map.get("money").toString()));
-        companyFundsLog.setType(1);
+        companyFundsLog.setType((int)map.get("type"));
         companyFundsLog.setUpdateTime(new Date());
         return companyService.insertFundsLog(companyFundsLog);
     }

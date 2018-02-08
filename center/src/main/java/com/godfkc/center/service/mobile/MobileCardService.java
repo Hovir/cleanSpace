@@ -14,4 +14,10 @@ public interface MobileCardService {
     List<Card> selectUserCard(Long userId);
 
     Card checkCard(String num, String password);
+
+    //根据cardId查询companyId
+    Long selectCompanyIdByCard(Long cardId);
+
+    //修改userId和status
+    int updateUserIdAndStatus(Long userId,Long cardId);
 }

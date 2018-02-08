@@ -30,4 +30,16 @@ public class MobileCardServiceImpl implements MobileCardService {
     public Card checkCard(String num, String password) {
         return cardRepository.checkCard(num,password);
     }
+
+    //根据cardId查询companyId
+    @Override
+    public Long selectCompanyIdByCard(Long cardId) {
+        Long companyId = cardRepository.selectCompanyIdByCard(cardId);
+        return companyId;
+    }
+
+    @Override
+    public int updateUserIdAndStatus(Long userId,Long cardId) {
+        return cardRepository.updateUserIdAndStatus(userId,cardId);
+    }
 }
