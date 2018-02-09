@@ -269,8 +269,13 @@ public class PageController {
      * @return
      */
     @RequestMapping("/changePwd")
-    public String toChangePwd(){
-        return "changePwd";
+    public String toChangePwd(HttpServletRequest request){
+        String phone = (String) request.getSession().getAttribute(sessionKeyUserPhone);
+        if(phone!=null&&phone.length()>0){
+            return "changePwd";
+        }else {
+            return "login";
+        }
     }
 
 
