@@ -90,7 +90,10 @@ public class OrderController {
             Long id = ((Integer) map.get("id")).longValue();
             String report = (String) map.get("report");
             String remark = (String) map.get("remark");
+            Long companyId = ((Integer) map.get("companyId")).longValue();
             Order paramOrder = orderService.findOrderById(id);
+            //操作拦截公司id与订单中的company 不匹配
+            if(companyId!=paramOrder.getCompany().getId()) return false;
             paramOrder.setId(id);
             paramOrder.setReport(report);
             paramOrder.setRemark(remark);
@@ -128,7 +131,6 @@ public class OrderController {
             if(order.getAppointmentTime().compareTo(startDate)>0&&order.getAppointmentTime().compareTo(endDate)<0)
             temp_list.add(order);
         }
-        System.out.println("^^^^^^^^^^^^^^^^^^^"+JsonUtils.Object2Json(temp_list));
         return temp_list;
     }
 }

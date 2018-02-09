@@ -22,7 +22,7 @@ public interface OrderService {
 
     boolean updateReport(Long orderId, Long companyId, String url);
 
-    boolean updateReportAndRemark(Long id, String remark, String report);
+    boolean updateReportAndRemark(Long id, Long companyId,String remark, String report);
 
     String findAllOrderByCompanyId(Long companyId);
 

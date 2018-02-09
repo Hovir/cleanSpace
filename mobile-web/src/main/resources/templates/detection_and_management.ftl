@@ -63,7 +63,7 @@
         <div class="header">
             <div class="left">
                 <div class="return">
-                    <a href="">
+                    <a href="${base}/company/myCompany">
                         <img src="${base}/img/back.png"/>
                     </a>
                 </div>
@@ -92,25 +92,28 @@
     ${orderList}
     </#assign>
     <#assign jsonOrderList=jsonString?eval/>
-    <#list jsonOrderList?sort_by("createTime") as order>
-        <#if (order.type==1)>
-            <li>
-                <div class="Today reservation">
-                    <div class="Subscribe-List">
-                    <#--<div class="list">
-                        <div>
-                            <span>艰苦撒旦哈</span>
-                            <span>15604614102</span>
-                        </div>
-                        <div calss="address">
-                            黑龙江省哈尔滨市 南岗区 学府路4号哈尔滨理工大学
-                        </div>
-                        <div>
-                            <span>预约时间：<em>2018-08-23 16:10</em></span>
-                            <span id="reports">上传报告</span>
-                        </div>
-                    </div>-->
+    <#assign count_type1=0/>
+    <#assign count_type2=0/>
 
+        <!-- 检查-->
+        <li>
+            <div class="Today reservation">
+                <div class="Subscribe-List">
+                <#--<div class="list">
+                    <div>
+                        <span>艰苦撒旦哈</span>
+                        <span>15604614102</span>
+                    </div>
+                    <div calss="address">
+                        黑龙江省哈尔滨市 南岗区 学府路4号哈尔滨理工大学
+                    </div>
+                    <div>
+                        <span>预约时间：<em>2018-08-23 16:10</em></span>
+                        <span id="reports">上传报告</span>
+                    </div>
+                </div>-->
+                <#list jsonOrderList?sort_by("createTime") as order>
+                    <#if (order.type==1)>
                         <div class="list">
                             <div>
                                 <span>${order.name}</span>
@@ -130,29 +133,16 @@
                                 </#if>
                             </div>
                         </div>
-
-
-                    </div>
-            </li>
-        </#if>
-        <#if (order.type==2)>
-            <li>
-                <div class="Today reservation">
-                    <div class="Subscribe-List">
-                    <#--<div class="list">
-                        <div>
-                            <span>谢娜</span>
-                            <span>15604614102</span>
-                        </div>
-                        <div calss="address">
-                            黑龙江省哈尔滨市 南岗区 学府路4号哈尔滨理工大学
-                        </div>
-                        <div>
-                            <span>预约时间：<em>2018-08-23 16:10</em></span>
-                            <span id="reports">查看详情</span>
-                        </div>
-                    </div>-->
-
+                    </#if>
+                </#list>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="Today reservation">
+                <div class="Subscribe-List">
+                <#list jsonOrderList?sort_by("createTime") as order>
+                    <#if (order.type==2)>
                         <div class="list">
                             <div>
                                 <span>${order.name}</span>
@@ -172,18 +162,15 @@
                                 </#if>
                             </div>
                         </div>
+                    </#if>
+                </#list>
+                </div>
+            </div>
+        </li>
 
 
-                    </div>
-            </li>
-        </#if>
-    </#list>
     </ul>
-
-
 </div>
-<script>
-</script>
 </body>
 </html>
 

@@ -73,10 +73,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public boolean updateReportAndRemark(Long id, String remark, String report) {
+    public boolean updateReportAndRemark(Long id,Long companyId, String remark, String report) {
         String url = centerUrl + "updateReportAndRemark";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("id", id);
+        paramMap.put("companyId",companyId);
         paramMap.put("report", report);
         paramMap.put("remark", remark);
         return this.restTemplate.postForObject(url, paramMap, boolean.class);

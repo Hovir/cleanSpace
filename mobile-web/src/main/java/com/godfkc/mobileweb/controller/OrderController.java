@@ -103,7 +103,7 @@ public class OrderController {
      */
     @RequestMapping("/updateOrderInfo")
     public String updateOrderInfo(OrderVo orderVo){
-        boolean flag=orderService.updateReportAndRemark(orderVo.getId().longValue(),orderVo.getRemark(),orderVo.getReport());
+        boolean flag=orderService.updateReportAndRemark(orderVo.getId().longValue(),orderVo.getCompanyId().longValue(),orderVo.getRemark(),orderVo.getReport());
         System.out.println(orderVo);
         if(flag) System.out.println("success");
         return "redirect :/company/myCompany";

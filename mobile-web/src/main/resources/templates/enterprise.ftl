@@ -66,11 +66,11 @@ ${company}
     </div>
     <div class="classify">
         <div class="mon-left">
-            <div>${jsonCompany.money}</div>
+            <div>${jsonCompany.money/100.00}</div>
             <div>可用余额(元)</div>
         </div>
         <div class="mon-left">
-            <div>${jsonCompany.sumMoney}</div>
+            <div>${jsonCompany.sumMoney/100.00}</div>
             <div>总收益(元)</div>
         </div>
     </div>
@@ -112,7 +112,7 @@ ${company}
         <div class="words">
             <a href="${base}/company/getOrderListOfCompany">
                 <span>今日预约</span>
-                <span ><img src="${base}/img/more.png" alt=""/></span>
+                <span><img src="${base}/img/more.png" alt=""/></span>
             </a>
         </div>
         <div class="Subscribe-List">

@@ -83,7 +83,7 @@ public class CompanyController {
             Date time_day_starter = dayStarter.getTime();
             for (CompanyFundsLog cfl : companyFundsLogs
                     ) {
-                if (cfl.getType() == 1) {
+                if (cfl.getType() == 2) {
                     sumMoney += cfl.getMoney();
                     //更新时间晚于今日起始,获取今日收入总金额
                     if (cfl.getUpdateTime().compareTo(time_day_starter) > 0) {

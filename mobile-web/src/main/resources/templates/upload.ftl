@@ -46,6 +46,7 @@
 			<input type="hidden" name="id"/>
 			<input type="hidden" name="report"/>
             <input type="hidden" name="remark"/>
+			<input type="hidden" name="companyId value="${session.companyId}/">
 		</form>
 	</div>
 <script src="${base}/js/webuploader.min.js"></script>
@@ -83,6 +84,7 @@
      function doSubmit() {
          var report=$("[name='id']").val();
          var remark=$("[name='remarkArea']").val();
+         alert($("[name='companyId']").val());
 		 $("[name='remark']").val(remark);
 		 if((typeof report)!="undefined"&&(typeof remark)!="undefined"&&report!=""&&remark!=""){
 		 $("#dataForm").submit();
