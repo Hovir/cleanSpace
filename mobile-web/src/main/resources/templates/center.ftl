@@ -4,10 +4,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<title>环保空间_用户个人中心</title>
-		<script src="js/jquery.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="css/header-footer.css"/>
+		<script src="/js/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/css/header-footer.css"/>
 		<!--<link rel="stylesheet" type="text/css" href="css/index.css"/>-->
-		<link rel="stylesheet" type="text/css" href="css/center.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/center.css"/>
 
 	</head>
 	<body>
@@ -16,7 +16,7 @@
 				<div class="part">
 					<div class="part-cont">
 						<a class="" href="/index">
-							<span class="icon"><img src="img/homepage.png"/></span>
+							<span class="icon"><img src="/img/homepage.png"/></span>
 							<span class="font">首页</span>
 						</a>
 					</div>
@@ -24,7 +24,7 @@
 				<div class="part">
 					<div class="part-cont">
 						<a class="" href="/company/myCompany">
-							<span class="icon"><img src="img/business.png"/></span>
+							<span class="icon"><img src="/img/business.png"/></span>
 							<span class="font">企业</span>
 						</a>
 					</div>
@@ -32,7 +32,7 @@
 				<div class="part">
 					<div class="part-cont">
 						<a class="" href="javascript:void(0); ">
-							<span class="icon"><img src="img/green-center.png"/></span>
+							<span class="icon"><img src="/img/green-center.png"/></span>
 							<span class="font active">个人</span>
 						</a>
 					</div>
@@ -44,10 +44,10 @@
 			  <form action="">
 			    <div class="top_personal_infor">
 		    	    <div class="top-img">
-		    		    <img src="img/enterprise-banner.jpg" alt="" class="topimg"/>	    
+		    		    <img src="/img/enterprise-banner.jpg" alt="" class="topimg"/>
 		    		    <div class="headimg">
 		    		    	<div class="notification"><img src="<#--img/notification.png-->" alt="" /></div>
-		    			    <span><img src="${Session.userHeadImg!'img/center.png'}" alt="" /></span>
+		    			    <span><img src="${Session.userHeadImg!'/img/center.png'}" alt="" /></span>
 		    			    <span>
 		    			    	<p>${Session.userName!''}</p>
 		    			    	<p>${Session.userPhone!''}</p>
@@ -61,7 +61,7 @@
 				    <div class="parts">
 				    	<a href="/toMyReservation">
 				    		<div class="parts-cont">
-						       <span class="process_icon"><img src="img/testing.png"/></span>
+						       <span class="process_icon"><img src="/img/testing.png"/></span>
 						       <span class="process_font">我的预约</span>
 					        </div>
 				    	</a>				    
@@ -69,7 +69,7 @@
 				    <div class="parts">
                         <a href="/subscribe">
 					    <div class="parts-cont">						
-						    <span class="process_icon"><img src="img/governance.png"/></span>
+						    <span class="process_icon"><img src="/img/governance.png"/></span>
 						    <span class="process_font">预约治理</span>
 					    </div>
 						</a>
@@ -79,20 +79,20 @@
 			<div class="middle-con">
 				<a href="/personCenterPage">
 				<div class="middle-part">
-					<span class="middle-icon"><img src="img/center-my.png" alt="" /></span>
+					<span class="middle-icon"><img src="/img/center-my.png" alt="" /></span>
 					<span class="middle-word">个人中心</span>
 				</div>
                 </a>
 				<a href="/changePwd">
 				<div class="middle-part">
-					<span class="middle-icon"><img src="img/pwd.png" alt="" /></span>
+					<span class="middle-icon"><img src="/img/pwd.png" alt="" /></span>
 					<span class="middle-word">密码管理</span>
 				</div>
                 </a>
-				<div class="middle-part">
-					<span class="middle-icon"><img src="img/update.png" alt="" /></span>
+				<#--<div class="middle-part">
+					<span class="middle-icon"><img src="/img/update.png" alt="" /></span>
 					<span class="middle-word">检测更新</span>
-				</div>
+				</div>-->
 			</div>
 
             <div class="btn" id="outSign">登出</div>

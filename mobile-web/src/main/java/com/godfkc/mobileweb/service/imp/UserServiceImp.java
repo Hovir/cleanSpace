@@ -52,7 +52,6 @@ public class UserServiceImp implements UserService{
         HashMap<String,String> map = new HashMap<>(16);
         map.put("phone",phone);
         Long id = this.restTemplate.getForObject(url, Long.class, map);
-        System.out.println(id);
         return id;
     }
 
