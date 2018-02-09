@@ -37,4 +37,20 @@ public class NewsServiceImpl implements NewsService{
         System.out.println(json);
         return json;
     }
+
+    @Override
+    public String selectContentByCount(Integer count) {
+        String url = centerUrl + "selectNewsByCount/{count}";
+        String json = this.restTemplate.getForObject(url,String.class,count);
+        System.out.println("json of content list::"+json);
+        return json;
+    }
+
+    @Override
+    public String selectContentById(Long contentId) {
+        String url = centerUrl + "selectContentById/{contentId}";
+        String json = this.restTemplate.getForObject(url,String.class,contentId);
+        System.out.println("content::"+json);
+        return json;
+    }
 }

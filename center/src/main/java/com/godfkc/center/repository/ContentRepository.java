@@ -32,4 +32,21 @@ public interface ContentRepository extends JpaRepository<Content, Long> {
     @Modifying
     @Query("update Content set title=:title , imgUrl = :imgUrl , content = :content , updateTime = :updateTime where id = :id")
     void updateContent(@Param("title") String title, @Param("imgUrl") String imgUrl, @Param("content") String content, @Param("updateTime") Date date, @Param("id") long id);
+    /**
+     * 发布状态集团资讯查询，限制条数，无分页
+     * @param: limit 5 status 1
+     * @return:
+     * @author: Qi Zining
+     * @date: 2018/2/9
+     */
+    Page<Content> findByStatus(String status, Pageable pageable);
+
+    /**
+     * 按id查询集团资讯
+     * @param: id
+     * @return: 一条集团资讯 Content
+     * @author: Qi Zining
+     * @date: 2018/2/9
+     */
+    Content findContentById(Long id);
 }

@@ -9,4 +9,8 @@ public interface NewsService {
     String selectNews();
 
     String selectNewsById(Long newId);
+
+    String selectContentByCount(Integer count);
+
+    String selectContentById(Long contentId);
 }

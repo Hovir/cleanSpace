@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -78,7 +79,21 @@ public class PageController {
         model.addAttribute("newId",newId);
         return "news-detal";
     }
-
+    /**
+     * 集团资讯详情
+     */
+    @RequestMapping("/content")
+    public String toContent(Long contentId,Model model){
+        model.addAttribute("contentId",contentId);
+        return "content";
+    }
+    /**
+     * 集团资讯列表
+     */
+    @RequestMapping("group_content")
+    public String toGroup_Content(){
+        return "group_content";
+    }
     /**
      * 预约检测页面
      */
