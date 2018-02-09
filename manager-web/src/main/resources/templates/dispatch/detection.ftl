@@ -31,9 +31,10 @@
                        <th>状态</th>
                        <th>创建时间</th>
                        <th>变更时间</th>
-                       <#--<th>服务公司</th>-->
+                       <th>服务公司</th>
                        <th>添加检测报告</th>
                        <th>选择检测公司</th>
+
                 </tr>
                 </thead>
             </table>
@@ -59,7 +60,8 @@
                 {data: "createTime"},
                 {data: "updateTime"},
                 {data: null},
-                {data: null}
+                {data: null},
+                {data:null}
             ];
             /*特殊列渲染*/
             var columnDefs = [
@@ -131,7 +133,7 @@
                 },
                 {
                     //表示第9列
-                    targets: 9,
+                    targets: 10,
                     //渲染函数
                     render: function (data) {
                         var company1 = data.company;
@@ -144,7 +146,7 @@
                 },
                 {
                     //表示第9列
-                    targets: 10,
+                    targets: 11,
                     //渲染函数
                     render: function (data) {
                        var company = data.company;
@@ -152,6 +154,18 @@
                            return "<button class='btn-primary'  onClick=\"layer_open('添加检测公司','/addCompany/" + data.id + "')\")\" href=\"javascript:;\" >去选择</button>";
                        }
                        return "<button class='btn-default' style='cursor: not-allowed;' disabled >去选择</button>";
+                    }
+                },
+                {
+                    //表示第11列
+                    targets: 9,
+                    //渲染函数
+                    render: function (data) {
+                       var companyName = data.company;
+                       if(companyName != null) {
+                           return data.company.name;
+                       }
+                       return "";
                     }
                 },
             ];
