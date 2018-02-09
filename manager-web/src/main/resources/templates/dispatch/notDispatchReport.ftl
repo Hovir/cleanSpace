@@ -8,8 +8,8 @@
 <#assign path=springMacroRequestContext.getContextPath() />
 <nav class="breadcrumb"><i class="Hui-iconfont"></i>
     <a href="javascript:;" onclick="pageTurns('manager/_home')" class="maincolor">首页</a>
-    <span class="c-999 en">&gt;</span><span class="c-666">无治理报告</span>
-    <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:;" onclick="pageTurns('dispatch/notGovernReport')" title="刷新" >
+    <span class="c-999 en">&gt;</span><span class="c-666">无检测报告</span>
+    <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:;" onclick="pageTurns('dispatch/notDispatchReport')" title="刷新" >
         <i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="Hui-article">
     <article class="cl pd-20">
@@ -33,8 +33,8 @@
                     <th>变更时间</th>
                     <th>服务公司</th>
                     <th>报告图片</th>
-                    <th>添加治理报告</th>
-                    <th>选择治理公司</th>
+                    <th>添加检测报告</th>
+                    <th>选择检测公司</th>
                 </tr>
                 </thead>
             </table>
@@ -44,7 +44,7 @@
         <script type="application/javascript" src="${path}/lib/datatables/1.10.15/jquery.dataTables.min.js"></script>
         <script type="application/javascript" src="${path}/lib/js/dataTables.js"></script>
         <script type="application/javascript">
-            var url = "${path}/findOrderByTypeAndStatus?type=2&status=1";
+            var url = "${path}/findOrderByTypeAndStatus?type=1&status=1";
             /*列对应表*/
             var columns = [
                 {data: "id"},
@@ -154,7 +154,7 @@
                         if(company1 == null){
                             return "暂时无法添加";
                         }
-                        return "<a  onClick=\"layer_open('添加治理报告','/toAddPicture/" + data.id + "')\")\" href=\"javascript:;\" >添加</a>";
+                        return "<a  onClick=\"layer_open('添加检测报告','/toAddPicture/" + data.id + "')\")\" href=\"javascript:;\" >添加</a>";
 
                     }
                 },
@@ -165,7 +165,7 @@
                     render: function (data) {
                         var company = data.company;
                         if(company == null) {
-                            return "<button class='btn-primary'  onClick=\"layer_open('添加治理公司','/addCompany/" + data.id + "')\")\" href=\"javascript:;\" >选择</button>";
+                            return "<button class='btn-primary'  onClick=\"layer_open('添加检测公司','/addCompany/" + data.id + "')\")\" href=\"javascript:;\" >选择</button>";
                         }
                         return "<button class='btn-default' style='cursor: not-allowed;' disabled >选择</button>";
                     }

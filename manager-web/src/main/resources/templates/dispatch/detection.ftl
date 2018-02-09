@@ -32,6 +32,7 @@
                        <th>创建时间</th>
                        <th>变更时间</th>
                        <th>服务公司</th>
+                       <th>报告图片</th>
                        <th>添加检测报告</th>
                        <th>选择检测公司</th>
                 </tr>
@@ -59,6 +60,7 @@
                 {data: "createTime"},
                 {data: "updateTime"},
                 {data: null},
+                {data: "report"},
                 {data: null},
                 {data:null}
             ];
@@ -77,6 +79,8 @@
                 {name: "createTime", targets: 7},
                 {name: "updateTime", targets: 8},
                 {name: "id", targets: 9},
+
+
                 /*{
                     //表示第0列
                     targets: 0,
@@ -131,8 +135,21 @@
                     }
                 },
                 {
-                    //表示第9列
+                    //表示第10列
                     targets: 10,
+                    //渲染函数
+                    render: function (data) {
+                        if(data != null){
+                            return "<img src='" + data + "' class='layui-upload-img radius' height='50' width='50'>"
+                        }else{
+                            return "";
+                        }
+
+                    }
+                },
+                {
+                    //表示第11列
+                    targets: 11,
                     //渲染函数
                     render: function (data) {
                         var company1 = data.company;
@@ -144,8 +161,8 @@
                     }
                 },
                 {
-                    //表示第9列
-                    targets: 11,
+                    //表示第12列
+                    targets: 12,
                     //渲染函数
                     render: function (data) {
                        var company = data.company;
@@ -156,7 +173,7 @@
                     }
                 },
                 {
-                    //表示第11列
+                    //表示第9列
                     targets: 9,
                     //渲染函数
                     render: function (data) {
@@ -200,11 +217,11 @@
                     return "出报告";
                 }
             }
-
             function toAddPicture(id) {
                 window.location.href="${path}/toAddPicture?id="+id
             }
         </script>
+
     <#--请在下方写此页面业务相关的脚本-->
 
     </article>

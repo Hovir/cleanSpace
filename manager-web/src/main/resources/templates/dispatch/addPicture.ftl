@@ -37,7 +37,7 @@
                         class="Hui-iconfont">&#xe632;</i> 保存并提交
                 </button>
                 <button onClick="layer_close();" class="btn btn-default radius" type="button">
-                    &nbsp;&nbsp;取消&nbsp;&nbsp;
+                    &nbsp;&nbsp;返回&nbsp;&nbsp;
                 </button>
             </div>
         </div>
@@ -82,7 +82,7 @@
             , done: function (res) {
                 var url = res.data[0];
                 $('#img').empty();
-                $('#img').html("<img src='" + url + "' class='layui-upload-img radius' height='1280' width='720'>");
+                $('#img').html("<img src='" + url + "' class='layui-upload-img radius' height='640' width='360'>");
                 $("#imgUrl").val(url);
             }
             , error: function () {
