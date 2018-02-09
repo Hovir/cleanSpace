@@ -34,7 +34,6 @@
                        <th>服务公司</th>
                        <th>添加检测报告</th>
                        <th>选择检测公司</th>
-
                 </tr>
                 </thead>
             </table>
@@ -140,7 +139,7 @@
                         if(company1 == null){
                             return "暂时无法添加";
                         }
-                        return "<a  onClick=\"layer_open('添加检测结果','/toAddPicture/" + data.id + "')\")\" href=\"javascript:;\" >添加</a>";
+                        return "<a  onClick=\"layer_open('添加检测报告','/toAddPicture/" + data.id + "')\")\" href=\"javascript:;\" >添加</a>";
 
                     }
                 },
@@ -151,9 +150,9 @@
                     render: function (data) {
                        var company = data.company;
                        if(company == null) {
-                           return "<button class='btn-primary'  onClick=\"layer_open('添加检测公司','/addCompany/" + data.id + "')\")\" href=\"javascript:;\" >去选择</button>";
+                           return "<button class='btn-primary'  onClick=\"layer_open('添加检测公司','/addCompany/" + data.id + "')\")\" href=\"javascript:;\" >选择</button>";
                        }
-                       return "<button class='btn-default' style='cursor: not-allowed;' disabled >去选择</button>";
+                       return "<button class='btn-default' style='cursor: not-allowed;' disabled >选择</button>";
                     }
                 },
                 {

@@ -28,18 +28,27 @@ import java.util.Map;
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @Query(" select o from Order o where o.company.id = :companyId and o.status<>0 or o.user.id = :userId and o.status<>0")
-    List<Order> findByCompanyIdOrUserId(@Param("companyId") Long companyId, @Param("userId") Long userId);
+    List<Order> findByCompanyIdOrUserId(@Param("companyId") Long companyId,@Param("userId") Long userId);
 
     @Query(" select o from Order o where o.status<>0 and o.company.id = :companyId and o.user.id = :userId")
-    List<Order> findByCompanyIdAndUserId(@Param("companyId") Long companyId, @Param("userId") Long userId);
+    List<Order> findByCompanyIdAndUserId(@Param("companyId") Long companyId,@Param("userId") Long userId);
 
     //通过状态（status）查询派遣订单表(order) lqj add 2018-2-1
     //@Query(value = "SELECT cs_order.city,cs_order.name from cs_order WHERE cs_order.status=?1 AND cs_order.id=1 ", nativeQuery = true)
-    Page<Order> findOrdersByType(Integer type, Pageable pageable);
+    Page<Order> findOrdersByType(Integer type,Pageable pageable);
 
 
     //测试
     List<Order> findAllByStatus(Integer status);
+
+
+    //通过orderId更改Order表中的检测报告字段（report）lqj add 2018-2-6
+    @Modifying
+    @Query(value="update Order o SET o.report = ?1,o.status = 2 WHERE o.id = ?2")
+      int updateOrderReportById(String report,Long id);
+    //int updateOrderReportById(@Param("report") String report,@Param("id") Long id);
+
+
 
     @Query(value = "select o from Order o where o.company.id=:companyId")
     List<Order> findAllByCompanyId(@Param("companyId") Long companyId);
@@ -48,6 +57,9 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     //根据id查询预约信息
     @Query(" select o from Order o where o.id = ?1 and o.status<>0")
     Order findOrderById(Long id);
+
+    //查询是否已经添加了报告的订单 lqj add 2018-2-8
+    Page<Order> findOrdersByTypeAndStatus(Integer type,Integer status ,Pageable pageable);
 
     @Modifying
     @Query("update Order o set o.company = ?1 where o.id = ?2")

@@ -32,7 +32,15 @@
             <dd>
                 <ul>
                     <li><a href="javascript:;" onclick="pageTurns('dispatch/detection')" title="派遣检测">派遣检测</a></li>
+                        <ul>
+                            <li><a href="javascript:;" onclick="pageTurns('dispatch/notDispatchReport')" title="无检测报告">无检测报告</a></li>
+                            <li><a href="javascript:;" onclick="pageTurns('dispatch/haveDispatchReport')" title="有检测报告">有检测报告</a></li>
+                        </ul>
                     <li><a href="javascript:;" onclick="pageTurns('dispatch/govern')" title="派遣治理">派遣治理</a></li>
+                        <ul>
+                            <li><a href="javascript:;" onclick="pageTurns('dispatch/notGovernReport')" title="无治理报告">无治理报告</a></li>
+                            <li><a href="javascript:;" onclick="pageTurns('dispatch/haveGovernReport')" title="有治理报告">有治理报告</a></li>
+                        </ul>
                 </ul>
             </dd>
         </dl>

@@ -52,6 +52,7 @@ public class Order implements Serializable {
 
     //多对一 公司id
     @NotFound(action= NotFoundAction.IGNORE)
+//    @JsonIgnore
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
     @JoinColumn(name = "company_id")
     private Company company;

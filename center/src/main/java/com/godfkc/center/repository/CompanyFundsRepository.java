@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import java.sql.Savepoint;
 import java.util.Date;
 
 /**
@@ -24,4 +25,11 @@ public interface CompanyFundsRepository extends JpaRepository<CompanyFunds, Long
     @Modifying
     @Query("update CompanyFunds cf set cf.money = ?1,cf.updateTime = ?2 where cf.company.id = ?3 and cf.status<>0")
     int changeBalance(Long money, Date updateTime,Long companyId);
+
+
+    //根据companyId更改funds表中money，updateTime字段 lqj add 2018-2-8
+    @Modifying
+    @Query("update CompanyFunds cf set cf.money = cf.money + ?1 ,cf.updateTime = ?2 where cf.company.id = ?3")
+    void updateFundsMoneyAndUpdateTimeByCompanyId(Long money,Date updateTime,Long id);
+
 }

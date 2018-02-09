@@ -8,8 +8,8 @@
 <#assign path=springMacroRequestContext.getContextPath() />
 <nav class="breadcrumb"><i class="Hui-iconfont"></i>
     <a href="javascript:;" onclick="pageTurns('manager/_home')" class="maincolor">首页</a>
-    <span class="c-999 en">&gt;</span><span class="c-666">派遣治理</span>
-    <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:;" onclick="pageTurns('dispatch/govern')" title="刷新" >
+    <span class="c-999 en">&gt;</span><span class="c-666">无治理报告</span>
+    <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:;" onclick="pageTurns('dispatch/notGovernReport')" title="刷新" >
         <i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="Hui-article">
     <article class="cl pd-20">
@@ -43,7 +43,7 @@
         <script type="application/javascript" src="${path}/lib/datatables/1.10.15/jquery.dataTables.min.js"></script>
         <script type="application/javascript" src="${path}/lib/js/dataTables.js"></script>
         <script type="application/javascript">
-            var url = "${path}/findAllOrderByType?type=2";
+            var url = "${path}/findOrderByTypeAndStatus?type=2&status=1";
             /*列对应表*/
             var columns = [
                 {data: "id"},

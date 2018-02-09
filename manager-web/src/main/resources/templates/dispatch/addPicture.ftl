@@ -82,7 +82,7 @@
             , done: function (res) {
                 var url = res.data[0];
                 $('#img').empty();
-                $('#img').html("<img src='" + url + "' class='layui-upload-img radius' height='100' width='100'>");
+                $('#img').html("<img src='" + url + "' class='layui-upload-img radius' height='1280' width='720'>");
                 $("#imgUrl").val(url);
             }
             , error: function () {
