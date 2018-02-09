@@ -93,10 +93,12 @@ ${company}
                 </a>
             </div>
             <div class="parts">
-                <div class="parts-cont">
-                    <span class="process_icon"><img src="${base}/img/Reservations.png"/></span>
-                    <a href="${base}/company/getOrderListOfCompany"><span class="process_font">预约客户</span></a>
-                </div>
+                <a href="${base}/company/getOrderListOfCompany">
+                    <div class="parts-cont">
+                        <span class="process_icon"><img src="${base}/img/Reservations.png"/></span>
+                        <span class="process_font">预约客户</span>
+                    </div>
+                </a>
             </div>
             <div class="parts">
                 <a href="/more">
