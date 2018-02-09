@@ -24,7 +24,7 @@ public class CompanyFundsLog implements Serializable {
     @Column(name = "descreption", length = 200)
     private String descreption; //描述
     @Column(name = "type", length = 1)
-    private int type; //类型
+    private int type; //类型 1提现 2佣金收入
     @Column(name = "current_money", length = 10)
     private Long currentMoney; //剩余金额
     @Column(name = "create_time")

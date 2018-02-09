@@ -24,7 +24,7 @@ public class CompanyFundsWithdraw implements Serializable {
     @Column(name = "money", length = 10)
     private Long money; //提现金额
     @Column(name = "is_pay", length = 1)
-    private int isPay;
+    private int isPay; //0提现中 1成功 2失败
     @Column(name = "remark", length = 200)
     private String remark; //备注
     @Column(name = "status", length = 1)
