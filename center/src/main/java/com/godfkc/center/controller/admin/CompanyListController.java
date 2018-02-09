@@ -122,6 +122,21 @@ public class CompanyListController {
     public List<Level> getLevelNameList() {
         return companyService.getLevelIdName();
     }
+
+    /**
+     * 后台列表-list-添加-查询Level-级联
+     * @param companyId
+     * @return
+     */
+    @RequestMapping("/company/Add/{companyId}/levelNameList")
+    public List<Level> getCompaniesLevel(@PathVariable("companyId") Long companyId){
+        System.out.println("levels=>id="+companyId);
+        Company companyOne= companyService.getCompanyOneDetails(companyId);
+        Long levelId=companyOne.getLevel().getId();
+        List<Level> levels=companyService.getLevesByIdAfter(levelId);
+        System.out.println("levels="+levels);
+        return levels;
+    }
     /**
      * 后台-添加-添加数据
      * @param company
@@ -209,7 +224,5 @@ public class CompanyListController {
         System.out.println("INT="+companyOne);
         return companyOne;
     }
-
-
 
 }

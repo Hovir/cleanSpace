@@ -18,6 +18,9 @@ public interface CompanyService {
     //后台查询-list-个体-查询级别名称
     String  getLevelNameList();
 
+    //后台查询-list-个体-查询-查询级别名称
+    String  getLevelsByCompanyIdAndLevelId(Long companyId);
+
     //后台查询-list-个体-添加
     String  insertCompany(Map<String, Object> map,Long levelId,Long parentId);
 
@@ -32,4 +35,5 @@ public interface CompanyService {
 
     //后台查询-list-修改状态（0停用，1启用）
     String  updateCompanyOneStatus(Long id, int status);
+
 }

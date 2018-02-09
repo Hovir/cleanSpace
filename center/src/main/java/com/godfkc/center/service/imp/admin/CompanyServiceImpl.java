@@ -77,6 +77,11 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
+    public List<Level> getLevesByIdAfter(Long id) {
+        return levelRepository.findLevelsByIdAfter(id);
+    }
+
+    @Override
     public Company addCompany(Company company) {
         company.setCreateTime(new Date());
         company.setUpdateTime(new Date());

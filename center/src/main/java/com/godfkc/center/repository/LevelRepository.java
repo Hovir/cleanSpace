@@ -26,4 +26,11 @@ public interface LevelRepository extends JpaRepository<Level, Long> {
      */
     @Query("select id,name from Level ")
     List<Level> findLevelIdName();
+
+    /**
+     * 后台-企业列表
+     * 后台-company-添加数据下拉列表查询-级联
+     * @return
+     */
+    List<Level> findLevelsByIdAfter(long id);
 }

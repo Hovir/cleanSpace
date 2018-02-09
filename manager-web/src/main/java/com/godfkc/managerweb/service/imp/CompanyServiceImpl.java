@@ -33,6 +33,17 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
+    public String getCompaniesSearch(SentParameters sentParameters, String dateFrom, String dateTo, String companyName) {
+        ///company/listSearch/{dateFrom}/{dateTo}/{companyName}
+        String url = centerUrl + "company/listSearch/" + dateFrom + "/" + dateTo + "/" + companyName;
+        //HashMap<String, Object> mapSearch = new HashMap<String, Object>();
+        //mapSearch.put("dateFrom", dateFrom);
+        //mapSearch.put("dateTo", dateTo);
+        //mapSearch.put("companyName", companyName);
+        //mapSearch.put("sentParameters",sentParameters);
+        return this.restTemplate.postForObject(url, sentParameters, String.class);
+    }
+    @Override
     public String getCompanyNameList() {
         ///company/Add/companyNameList
         String url=centerUrl +"company/Add/companyNameList";
@@ -46,16 +57,12 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public String getCompaniesSearch(SentParameters sentParameters, String dateFrom, String dateTo, String companyName) {
-        ///company/listSearch/{dateFrom}/{dateTo}/{companyName}
-        String url = centerUrl + "company/listSearch/" + dateFrom + "/" + dateTo + "/" + companyName;
-        //HashMap<String, Object> mapSearch = new HashMap<String, Object>();
-        //mapSearch.put("dateFrom", dateFrom);
-        //mapSearch.put("dateTo", dateTo);
-        //mapSearch.put("companyName", companyName);
-        //mapSearch.put("sentParameters",sentParameters);
-        return this.restTemplate.postForObject(url, sentParameters, String.class);
+    public String getLevelsByCompanyIdAndLevelId(Long companyId){
+        ///company/Add/{companyId}/levelNameList
+        String url=centerUrl +"/company/Add/"+companyId+"/levelNameList";
+        return this.restTemplate.getForObject(url,String.class);
     }
+
 
     @Override
     public String insertCompany(Map<String, Object> map,Long levelId,Long parentId) {

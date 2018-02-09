@@ -37,7 +37,7 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>公司名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="请输入公司名称！" id="title" name="companyName" onblur="onTitle()">
+                <input type="text" class="input-text" value="" placeholder="请输入公司名称！" id="title" name="companyName" onfocus="onTitle()">
                 <div id="titleError"></div>
             </div>
         </div>
@@ -57,14 +57,14 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>公司编号：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="请输入公司编号！" id="bn" name="bn" onblur="onBn()">
+                <input type="text" class="input-text" value="" placeholder="请输入公司编号！" id="bn" name="bn" onfocus="onBn()">
                 <div id="bnError"></div>
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>公司密码：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="password" class="input-text" value="" placeholder="请输入手机端登录密码！"  id="password" name="password" onblur="onPassword()">
+                <input type="password" class="input-text" value="" placeholder="请输入手机端登录密码！"  id="password" name="password" onfocus="onPassword()">
                 <div id="passwordError"></div>
             </div>
         </div>
@@ -72,24 +72,24 @@
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>上属公司：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <span class="select-box">
-                    <select id="parentId" class="select" size="1" name="parentId">
+                    <select id="parentId" class="select" size="1" name="parentId" onblur="levelSelectName()" onclick="onParentId()" onchange="onLevelId()">
                         <option id="parentId-k" value="" selected>请选择级别</option>
-                        <option value="0">上属公司</option>
+                        <option value="0"> -上属公司- </option>
                     </select>
                 </span>
-                <div id="parentIdError">s</div>
+                <div id="parentIdError"></div>
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>公司级别：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <span class="select-box">
-                    <select class="select" size="1" name="levelId" id="levelId">
+                    <select class="select" size="1" name="levelId" id="levelId" onclick="onLevelId()">
                         <option value="" id="levelId-k" selected>请选择级别</option>
-                        <option value="0">公司级别</option>
+                        <option value="0"> - 公司级别 - </option>
                     </select>
                 </span>
-                <div id="levelIdError">s</div>
+                <div id="levelIdError"></div>
             </div>
         </div>
         <div class="row cl">
@@ -171,33 +171,51 @@
 </script>
 <script type="text/javascript">
     companyName();
-    levelName();
     function companyName() {
         var $parentId=$("#parentId");
         $parentId.empty();
-        var HTML="<option id=\"parentId-k\" value=\"\" selected>请选择级别</option>";
+        var HTML="<option id='parentId-k' value='0' selected>请选择级别</option>" +
+                "<option id='parentId-kk' value='1'>-无-</option>";
         $.get("${path}/admin/compListAdd/add/companyName.ajax",function (data) {
             if(data!=null){
                 $.each($.parseJSON(data),function (index,value) {
                     //JSON数组
                     HTML+="<option value=\'"+value[0]+"\'>"+value[1]+"</option>";
                 });
-                $parentId.append(HTML);
             }
+            $parentId.append(HTML);
         });
     }
-    function levelName() {
+
+    function levelSelectName() {
+        var $levelSelect=$('#parentId option:selected') .val();//选中的值
+        //alert("选中的值="+$levelSelect);
+        levelName($levelSelect);
+    }
+    function levelName(companyId) {
+        //alert("companyId="+companyId);
         var $levelId=$("#levelId");
         $levelId.empty();
-        var HTML="<option id=\"levelId-k\" value=\"\" selected>请选择级别</option>";
-        $.get("${path}/admin/compListAdd/add/levelName.ajax",function (data) {
-            if(data!=null){
-                $.each($.parseJSON(data),function (index,value) {
-                    HTML+="<option value=\'"+value[0]+"\'>"+value[1]+"</option>";
-                });
+        var HTML="<option id='levelId-k' value='' selected>请选择级别</option>";
+        if(companyId!=0){
+            $.get("${path}/admin/compListAdd/add/"+companyId+"/levelName.ajax",function (data) {
+                //alert("data"+data);
+                if(companyId==1&&data!=null){
+                    $.each($.parseJSON(data),function (index,value) {
+                        HTML+="<option value=\'"+value[0]+"\'>"+value[1]+"</option>";
+                    });
+                }
+                if(companyId!=1&&data!=null){
+                    $.each($.parseJSON(data),function (index,value) {
+                        HTML+="<option value=\'"+value.id+"\'>"+value.name+"</option>";
+                    });
+                }
                 $levelId.append(HTML);
-            }
-        });
+            });
+        }else {
+            $levelId.append(HTML);
+        }
+
     }
 </script>
 <script type="application/javascript">
@@ -214,15 +232,18 @@
             $("#demoText").html("<span style=\"color: #FF5722;\">请选择图片!</span>");
             return false;
         }else if ($("#bn").val() == "") {
-            $("#bnError").html("<span style=\"color: #FF5722;\">公司编码不能为空!</span>");
+            $("#bnError").html("<span style=\"color: #FF5722;\">公司编号不能为空!</span>");
             return false;
         } else if ($("#password").val() == "") {
             $("#passwordError").html("<span style=\"color: #FF5722;\">密码不能为空!</span>");
             return false;
-        }else if ($("#plevelId").val() == "") {
-            $("#levelIdError").html("<span style=\"color: #FF5722;\">公司级别不能为空!</span>");
+        } else  if ($('#parentId option:selected') .val()=='0'){
+            $("#parentIdError").html("<span style=\"color: #FF5722;\">请选择上属公司!</span>");
             return false;
-        }else{
+        } else  if ($('#levelId option:selected') .val()==''){
+            $("#levelIdError").html("<span style=\"color: #FF5722;\">请选择公司级别!</span>");
+            return false;
+        }else {
             return true;
         }
         //$(obj).parents("tr").remove();
@@ -231,24 +252,23 @@
     }
 
     function onTitle() {
-        if($("#title").val()!=""){
-            $("#titleError").html("");
-        }
+        $("#titleError").html("");
     }
     function onImgUrl() {
-        if($("#imgUrl").val()!=""){
-            $("#demoText").empty();
-        }
+        $("#demoText").empty();
     }
     function onBn() {
-        if($("#bn").val()!=""){
-            $("#bnText").empty();
-        }
+        $("#bnError").empty();
     }
     function onPassword() {
-        if($("#password").val()!=""){
-            $("#passwordError").empty();
-        }
+        $("#passwordError").empty();
+    }
+
+    function onParentId() {
+        $("#parentIdError").empty();
+    }
+    function onLevelId() {
+        $("#levelIdError").empty();
     }
 
 </script>

@@ -23,6 +23,9 @@ public interface CompanyService {
     //后台列表-list-个体-添加-查询
     List<Level> getLevelIdName();
 
+    //后台列表-list-个体-添加-查询
+    List<Level> getLevesByIdAfter(Long id);
+
     //后台列表-list-个体-添加
     Company   addCompany(Company company);
 
