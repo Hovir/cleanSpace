@@ -1,6 +1,8 @@
 package com.godfkc.center.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -35,7 +37,7 @@ public class CompanyFundsWithdraw implements Serializable {
     //多对一 公司id
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
     @JoinColumn(name = "company_id")
-    @JsonIgnore
+    @NotFound(action= NotFoundAction.IGNORE)
     private Company company;
 
     public Long getId() {

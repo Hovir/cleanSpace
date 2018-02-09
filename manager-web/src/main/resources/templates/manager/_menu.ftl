@@ -61,6 +61,14 @@
                 </ul>
             </dd>
         </dl>
+        <dl id="menu-tongji">
+            <dt><i class="Hui-iconfont">&#xe61b;</i>提现管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    <li><a href="javascript:;" onclick="pageTurns('withdraw/withdrawList')" title="提现列表">提现列表</a></li>
+                </ul>
+            </dd>
+        </dl>
     </div>
 </aside>
 <div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a>
