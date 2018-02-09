@@ -73,6 +73,7 @@
                 }
                 if (data == "3"){
                    // alert("修改昵称成功");
+                    clearInfo();
                 }
             },
 			error:function () {

@@ -327,7 +327,7 @@ public class CompanyController {
                    }else {
                        System.out.println("插入提现表成功");
                        //插入业务日志表
-                       String descreption = "提现中";
+                       String descreption = null;
                        boolean fundsLog = companyService.insertFundsLog(afterWithdrawInt, withdrawlMoney, companyId,descreption,1);
                         if (!fundsLog){
                             System.out.println("插入业务日志表失败");

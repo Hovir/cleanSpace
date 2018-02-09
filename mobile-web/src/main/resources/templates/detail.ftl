@@ -98,8 +98,7 @@
 					    html = "<div class=\"line-cont\"><div class=\"line\"><img src=\"/img/orange.png\" alt=\"\" /></div>" +
 								"<div class=\"cont\"><div class=\"font\"><span class=\"green\">提现</span>" +
 								"<span>"+updateTime+"</span></div><div class=\"handle\"><div class=\"handle-name green\">-"+money+"提现</div>" +
-								"<div class=\"balance\"><span>余额(元)：</span><span>"+currentMoney+"</span></div><div class=\"other\">" +
-								"<span>备注：</span><span>"+value.descreption+"</span></div></div></div></div>";
+								"<div class=\"balance\"><span>余额(元)：</span><span>"+currentMoney+"</span></div></div></div></div>";
 					}
 					if (value.type == "2"){
 						html = "<div class=\"line-cont\"><div class=\"line\"><img src=\"/img/orange.png\" alt=\"\" /></div>" +
