@@ -26,7 +26,7 @@
 <#--[if IE 6]-->
     <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js"></script>
     <script>DD_belatedPNG.fix('*');</script><#--[endif]-->
-    <title>添加-企业管理</title>
+    <title>企业列表-添加</title>
     <link rel="stylesheet" type="text/css" href="${path}/lib/layui/css/layui.css"/>
 </head>
 <body>

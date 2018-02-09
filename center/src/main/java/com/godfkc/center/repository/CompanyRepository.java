@@ -64,7 +64,7 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
     Page<Company> findCompaniesByStatus(Integer status, Pageable pageable);
 
     //后台列表-list-搜索-分页-数据
-    Page<Company> findCompaniesByCreateTimeBetweenAndNameAndStatus(Date from, Date to, String name, Integer status, Pageable pageable);
+    Page<Company> findCompaniesByCreateTimeBetweenAndNameLikeAndStatus(Date from, Date to, String name, Integer status, Pageable pageable);
 
 
     //后台列表-list-编辑数据-查询

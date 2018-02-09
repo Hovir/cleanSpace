@@ -24,16 +24,15 @@
     <#--[if IE 6]-->
     <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
     <script>DD_belatedPNG.fix('*');</script><![endif]-->
-    <title>企业列表-详情</title>
+    <title>企业列表-简介</title>
 </head>
 <body>
 <article class="cl pd-20">
     <div>
-        <input type="hidden" id="" name="" value="${companyShow.id!''}"/>
+        <input type="hidden" id="" name="" value="${companyProfile.id!''}"/>
         <div class="cl pd-20" style=" background-color:#5bacb6">
-            <img class="avatar size-XL l" src="${companyShow.imgUrl!''}" height="50" width="50">
             <dl style="margin-left:80px; color:#fff">
-                <dt><span class="f-18">${companyShow.name!'公司名'}</span> <span class="pl-10 f-12"></span></dt>
+                <dt><span class="f-18">${companyProfile.name!''}简介：</span> <span class="pl-10 f-12"></span></dt>
                 <dd class="pt-10 f-12" style="margin-left:0"></dd>
             </dl>
         </div>
@@ -41,16 +40,7 @@
             <table class="table">
                 <tbody>
                 <tr>
-                    <th class="text-r">公司级别：</th>
-                    <td>${companyShow.level.name!''}</td>
-                </tr>
-                <tr>
-                    <th class="text-r">加入时间：</th>
-                    <td id="companyCreateTime">${companyShow.createTime!''}</td>
-                </tr>
-                <tr>
-                    <th class="text-r">公司简介：</th>
-                    <td>${(companyShow.profile)!''}</td>
+                    <td>${(companyProfile.profile)!''}</td>
                 </tr>
                 </tbody>
             </table>

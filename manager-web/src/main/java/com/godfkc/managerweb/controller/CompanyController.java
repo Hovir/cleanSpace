@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import sun.misc.BASE64Decoder;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -160,9 +161,31 @@ public class CompanyController {
         System.out.println("editmap-name="+editmap.get("name"));
         System.out.println("editmap-imgUrl="+editmap.get("imgUrl"));
         System.out.println("editmap-profile="+editmap.get("profile"));
+        System.out.println("editmap-createTime="+editmap.get("createTime"));
         model.addAttribute("companyShow",editmap);
         return "company/companyListShow";
     }
+    /**
+     * 企业列表-详情-页面（显示数据）（时间传值）
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/admin/compListShow/{id}/{date}/edit",method = {RequestMethod.GET,RequestMethod.POST},produces = "text/html;charset=UTF-8")
+    public String getCompanyShowPage2(@PathVariable("id") Long id,@PathVariable("date") String date,Model model){
+        System.out.println("编辑id="+id);
+        System.out.println("编辑date="+date);
+        String companyOneDetails=companyService.getCompanyOneDetails(id);
+        Map<String,Object> editmap= JsonUtils.JsonToMap(companyOneDetails);
+        editmap.put("createTime",date);
+        System.out.println("editmap-name="+editmap.get("name"));
+        System.out.println("editmap-imgUrl="+editmap.get("imgUrl"));
+        System.out.println("editmap-profile="+editmap.get("profile"));
+        System.out.println("editmap-createTime="+editmap.get("createTime"));
+        model.addAttribute("companyShow",editmap);
+        return "company/companyListShow";
+    }
+
 
     /**
      * 企业列表-编辑-页面（显示数据）
@@ -282,5 +305,20 @@ public class CompanyController {
     @RequestMapping(value = "/admin/compListAdd/save/page/edit", method = {RequestMethod.POST, RequestMethod.GET}, produces = "text/html;charset=UTF-8")
     public String getAddPage(Model model) {
         return "company/companyListSave";
+    }
+
+    /**
+     * 企业列表-公司简介
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/admin/compListProfile/{id}/edit",method = {RequestMethod.GET,RequestMethod.POST},produces = "text/html;charset=UTF-8")
+    public String getCompanycompListProfilePage(@PathVariable("id") Long id,Model model){
+        System.out.println("公司简介id="+id);
+        String companyOneDetails=companyService.getCompanyOneDetails(id);
+        Map<String,Object> editmap= JsonUtils.JsonToMap(companyOneDetails);
+        model.addAttribute("companyProfile",editmap);
+        return "company/companyListProfile";
     }
 }

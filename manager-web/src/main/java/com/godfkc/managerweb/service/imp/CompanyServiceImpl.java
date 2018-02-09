@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -76,6 +77,7 @@ public class CompanyServiceImpl implements CompanyService {
     public String  updateCompanyOneDetails(Map<String, Object> map){
         ///company/Update/update/edit
         String url = centerUrl + "company/Update/update/edit";
+        map.put("updateTime",new Date());
         return this.restTemplate.postForObject(url,map, String.class);
     }
 

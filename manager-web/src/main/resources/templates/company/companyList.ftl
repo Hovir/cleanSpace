@@ -57,7 +57,7 @@
                 {data: null},
                 {data: null},
                 {data: null},
-                {data: "profile"},
+                {data: null},
                 {data: null},
                 {data: null},
                 {data: null},
@@ -95,6 +95,13 @@
                         //alert(data);
                         return "<img  name=\'image\' alt=\'公司图片\' src=\'"+data.imgUrl+"\' height=\"25\" width=\"25\"' />";
                     }
+                },{
+                    //表示第4列
+                    targets: 3,
+                    //渲染函数
+                    render: function (data) {
+                        return "<a title=\"公司简介详情\" href=\"javascript:;\" onclick=\"member_show('公司简介详情',\'${path}/admin/compListProfile/"+data.id+"/edit\','10001','','500')\" style=\"text-decoration:none\"><i class=\"Hui-iconfont\">&#xe665;</i> 公司简介详情</a>";
+                    }
                 },
                 {
                     //表示第5列
@@ -119,7 +126,7 @@
                     //渲染函数
                     render: function (data) {
                         //alert("data="+data.id);
-                        return "<a title=\"详情\" href=\"javascript:;\" onclick=\"member_show('详情',\'${path}/admin/compListShow/"+data.id+"/edit\','10001','','500')\" style=\"text-decoration:none\"><i class=\"Hui-iconfont\">&#xe665;</i></a>"+
+                        return "<a title=\"详情\" href=\"javascript:;\" onclick=\"member_show('详情',\'${path}/admin/compListShow/"+data.id+"/"+getMyDate(data.createTime)+"/edit\','10001','','500')\" style=\"text-decoration:none\"><i class=\"Hui-iconfont\">&#xe665;</i></a>"+
                                 "<a title=\"编辑\" href=\"javascript:;\" onclick=\"member_edit('编辑',\'${path}/admin/compListEdit/"+data.id+"/"+data.id+"/edit\','4','1000','510')\" class=\"ml-5\" style=\"text-decoration:none\"><i class=\"Hui-iconfont\">&#xe6df;</i></a>" +
                                 "<a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"change_password('修改密码',\'${path}/admin/compListPwd/"+data.id+"/edit\','10001','600','270')\" href=\"javascript:;\" title=\"修改密码\"><i class=\"Hui-iconfont\">&#xe63f;</i></a>" +
                                 "<a title=\"删除\" href=\"javascript:;\" onclick=\"member_del(this,"+data.id+")\" class=\"ml-5\" style=\"text-decoration:none\"><i class=\"Hui-iconfont\">&#xe6e2;</i></a>";
@@ -140,9 +147,9 @@
                 var $datefromVal=$("#datemin").val();
                 var $datetoVal=$("#datemax").val();
                 var $companyNameVal=$("#companyName").val();
-                alert("$datefromVal="+$datefromVal);
-                alert("$datetoVal="+$datetoVal);
-                alert("$companyNameVal="+$companyNameVal);
+                //alert("$datefromVal="+$datefromVal);
+                //alert("$datetoVal="+$datetoVal);
+                //alert("$companyNameVal="+$companyNameVal);
                 if($datefromVal.length!=0&&$datetoVal.length!=0&&$companyNameVal.length!=0) {
                     pageTurnsSearch($datefromVal+"/"+$datetoVal+"/"+$companyNameVal);
                 }

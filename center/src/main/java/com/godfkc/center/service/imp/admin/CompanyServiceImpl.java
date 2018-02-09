@@ -60,7 +60,8 @@ public class CompanyServiceImpl implements CompanyService {
                 sort = new Sort(Sort.Direction.ASC, data);
             }
             Pageable pageable = new PageRequest(page, size, sort);
-            return companyRepository.findCompaniesByCreateTimeBetweenAndNameAndStatus(dateFrom,dateTo,companyName,1,pageable);
+            //findCompaniesByCreateTimeBetweenAndNameAndStatus
+            return companyRepository.findCompaniesByCreateTimeBetweenAndNameLikeAndStatus(dateFrom,dateTo,companyName,1,pageable);
         }
         return null;
     }

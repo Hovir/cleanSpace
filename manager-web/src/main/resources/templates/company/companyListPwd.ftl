@@ -31,7 +31,7 @@
     <#--[endif]-->
     <#--/meta 作为公共模版分离出去-->
 
-    <title>修改密码-企业管理</title>
+    <title>企业列表-修改密码</title>
 </head>
 <style type="text/css">
     .col-xs-8 {
