@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<title>环保空间</title>
         <script src="/js/jquery.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="css/header-footer.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/header-footer.css"/>
 		<style type="text/css">
 			.content{
 				margin-top: 45px;
@@ -19,7 +19,7 @@
 				<div class="left">
 					<div class="return">
                         <a href="javascript:void(0)"  onclick="huiTui()">
-							<img src="img/back-black.png" />
+							<img src="/img/back-black.png" />
 						</a>
 					</div>
 				</div>
@@ -58,7 +58,7 @@
 				$("#detail").html(data.details);
             },
             error:function(data){
-				alert("请求失败");
+				/*alert("请求失败");*/
             }
         });
     });

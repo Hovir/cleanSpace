@@ -288,6 +288,7 @@ public class PageController {
         String phone = (String) request.getSession().getAttribute(sessionKeyUserPhone);
         if(phone!=null&&phone.length()>0){
             model.addAttribute("cardId",cardId);
+            model.addAttribute("phone",phone);
             return "pay";
         }else {
             return "login";
@@ -314,8 +315,13 @@ public class PageController {
      * @return
      */
     @RequestMapping("personCenterPage")
-    public String personCenterPage(){
-        return "personCenter";
+    public String goTopersonCenterPage(HttpServletRequest request){
+        String phone = (String) request.getSession().getAttribute(sessionKeyUserPhone);
+        if(phone!=null&&phone.length()>0){
+            return "personCenter";
+        }else {
+            return "login";
+        }
     }
 
     /**

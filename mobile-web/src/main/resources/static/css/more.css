@@ -34,14 +34,14 @@ body {
 .pull .pull-btn {
   display: inline-block;
   float: right;
-  margin-right: 1.875rem;
+  margin-right: 0.5rem;
   width: 2.5rem;
   height: 2.5rem;
   overflow: hidden;
-  margin-top: 0.5rem;
+  margin-top: 1.2rem;
   background-image: url(../img/add.png);
   -webkit-background-size: 100%;
-  background-size: 100%;
+  background-size: 60%;
   background-repeat: no-repeat;
 }
 .pull-child {

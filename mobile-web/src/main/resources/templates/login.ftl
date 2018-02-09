@@ -83,7 +83,7 @@
 					}
                 },
                 error:function(data){
-					alert("请求失败");
+					/*alert("请求失败");*/
                 }
             });
         }

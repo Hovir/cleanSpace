@@ -4,9 +4,9 @@
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>环保空间</title>
-    <script src="js/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/header-footer.css"/>
-	<link rel="stylesheet" type="text/css" href="css/personCenter.css"/>
+    <script src="/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/header-footer.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/personCenter.css"/>
 </head>
 <body>
 	<div class="header-footer">
@@ -14,7 +14,7 @@
 			<div class="left">
 				<div class="return">
 					<a href="/centerPage">
-						<img src="img/back-white.png" />
+						<img src="/img/back-white.png" />
 					</a>
 				</div>
 			</div>

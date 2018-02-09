@@ -5,8 +5,8 @@
 		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 		<title>环保空间</title>
         <script src="/js/jquery.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="css/header-footer.css"/>
-		<link rel="stylesheet" type="text/css" href="css/bussiness.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/header-footer.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/bussiness.css"/>
 	</head>
 	<body>
 		<div class="header-footer">
@@ -14,7 +14,7 @@
 				<div class="left">
 					<div class="return">
 						<a href="/index">
-							<img src="img/back-black.png" />
+							<img src="/img/back-black.png" />
 						</a>
 					</div>
 				</div>
@@ -103,7 +103,7 @@
                 });
             },
             error:function(data){
-				alert("请求失败....");
+				/*alert("请求失败....");*/
             }
         });
     }
@@ -148,7 +148,7 @@
                 });
             },
             error:function(data){
-                alert("请求失败");
+                /*alert("请求失败");*/
             }
         });
     }
@@ -188,7 +188,7 @@
                 });
             },
             error:function(data){
-                alert("请求失败");
+                /*alert("请求失败");*/
             }
         });
     }

@@ -4,9 +4,9 @@
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>环保空间</title>
-    <link rel="stylesheet" type="text/css" href="css/header-footer.css"/>
-	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-	<link rel="stylesheet" type="text/css" href="css/more.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/header-footer.css"/>
+	<script src="/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="/css/more.css"/>
 </head>
 <body>
 	<div class="header-footer">
@@ -14,7 +14,7 @@
 			<div class="left">
 				<div class="return">
 					<a href="/company/myCompany">
-						<img src="img/back-white.png" />
+						<img src="/img/back-white.png" />
 					</a>
 				</div>
 			</div>
@@ -121,7 +121,7 @@
 				}
             },
             error:function(data){
-				alert("请求失败...");
+				/*alert("请求失败...");*/
             }
         });
     });

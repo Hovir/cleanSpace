@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>环保空间_修改用户密码</title>
     <script src="/js/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/header-footer.css"/>
-	<link rel="stylesheet" type="text/css" href="css/changePwd.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/header-footer.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/changePwd.css"/>
 </head>
 <body>
 	<div class="header-footer">
@@ -14,12 +14,12 @@
 			<div class="left">
 				<div class="return">
                     <a href="/centerPage">
-						<img src="img/back-white.png" />
+						<img src="/img/back-white.png" />
 					</a>
 				</div>
 			</div>
 			<div class=" middle">
-				<p>筛选</p>
+				<p>修改用户密码</p>
 			</div>
 			<div class=" right">
 				<div class="go">
@@ -31,18 +31,21 @@
 		</div>
 	</div>
 	<div class="content">
-		<div class="intext">
-			<span>原始密码</span>
-			<input type="password" placeholder="请输入旧密码" id="oldPwd"/>
+		<div>
+            <div class="intext">
+                <span>原始密码</span>
+                <input type="password" placeholder="请输入旧密码" id="oldPwd"/>
+            </div>
+            <div class="intext">
+                <span>新密码</span>
+                <input type="password" placeholder="请输入6-12位密码" id="pwd"/>
+            </div>
+            <div class="intext">
+                <span>确认密码</span>
+                <input type="password" placeholder="再次确认新密码" id="rpwd"/>
+            </div>
 		</div>
-		<div class="intext">
-			<span>新密码</span>
-			<input type="password" placeholder="请输入6-12位密码" id="pwd"/>
-		</div>
-		<div class="intext">
-			<span>确认密码</span>
-			<input type="password" placeholder="再次确认新密码" id="rpwd"/>
-		</div>
+
 		
 		<div class="btn" id="updatePwd">确定</div>
 	</div>
@@ -93,7 +96,7 @@
 				}
             },
             error:function(data){
-				alert("请求失败");
+				/*alert("请求失败");*/
             }
         });
     });

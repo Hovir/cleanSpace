@@ -2,7 +2,11 @@ package com.godfkc.mobileweb.controller;
 
 import com.godfkc.common.pojo.mobile.WxResult;
 import com.godfkc.common.utils.IPUtils;
+import com.godfkc.common.utils.JsonUtils;
 import com.godfkc.common.utils.MD5Util;
+import com.godfkc.mobileweb.service.CardService;
+import com.godfkc.mobileweb.service.CompanyService;
+import com.godfkc.mobileweb.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +35,16 @@ import java.util.Map;
 @RequestMapping("/wx")
 @PropertySource("classpath:config.properties")
 public class WxPayController {
+    @Autowired
+    private CompanyService companyService;
+
+    @Autowired
+    private CardService cardService;
+
+    @Autowired
+    private UserService userService;
+
+
     @Value("${wx.b_id}")
     private String bId;
 
@@ -72,19 +86,20 @@ public class WxPayController {
     /**
      * 下单接口
      *
-     * @param orderId
+     * @param
      * @param request
      * @return
      * @throws IOException
      */
     @RequestMapping(value = "/makeOrder", method = RequestMethod.POST)
-    public String makeOrder(Model model, String orderId, String price, HttpServletRequest request) throws IOException, GeneralSecurityException {
+    public String makeOrder(Model model, String cardId,String phone, String price, HttpServletRequest request) throws IOException, GeneralSecurityException {
 
 
         logger.info("makeOrder");
 
 //        String newOrderId = orderId + System.currentTimeMillis();
-
+        System.out.println(cardId+"-----"+phone+"----"+price);
+        String orderId=cardId+"_"+phone;
         //封装json
         Map<String, String> parameters = new HashMap<>();
         parameters.put("b_id", bId);
@@ -98,8 +113,8 @@ public class WxPayController {
         parameters.put("info", info);
         parameters.put("sign", sign);
 
-        WxResult wxResult = this.restTemplate.postForObject(orderUrl, parameters, WxResult.class);
-
+        String wxResult1 = this.restTemplate.postForObject(orderUrl, parameters, String.class);
+        WxResult wxResult = JsonUtils.Json2Object(wxResult1, WxResult.class);
         logger.info("请求参数：" + parameters.toString());
 
         if ("success".equals(wxResult.getStatus())) {
@@ -112,9 +127,11 @@ public class WxPayController {
             payUrl = payUrl + "&redirect_url=" + redirectUrl + "/" + wxResult.getS_no();
             return "redirect:" + payUrl;
         }
-
+        logger.info("失败");
         model.addAttribute("msg", wxResult.getMsg());
-        return "/mobile/order/mobilePaymentPage";
+        model.addAttribute("cardId", Long.parseLong(cardId));
+        model.addAttribute("phone", phone);
+        return "pay";
     }
 
 
@@ -187,7 +204,38 @@ public class WxPayController {
             /*
             * 成功后代码
             */
-
+            String[] split = order_no.split("_");
+            String cardId=split[0];
+            String phone=split[1];
+            String money=order_price;
+            int money1 = Integer.parseInt(money);
+            Long cardId1=Long.parseLong(cardId);
+            System.out.println(cardId+"------"+money1+"----------"+cardId1);
+            Long userId=userService.selectUserIdByPhone(phone);
+            Long companyId = cardService.selectCompanyIdByCard(cardId1);
+            String json = companyService.findCompanyFundsByCompanyId(companyId);
+            Map<String, Object> map = JsonUtils.JsonToMap(json);
+            int bMoney = (Integer) map.get("money");
+            int funds = bMoney + money1;
+            //改变余额
+            boolean chagBal = companyService.changeBalance(funds, companyId);
+            if(chagBal){
+                System.out.println("账号余额改变成功");
+            }else {
+                System.out.println("账号余额改变失败");
+            }
+            boolean fundsLog = companyService.insertFundsLog(funds, money,companyId,cardId,2);
+            if(fundsLog){
+                System.out.println("日志表添加成功");
+            }else {
+                System.out.println("日志表添加失败");
+            }
+            boolean b = cardService.updateUserIdAndStatus(userId,cardId1);
+            if(b){
+                System.out.println("修改card status及userId成功");
+            }else {
+                System.out.println("修改card status及userId失败");
+            }
             return "success";
         } else {
             return "";

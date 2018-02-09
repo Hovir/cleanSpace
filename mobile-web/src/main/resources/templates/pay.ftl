@@ -4,9 +4,9 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<title>环保空间</title>
-		<script src="js/jquery.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="css/header-footer.css"/>
-		<link rel="stylesheet" type="text/css" href="css/pay.css"/>
+		<script src="/js/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/css/header-footer.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/pay.css"/>
 	</head>
 	
 	<body>
@@ -15,7 +15,7 @@
 				<div class="left">
 					<div class="return">
 						<a href="javascript:void(0)"  onclick="huiTui()">
-							<img src="img/back-black.png" />
+							<img src="/img/back-black.png" />
 						</a>
 					</div>
 				</div>
@@ -39,17 +39,17 @@
                 <span class="span_2">￥ 299.00</span>
             </div>-->
         <div class="sheZhi">    
-        	<form action="/pay/payOk" method="post" id="myForm">
+        	<form action="/wx/makeOrder" method="post" id="myForm">
         	
             <a id="weixin-href" href="javascript:void(0)" class="si">
             	<span class="span_3">
-            		<img src="img/weChat.png" class="wechatpic">
+            		<img src="/img/weChat.png" class="wechatpic">
                     <em class="wechatword">微信支付</span>
             	</span>
             	
                 <span class="span_4">               	
                 	<input id="weixin-radio"  class="redRadio" type="radio"  name="payment" value="1">
-                    <img id="weixin-image" class="redRadio"  src="img/yq.png" >
+                    <img id="weixin-image" class="redRadio"  src="/img/yq.png" >
                 </span>
                 
             </a>
@@ -61,20 +61,21 @@
                 <span <#--href="javascript:mysubmit()"--> onclick="goToPay()" class="payMoney_confirm" >确认支付</span>
             </div>
                 <input type="hidden" value="${cardId?c!''}" id="cardId" name="cardId">
-                <input type="hidden" value="${Session.userPhone!'123'}" id="phone" name="phone">
-                <input type="hidden" value="20000" id="money" name="money">
-            
+                <input type="hidden" value="${phone!'123'}" id="phone" name="phone">
+                <input type="hidden" value="20000" id="money" name="price">
+
         	</form>
         </div>
-                  
+            <span style="color: red;text-align: center;padding: 20px;"
+                  id="errorMessage">${msg!''}</span>
 			</div>
-			
+
 
 
 <script type="text/javascript">
 
     $("#weixin-href").click(function(){
-        $("#weixin-image").attr("src","img/paySucceed.png");
+        $("#weixin-image").attr("src","/img/paySucceed.png");
         $("#weixin-radio").attr("checked","checked");
 
     });
