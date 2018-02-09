@@ -167,7 +167,7 @@
                         if(company == null) {
                             return "<button class='btn-primary'  onClick=\"layer_open('添加检测公司','/addCompany/" + data.id + "')\")\" href=\"javascript:;\" >选择</button>";
                         }
-                        return "<button class='btn-default' style='cursor: not-allowed;' disabled >选择</button>";
+                        return "<button class='btn-default' onclick=\"yyy()\" disabled >选择</button>";
                     }
                 },
                 {
@@ -218,6 +218,10 @@
 
             function toAddPicture(id) {
                 window.location.href="${path}/toAddPicture?id="+id
+            }
+
+            function yyy() {
+                alert("已有公司，无法重复添加");
             }
         </script>
     <#--请在下方写此页面业务相关的脚本-->
