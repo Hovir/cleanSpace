@@ -47,13 +47,15 @@ body{
 .headimg span:nth-child(2) img{
 	width: 4.5rem;
 	height: 4.5rem;
+	border-radius: 2.25rem;
+	border: 0.1rem solid white;
 }
 .headimg span:nth-child(3){
 	width: 60%;
 	height: 4.5rem;
 	overflow: hidden;
-	/*margin-left: 0.5rem;
-	float: left;*/
+	margin-left: 0.5rem;
+	/*float: left;*/
 }
 .headimg span:nth-child(3) p{
     font-size: 1.3rem;
@@ -123,17 +125,20 @@ body{
 }
 
 .btn {
-	display: inline-block;
-	width: 80%;
-	padding: 0.9375rem 3.75rem;
+	/*display: inline-block;*/
+	width: 90%;
+	/*padding: 0.9375rem 3.75rem;*/
+	padding: 0.5rem 0;
 	border-radius: 0.3125rem;
-	position: fixed;
+	/*position: fixed;*/
 	text-align: center;
-	left: 10%;
-	bottom: 3.275rem;
+	margin: 0 auto;
+	/*left: 10%;*/
+	/*bottom: 3.275rem;*/
 	color: #fff;
 	background-color: #4db748;
 	font-size: 1.25rem;
+	margin-top: 4rem;
 }
 
 
