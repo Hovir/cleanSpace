@@ -25,7 +25,8 @@
                 <input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d'})" id="datemax" name="dateTo" class="input-text Wdate" style="width:120px;cursor:pointer;" value="${dateTo}" />
                 <input type="text" class="input-text" style="width:250px" placeholder="请输入企业名称" id="companyName" name="companyName" value="${companyName}">
                 <button type="submit" class="btn btn-success radius" id="searchFormBt" name=""><i class="Hui-iconfont">&#xe665;</i> 搜&nbsp;索</button>
-                <a href="javascript:;" onclick="member_add('添加企业','${path}/page/company/companyListAdd','','510')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添&nbsp;加</a>
+                <#--<a href="javascript:;" onclick="member_add('添加企业','${path}/page/company/companyListAdd','','510')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添&nbsp;加</a>-->
+                <a href="javascript:;" onclick="member_add('添加企业','${path}/admin/compListAdd/add/str/edit','1000','510')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添&nbsp;加</a>
             </div>
         </div>
         <div class="mt-20">
@@ -125,7 +126,7 @@
                     render: function (data) {
                         //alert("data="+data.id);
                         return "<a title=\"详情\" href=\"javascript:;\" onclick=\"member_show('详情',\'${path}/admin/compListShow/"+data.id+"/edit\','10001','400','450')\" style=\"text-decoration:none\"><i class=\"Hui-iconfont\">&#xe665;</i></a>"+
-                                "<a title=\"编辑\" href=\"javascript:;\" onclick=\"member_edit('编辑',\'${path}/admin/compListEdit/"+data.id+"/edit\','4','','510')\" class=\"ml-5\" style=\"text-decoration:none\"><i class=\"Hui-iconfont\">&#xe6df;</i></a>" +
+                                "<a title=\"编辑\" href=\"javascript:;\" onclick=\"member_edit('编辑',\'${path}/admin/compListEdit/"+data.id+"/"+data.id+"/edit\','4','','510')\" class=\"ml-5\" style=\"text-decoration:none\"><i class=\"Hui-iconfont\">&#xe6df;</i></a>" +
                                 "<a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"change_password('修改密码',\'${path}/admin/compListPwd/"+data.id+"/edit\','10001','600','270')\" href=\"javascript:;\" title=\"修改密码\"><i class=\"Hui-iconfont\">&#xe63f;</i></a>" +
                                 "<a title=\"删除\" href=\"javascript:;\" onclick=\"member_del(this,"+data.id+")\" class=\"ml-5\" style=\"text-decoration:none\"><i class=\"Hui-iconfont\">&#xe6e2;</i></a>";
                     }

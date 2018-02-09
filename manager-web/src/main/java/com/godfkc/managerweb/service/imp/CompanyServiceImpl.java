@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -25,21 +26,42 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public String getCompaniesList(SentParameters sentParameters) {
+        ///company/list
         String url = centerUrl + "company/list";
         return this.restTemplate.postForObject(url, sentParameters, String.class);
     }
 
     @Override
+    public String getCompanyNameList() {
+        ///company/Add/companyNameList
+        String url=centerUrl +"company/Add/companyNameList";
+        return this.restTemplate.getForObject(url,String.class);
+    }
+    @Override
+    public String getLevelNameList() {
+        ///company/Add/levelNameList
+        String url=centerUrl +"company/Add/levelNameList";
+        return this.restTemplate.getForObject(url,String.class);
+    }
+
+    @Override
     public String getCompaniesSearch(SentParameters sentParameters, String dateFrom, String dateTo, String companyName) {
+        ///company/listSearch/{dateFrom}/{dateTo}/{companyName}
         String url = centerUrl + "company/listSearch/" + dateFrom + "/" + dateTo + "/" + companyName;
-        HashMap<String, Object> mapSearch = new HashMap<String, Object>();
-        mapSearch.put("dateFrom", dateFrom);
-        mapSearch.put("dateTo", dateTo);
-        mapSearch.put("companyName", companyName);
+        //HashMap<String, Object> mapSearch = new HashMap<String, Object>();
+        //mapSearch.put("dateFrom", dateFrom);
+        //mapSearch.put("dateTo", dateTo);
+        //mapSearch.put("companyName", companyName);
         //mapSearch.put("sentParameters",sentParameters);
         return this.restTemplate.postForObject(url, sentParameters, String.class);
     }
 
+    @Override
+    public String insertCompany(Map<String, Object> map,Long levelId,Long parentId) {
+        ///company/Add/{levelId}/{parentId}/edit
+        String url=centerUrl + "company/Add/"+levelId+"/"+parentId+"/edit";
+        return  this.restTemplate.postForObject(url,map,String.class);
+    }
 
     @Override
     public String getCompanyOneDetails(Long id) {
@@ -51,9 +73,10 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public String  updateCompanyOneDetails(Long id,String companyName,String companyUrl,String companyProfile){
-        String url = centerUrl + "company/Update/"+id+"/"+companyName+"/"+companyUrl+"/"+companyProfile+"/edit";
-        return this.restTemplate.getForObject(url, String.class);
+    public String  updateCompanyOneDetails(Map<String, Object> map){
+        ///company/Update/update/edit
+        String url = centerUrl + "company/Update/update/edit";
+        return this.restTemplate.postForObject(url,map, String.class);
     }
 
     @Override

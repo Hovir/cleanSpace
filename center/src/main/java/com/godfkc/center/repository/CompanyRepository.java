@@ -29,38 +29,6 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
 
     Company findById(long id);
 
-    //后台
-
-    //后台查询-list-分页-all
-    Page<Company> findCompaniesByStatus(Integer status, Pageable pageable);
-
-    //后台查询-list-搜索-分页-数据
-    Page<Company> findCompaniesByCreateTimeBetweenAndNameAndStatus(Date from, Date to, String name, Integer status, Pageable pageable);
-
-
-    //后台查询-list-编辑数据-查询
-    Company findCompanyById(Long id);
-
-
-    //后台查询-list-添加-save
-
-    //后台查询-list-修改-信息
-    @Modifying
-    @Query("UPDATE Company SET name=:name,imgUrl=:imgUrl,profile=:profile WHERE id=:id")
-    int updateCompanyById(@Param("id") Long id, @Param("name") String name, @Param("imgUrl") String imgUrl, @Param("profile") String profile);
-
-
-    //后台查询-list-修改-密码
-    @Modifying
-    @Query("UPDATE Company SET password=:password  WHERE id=:id")
-    int updateCompanyPwdById(@Param("id") Long id, @Param("password") String password);
-
-    //后台查询-list-修改状态（0停用，1启用）
-    @Modifying
-    @Query("UPDATE Company SET status=:status  WHERE id=:id")
-    int updateCompanyStatusById(@Param("id") Long id, @Param("status") int status);
-
-
 
     @Query("select coy from Company coy where coy.level.id=?1 and coy.status=1")
     List<Company> selectCompanyByLevelId(Long levelId);
@@ -87,4 +55,40 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
     List<Company> selectCompanyByStateByCityByDistrict(String state, String city, String district);
 
     long countByStatusAfter(Integer status);
+
+
+
+    //后台-企业列表
+
+    //后台列表-list-分页-all
+    Page<Company> findCompaniesByStatus(Integer status, Pageable pageable);
+
+    //后台列表-list-搜索-分页-数据
+    Page<Company> findCompaniesByCreateTimeBetweenAndNameAndStatus(Date from, Date to, String name, Integer status, Pageable pageable);
+
+
+    //后台列表-list-编辑数据-查询
+    Company findCompanyById(Long id);
+
+
+    //后台列表-list-添加-查询
+    @Query("select id,name from Company ")
+    List<Company> findCompanyIdName();
+
+
+    //后台列表-list-修改-信息
+    @Modifying
+    @Query("UPDATE Company SET name=:name,imgUrl=:imgUrl,profile=:profile WHERE id=:id")
+    int updateCompanyById(@Param("id") Long id, @Param("name") String name, @Param("imgUrl") String imgUrl, @Param("profile") String profile);
+
+
+    //后台列表-list-修改-密码
+    @Modifying
+    @Query("UPDATE Company SET password=:password  WHERE id=:id")
+    int updateCompanyPwdById(@Param("id") Long id, @Param("password") String password);
+
+    //后台列表-list-修改状态（0停用，1启用）
+    @Modifying
+    @Query("UPDATE Company SET status=:status  WHERE id=:id")
+    int updateCompanyStatusById(@Param("id") Long id, @Param("status") int status);
 }

@@ -1,8 +1,10 @@
 package com.godfkc.center.service.imp.admin;
 
 import com.godfkc.center.entity.Company;
+import com.godfkc.center.entity.Level;
 import com.godfkc.center.entity.vo.CompanySearchEmp;
 import com.godfkc.center.repository.CompanyRepository;
+import com.godfkc.center.repository.LevelRepository;
 import com.godfkc.center.service.admin.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 @Transactional
@@ -20,6 +23,9 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Autowired
     private CompanyRepository companyRepository;
+
+    @Autowired
+    private LevelRepository levelRepository;
 
 
     @Override
@@ -59,6 +65,23 @@ public class CompanyServiceImpl implements CompanyService {
         return null;
     }
 
+    @Override
+    public List<Company> getCompanyIdName() {
+        return companyRepository.findCompanyIdName();
+    }
+
+    @Override
+    public List<Level> getLevelIdName() {
+        return levelRepository.findLevelIdName();
+    }
+
+    @Override
+    public Company addCompany(Company company) {
+        company.setCreateTime(new Date());
+        company.setUpdateTime(new Date());
+        company.setStatus(1);
+        return companyRepository.save(company);
+    }
 
     @Override
     public Company getCompanyOneDetails(Long id){
