@@ -72,9 +72,9 @@
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>上属公司：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <span class="select-box">
-                    <select id="parentId" class="select" size="1" name="parentId" onblur="levelSelectName()" onclick="onParentId()" onchange="onLevelId()">
+                    <select id="parentId" class="select" size="1" name="parentId"  onclick="onParentId()" onchange="levelSelectName()">
                         <option id="parentId-k" value="" selected>请选择级别</option>
-                        <option value="0"> -上属公司- </option>
+                        <#--<option value="0"> -上属公司- </option>-->
                     </select>
                 </span>
                 <div id="parentIdError"></div>
@@ -86,7 +86,7 @@
                 <span class="select-box">
                     <select class="select" size="1" name="levelId" id="levelId" onclick="onLevelId()">
                         <option value="" id="levelId-k" selected>请选择级别</option>
-                        <option value="0"> - 公司级别 - </option>
+                        <#--<option value="0"> - 公司级别 - </option>-->
                     </select>
                 </span>
                 <div id="levelIdError"></div>
@@ -95,7 +95,6 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>公司简介：</label>
             <div class="formControls col-xs-8 col-sm-9" id="editor">
-                <#--<input name="" id="" value="请输入公司简介......." readonly style="color: #1c94c4; border: none;"/>-->
             </div>
             <input type="hidden" name="profile" id="details" value="<p class='profile-p'>公司简介无内容！</p>"/>
         </div>
