@@ -76,7 +76,8 @@
                     </a>
 				</div>
 				<div class="module">
-					<a href=""></a>
+                    <a href="">
+					<#--<a href="javascript:void(0);" onclick="phone('66666666')">-->
 						<div class="module-cont">
 							<img src="/img/service.png"/>
 							<div>环保咨询</div>
@@ -137,4 +138,10 @@
 			</div>
 		</div>
 	</body>
+<#--<script>
+    function phone(date){
+        alert("aaa");
+        window.location.href = 'tel://' + date;
+    }
+</script>-->
 </html>

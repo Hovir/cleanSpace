@@ -48,7 +48,7 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
     @Query("select coy from Company coy join coy.companyAddresses ca where ca.state=?1 and coy.status=1")
     List<Company> selectCompanyByState(String state);
 
-    @Query("select coy from Company coy join coy.companyAddresses ca where ca.state=?1 and ca.city=?2 and coy.status=3")
+    @Query("select coy from Company coy join coy.companyAddresses ca where ca.state=?1 and ca.city=?2 and coy.status=1")
     List<Company> selectCompanyByStateByCity(String state, String city);
 
     @Query("select coy from Company coy join coy.companyAddresses ca where ca.state=?1 and ca.city=?2 and ca.district=?3 and coy.status=1")
