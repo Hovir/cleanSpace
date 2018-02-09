@@ -47,8 +47,7 @@
 }
 .product-type .product-title .title {
   float: left;
-  font-size: 1.25rem;
-  font-weight: bold;
+  font-size: 1.125rem;
   padding: 1rem 0 0.5rem 1rem;
 }
 .product-type .product-title .title-right {
@@ -94,11 +93,16 @@
 }
 .product-type .product-cont .col-detail .detail .introduce .introduce-detail {
   display: inline-block;
-  height: 75%;
+  height: 50%;
   width: 100%;
-  overflow: hidden;
   padding-left: 0.625rem;
   padding-top: 3%;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  line-height: 1.5rem;
 }
 .product-type .product-cont .col-detail .detail .introduce .introduce-time {
   display: inline-block;
@@ -106,4 +110,5 @@
   width: 100%;
   overflow: hidden;
   padding-left: 0.625rem;
+  margin-top: 15%;
 }

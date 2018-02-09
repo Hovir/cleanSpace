@@ -4,6 +4,8 @@
 .sel {
   display: inline-block;
   margin-top: 0.625rem;
+  border-bottom: 1px solid #e6e6e6;
+  padding-bottom: 0.625rem;
 }
 .sel select {
   display: inline-block;
@@ -52,10 +54,18 @@
 }
 .product-type .col-detail .detail .introduce .introduce-detail {
   display: inline-block;
-  overflow: hidden;
   font-size: 0.9375rem;
   padding-left: 0.625rem;
-  line-height: 0.9375rem;
+  line-height: 1.4375rem;
+  color: #999999;
+  margin-top: 0.3125rem;
+  width: 14.3125rem;
+  height: 4.375rem;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 .product-type .col-detail .detail .introduce .introduce-time {
   display: inline-block;

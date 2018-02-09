@@ -46,8 +46,7 @@
         border-bottom: 1px solid rgb(222,222,222);
         .title{
             float: left;
-            font-size: 20/16rem;
-            font-weight: bold;
+            font-size: 18/16rem;
             padding: 1rem 0 0.5rem 1rem;
         }
         .title-right{
@@ -92,11 +91,18 @@
                     overflow: hidden;
                     .introduce-detail {
                         display: inline-block;
-                        height: 75%;
+                        height: 50%;
                         width: 100%;
                         overflow: hidden;
                         padding-left: 10/16rem;
                         padding-top: 3%;
+                        text-overflow:ellipsis;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    
+                    -webkit-line-clamp: 2;
+                    overflow: hidden;
+                    line-height: 24/16rem;
                     }
                     .introduce-time {
                         display: inline-block;
@@ -104,6 +110,7 @@
                         width: 100%;
                         overflow: hidden;
                         padding-left: 10/16rem;
+                        margin-top: 15%;
                     }
                 }
             }
