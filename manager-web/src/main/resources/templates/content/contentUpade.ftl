@@ -16,7 +16,7 @@
 
 <!--/代码写在这里-->
 <article class="page-container">
-    <form class="form form-horizontal" id="form-article-add" action="${path}/news/saveUpdateNews" method="post">
+    <form class="form form-horizontal" id="form-article-add" action="${path}/content/saveUpdateContent" method="post">
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>文章标题：</label>
             <div class="formControls col-xs-8 col-sm-9">
@@ -40,7 +40,7 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>文章内容：</label>
             <div class="formControls col-xs-8 col-sm-9" id="editor"></div>
-            <input type="hidden" name="details" id="details"/>
+            <input type="hidden" name="content" id="details"/>
         </div>
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
@@ -133,9 +133,9 @@
     var json = ${(json)?default("")};
     $("#id").val(json.id);
     $("#title").val(json.title);
-    $("#imgUrl").val(json.img_url);
-    $("#img").html("<img src='" + json.img_url + "' class='layui-upload-img radius' height='100' width='100'>");
-    editor.txt.html(json.details);
+    $("#imgUrl").val(json.imgUrl);
+    $("#img").html("<img src='" + json.imgUrl + "' class='layui-upload-img radius' height='100' width='100'>");
+    editor.txt.html(json.content);
 </script>
 <!--请在下方写此页面业务相关的脚本-->
 </body>

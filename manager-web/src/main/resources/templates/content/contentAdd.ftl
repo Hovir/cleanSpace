@@ -8,7 +8,7 @@
 <#assign path=springMacroRequestContext.getContextPath() />
 <html>
 <head>
-    <title>资讯修改</title>
+    <title>资讯添加</title>
     <#include "${path}/manager/_meta.ftl"/>
     <link rel="stylesheet" type="text/css" href="${path}/lib/layui/css/layui.css"/>
 </head>
@@ -16,7 +16,7 @@
 
 <!--/代码写在这里-->
 <article class="page-container">
-    <form class="form form-horizontal" id="form-article-add" action="${path}/news/saveUpdateNews" method="post">
+    <form class="form form-horizontal" id="form-article-add" action="${path}/content/addContent" method="post">
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>文章标题：</label>
             <div class="formControls col-xs-8 col-sm-9">
@@ -39,8 +39,9 @@
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>文章内容：</label>
-            <div class="formControls col-xs-8 col-sm-9" id="editor"></div>
-            <input type="hidden" name="details" id="details"/>
+            <div class="formControls col-xs-8 col-sm-9" id="editor">
+            </div>
+            <input type="hidden" name="content" id="details"/>
         </div>
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
@@ -52,7 +53,6 @@
                 </button>
             </div>
         </div>
-        <input type="hidden" id="id" name="id" value="">
     </form>
 </article>
 <!--/代码写在这里-->
@@ -68,7 +68,7 @@
     var E = window.wangEditor;
     var editor = new E('#editor');
     // 上传图片到服务器
-    editor.customConfig.uploadImgServer = '${path}/news/uploader';
+    editor.customConfig.uploadImgServer = '${path}/content/uploader';
     // 将图片大小限制为 3M
     editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024;
     // 限制一次最多上传 5 张图片
@@ -127,15 +127,6 @@
             $("#form-article-add").submit();
         }
     }
-</script>
-<script type="application/javascript">
-    /*初始化页面*/
-    var json = ${(json)?default("")};
-    $("#id").val(json.id);
-    $("#title").val(json.title);
-    $("#imgUrl").val(json.img_url);
-    $("#img").html("<img src='" + json.img_url + "' class='layui-upload-img radius' height='100' width='100'>");
-    editor.txt.html(json.details);
 </script>
 <!--请在下方写此页面业务相关的脚本-->
 </body>

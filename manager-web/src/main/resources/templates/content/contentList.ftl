@@ -9,9 +9,9 @@
 
 <nav class="breadcrumb"><i class="Hui-iconfont"></i>
     <a href="javascript:;" onclick="pageTurns('manager/_home')" class="maincolor">首页</a>
-    <span class="c-999 en">&gt;</span><span class="c-666">新闻管理</span>
+    <span class="c-999 en">&gt;</span><span class="c-666">资讯管理</span>
     <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:;"
-       onclick="pageTurns('advisory/advisory')" title="刷新">
+       onclick="pageTurns('content/contentList')" title="刷新">
         <i class="Hui-iconfont">&#xe68f;</i>
     </a></nav>
 <div class="Hui-article">
@@ -20,7 +20,7 @@
 				<span class="l">
 				<a href="javascript:;" onclick="deleteAll(this)" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
 				<a href="javascript:;" class="btn btn-primary radius" data-title="添加资讯"
-                   onclick="layer_open('添加资讯','/news/openAddNews')"><i class="Hui-iconfont">&#xe600;</i> 添加资讯</a>
+                   onclick="layer_open('添加资讯','/content/openContentAdd')"><i class="Hui-iconfont">&#xe600;</i> 添加资讯</a>
 				</span>
         </div>
         <div class="mt-20">
@@ -43,7 +43,7 @@
         <script type="application/javascript" src="${path}/lib/datatables/1.10.15/jquery.dataTables.min.js"></script>
         <script type="application/javascript" src="${path}/lib/js/dataTables.js"></script>
         <script type="application/javascript">
-            var url = "${path}/news/selectNews";
+            var url = "${path}/content/selectList";
             /*列对应表*/
             var columns = [
                 {data: null},
@@ -71,7 +71,7 @@
                     targets: 4,
                     //渲染函数
                     render: function (data) {
-                        return "<a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"layer_open('修改资讯','/news/updateNews/" + data.id + "')\" href=\"javascript:;\" title=\"编辑\"><i class=\"Hui-iconfont\">&#xe6df;</i></a>" +
+                        return "<a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"layer_open('修改资讯','/content/openUpdateContent/" + data.id + "')\" href=\"javascript:;\" title=\"编辑\"><i class=\"Hui-iconfont\">&#xe6df;</i></a>" +
                                 "<a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"del(this," + data.id + ")\" href=\"javascript:;\" title=\"删除\"><i class=\"Hui-iconfont\">&#xe6e2;</i></a>";
                     }
                 },
@@ -120,15 +120,15 @@
                             id.push(groupCheckbox[i].value);
                         }
                     }
-                    $.post("${path}/news/deleteNews", {id: id}, function (req) {
+                    $.post("${path}/content/contentDelete", {id: id}, function (req) {
                         if (req) {
                             $(obj).parents("tr").remove();
                             layer.msg('已删除!', {icon: 1, time: 1000});
-                            pageTurns("advisory/advisory");
+                            pageTurns("content/contentList");
                         } else {
                             $(obj).parents("tr").remove();
                             layer.msg('删除失败!', {icon: 5, time: 1000});
-                            pageTurns("advisory/advisory");
+                            pageTurns("content/contentList");
                         }
                     })
                 })
@@ -139,15 +139,15 @@
                 layer.confirm('确认要删除吗？', function (index) {
                     var id = new Array();
                     id.push(i);
-                    $.post("${path}/news/deleteNews", {id: id}, function (req) {
+                    $.post("${path}/content/contentDelete", {id: id}, function (req) {
                         if (req) {
                             $(obj).parents("tr").remove();
                             layer.msg('已删除!', {icon: 1, time: 1000});
-                            pageTurns("advisory/advisory");
+                            pageTurns("content/contentList");
                         } else {
                             $(obj).parents("tr").remove();
                             layer.msg('删除失败!', {icon: 5, time: 1000});
-                            pageTurns("advisory/advisory");
+                            pageTurns("content/contentList");
                         }
                     })
                 })
