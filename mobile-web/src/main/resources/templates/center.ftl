@@ -77,7 +77,7 @@
 			    </div>
 			</div>
 			<div class="middle-con">
-				<a href="/personCenter">
+				<a href="/personCenterPage">
 				<div class="middle-part">
 					<span class="middle-icon"><img src="img/center-my.png" alt="" /></span>
 					<span class="middle-word">个人中心</span>

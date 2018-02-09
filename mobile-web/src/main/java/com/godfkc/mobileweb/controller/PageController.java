@@ -288,4 +288,22 @@ public class PageController {
      */
     @RequestMapping("/filter")
     public String screenPage(){return "screen";}
+
+    /**
+     * 个人中心跳转
+     * @return
+     */
+    @RequestMapping("personCenterPage")
+    public String personCenterPage(){
+        return "personCenter";
+    }
+
+    /**
+     * 修改头像页面跳转
+     * @return
+     */
+    @RequestMapping("/cutHeadImg")
+    public String cutHeadImg(){
+        return "reviseHead";
+    }
 }

@@ -22,4 +22,12 @@ public interface UserRepository extends JpaRepository<User,Long>{
     @Modifying
     @Query(" update User u set u.password = ?1 where u.phone = ?2 and u.status=1")
     int updatePwdByPhone(String password,String phone);
+
+    @Modifying
+    @Query(" update User u set u.headImg = ?1 where u.id = ?2")
+    int updateUserImgById(String headImage,Long userId);
+
+    @Modifying
+    @Query(" update User u set u.name = ?1 where u.id = ?2")
+    int updateNameById(String name,Long userId);
 }

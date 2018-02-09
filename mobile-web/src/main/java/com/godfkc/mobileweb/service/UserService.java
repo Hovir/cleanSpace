@@ -17,4 +17,9 @@ public interface UserService {
     boolean insertUserInfo(String phone, String password);
 
     boolean updatePwdByPhone(String phone,String password);
+
+    boolean updateUserImgById(String imagePath,String userId);
+
+    boolean updateNameById(String name, Long userId);
+
 }

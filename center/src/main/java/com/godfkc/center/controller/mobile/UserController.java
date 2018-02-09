@@ -57,4 +57,28 @@ public class UserController {
         }
         return false;
     }
+
+    //修改头像
+    @RequestMapping("/updateUserImgById")
+    public boolean updateUserImgById(@RequestBody Map map){
+        String headImage = (String) map.get("imagePath");
+        Long userId = Long.parseLong(map.get("userId").toString());
+        int i = userService.updateUserImgById(headImage,userId);
+        if (i==1){
+            return true;
+        }
+        return false;
+    }
+
+    //修改昵称
+    @RequestMapping("/updateNameById")
+    public boolean updateNameById(@RequestBody Map map){
+        String name = (String) map.get("name");
+        Long userId = Long.parseLong(map.get("userId").toString());
+        int i = userService.updateNameById(name, userId);
+        if (i==1){
+            return true;
+        }
+        return false;
+    }
 }

@@ -39,4 +39,14 @@ public class UserServiceImpl implements UserService {
     public int updatePwdByPhone(String phone, String password) {
         return userRepository.updatePwdByPhone(password,phone);
     }
+
+    @Override
+    public int updateUserImgById(String headImage,Long userId) {
+        return userRepository.updateUserImgById(headImage,userId);
+    }
+
+    @Override
+    public int updateNameById(String name, Long userId) {
+        return userRepository.updateNameById(name,userId);
+    }
 }

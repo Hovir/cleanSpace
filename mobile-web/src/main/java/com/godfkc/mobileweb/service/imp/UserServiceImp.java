@@ -78,5 +78,23 @@ public class UserServiceImp implements UserService{
         return this.restTemplate.postForObject(url,map,boolean.class);
     }
 
+    @Override
+    public boolean updateUserImgById(String imagePath, String userId) {
+        String url = centerUrl + "updateUserImgById";
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("imagePath",imagePath);
+        map.put("userId",userId);
+        return this.restTemplate.postForObject(url,map,boolean.class);
+    }
+
+    @Override
+    public boolean updateNameById(String name, Long userId) {
+        String url = centerUrl + "updateNameById";
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("name",name);
+        map.put("userId",userId);
+        return this.restTemplate.postForObject(url,map,boolean.class);
+    }
+
 
 }

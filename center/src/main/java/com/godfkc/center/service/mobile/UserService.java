@@ -16,4 +16,8 @@ public interface UserService {
     User saveUserInfo(User user);
 
     int updatePwdByPhone(String password,String phone);
+
+    int updateUserImgById(String headImage,Long userId);
+
+    int updateNameById(String name,Long userId);
 }
