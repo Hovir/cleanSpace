@@ -39,7 +39,7 @@
                 <span class="span_2">￥ 299.00</span>
             </div>-->
         <div class="sheZhi">    
-        	<form action="" method="">
+        	<form action="/pay/payOk" method="post" id="myForm">
         	
             <a id="weixin-href" href="javascript:void(0)" class="si">
             	<span class="span_3">
@@ -60,16 +60,16 @@
                 </div>
                 <span <#--href="javascript:mysubmit()"--> onclick="goToPay()" class="payMoney_confirm" >确认支付</span>
             </div>
-            
+                <input type="hidden" value="${cardId?c!''}" id="cardId" name="cardId">
+                <input type="hidden" value="${Session.userPhone!'123'}" id="phone" name="phone">
+                <input type="hidden" value="20000" id="money" name="money">
             
         	</form>
         </div>
                   
 			</div>
 			
-			<input type="hidden" value="${cardId?c!''}" id="cardId">
-        	<input type="hidden" value="${Session.userPhone!'123'}" id="phone">
-			<input type="hidden" value="20000" id="money">
+
 
 <script type="text/javascript">
 
@@ -95,7 +95,6 @@
        var phone=$("#phone").val();
        var money=$("#money").val();
        var cardId=$("#cardId").val();
-       alert(cardId);
        if(phone=="123"){
            alert("登录超时请重新登录");
            window.location.href="/login";
@@ -104,7 +103,8 @@
             alert("请选择支付方式！");
             return;
 		}
-
+		$("#myForm").submit();
+       /*
         $.ajax({
             //请求类型
             type:"POST",
@@ -121,7 +121,7 @@
             error:function(data){
 				alert("请求失败");
             }
-        });
+        });*/
     }
 </script>
 
