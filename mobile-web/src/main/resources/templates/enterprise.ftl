@@ -129,7 +129,7 @@ ${company}
                     <span>预约时间：<em>${order.appointmentTime?number_to_date?string("yyyy-MM-dd HH:mm")}</em></span>
                     <!-- 上传报告或者查看详情-->
                     <#if (order.status==2)>
-                        <span><a href="/order/customerDetails?id=${order.id}">查看详情</a></span>
+                        <span><a href="/order/customerDetails?id=${order.id}" style="color:white;">查看详情</a></span>
                     </#if>
                     <#if (order.status==1)>
                         <span><a href="${base}/upload/${order.id}">提交报告</a></span>

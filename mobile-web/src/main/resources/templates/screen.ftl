@@ -14,7 +14,7 @@
 		<div class="header">
 			<div class="left">
 				<div class="return">
-					<a href="">
+					<a href="${base}/company/myCompany">
 						<img src="img/back-white.png" />
 					</a>
 				</div>

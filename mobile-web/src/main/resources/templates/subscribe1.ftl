@@ -25,7 +25,7 @@
 				</div>
 				<div class=" right">
 					<div class="go">
-						<a href="">
+						<a href="javascript:void(0)">
 							<!--<img src="img/setting.png" />-->
 						</a>
 					</div>
