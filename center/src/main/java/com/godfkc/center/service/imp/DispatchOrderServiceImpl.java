@@ -84,20 +84,23 @@ public class DispatchOrderServiceImpl implements DispatchOrderService{
     //添加Order表中companyId字段 zzb add
     @Override
     public void saveCompany(Long ztreeId, Long id) {
+        Order order = orderRepository.findOrderById(id);
         Company company = companyRepository.findById(ztreeId);
-        orderRepository.updateCompanyById(company,id);
-        //通过companyId查询funds表中是否有该公司信息，如果有就更新money字段，如果没有则新添加一条数据 lqj add 2018-2-8
-        CompanyFunds companyFundsByCompanyId = companyFundsRepository.findCompanyFundsByCompanyId(ztreeId);
-        if(companyFundsByCompanyId == null){
-            CompanyFunds companyFunds = new CompanyFunds();
-            companyFunds.setCreateTime(new Date());
-            companyFunds.setMoney(company.getLevel().getCommision());
-            companyFunds.setStatus(1);
-            companyFunds.setCompany(company);
-            companyFunds.setUpdateTime(new Date());
-            companyFundsRepository.save(companyFunds);
-        }else{
-            companyFundsRepository.updateFundsMoneyAndUpdateTimeByCompanyId(company.getLevel().getCommision(),new Date(),ztreeId);
+        if(order.getCompany()==null){
+            orderRepository.updateCompanyById(company,id);
+            //通过companyId查询funds表中是否有该公司信息，如果有就更新money字段，如果没有则新添加一条数据 lqj add 2018-2-8
+            CompanyFunds companyFundsByCompanyId = companyFundsRepository.findCompanyFundsByCompanyId(ztreeId);
+            if(companyFundsByCompanyId == null){
+                CompanyFunds companyFunds = new CompanyFunds();
+                companyFunds.setCreateTime(new Date());
+                companyFunds.setMoney(company.getLevel().getCommision());
+                companyFunds.setStatus(1);
+                companyFunds.setCompany(company);
+                companyFunds.setUpdateTime(new Date());
+                companyFundsRepository.save(companyFunds);
+            }else{
+                companyFundsRepository.updateFundsMoneyAndUpdateTimeByCompanyId(company.getLevel().getCommision(),new Date(),ztreeId);
+            }
         }
 
     }

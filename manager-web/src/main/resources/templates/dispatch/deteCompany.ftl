@@ -84,9 +84,10 @@
             $("#error").html("<span style=\"color: #FF5722;\">请先选择公司!</span>");
             return null;
         }
-        $("#error").html("<span style=\"color: #FF5722;\">选择成功</span>");
+        $("#error").html("<span style=\"color: green;\">操作完成</span>");
         $.get("${path}/saveDeteCompany/"+zTreeId+"/"+id ,function () {
-            alert("指派成功，请点击屏幕刷新按钮刷新页面");
+            alert("操作完成");
+            alert("记得点击屏幕刷新按钮刷新页面哦");
             layer_close();
         })
     }
