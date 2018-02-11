@@ -63,8 +63,8 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
     //后台列表-list-分页-all
     Page<Company> findCompaniesByStatus(Integer status, Pageable pageable);
 
-    //后台列表-list-搜索-分页-数据
-    Page<Company> findCompaniesByCreateTimeBetweenAndNameLikeAndStatus(Date from, Date to, String name, Integer status, Pageable pageable);
+    //后台列表-list-搜索-分页-数据-（根据条件查询）
+    Page<Company> findCompaniesByCreateTimeBetweenAndNameStartingWithAndStatus(Date from, Date to, String name, Integer status, Pageable pageable);
 
 
     //后台列表-list-编辑数据-查询
@@ -78,17 +78,17 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
 
     //后台列表-list-修改-信息
     @Modifying
-    @Query("UPDATE Company SET name=:name,imgUrl=:imgUrl,profile=:profile WHERE id=:id")
-    int updateCompanyById(@Param("id") Long id, @Param("name") String name, @Param("imgUrl") String imgUrl, @Param("profile") String profile);
+    @Query("UPDATE Company SET name=:name,imgUrl=:imgUrl,profile=:profile,updateTime=:updateTime WHERE id=:id")
+    int updateCompanyById(@Param("id") Long id, @Param("name") String name, @Param("imgUrl") String imgUrl, @Param("profile") String profile,@Param("updateTime") Date updateTime);
 
 
     //后台列表-list-修改-密码
     @Modifying
-    @Query("UPDATE Company SET password=:password  WHERE id=:id")
-    int updateCompanyPwdById(@Param("id") Long id, @Param("password") String password);
+    @Query("UPDATE Company SET password=:password,updateTime=:updateTime  WHERE id=:id")
+    int updateCompanyPwdById(@Param("id") Long id, @Param("password") String password,@Param("updateTime") Date updateTime);
 
     //后台列表-list-修改状态（0停用，1启用）
     @Modifying
-    @Query("UPDATE Company SET status=:status  WHERE id=:id")
-    int updateCompanyStatusById(@Param("id") Long id, @Param("status") int status);
+    @Query("UPDATE Company SET status=:status,updateTime=:updateTime  WHERE id=:id")
+    int updateCompanyStatusById(@Param("id") Long id, @Param("status") int status,@Param("updateTime") Date updateTime);
 }

@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import sun.misc.BASE64Decoder;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,18 +25,20 @@ public class CompanyController {
 
     /**
      * 企业-列表-数据
+     *
      * @param sentParameters
      * @return
      */
     @RequestMapping("/admin/compList")
     @ResponseBody
-    public String getCompany(SentParameters sentParameters){
+    public String getCompany(SentParameters sentParameters) {
         return companyService.getCompaniesList(sentParameters);
     }
 
 
     /**
      * 企业列表-条件搜索-页面
+     *
      * @param dateFrom
      * @param dateTo
      * @param companyName
@@ -42,15 +46,17 @@ public class CompanyController {
      * @return
      */
     @RequestMapping(value = "/admin/compSearch/{dateFrom}/{dateTo}/{companyName}", method = {RequestMethod.POST, RequestMethod.GET}, produces = "text/html;charset=UTF-8")
-    public String getSearchPage(@PathVariable("dateFrom") String dateFrom, @PathVariable("dateTo") String dateTo, @PathVariable("companyName") String companyName,Model model) {
-        model.addAttribute("dateFrom",dateFrom);
-        model.addAttribute("dateTo",dateTo);
-        model.addAttribute("companyName",companyName);
+    public String getSearchPage(@PathVariable("dateFrom") String dateFrom, @PathVariable("dateTo") String dateTo, @PathVariable("companyName") String companyName, Model model) {
+        //System.out.println("dateTo1=" + dateTo);
+        model.addAttribute("dateFrom", dateFrom);
+        model.addAttribute("dateTo", dateTo);
+        model.addAttribute("companyName", companyName);
         return "company/companyListSearch";
     }
 
     /**
      * 企业列表-条件搜索-数据
+     *
      * @param sentParameters
      * @param dateFrom
      * @param dateTo
@@ -59,180 +65,207 @@ public class CompanyController {
      */
     @RequestMapping("/admin/compSearchData/{dateFrom}/{dateTo}/{companyName}")
     @ResponseBody
-    public String getCompanySearchData(SentParameters sentParameters, @PathVariable("dateFrom") String dateFrom, @PathVariable("dateTo") String dateTo, @PathVariable("companyName") String companyName){
-        return companyService.getCompaniesSearch(sentParameters,dateFrom,dateTo,companyName);
+    public String getCompanySearchData(SentParameters sentParameters, @PathVariable("dateFrom") String dateFrom, @PathVariable("dateTo") String dateTo, @PathVariable("companyName") String companyName) {
+        //System.out.println("dateTo2=" + dateTo);
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String nowDate= simpleDateFormat.format(date);
+        if (dateTo!=null&&nowDate.equals(dateTo)&&dateTo.length()>8) {
+            //2018-02-11
+            String dateToStrOne=dateTo.substring(0,8);
+            String dateToStrTwo=dateTo.substring(8);;
+            if(dateToStrTwo!= null && dateToStrTwo.length()>0){
+                int dateToInt=Integer.parseInt(dateToStrTwo);
+                dateToInt++;
+                dateToStrTwo=String.valueOf(dateToInt);
+            }
+            dateTo=dateToStrOne+dateToStrTwo;
+            //System.out.println("新 dateTo="+dateTo);
+        }
+        return companyService.getCompaniesSearch(sentParameters, dateFrom, dateTo, companyName);
     }
-
 
 
     /**
      * 企业列表-添加信息-页面-公司名称
+     *
      * @return
      */
     @RequestMapping(value = "/admin/compListAdd/add/companyName.ajax")
     @ResponseBody
     public String getCompanyName() {
-        String companyNameList=companyService.getCompanyNameList();
+        String companyNameList = companyService.getCompanyNameList();
         //return "company/companyListAdd";
         return companyNameList;
     }
 
     /**
      * 企业列表-添加信息-页面-公司级别
+     *
      * @return
      */
     @RequestMapping(value = "/admin/compListAdd/add/{companyId}/levelName.ajax")
     @ResponseBody
     public String getLevelName(@PathVariable("companyId") Long companyId) {
-        String serviceLevelNameLists=null;
-        if(companyId==0){
+        String serviceLevelNameLists = null;
+        if (companyId == 0) {
             return serviceLevelNameLists;
-        }else if (companyId==1){
-            serviceLevelNameLists=companyService.getLevelNameList();
-        }else {
+        } else if (companyId == 1) {
+            serviceLevelNameLists = companyService.getLevelNameList();
+        } else {
             companyService.getLevelsByCompanyIdAndLevelId(companyId);
-            serviceLevelNameLists=companyService.getLevelsByCompanyIdAndLevelId(companyId);
+            serviceLevelNameLists = companyService.getLevelsByCompanyIdAndLevelId(companyId);
         }
         //return "company/companyListAdd";
         return serviceLevelNameLists;
     }
 
     /**
-     * 企业列表-添加信息-页面
+     * 企业列表-添加信息-跳转-页面
      * @param model
      * @return
      */
-    @RequestMapping(value = "/admin/compListAdd/add/{num}/edit",method = {RequestMethod.GET,RequestMethod.POST},produces = "text/html;charset=UTF-8")
-    public String getCompanyAddPage(@PathVariable("num") String num,Model model){
-        if (("failer").equals(num)){
-            model.addAttribute("failer","保存并提交失败！");
+    @RequestMapping(value = "/admin/compListAdd/add/{num}/edit", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/html;charset=UTF-8")
+    public String getCompanyAddPage(@PathVariable("num") String num, Model model) {
+        if (("failer").equals(num)) {
+            model.addAttribute("failer", "保存并提交失败！");
         }
-        if (("sucess").equals(num)){
-            model.addAttribute("failer","保存并提交成功！");
+        if (("sucess").equals(num)) {
+            model.addAttribute("failer", "保存并提交成功！");
         }
         return "company/companyListAdd";
     }
+
     /**
      * 企业列表-添加信息-数据
+     *
      * @param companyName
      * @param imgUrl
      * @param levelId
      * @param profile
      * @return
      */
-    @RequestMapping(value = "/admin/compListAddData/add/edit",method = RequestMethod.POST)
-    public String getCompanyAddData(@RequestParam("companyName") String companyName,@RequestParam("imgUrl") String imgUrl,@RequestParam("levelId") Long levelId,@RequestParam("profile") String profile,@RequestParam("bn") String bn,@RequestParam("password") String password,@RequestParam("parentId") Long parentId){
+    @RequestMapping(value = "/admin/compListAddData/add/edit", method = RequestMethod.POST)
+    public String getCompanyAddData(@RequestParam("companyName") String companyName, @RequestParam("imgUrl") String imgUrl, @RequestParam("levelId") Long levelId, @RequestParam("profile") String profile, @RequestParam("bn") String bn, @RequestParam("password") String password, @RequestParam("parentId") Long parentId) {
         Map<String, Object> map = new HashMap<>();
         map.put("name", companyName);
         map.put("imgUrl", imgUrl);
         map.put("profile", profile);
         map.put("bn", bn);
         map.put("password", password);
-        String str=companyService.insertCompany(map,levelId,parentId);
-        if(str!=null){
+        String str = companyService.insertCompany(map, levelId, parentId);
+        if (str != null) {
             //成功-""
             return "/admin/compListAdd/add/sucess/edit";
         }
         //失败-""
-       return "/admin/compListAdd/add/failer/edit";
+        return "/admin/compListAdd/add/failer/edit";
     }
 
 
     /**
      * 企业列表-详情-页面（显示数据）
+     *
      * @param id
      * @param model
      * @return
      */
-    @RequestMapping(value = "/admin/compListShow/{id}/edit",method = {RequestMethod.GET,RequestMethod.POST},produces = "text/html;charset=UTF-8")
-    public String getCompanyShowPage(@PathVariable("id") Long id,Model model){
-        String companyOneDetails=companyService.getCompanyOneDetails(id);
-        Map<String,Object> editmap= JsonUtils.JsonToMap(companyOneDetails);
-        model.addAttribute("companyShow",editmap);
+    @RequestMapping(value = "/admin/compListShow/{id}/edit", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/html;charset=UTF-8")
+    public String getCompanyShowPage(@PathVariable("id") Long id, Model model) {
+        String companyOneDetails = companyService.getCompanyOneDetails(id);
+        Map<String, Object> editmap = JsonUtils.JsonToMap(companyOneDetails);
+        model.addAttribute("companyShow", editmap);
         return "company/companyListShow";
     }
+
     /**
      * 企业列表-详情-页面（显示数据）（时间传值）
+     *
      * @param id
      * @param model
      * @return
      */
-    @RequestMapping(value = "/admin/compListShow/{id}/{date}/edit",method = {RequestMethod.GET,RequestMethod.POST},produces = "text/html;charset=UTF-8")
-    public String getCompanyShowPage2(@PathVariable("id") Long id,@PathVariable("date") String date,Model model){
-        String companyOneDetails=companyService.getCompanyOneDetails(id);
-        Map<String,Object> editmap= JsonUtils.JsonToMap(companyOneDetails);
-        editmap.put("createTime",date);
-        model.addAttribute("companyShow",editmap);
+    @RequestMapping(value = "/admin/compListShow/{id}/{date}/edit", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/html;charset=UTF-8")
+    public String getCompanyShowPage2(@PathVariable("id") Long id, @PathVariable("date") String date, Model model) {
+        String companyOneDetails = companyService.getCompanyOneDetails(id);
+        Map<String, Object> editmap = JsonUtils.JsonToMap(companyOneDetails);
+        editmap.put("createTime", date);
+        model.addAttribute("companyShow", editmap);
         return "company/companyListShow";
     }
 
 
     /**
      * 企业列表-编辑-页面（显示数据）
+     *
      * @param id
      * @param model
      * @return
      */
-    @RequestMapping(value = "/admin/compListEdit/{id}/{num}/edit",method = {RequestMethod.GET,RequestMethod.POST},produces = "text/html;charset=UTF-8")
-    public String getCompanyEditPage(@PathVariable("id") Long id,@PathVariable("num") Long num,Model model){
-        String companyOneDetails=companyService.getCompanyOneDetails(id);
-        Map<String,Object> editmap= JsonUtils.JsonToMap(companyOneDetails);
-        model.addAttribute("companyEdit",editmap);
-        if (num==10){
-            model.addAttribute("fail","保存并提交失败！");
+    @RequestMapping(value = "/admin/compListEdit/{id}/{num}/edit", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/html;charset=UTF-8")
+    public String getCompanyEditPage(@PathVariable("id") Long id, @PathVariable("num") Long num, Model model) {
+        String companyOneDetails = companyService.getCompanyOneDetails(id);
+        Map<String, Object> editmap = JsonUtils.JsonToMap(companyOneDetails);
+        model.addAttribute("companyEdit", editmap);
+        if (num == 10) {
+            model.addAttribute("fail", "保存并提交失败！");
         }
         return "company/companyListEdit";
     }
 
     /**
      * 企业列表-添加信息-数据
+     *
      * @param companyName
      * @param imgUrl
      * @param profile
      * @return
      */
-    @RequestMapping(value = "/admin/compListEditData/update/edit",method = RequestMethod.POST)
-    public String getCompanyEditData(@RequestParam("id") Long id,@RequestParam("companyName") String companyName,@RequestParam("imgUrl") String imgUrl,@RequestParam("profile") String profile){
+    @RequestMapping(value = "/admin/compListEditData/update/edit", method = RequestMethod.POST)
+    public String getCompanyEditData(@RequestParam("id") Long id, @RequestParam("companyName") String companyName, @RequestParam("imgUrl") String imgUrl, @RequestParam("profile") String profile) {
         Map<String, Object> map = new HashMap<>();
         map.put("id", id);
         map.put("name", companyName);
         map.put("imgUrl", imgUrl);
         map.put("profile", profile);
-        String str=companyService.updateCompanyOneDetails(map);
-        if(str!=null){
+        String str = companyService.updateCompanyOneDetails(map);
+        if (str != null) {
             return " ";
         }
-        return "/admin/compListEdit/"+id+"/10/edit";
+        return "/admin/compListEdit/" + id + "/10/edit";
     }
 
 
     /**
      * 企业列表-修改密码-页面（显示数据）
+     *
      * @param id
      * @param model
      * @return
      */
-    @RequestMapping(value = "/admin/compListPwd/{id}/edit",method = {RequestMethod.GET,RequestMethod.POST},produces = "text/html;charset=UTF-8")
-    public String getCompanyPwdPage(@PathVariable("id") Long id,Model model){
-        String companyOneDetails=companyService.getCompanyOneDetails(id);
-        Map<String,Object> editmap= JsonUtils.JsonToMap(companyOneDetails);;
-        model.addAttribute("companyPwd",editmap);
+    @RequestMapping(value = "/admin/compListPwd/{id}/edit", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/html;charset=UTF-8")
+    public String getCompanyPwdPage(@PathVariable("id") Long id, Model model) {
+        String companyOneDetails = companyService.getCompanyOneDetails(id);
+        Map<String, Object> editmap = JsonUtils.JsonToMap(companyOneDetails);
+        ;
+        model.addAttribute("companyPwd", editmap);
         return "company/companyListPwd";
     }
 
     /**
      * 企业列表-修改密码-数据处理
+     *
      * @param id
      * @param password
      * @return
      */
-    @RequestMapping(value = "/admin/compListPwdData/update/edit",method = RequestMethod.POST)
-    public String getCompanyPwdData(@RequestParam("id") Long id,@RequestParam("password") String password){
-        String updateCompanyPwd=null;
-        if(id!=0){
-            updateCompanyPwd=companyService.updateCompanyOnePwd(id,password);
+    @RequestMapping(value = "/admin/compListPwdData/update/edit", method = RequestMethod.POST)
+    public String getCompanyPwdData(@RequestParam("id") Long id, @RequestParam("password") String password) {
+        String updateCompanyPwd = null;
+        if (id != 0) {
+            updateCompanyPwd = companyService.updateCompanyOnePwd(id, password);
         }
-        if (updateCompanyPwd!=null){
+        if (updateCompanyPwd != null) {
 
         }
         return " ";
@@ -240,28 +273,30 @@ public class CompanyController {
 
     /**
      * 企业列表-删除-数据处理
+     *
      * @param id
      * @return
      */
-    @RequestMapping(value = "/admin/compListStatusData/update/edit.ajax",method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/compListStatusData/update/edit.ajax", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,Boolean> getCompanyStatusData(@RequestParam("id") Long id){
-        HashMap<String,Boolean> delBooleanMap=new  HashMap<String,Boolean>();
+    public Map<String, Boolean> getCompanyStatusData(@RequestParam("id") Long id) {
+        HashMap<String, Boolean> delBooleanMap = new HashMap<String, Boolean>();
         //删除企业
-        int status=0;
-        String updateCompanyStatus=null;
-        if(id!=0){
-            updateCompanyStatus=companyService.updateCompanyOneStatus(id,status);
+        int status = 0;
+        String updateCompanyStatus = null;
+        if (id != 0) {
+            updateCompanyStatus = companyService.updateCompanyOneStatus(id, status);
         }
-        if (updateCompanyStatus!=null){
-            delBooleanMap.put("true",true);
+        if (updateCompanyStatus != null) {
+            delBooleanMap.put("true", true);
         }
-        delBooleanMap.put("false",false);
+        delBooleanMap.put("false", false);
         return delBooleanMap;
     }
 
     /**
      * 企业添加-添加信息-页面
+     *
      * @param model
      * @return
      */
@@ -272,15 +307,16 @@ public class CompanyController {
 
     /**
      * 企业列表-公司简介
+     *
      * @param id
      * @param model
      * @return
      */
-    @RequestMapping(value = "/admin/compListProfile/{id}/edit",method = {RequestMethod.GET,RequestMethod.POST},produces = "text/html;charset=UTF-8")
-    public String getCompanycompListProfilePage(@PathVariable("id") Long id,Model model){
-        String companyOneDetails=companyService.getCompanyOneDetails(id);
-        Map<String,Object> editmap= JsonUtils.JsonToMap(companyOneDetails);
-        model.addAttribute("companyProfile",editmap);
+    @RequestMapping(value = "/admin/compListProfile/{id}/edit", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/html;charset=UTF-8")
+    public String getCompanycompListProfilePage(@PathVariable("id") Long id, Model model) {
+        String companyOneDetails = companyService.getCompanyOneDetails(id);
+        Map<String, Object> editmap = JsonUtils.JsonToMap(companyOneDetails);
+        model.addAttribute("companyProfile", editmap);
         return "company/companyListProfile";
     }
 }

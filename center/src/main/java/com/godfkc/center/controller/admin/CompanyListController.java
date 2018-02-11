@@ -23,13 +23,12 @@ public class CompanyListController {
     private CompanyService companyService;
 
     /**
-     * 后台查询-list-ALL
+     * 企业列表-查询-企业列表
      * @param sentParameters
      * @return
      */
     @RequestMapping(value = "/company/list",method = RequestMethod.POST)
     public ReturnedData getCompaniesList(@RequestBody SentParameters sentParameters){
-        System.out.println("sssssssss");
         if (sentParameters!=null){}
         //返回到前台的数据
         ReturnedData<Company> returnedData = new ReturnedData<>();
@@ -44,7 +43,7 @@ public class CompanyListController {
     }
 
     /**
-     * 后台查询-list-Search
+     * 企业列表-查询-按条件查询
      * @param dateFrom
      * @param dateTo
      * @param companyName
@@ -53,16 +52,7 @@ public class CompanyListController {
      */
     @RequestMapping(value = "/company/listSearch/{dateFrom}/{dateTo}/{companyName}",method = RequestMethod.POST)
     public ReturnedData getCompaniesListSearch(@PathVariable("dateFrom") String dateFrom, @PathVariable("dateTo") String dateTo, @PathVariable("companyName") String companyName, @RequestBody SentParameters sentParameters){
-        System.out.println("dateFrom="+dateFrom);
-        System.out.println("dateTo="+dateTo);
-        System.out.println("companyName="+companyName);
-
         //获取参数
-        System.out.println("===="+sentParameters);
-        //SentParameters sentParameters=(SentParameters)mapSearch.get("sentParameters");
-       /* String dateFrom=(String)mapSearch.get("dateFrom");
-        String dateTo=(String)mapSearch.get("dateTo");
-        String companyName=(String)mapSearch.get("companyName");*/
         Date fromDate=null;
         Date toDate=null;
         try {
@@ -71,7 +61,6 @@ public class CompanyListController {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
         //返回到前台的数据
         ReturnedData<Company> returnedData = new ReturnedData<>();
         DataTablesReturn dataTablesReturn = new ReturnedDataUtil().DataRequestRequest(sentParameters);
@@ -89,7 +78,6 @@ public class CompanyListController {
         returnedData.setRecordsTotal((int) page.getTotalElements());
         returnedData.setRecordsFiltered((int) page.getTotalElements());
         returnedData.setData(page.getContent());
-
         return returnedData;
     }
 
@@ -107,7 +95,7 @@ public class CompanyListController {
     }
 
     /**
-     * 后台-添加-查询数据
+     * 企业列表-添加-查询CompanyIdName
      * @return
      */
     @RequestMapping(value = "/company/Add/companyNameList")
@@ -115,7 +103,7 @@ public class CompanyListController {
         return companyService.getCompanyIdName();
     }
     /**
-     * 后台-添加-查询数据
+     * 企业列表-添加-查询LevelIdName
      * @return
      */
     @RequestMapping(value = "/company/Add/levelNameList")
@@ -124,33 +112,24 @@ public class CompanyListController {
     }
 
     /**
-     * 后台列表-list-添加-查询Level-级联
+     * 企业列表-添加-查询Level-级联
      * @param companyId
      * @return
      */
     @RequestMapping("/company/Add/{companyId}/levelNameList")
     public List<Level> getCompaniesLevel(@PathVariable("companyId") Long companyId){
-        System.out.println("levels=>id="+companyId);
         Company companyOne= companyService.getCompanyOneDetails(companyId);
         Long levelId=companyOne.getLevel().getId();
         List<Level> levels=companyService.getLevesByIdAfter(levelId);
-        System.out.println("levels="+levels);
         return levels;
     }
     /**
-     * 后台-添加-添加数据
+     * 企业列表-添加-添加数据
      * @param company
      * @return
      */
     @RequestMapping(value = "/company/Add/{levelId}/{parentId}/edit",method = RequestMethod.POST)
     public Company addCompaniesList(@RequestBody Company company,@PathVariable("levelId") Long  levelId,@PathVariable("parentId") Long parentId) {
-        System.out.println("添加-companyName="+company.getName());
-        System.out.println("添加-imgUrl="+company.getImgUrl());
-        System.out.println("添加-profile="+company.getProfile());
-        System.out.println("添加-bn="+company.getBn());
-        System.out.println("添加-password="+company.getPassword());
-        System.out.println("添加-levelId="+levelId);
-        System.out.println("添加-parentId="+parentId);
         Level level=new Level();
         level.setId(levelId);
         company.setLevel(level);
@@ -161,20 +140,18 @@ public class CompanyListController {
     }
 
     /**
-     * 后台列表-list-编辑-查询数据
+     * 后台列表-编辑-查询数据
      * @param id
      * @return
      */
     @RequestMapping("/company/details/{id}/edit")
     public Company getCompaniesOneDetails(@PathVariable("id") Long id){
-        System.out.println("=="+id);
         Company companyOne= companyService.getCompanyOneDetails(id);
-        System.out.println("name="+companyOne.getName());
         return companyOne;
     }
 
     /**
-     * 后台列表-list-编辑-修改数据
+     * 企业列表-编辑-修改数据
      * @param company
      * @return
      */
@@ -184,44 +161,34 @@ public class CompanyListController {
         String name=company.getName();
         String imgUrl=company.getImgUrl();
         String profile=company.getProfile();
-
-        System.out.println("id="+company.getId());
-        System.out.println("name="+company.getName());
-        System.out.println("imgUrl="+company.getImgUrl());
-        System.out.println("profile="+company.getProfile());
         Integer companyOne=companyService.updateCompanyOneDetails(id,name,imgUrl,profile);
-        System.out.println("INT="+companyOne);
         return companyOne;
     }
 
     /**
-     * 后台查询-list-pwd-修改密码
+     * 企业列表-pwd-修改密码
      * @param id
      * @param password
      * @return
      */
     @RequestMapping("/company/Update/{id}/{password}/p/edit")
     public Integer updateCompaniesOnePwd(@PathVariable("id") Long id,@PathVariable("password") String password){
-        System.out.println("=="+id);
         Integer companyOne=companyService.updateCompanyOnePwd(id,password);
-        System.out.println("INT="+companyOne);
         return companyOne;
     }
 
     /**
-     * 后台查询-list-删除-修改状态
+     * 企业列表-删除-修改状态
      * @param id
      * @param status
      * @return
      */
     @RequestMapping("/company/Update/{id}/{status}/s/edit")
     public Integer updateCompaniesOneStatus(@PathVariable("id") Long id,@PathVariable("status") Integer status){
-        System.out.println("=="+id);
         Integer companyOne=null;
         if (status!=null){
             companyOne=companyService.updateCompanyOneStatus(id,status);
         }
-        System.out.println("INT="+companyOne);
         return companyOne;
     }
 

@@ -60,8 +60,7 @@ public class CompanyServiceImpl implements CompanyService {
                 sort = new Sort(Sort.Direction.ASC, data);
             }
             Pageable pageable = new PageRequest(page, size, sort);
-            //findCompaniesByCreateTimeBetweenAndNameAndStatus
-            return companyRepository.findCompaniesByCreateTimeBetweenAndNameLikeAndStatus(dateFrom,dateTo,companyName,1,pageable);
+            return companyRepository.findCompaniesByCreateTimeBetweenAndNameStartingWithAndStatus(dateFrom,dateTo,companyName,1,pageable);
         }
         return null;
     }
@@ -96,16 +95,16 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public int updateCompanyOneDetails(Long id,String name,String imgUrl,String profile){
-       return   companyRepository.updateCompanyById(id,name,imgUrl,profile);
+       return   companyRepository.updateCompanyById(id,name,imgUrl,profile,new Date());
     }
 
     @Override
     public int updateCompanyOnePwd(Long id, String password) {
-        return companyRepository.updateCompanyPwdById(id,password);
+        return companyRepository.updateCompanyPwdById(id,password,new Date());
     }
 
     @Override
     public int updateCompanyOneStatus(Long id, int status) {
-        return companyRepository.updateCompanyStatusById(id,status);
+        return companyRepository.updateCompanyStatusById(id,status,new Date());
     }
 }
