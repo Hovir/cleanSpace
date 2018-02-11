@@ -98,8 +98,8 @@ public class WxPayController {
         logger.info("makeOrder");
 
 //        String newOrderId = orderId + System.currentTimeMillis();
-        System.out.println(cardId+"-----"+phone+"----"+price);
         String orderId=cardId+"_"+phone;
+        System.out.println(cardId+"-----"+phone+"----"+price+"--------"+orderId);
         //封装json
         Map<String, String> parameters = new HashMap<>();
         parameters.put("b_id", bId);
@@ -129,7 +129,7 @@ public class WxPayController {
         }
         logger.info("失败");
         model.addAttribute("msg", wxResult.getMsg());
-        model.addAttribute("cardId", Long.parseLong(cardId));
+        model.addAttribute("cardId",cardId);
         model.addAttribute("phone", phone);
         return "pay";
     }
@@ -176,7 +176,7 @@ public class WxPayController {
             logger.info("查询成功");
             logger.info("返回参数：" + wxResult.toString());
 
-            return "/mobile/payOk";
+            return "paySucceed";
         }
 
         return "/mobile/payError";

@@ -284,7 +284,7 @@ public class PageController {
      * @return
      */
     @RequestMapping("/pay")
-    public String toPay(HttpServletRequest request, Model model,Long cardId){
+    public String toPay(HttpServletRequest request, Model model,String cardId){
         String phone = (String) request.getSession().getAttribute(sessionKeyUserPhone);
         if(phone!=null&&phone.length()>0){
             model.addAttribute("cardId",cardId);
@@ -332,4 +332,15 @@ public class PageController {
     public String cutHeadImg(){
         return "reviseHead";
     }
+
+
+    /**
+     * 支付成功页面
+     * @return
+     */
+    @RequestMapping("/goToPaySuccess")
+    public String goToPaySuccess(){
+        return "paySucceed";
+    }
+
 }

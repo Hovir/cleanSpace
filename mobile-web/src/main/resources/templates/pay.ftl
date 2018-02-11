@@ -60,7 +60,7 @@
                 </div>
                 <span <#--href="javascript:mysubmit()"--> onclick="goToPay()" class="payMoney_confirm" >确认支付</span>
             </div>
-                <input type="hidden" value="${cardId?c!''}" id="cardId" name="cardId">
+                <input type="hidden" value="${cardId!''}" id="cardId" name="cardId">
                 <input type="hidden" value="${phone!'123'}" id="phone" name="phone">
                 <input type="hidden" value="20000" id="money" name="price">
 
@@ -99,6 +99,11 @@
        if(phone=="123"){
            alert("登录超时请重新登录");
            window.location.href="/login";
+	   }
+	   if($.trim(cardId).length==0){
+           alert("数据异常");
+           window.location.href="/index";
+           return;
 	   }
         if(!a){
             alert("请选择支付方式！");
