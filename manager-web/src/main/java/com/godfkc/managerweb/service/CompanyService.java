@@ -36,4 +36,6 @@ public interface CompanyService {
     //后台查询-list-修改状态（0停用，1启用）
     String  updateCompanyOneStatus(Long id, int status);
 
+    //后台列表-list-公司编号验证
+    String  getCompaniesByBn(String bn);
 }

@@ -54,13 +54,28 @@
                 <input type="hidden" name="imgUrl" id="imgUrl"  value="">
             </div>
         </div>
-        <div class="row cl">
+<#--        <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>公司编号：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <input type="text" class="input-text" value="" placeholder="请输入公司编号！" id="bn" name="bn" onfocus="onBn()">
                 <div id="bnError"></div>
             </div>
+        </div>-->
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>公司编号：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <span class="select-box">
+                    <select id="bnOne" style="width: 49%;" class="select" size="1" name="bnOne"   onfocus="onBn()" onblur="bnAppend()">
+                        <option id="bnOne-k" value="" selected>- 请选编号 -</option>
+                    </select>
+                    <select id="bnTwo" style="width: 49%;" class="select" size="1" name="bnTwo"   onfocus="onBn()" onblur="bnAppend()">
+                        <option id="bnTwo-k" value="" selected>- 请选编号 -</option>
+                    </select>
+                </span>
+                <div id="bnError"></div>
+            </div>
         </div>
+
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>公司密码：</label>
             <div class="formControls col-xs-8 col-sm-9">
@@ -100,6 +115,11 @@
         </div>
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                <div id="allError"></div>
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
             <#-- <button onClick="sub(this);" class="btn btn-primary radius" type="button"><i
                         class="Hui-iconfont">&#xe632;</i> 保存并提交
                 </button>-->
@@ -114,6 +134,7 @@
                 <div id="save-fail">${(failer)!''}</div>
             </div>
         </div>
+        <input type="hidden" class="input-text" value=""  id="bn" name="bn" onfocus="onBn()">
     </form>
 </article>
 <!--/代码写在这里-->
@@ -167,6 +188,48 @@
             }
         });
     })
+</script>
+<script type="application/javascript">
+    //bn
+    $bnOne=$("#bnOne");
+    $bnTwo=$("#bnTwo");
+    bnSelect($bnOne);
+    bnSelect($bnTwo);
+    function bnSelect(docu) {
+        docu.empty();
+        var HTML="<option id='' value='' selected>- 请选编号 -</option>";
+        for(var i=0;i<10;i++){
+            HTML+="<option value=\'"+i+"\'>"+i+"</option>";
+        }
+        docu.append(HTML);
+    }
+
+    //bnAppend();
+    function bnAppend() {
+       $bnOneVal=$('#bnOne option:selected') .val();
+       $bnTwoVal=$('#bnTwo option:selected') .val();
+       $bnVal=$bnOneVal+""+$bnTwoVal;
+       $bn=$("#bn");
+       if($bnOneVal!=""&&$bnTwoVal!=""){
+           var url="${path}/company/compListBn/edit";
+           data={
+               bn:$bnVal
+           }
+           $.get(url,data,function (req) {
+               if(req.bnBoolean){
+                   $bn.val("");
+                   $("#bnError").html("<span style=\"color: #FF5722;\">公司编号已存在，请重新填写!</span>");
+                   $("#allError").html("<span style=\"color: #FF5722;\">公司编号已存在，请重新填写!</span>");
+               }else{
+                   $bn.val($bnVal);
+                   $("#bnError").html("");
+                   $("#allError").empty();
+               }
+           });
+       }else{
+           $bn.val("");
+       }
+    }
 </script>
 <script type="text/javascript">
     companyName();
@@ -226,48 +289,65 @@
         $("#details").val(editor.txt.html());
         if ($("#title").val() == "") {
             $("#titleError").html("<span style=\"color: #FF5722;\">企业名称不能为空!</span>");
+            $("#allError").html("<span style=\"color: #FF5722;\">企业名称不能为空!</span>");
             return false;
         } else if ($("#imgUrl").val() == "") {
             $("#demoText").html("<span style=\"color: #FF5722;\">请选择图片!</span>");
+            $("#allError").html("<span style=\"color: #FF5722;\">请选择图片!</span>");
+            return false;
+        }else if ($("#bnOne").val() == "") {
+            $("#bnError").html("<span style=\"color: #FF5722;\">请输入两位公司编号!</span>");
+            $("#allError").html("<span style=\"color: #FF5722;\">请输入两位公司编号!</span>");
+            return false;
+        }else if ($("#bnTwo").val() == "") {
+            $("#bnError").html("<span style=\"color: #FF5722;\">请输入两位公司编号!</span>");
+            $("#allError").html("<span style=\"color: #FF5722;\">请输入两位公司编号!</span>");
             return false;
         }else if ($("#bn").val() == "") {
-            $("#bnError").html("<span style=\"color: #FF5722;\">公司编号不能为空!</span>");
+            $("#bnError").html("<span style=\"color: #FF5722;\">公司编号已存在，请重新填写!</span>");
+            $("#allError").html("<span style=\"color: #FF5722;\">公司编号已存在，请重新填写!</span>");
             return false;
-        } else if ($("#password").val() == "") {
+        }else if ($("#password").val() == "") {
             $("#passwordError").html("<span style=\"color: #FF5722;\">密码不能为空!</span>");
+            $("#allError").html("<span style=\"color: #FF5722;\">密码不能为空!</span>");
             return false;
-        } else  if ($('#parentId option:selected') .val()=='0'){
+        }else  if ($('#parentId option:selected') .val()=='0'){
             $("#parentIdError").html("<span style=\"color: #FF5722;\">请选择上属公司!</span>");
+            $("#allError").html("<span style=\"color: #FF5722;\">请选择上属公司!</span>");
             return false;
         } else  if ($('#levelId option:selected') .val()==''){
             $("#levelIdError").html("<span style=\"color: #FF5722;\">请选择公司级别!</span>");
+            $("#allError").html("<span style=\"color: #FF5722;\">请选择公司级别!</span>");
             return false;
         }else {
             return true;
         }
-        //$(obj).parents("tr").remove();
-        //layer.msg('已保存!', {icon: 1, time: 1000});
-        //$("#form-article-add").submit();
     }
 
     function onTitle() {
         $("#titleError").html("");
+        $("#allError").html("");
     }
     function onImgUrl() {
         $("#demoText").empty();
+        $("#allError").empty();
     }
     function onBn() {
         $("#bnError").empty();
+        $("#allError").empty();
     }
     function onPassword() {
         $("#passwordError").empty();
+        $("#allError").empty();
     }
 
     function onParentId() {
         $("#parentIdError").empty();
+        $("#allError").empty();
     }
     function onLevelId() {
         $("#levelIdError").empty();
+        $("#allError").empty();
     }
 
 </script>

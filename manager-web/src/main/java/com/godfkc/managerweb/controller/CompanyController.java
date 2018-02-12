@@ -319,4 +319,23 @@ public class CompanyController {
         model.addAttribute("companyProfile", editmap);
         return "company/companyListProfile";
     }
+
+    /**
+     * 后台列表-list-公司编号验证
+     * @param bn
+     * @return
+     */
+    @RequestMapping("/company/compListBn/edit")
+    @ResponseBody
+    public Map<String, Boolean> getCompaniesBnAndStatus(@RequestParam("bn") String bn){
+        System.out.println("bn="+bn);
+        HashMap<String, Boolean> bnBooleanMap = new HashMap<String, Boolean>();
+        String companyStr=companyService.getCompaniesByBn(bn);
+        if (companyStr!=null){
+            bnBooleanMap.put("bnBoolean",true);
+        }else {
+            bnBooleanMap.put("bnBoolean",false);
+        }
+        return bnBooleanMap;
+    }
 }

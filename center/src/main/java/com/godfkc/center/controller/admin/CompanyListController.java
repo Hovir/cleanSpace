@@ -192,4 +192,13 @@ public class CompanyListController {
         return companyOne;
     }
 
+    /**
+     * 后台列表-list-公司编号验证
+     * @param bn
+     * @return
+     */
+    @RequestMapping("/company/get/{bn}/edit")
+    public Company getCompaniesBnAndStatus(@PathVariable("bn") String bn){
+        return companyService.getCompaniesByBnAndStatus(bn);
+    }
 }

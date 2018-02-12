@@ -107,4 +107,9 @@ public class CompanyServiceImpl implements CompanyService {
     public int updateCompanyOneStatus(Long id, int status) {
         return companyRepository.updateCompanyStatusById(id,status,new Date());
     }
+
+    @Override
+    public Company getCompaniesByBnAndStatus(String bn) {
+        return companyRepository.findCompanyByBnAndStatus(bn,1);
+    }
 }

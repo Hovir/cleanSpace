@@ -91,4 +91,7 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
     @Modifying
     @Query("UPDATE Company SET status=:status,updateTime=:updateTime  WHERE id=:id")
     int updateCompanyStatusById(@Param("id") Long id, @Param("status") int status,@Param("updateTime") Date updateTime);
+
+    //后台列表-list-公司编号验证
+    Company findCompanyByBnAndStatus(String bn,Integer status);
 }

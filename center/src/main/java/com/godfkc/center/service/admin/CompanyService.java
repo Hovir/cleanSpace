@@ -40,4 +40,8 @@ public interface CompanyService {
 
     //后台列表-list-修改状态（0停用，1启用）
     int updateCompanyOneStatus(Long id, int status);
+
+
+    //后台列表-list-公司编号验证
+    Company getCompaniesByBnAndStatus(String bn);
 }

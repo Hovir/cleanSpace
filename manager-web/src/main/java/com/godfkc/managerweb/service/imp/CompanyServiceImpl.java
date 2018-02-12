@@ -101,4 +101,11 @@ public class CompanyServiceImpl implements CompanyService {
         String url=centerUrl +"company/Update/"+id+"/"+status+"/s/edit";
         return this.restTemplate.getForObject(url, String.class);
     }
+
+    @Override
+    public String getCompaniesByBn(String bn) {
+        ///company/get/{bn}/edit
+        String url=centerUrl +"company/get/"+bn+"/edit";
+        return this.restTemplate.getForObject(url,String.class);
+    }
 }
