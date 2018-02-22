@@ -4,9 +4,15 @@
 		<meta charset="utf-8">
 		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 		<title>环保空间_预约</title>
-        <script src="/js/timejs/jquery.min.js"></script>
-        <script src="/js/timejs/jquer_shijian.js"></script>
-        <link rel="stylesheet" type="text/css" href="/css/timecss/shijian.css"/>
+        <script src="/js/chooseTime/js/jquery.1.7.2.min.js"></script>
+        <script src="/js/chooseTime/js/mobiscroll_002.js" type="text/javascript"></script>
+        <script src="/js/chooseTime/js/mobiscroll_004.js" type="text/javascript"></script>
+        <link href="/js/chooseTime/css/mobiscroll_002.css" rel="stylesheet" type="text/css">
+        <link href="/js/chooseTime/css/mobiscroll.css" rel="stylesheet" type="text/css">
+        <script src="/js/chooseTime/js/mobiscroll.js" type="text/javascript"></script>
+        <script src="/js/chooseTime/js/mobiscroll_003.js" type="text/javascript"></script>
+        <script src="/js/chooseTime/js/mobiscroll_005.js" type="text/javascript"></script>
+        <link href="/js/chooseTime/css/mobiscroll_003.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" type="text/css" href="/css/header-footer.css"/>
 		<link rel="stylesheet" href="/css/subscribe.css" />
 	</head>
@@ -16,7 +22,7 @@
 				<div class="left">
 					<div class="return">
                         <a href="javascript:void(0)"  onclick="huiTui()">
-							<img src="img/back-black.png" />
+							<img src="/img/back-black.png" />
 						</a>
 					</div>
 				</div>
@@ -25,7 +31,7 @@
 				</div>
 				<div class=" right">
 					<div class="go">
-						<a href="">
+						<a href="javascript:void(0)">
 							<!--<img src="img/setting.png" />-->
 						</a>
 					</div>
@@ -60,7 +66,7 @@
 					<#--<select name="">
 						<option value="">2017-12-12 18:18</option>
 					</select>-->
-					<input type="text" id="appointmentTime"/>
+                    <input value="" class="" readonly="readonly" name="appDateTime" id="appDateTime" type="text">
 				</div>
 				<div class="font">留言：</div>
 				<div class="message">
@@ -119,7 +125,7 @@
         var cit=$("#cit").val();
         var dis=$("#dis").val();
         var address=$("#address").val();
-		var appointmentTime=$("#appointmentTime").val();
+		var appointmentTime=$("#appDateTime").val();
 		var remark=$("#remark").val();
         var phoneTest=/^[1][3,4,5,7,8][0-9]{9}$/;
         if(name == null || $.trim(name).length==0){
@@ -159,7 +165,7 @@
         var district=$("#dis option:selected").text();
         appointmentTime=appointmentTime+":00";
         var date=getMyDate(appointmentTime);
-        var d=new Date(Date.parse(date .replace(/-/g,"/")));
+        var d=new Date(Date.parse(date.replace(/-/g,"/")));
         var curDate=new Date();
         if(d <=curDate){
             alert("请选择大于今天的时间");
@@ -192,15 +198,32 @@
         });
     });
 </script>
-	
-<script>
-    $("#appointmentTime").shijian({
-        startYear:2018,
-        val:2018,
-        endYear:2099,
-        Hour:true,//是否显示小时
-        Minute:true,//是否显分钟
-    })
+
+<script type="text/javascript">
+    $(function () {
+        var currYear = (new Date()).getFullYear();
+        var opt={};
+        opt.date = {preset : 'date'};
+        opt.datetime = {preset : 'datetime'};
+        opt.time = {preset : 'time'};
+        opt.default = {
+            theme: 'android-ics light', //皮肤样式
+            display: 'modal', //显示方式
+            mode: 'scroller', //日期选择模式
+            dateFormat: 'yyyy-mm-dd',
+            lang: 'zh',
+            showNow: true,
+            nowText: "今天",
+            startYear: currYear, //开始年份
+            endYear: currYear + 10 //结束年份
+        };
+
+        $("#appDate").mobiscroll($.extend(opt['date'], opt['default']));
+        var optDateTime = $.extend(opt['datetime'], opt['default']);
+        var optTime = $.extend(opt['time'], opt['default']);
+        $("#appDateTime").mobiscroll(optDateTime).datetime(optDateTime);
+        $("#appTime").mobiscroll(optTime).time(optTime);
+    });
 </script>
 
 <script>
