@@ -50,7 +50,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
 
 
-    @Query(value = "select o from Order o where o.company.id=:companyId")
+    @Query(value = "select o from Order o where o.company.id=:companyId and o.status<>0")
     List<Order> findAllByCompanyId(@Param("companyId") Long companyId);
 
 
