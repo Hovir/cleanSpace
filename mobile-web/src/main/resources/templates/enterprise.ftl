@@ -54,9 +54,7 @@ ${company}
             <img src="${base}/img/enterprise-banner.jpg" alt=""/>
         </div>
         <div class="topProfit">
-            <a href="/detailPage">
-                <span class="detail">明细</span>
-            </a>
+                <span class="detail"><a href="/detailPage">明细</a></span>
             <span>今日收益</span>
             <div class="tmoney">
                 <span class="money">${jsonCompany.moneyToday}</span>
