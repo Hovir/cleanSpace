@@ -41,7 +41,7 @@
 		<div class="content">
 			<div class="sub-cont">
 				<div class="persion-name">
-					<input type="text" placeholder="联系人" id="name"/>
+					<input type="text" placeholder="联系人" id="name" maxlength="10"/>
 				</div>
 				<div class="number">
 					<input type="text" placeholder="联系方式" id="phone"/>
