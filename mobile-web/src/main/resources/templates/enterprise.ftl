@@ -10,7 +10,15 @@
     <link rel="stylesheet" type="text/css" href="${base}/css/header-footer.css"/>
     <link rel="stylesheet" type="text/css" href="${base}/css/enterprise.css"/>
 </head>
-
+<style>
+    .detailCss{
+        width: 100%;
+        padding: 1rem 0 0 0;
+        text-align: right;
+        color: white;
+        font-size: 1rem;
+    }
+</style>
 <body>
 <div class="header-footer">
     <div class="footer">
@@ -54,7 +62,7 @@ ${company}
             <img src="${base}/img/enterprise-banner.jpg" alt=""/>
         </div>
         <div class="topProfit">
-                <span class="detail"><a href="/detailPage">明细</a></span>
+                <span class="detail"><a href="/detailPage" class="detailCss">明细</a></span>
             <span>今日收益</span>
             <div class="tmoney">
                 <span class="money">${jsonCompany.moneyToday}</span>
