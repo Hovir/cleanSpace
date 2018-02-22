@@ -5,6 +5,7 @@ import com.godfkc.common.pojo.dataTables.SentParameters;
 import com.godfkc.common.utils.FastDFSClient;
 import com.godfkc.common.utils.JsonUtils;
 import com.godfkc.managerweb.service.CompanyService;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -85,6 +86,16 @@ public class CompanyController {
         return companyService.getCompaniesSearch(sentParameters, dateFrom, dateTo, companyName);
     }
 
+    /**
+     * 企业添加-添加信息-页面
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/admin/compListAdd/save/page/edit", method = {RequestMethod.POST, RequestMethod.GET}, produces = "text/html;charset=UTF-8")
+    public String getAddPage(Model model) {
+        return "company/companyListSave";
+    }
 
     /**
      * 企业列表-添加信息-页面-公司名称
@@ -137,7 +148,7 @@ public class CompanyController {
     }
 
     /**
-     * 企业列表-添加信息-数据
+     * 企业列表-添加信息-数据-提交
      *
      * @param companyName
      * @param imgUrl
@@ -152,6 +163,8 @@ public class CompanyController {
         map.put("imgUrl", imgUrl);
         map.put("profile", profile);
         map.put("bn", bn);
+        password= DigestUtils.md5Hex(password);
+        //System.out.println("password1"+password);
         map.put("password", password);
         String str = companyService.insertCompany(map, levelId, parentId);
         if (str != null) {
@@ -196,25 +209,7 @@ public class CompanyController {
 
 
     /**
-     * 企业列表-编辑-页面（显示数据）
-     *
-     * @param id
-     * @param model
-     * @return
-     */
-    @RequestMapping(value = "/admin/compListEdit/{id}/{num}/edit", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/html;charset=UTF-8")
-    public String getCompanyEditPage(@PathVariable("id") Long id, @PathVariable("num") Long num, Model model) {
-        String companyOneDetails = companyService.getCompanyOneDetails(id);
-        Map<String, Object> editmap = JsonUtils.JsonToMap(companyOneDetails);
-        model.addAttribute("companyEdit", editmap);
-        if (num == 10) {
-            model.addAttribute("fail", "保存并提交失败！");
-        }
-        return "company/companyListEdit";
-    }
-
-    /**
-     * 企业列表-添加信息-数据
+     * 企业列表-修改信息-数据处理
      *
      * @param companyName
      * @param imgUrl
@@ -235,6 +230,23 @@ public class CompanyController {
         return "/admin/compListEdit/" + id + "/10/edit";
     }
 
+    /**
+     * 企业列表-编辑-页面（显示数据）
+     *
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/admin/compListEdit/{id}/{num}/edit", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/html;charset=UTF-8")
+    public String getCompanyEditPage(@PathVariable("id") Long id, @PathVariable("num") Long num, Model model) {
+        String companyOneDetails = companyService.getCompanyOneDetails(id);
+        Map<String, Object> editmap = JsonUtils.JsonToMap(companyOneDetails);
+        model.addAttribute("companyEdit", editmap);
+        if (num == 10) {
+            model.addAttribute("fail", "保存并提交失败！");
+        }
+        return "company/companyListEdit";
+    }
 
     /**
      * 企业列表-修改密码-页面（显示数据）
@@ -247,7 +259,6 @@ public class CompanyController {
     public String getCompanyPwdPage(@PathVariable("id") Long id, Model model) {
         String companyOneDetails = companyService.getCompanyOneDetails(id);
         Map<String, Object> editmap = JsonUtils.JsonToMap(companyOneDetails);
-        ;
         model.addAttribute("companyPwd", editmap);
         return "company/companyListPwd";
     }
@@ -263,10 +274,12 @@ public class CompanyController {
     public String getCompanyPwdData(@RequestParam("id") Long id, @RequestParam("password") String password) {
         String updateCompanyPwd = null;
         if (id != 0) {
+            password=DigestUtils.md5Hex(password);
+            //System.out.println("password2"+password);
             updateCompanyPwd = companyService.updateCompanyOnePwd(id, password);
         }
         if (updateCompanyPwd != null) {
-
+            //修改成功
         }
         return " ";
     }
@@ -294,16 +307,6 @@ public class CompanyController {
         return delBooleanMap;
     }
 
-    /**
-     * 企业添加-添加信息-页面
-     *
-     * @param model
-     * @return
-     */
-    @RequestMapping(value = "/admin/compListAdd/save/page/edit", method = {RequestMethod.POST, RequestMethod.GET}, produces = "text/html;charset=UTF-8")
-    public String getAddPage(Model model) {
-        return "company/companyListSave";
-    }
 
     /**
      * 企业列表-公司简介
@@ -328,7 +331,7 @@ public class CompanyController {
     @RequestMapping("/company/compListBn/edit")
     @ResponseBody
     public Map<String, Boolean> getCompaniesBnAndStatus(@RequestParam("bn") String bn){
-        System.out.println("bn="+bn);
+        //System.out.println("bn="+bn);
         HashMap<String, Boolean> bnBooleanMap = new HashMap<String, Boolean>();
         String companyStr=companyService.getCompaniesByBn(bn);
         if (companyStr!=null){

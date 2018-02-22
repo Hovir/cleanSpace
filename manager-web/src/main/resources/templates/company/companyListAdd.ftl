@@ -288,36 +288,36 @@
         //alert("add="+editor.txt.html());
         $("#details").val(editor.txt.html());
         if ($("#title").val() == "") {
-            $("#titleError").html("<span style=\"color: #FF5722;\">企业名称不能为空!</span>");
-            $("#allError").html("<span style=\"color: #FF5722;\">企业名称不能为空!</span>");
+            $("#titleError").html("<span style=\"color: #FF5722;\">企业名称不能为空！</span>");
+            $("#allError").html("<span style=\"color: #FF5722;\">企业名称不能为空！</span>");
             return false;
         } else if ($("#imgUrl").val() == "") {
-            $("#demoText").html("<span style=\"color: #FF5722;\">请选择图片!</span>");
-            $("#allError").html("<span style=\"color: #FF5722;\">请选择图片!</span>");
+            $("#demoText").html("<span style=\"color: #FF5722;\">请选择图片！</span>");
+            $("#allError").html("<span style=\"color: #FF5722;\">请选择图片！</span>");
             return false;
         }else if ($("#bnOne").val() == "") {
-            $("#bnError").html("<span style=\"color: #FF5722;\">请输入两位公司编号!</span>");
-            $("#allError").html("<span style=\"color: #FF5722;\">请输入两位公司编号!</span>");
+            $("#bnError").html("<span style=\"color: #FF5722;\">请输入两位公司编号！</span>");
+            $("#allError").html("<span style=\"color: #FF5722;\">请输入两位公司编号！</span>");
             return false;
         }else if ($("#bnTwo").val() == "") {
-            $("#bnError").html("<span style=\"color: #FF5722;\">请输入两位公司编号!</span>");
-            $("#allError").html("<span style=\"color: #FF5722;\">请输入两位公司编号!</span>");
+            $("#bnError").html("<span style=\"color: #FF5722;\">请输入两位公司编号！</span>");
+            $("#allError").html("<span style=\"color: #FF5722;\">请输入两位公司编号！</span>");
             return false;
         }else if ($("#bn").val() == "") {
-            $("#bnError").html("<span style=\"color: #FF5722;\">公司编号已存在，请重新填写!</span>");
-            $("#allError").html("<span style=\"color: #FF5722;\">公司编号已存在，请重新填写!</span>");
+            $("#bnError").html("<span style=\"color: #FF5722;\">公司编号已存在，请重新填写！</span>");
+            $("#allError").html("<span style=\"color: #FF5722;\">公司编号已存在，请重新填写！</span>");
             return false;
         }else if ($("#password").val() == "") {
-            $("#passwordError").html("<span style=\"color: #FF5722;\">密码不能为空!</span>");
-            $("#allError").html("<span style=\"color: #FF5722;\">密码不能为空!</span>");
+            $("#passwordError").html("<span style=\"color: #FF5722;\">密码不能为空！</span>");
+            $("#allError").html("<span style=\"color: #FF5722;\">密码不能为空！</span>");
             return false;
         }else  if ($('#parentId option:selected') .val()=='0'){
-            $("#parentIdError").html("<span style=\"color: #FF5722;\">请选择上属公司!</span>");
-            $("#allError").html("<span style=\"color: #FF5722;\">请选择上属公司!</span>");
+            $("#parentIdError").html("<span style=\"color: #FF5722;\">请选择上属公司！</span>");
+            $("#allError").html("<span style=\"color: #FF5722;\">请选择上属公司！</span>");
             return false;
         } else  if ($('#levelId option:selected') .val()==''){
-            $("#levelIdError").html("<span style=\"color: #FF5722;\">请选择公司级别!</span>");
-            $("#allError").html("<span style=\"color: #FF5722;\">请选择公司级别!</span>");
+            $("#levelIdError").html("<span style=\"color: #FF5722;\">请选择公司级别！( 注：此处根据上属公司级别权限设定！)</span>");
+            $("#allError").html("<span style=\"color: #FF5722;\">请选择公司级别！（ 注：此处根据上属公司级别权限设定！）</span>");
             return false;
         }else {
             return true;
