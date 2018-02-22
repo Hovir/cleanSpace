@@ -208,7 +208,7 @@ public class WxPayController {
             String cardId=split[0];
             String phone=split[1];
             String money=order_price;
-            int money1 = Integer.parseInt(money);
+            int money1 = Integer.parseInt(money)*100;
             Long cardId1=Long.parseLong(cardId);
             System.out.println(cardId+"------"+money1+"----------"+cardId1);
             Long userId=userService.selectUserIdByPhone(phone);
