@@ -5,6 +5,7 @@ import com.godfkc.common.utils.FastDFSClient;
 import com.godfkc.common.utils.JsonUtils;
 import com.godfkc.mobileweb.service.CompanyService;
 import com.godfkc.mobileweb.service.OrderService;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -81,9 +82,8 @@ public class CompanyController {
     @RequestMapping("/loginAjax")
     @ResponseBody
     public boolean checkCompanyName(HttpServletRequest request, String comAccount, String comPwd) {
-        boolean flag_login = companyService.findByNameAndPassword(comAccount, comPwd);
-        System.out.println("request come in "+comAccount+"|"+comPwd);
-        if (flag_login) {
+        boolean flag_login = companyService.findByNameAndPassword(comAccount, DigestUtils.md5Hex(comPwd));
+        if (flag_login) {//成功登陆，session存入公司名称
             request.getSession().setAttribute(companyNameSessionKey, comAccount);
         }
         return flag_login;

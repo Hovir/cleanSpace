@@ -26,7 +26,7 @@ public class Company implements Serializable {
     private Long id;
     @Column(name = "name", length = 30)
     private String name;//公司名称
-    @Column(name = "password", length = 20)
+    @Column(name = "password", length = 32)
     private String password; //登录密码
     @Column(name = "img_url")
     private String imgUrl; //公司图片
