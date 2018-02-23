@@ -64,4 +64,25 @@ public class CardServiceImpl implements CardService{
         boolean flag=restTemplate.getForObject(url,boolean.class,map);
         return flag;
     }
+
+    //根据userId查询卡的剩余次数，卡号
+    @Override
+    public String selectCardByUserId(Long userId) {
+        String url = centerUrl + "selectCardByUserId/{userId}/{status}";
+        Map<String,Object> map=new HashMap<>();
+        map.put("userId",userId);
+        map.put("status",2);
+        String json=restTemplate.getForObject(url,String.class,map);
+        return json;
+    }
+
+    @Override
+    public boolean updateCardTimes(Long cardId, int times) {
+        String url = centerUrl + "updateCardTimes/{cardId}/{times}";
+        Map<String,Object> map=new HashMap<>();
+        map.put("cardId",cardId);
+        map.put("times",times);
+        boolean flag=restTemplate.getForObject(url,boolean.class,map);
+        return flag;
+    }
 }

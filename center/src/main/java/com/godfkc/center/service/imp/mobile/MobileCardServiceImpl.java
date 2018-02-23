@@ -42,4 +42,15 @@ public class MobileCardServiceImpl implements MobileCardService {
     public int updateUserIdAndStatus(Long userId,Long cardId) {
         return cardRepository.updateUserIdAndStatus(userId,cardId);
     }
+
+    @Override
+    public Card selectCardByUserId(Long userId, int status) {
+        return cardRepository.selectCardByUserId(userId,status);
+    }
+
+    //修改card使用次数
+    @Override
+    public int updateCardTimes(Long cardId, int times) {
+        return cardRepository.updateCardTimes(times,cardId);
+    }
 }

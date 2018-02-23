@@ -35,4 +35,13 @@ public interface CardRepository extends JpaRepository<Card, Long> {
     @Modifying
     @Query("update Card c set c.user.id=?1,c.status=2 where c.id=?2")
     int updateUserIdAndStatus(Long userId,Long cardId);
+
+
+    @Query("select c from Card c where c.user.id=?1 and c.status=?2")
+    Card selectCardByUserId(Long userId, int status);
+
+    //修改card使用次数
+    @Modifying
+    @Query("update Card c set c.times=?1 where c.id=?2")
+    int updateCardTimes(int times,Long cardId);
 }

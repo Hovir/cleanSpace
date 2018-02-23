@@ -2,6 +2,7 @@ package com.godfkc.mobileweb.controller;
 
 import com.godfkc.common.pojo.mobile.OrderVo;
 import com.godfkc.common.utils.JsonUtils;
+import com.godfkc.mobileweb.service.CardService;
 import com.godfkc.mobileweb.service.OrderService;
 import com.godfkc.mobileweb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class OrderController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private CardService cardService;
 
     @Value("${session.key.userPhone}")
     private String sessionKeyUserPhone;
@@ -66,10 +70,24 @@ public class OrderController {
             Long id=userService.selectUserIdByPhone(phone);
             orderVo.setStatus(1);
             orderVo.setUserId(id);
-            if(orderService.addOrder(orderVo)){
-                return "1";
+            String json=cardService.selectCardByUserId(id);
+            Map<String, Object> map = JsonUtils.JsonToMap(json);
+            Integer cardId1 = (Integer) map.get("id");
+            Long cardId=Long.parseLong(cardId1.toString());
+            int times= (int) map.get("times");
+            int times1=times-1;
+            if(times>0){
+                if(orderService.addOrder(orderVo)){
+                    if(cardService.updateCardTimes(cardId,times1)){
+                        return "1";
+                    }else {
+                        return "2";
+                    }
+                }else {
+                    return "2";
+                }
             }else {
-                return "2";
+                return "4";
             }
         }else {
             return "3";

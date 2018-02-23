@@ -55,4 +55,21 @@ public class MobileCardController {
             return false;
         }
     }
+
+
+    @RequestMapping("/selectCardByUserId/{userId}/{status}")
+    public Card selectCardByUserId(@PathVariable("userId") Long userId,@PathVariable("status") int status){
+        Card card=cardService.selectCardByUserId(userId,status);
+        return card;
+    }
+
+    @RequestMapping("/updateCardTimes/{cardId}/{times}")
+    private boolean updateCardTimes(@PathVariable("cardId") Long cardId,@PathVariable("times") int times){
+        int updateRows=cardService.updateCardTimes(cardId,times);
+        if (updateRows>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

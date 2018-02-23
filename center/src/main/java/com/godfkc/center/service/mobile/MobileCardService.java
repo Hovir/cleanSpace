@@ -20,4 +20,10 @@ public interface MobileCardService {
 
     //修改userId和status
     int updateUserIdAndStatus(Long userId,Long cardId);
+
+    //根据userId查找times,cardId
+    Card selectCardByUserId(Long userId, int status);
+
+    //修改card使用次数
+    int updateCardTimes(Long cardId, int times);
 }

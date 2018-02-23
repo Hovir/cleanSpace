@@ -190,6 +190,8 @@
                 }else if(data=="3"){
                     alert("请先登录");
                     window.location.href="/login";
+                }else if(data=="4"){
+                    alert("预约次数已达上限，请联系客服");
                 }
             },
             error:function(data){

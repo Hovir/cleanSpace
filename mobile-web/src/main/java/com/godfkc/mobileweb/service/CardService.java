@@ -18,4 +18,10 @@ public interface CardService {
     //修改userId和status
     boolean updateUserIdAndStatus(Long userId,Long cardId);
 
+    //根据userId查询卡的剩余次数，卡号
+    String selectCardByUserId(Long userId);
+
+    //修改卡次数
+    boolean updateCardTimes(Long cardId,int times);
+
 }
