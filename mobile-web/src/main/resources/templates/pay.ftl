@@ -62,7 +62,7 @@
             </div>
                 <input type="hidden" value="${cardId!''}" id="cardId" name="cardId">
                 <input type="hidden" value="${phone!'123'}" id="phone" name="phone">
-                <input type="hidden" value="200" id="money" name="price">
+                <input type="hidden" value="2" id="money" name="price">
 
         	</form>
         </div>

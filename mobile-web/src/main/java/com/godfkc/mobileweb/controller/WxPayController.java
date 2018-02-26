@@ -210,7 +210,7 @@ public class WxPayController {
             String money=order_price;
             int money1 = Integer.parseInt(money)*100;
             Long cardId1=Long.parseLong(cardId);
-            System.out.println(cardId+"------"+money1+"----------"+cardId1);
+            logger.info(cardId+"------"+money1+"----------"+cardId1);
             Long userId=userService.selectUserIdByPhone(phone);
             Long companyId = cardService.selectCompanyIdByCard(cardId1);
             String json = companyService.findCompanyFundsByCompanyId(companyId);
@@ -220,21 +220,21 @@ public class WxPayController {
             //改变余额
             boolean chagBal = companyService.changeBalance(funds, companyId);
             if(chagBal){
-                System.out.println("账号余额改变成功");
+                logger.info("账号余额改变成功");
             }else {
-                System.out.println("账号余额改变失败");
+                logger.info("账号余额改变失败");
             }
             boolean fundsLog = companyService.insertFundsLog(funds, money,companyId,cardId,2);
             if(fundsLog){
-                System.out.println("日志表添加成功");
+                logger.info("日志表添加成功");
             }else {
-                System.out.println("日志表添加失败");
+                logger.info("日志表添加失败");
             }
             boolean b = cardService.updateUserIdAndStatus(userId,cardId1);
             if(b){
-                System.out.println("修改card status及userId成功");
+                logger.info("修改card status及userId成功");
             }else {
-                System.out.println("修改card status及userId失败");
+                logger.info("修改card status及userId失败");
             }
             return "success";
         } else {
