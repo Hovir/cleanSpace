@@ -184,7 +184,7 @@
             success:function(data){
                 if(data=="1"){
                     alert("预约成功!");
-                    window.location.href="/index";
+                    window.location.href="/";
                 }else if(data=="2"){
                     alert("预约失败!");
                 }else if(data=="3"){

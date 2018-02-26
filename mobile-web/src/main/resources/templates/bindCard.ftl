@@ -169,7 +169,7 @@
             success:function (data) {
                 if (data == "1"){
                     alert("链接超时，请重新登录!");
-                    window.location.href = "/index";
+                    window.location.href = "/";
                 }
                 if (data == "2"){
                     alert("绑定银行卡成功!");

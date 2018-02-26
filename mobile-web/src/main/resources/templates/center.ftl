@@ -15,7 +15,7 @@
 			<div class="footer">
 				<div class="part">
 					<div class="part-cont">
-						<a class="" href="/index">
+						<a class="" href="/">
 							<span class="icon"><img src="/img/homepage.png"/></span>
 							<span class="font">首页</span>
 						</a>

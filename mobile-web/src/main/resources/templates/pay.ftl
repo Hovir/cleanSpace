@@ -102,7 +102,7 @@
 	   }
 	   if($.trim(cardId).length==0){
            alert("数据异常");
-           window.location.href="/index";
+           window.location.href="/";
            return;
 	   }
         if(!a){

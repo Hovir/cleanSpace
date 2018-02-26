@@ -77,7 +77,7 @@
                 //从ajax异步对象中获取服务器响应的html数据
                 success:function(data){
 					if(data){
-					    window.location.href="/index";
+					    window.location.href="/";
 					}else {
 					    alert("手机号或密码错误，请重新输入！");
 					}

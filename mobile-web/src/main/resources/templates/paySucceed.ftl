@@ -61,7 +61,7 @@
 		<div class="font">
 			支付成功
 		</div>
-		<a href="/index">
+		<a href="/">
 		<div class="btn" id="goToIndex">
 			返回首页
 		</div>
