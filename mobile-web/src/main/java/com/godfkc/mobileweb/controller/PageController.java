@@ -32,7 +32,7 @@ public class PageController {
     /**
      * 首页
      */
-    @RequestMapping("/index")
+    @RequestMapping("/")
     public String toHomePage() {
         return "index";
     }

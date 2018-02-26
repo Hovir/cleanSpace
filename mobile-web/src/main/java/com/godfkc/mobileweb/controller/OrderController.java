@@ -61,7 +61,7 @@ public class OrderController {
         return "1";
     }
 
-    //预约
+    //预约检测
     @RequestMapping("/addOrder")
     @ResponseBody
     public String addOrder(HttpServletRequest request, OrderVo orderVo){
@@ -93,6 +93,26 @@ public class OrderController {
             return "3";
         }
     }
+
+    //预约治理
+    @RequestMapping("/addOrder1")
+    @ResponseBody
+    public String addOrder1(HttpServletRequest request, OrderVo orderVo){
+        String phone = (String) request.getSession().getAttribute(sessionKeyUserPhone);
+        if(phone!=null&&phone.length()>0){
+            Long id=userService.selectUserIdByPhone(phone);
+            orderVo.setStatus(1);
+            orderVo.setUserId(id);
+            if(orderService.addOrder(orderVo)){
+                return "1";
+            }else {
+                return "2";
+            }
+        }else {
+            return "3";
+        }
+    }
+
 
     /**
      * 我的预约详情页
