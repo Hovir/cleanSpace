@@ -27,7 +27,7 @@ public class AdminController {
     private String sessionKeyPwd;
 
 
-    @RequestMapping("/admin/login")
+    @RequestMapping("/")
     public String adminLogin(HttpServletRequest request){
         return "admin/adminLgoin";
     }
