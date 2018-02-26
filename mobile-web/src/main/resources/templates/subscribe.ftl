@@ -177,7 +177,7 @@
             //预期服务器返回的数据类型
             dataType:"text",
             //请求URL
-            url:"/order/addOrder",
+            url:"/order/addOrder1",
             //传入服务器端的参数值
             data:{name:name,phone:phone,state:state,city:city,district:district,address:address,appointmentTime:appointmentTime,remark:remark,type:2},
             //从ajax异步对象中获取服务器响应的html数据
@@ -190,8 +190,6 @@
                 }else if(data=="3"){
                     alert("请先登录");
                     window.location.href="/login";
-                }else if(data=="4"){
-                    alert("预约次数已达上限，请联系客服");
                 }
             },
             error:function(data){
