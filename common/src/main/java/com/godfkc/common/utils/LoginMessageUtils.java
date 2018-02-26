@@ -26,7 +26,7 @@ public class LoginMessageUtils {
         postMethod.addParameter("timestamp", timeStamp);
         postMethod.addParameter("sign", LoginMessageUtils.getSign(uid, key, timeStamp));
         postMethod.addParameter("mobile", phone);
-        postMethod.addParameter("text", "【环保空间】：提示您，您的验证码为" + identifyCode + "，请您在60秒内使用。注意，打死也不能告诉别人哦，祝您购物愉快！");
+        postMethod.addParameter("text", "【环保空间】：提示您，您的验证码为" + identifyCode + "，请您在60秒内使用。注意，打死也不能告诉别人哦！");
         /*postMethod.addParameter("iid", "423");// 格子编码id*/
         HttpClient httpClient = new HttpClient();
         httpClient.getParams().setParameter(
