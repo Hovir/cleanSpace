@@ -136,7 +136,7 @@
                     //禁用排序
                     orderable: false,
                     //指定的列
-                    targets: [0, 5],
+                    targets: [0, 6],
                 }
             ];
             /*初始化dataTables*/
