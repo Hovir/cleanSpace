@@ -79,13 +79,16 @@ public class WxPayController {
     @Value("${wx.redirect_url}")
     private String redirectUrl;
 
+    @Value("${wx.sign}")
+    private String sign;
+
     @Autowired
     private RestTemplate restTemplate;
 
     Logger logger = LoggerFactory.getLogger(WxPayController.class);
 
     //生成签名
-    final String sign = MD5Util.encode(key + bId + bmId);
+    //final String sign = MD5Util.encode(key + bId + bmId);
 
     /**
      * 下单接口
