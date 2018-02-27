@@ -45,7 +45,7 @@
                     <td>${companyShow.level.name!''}</td>
                 </tr>
                 <tr>
-                    <th class="text-r">加入时间：</th>
+                    <th class="text-r">创建时间：</th>
                     <td id="companyCreateTime">${companyShow.createTime!''}</td>
                 </tr>
                 <tr>

@@ -1,6 +1,7 @@
 package com.godfkc.center.controller.admin;
 
 import com.godfkc.center.entity.Company;
+import com.godfkc.center.entity.CompanyAddress;
 import com.godfkc.center.entity.Level;
 import com.godfkc.center.entity.vo.CompanySearchEmp;
 import com.godfkc.center.service.admin.CompanyService;
@@ -8,14 +9,14 @@ import com.godfkc.common.pojo.dataTables.DataTablesReturn;
 import com.godfkc.common.pojo.dataTables.ReturnedData;
 import com.godfkc.common.pojo.dataTables.SentParameters;
 import com.godfkc.common.utils.dataTables.ReturnedDataUtil;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @RestController
 public class CompanyListController {
@@ -124,19 +125,42 @@ public class CompanyListController {
         return levels;
     }
     /**
-     * 企业列表-添加-添加数据
+     * 企业列表-添加-添加数据-公司信息
      * @param company
      * @return
      */
-    @RequestMapping(value = "/company/Add/{levelId}/{parentId}/edit",method = RequestMethod.POST)
-    public Company addCompaniesList(@RequestBody Company company,@PathVariable("levelId") Long  levelId,@PathVariable("parentId") Long parentId) {
+    @RequestMapping(value = "company/Add/{levelId}/{parentId}/{state}/{city}/{district}/edit",method = RequestMethod.POST)
+    public Company addCompaniesList(@RequestBody Company company, @PathVariable("levelId") Long  levelId, @PathVariable("parentId") Long parentId,
+                                    @PathVariable("state") String state,@PathVariable("city") String city,@PathVariable("district")String district) {
+        //System.out.println("companyAddress="+state+city+district);
         Level level=new Level();
         level.setId(levelId);
         company.setLevel(level);
         Company companyParam=new Company();
         companyParam.setId(parentId);
         company.setParent(companyParam);
+        Set<CompanyAddress> companyAddressesSet=new HashSet<>();
+        CompanyAddress companyAddress=new CompanyAddress();
+        companyAddress.setState(state);
+        companyAddress.setCity(city);
+        companyAddress.setDistrict(district);
+        companyAddress.setCompany(company);
+        companyAddressesSet.add(companyAddress);
+        company.setCompanyAddresses(companyAddressesSet);
         return companyService.addCompany(company);
+    }
+
+    /**
+     * 企业列表-添加-添加数据-公司地址
+     * @param companyAddress
+     * @return
+     */
+    @RequestMapping(value = "/company/Add/companyAddress/{companyId}/edit",method = RequestMethod.POST)
+    public CompanyAddress addCompaniesList(@RequestBody CompanyAddress companyAddress,@PathVariable("companyId") Long  companyId) {
+        Company company=new Company();
+        company.setId(companyId);
+        companyAddress.setCompany(company);
+        return companyService.addCompanyAddress(companyAddress);
     }
 
     /**

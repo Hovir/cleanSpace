@@ -1,6 +1,7 @@
 package com.godfkc.center.service.admin;
 
 import com.godfkc.center.entity.Company;
+import com.godfkc.center.entity.CompanyAddress;
 import com.godfkc.center.entity.Level;
 import com.godfkc.center.entity.vo.CompanySearchEmp;
 import org.springframework.data.domain.Page;
@@ -14,7 +15,7 @@ public interface CompanyService {
     //后台列表-list-(启用状态ALL)
     Page<Company> getCompaniesList(Integer page, Integer size, String dir, String data, String search);
 
-    //后台列表-list-搜索-Data
+    //后台列表-list-----搜索-Data
     Page<Company> getCompaniesSearch(CompanySearchEmp companySearchEmp);
 
     //后台列表-list-个体-添加-查询
@@ -26,8 +27,11 @@ public interface CompanyService {
     //后台列表-list-个体-添加-查询
     List<Level> getLevesByIdAfter(Long id);
 
-    //后台列表-list-个体-添加
+    //后台列表-list-个体-添加-公司信息
     Company   addCompany(Company company);
+
+    //后台列表-list-个体-添加-公司地址
+    CompanyAddress   addCompanyAddress(CompanyAddress companyAddress);
 
     //后台列表-list-个体详情数据-查询
     Company getCompanyOneDetails(Long id);

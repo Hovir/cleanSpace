@@ -71,6 +71,22 @@ public class CompanyServiceImpl implements CompanyService {
         return  this.restTemplate.postForObject(url,map,String.class);
     }
 
+/*
+    @Override
+    public String insertCompanyAddress(Map<String, Object> map,Long companyId) {
+        ///company/Add/companyAddress/companyId/edit
+        String url=centerUrl + "company/Add/companyAddress/"+companyId+"/edit";
+        return  this.restTemplate.postForObject(url,map,String.class);
+    }
+*/
+
+    @Override
+    public String insertCompanyALL(Map<String, Object> mapCompany,Long levelId,Long parentId,String state,String city,String district) {
+        ///company/Add/{levelId}/{parentId}/{state}/{city}/{district}/edit
+        String url=centerUrl + "company/Add/"+levelId+"/"+parentId+"/"+state+"/"+city+"/"+district+"/edit";
+        return  this.restTemplate.postForObject(url,mapCompany,String.class);
+    }
+
     @Override
     public String getCompanyOneDetails(Long id) {
         ///company/details/{id}/edit

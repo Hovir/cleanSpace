@@ -1,8 +1,10 @@
 package com.godfkc.center.service.imp.admin;
 
 import com.godfkc.center.entity.Company;
+import com.godfkc.center.entity.CompanyAddress;
 import com.godfkc.center.entity.Level;
 import com.godfkc.center.entity.vo.CompanySearchEmp;
+import com.godfkc.center.repository.CompanyAddressRepository;
 import com.godfkc.center.repository.CompanyRepository;
 import com.godfkc.center.repository.LevelRepository;
 import com.godfkc.center.service.admin.CompanyService;
@@ -26,6 +28,9 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Autowired
     private LevelRepository levelRepository;
+
+    @Autowired
+    private CompanyAddressRepository companyAddressRepository;
 
 
     @Override
@@ -86,6 +91,11 @@ public class CompanyServiceImpl implements CompanyService {
         company.setUpdateTime(new Date());
         company.setStatus(1);
         return companyRepository.save(company);
+    }
+
+    @Override
+    public CompanyAddress addCompanyAddress(CompanyAddress companyAddress) {
+        return companyAddressRepository.save(companyAddress);
     }
 
     @Override

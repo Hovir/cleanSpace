@@ -4,6 +4,7 @@ import com.godfkc.common.constant.PictureServerConstants;
 import com.godfkc.common.pojo.dataTables.SentParameters;
 import com.godfkc.common.utils.FastDFSClient;
 import com.godfkc.common.utils.JsonUtils;
+import com.godfkc.managerweb.service.AddressDictService;
 import com.godfkc.managerweb.service.CompanyService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class CompanyController {
 
     @Autowired
     private CompanyService companyService;
+    @Autowired
+    private AddressDictService addressDictService;
 
     /**
      * 企业-列表-数据
@@ -157,16 +160,20 @@ public class CompanyController {
      * @return
      */
     @RequestMapping(value = "/admin/compListAddData/add/edit", method = RequestMethod.POST)
-    public String getCompanyAddData(@RequestParam("companyName") String companyName, @RequestParam("imgUrl") String imgUrl, @RequestParam("levelId") Long levelId, @RequestParam("profile") String profile, @RequestParam("bn") String bn, @RequestParam("password") String password, @RequestParam("parentId") Long parentId) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", companyName);
-        map.put("imgUrl", imgUrl);
-        map.put("profile", profile);
-        map.put("bn", bn);
-        password= DigestUtils.md5Hex(password);
-        //System.out.println("password1"+password);
-        map.put("password", password);
-        String str = companyService.insertCompany(map, levelId, parentId);
+    public String getCompanyAddData(@RequestParam("companyName") String companyName, @RequestParam("imgUrl") String imgUrl, @RequestParam("levelId") Long levelId, @RequestParam("profile") String profile, @RequestParam("bn") String bn, @RequestParam("password") String password, @RequestParam("parentId") Long parentId,
+                                    @RequestParam("state") String state,@RequestParam("city") String city,@RequestParam("district") String district) {
+        String str =null;
+        if(state!=null&&city!=null&&district!=null){
+            Map<String, Object> mapCompany = new HashMap<>();
+            mapCompany.put("name", companyName);
+            mapCompany.put("imgUrl", imgUrl);
+            mapCompany.put("profile", profile);
+            mapCompany.put("bn", bn);
+            password= DigestUtils.md5Hex(password);
+            //System.out.println("password1"+password);
+            mapCompany.put("password", password);
+            str = companyService.insertCompanyALL(mapCompany,levelId, parentId,state,city,district);
+        }
         if (str != null) {
             //成功-""
             return "/admin/compListAdd/add/sucess/edit";
@@ -340,5 +347,17 @@ public class CompanyController {
             bnBooleanMap.put("bnBoolean",false);
         }
         return bnBooleanMap;
+    }
+
+    /**
+     * 后台列表-list-添加公司信息-级联地址查询
+     * @param parentId
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/company/selectAddressDict")
+    public String selectAddressDict(Long parentId){
+        String json = addressDictService.selectAddressDict(parentId);
+        return json;
     }
 }

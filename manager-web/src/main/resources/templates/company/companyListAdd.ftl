@@ -108,6 +108,23 @@
             </div>
         </div>
         <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>公司地址：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <span class="select-box">
+                    <select id="pro" style="width: 32.5%;" class="select" size="1" name="state-s" onfocus="onAddress()" onblur="ad_state()">
+                        <option id="pro-k" value="" selected>- 省 -</option>
+                    </select>
+                    <select id="cit" style="width: 33%;" class="select" size="1" name="city-s" onfocus="onAddress()" onblur="ad_city()">
+                        <option id="cit-k" value="" selected>- 市 -</option>
+                    </select>
+                    <select id="dis" style="width: 33%;" class="select" size="1" name="district-s" onfocus="onAddress()" onblur="ad_district()">
+                        <option id="dis-k" value="" selected>- 区 -</option>
+                    </select>
+                </span>
+                <div id="addressError"></div>
+            </div>
+        </div>
+        <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>公司简介：</label>
             <div class="formControls col-xs-8 col-sm-9" id="editor">
             </div>
@@ -135,6 +152,9 @@
             </div>
         </div>
         <input type="hidden" class="input-text" value=""  id="bn" name="bn" onfocus="onBn()">
+        <input type="hidden" class="input-text" value=""  id="stateValue" name="state"/>
+        <input type="hidden" class="input-text" value=""  id="cityValue" name="city"/>
+        <input type="hidden" class="input-text" value=""  id="districtValue" name="district"/>
     </form>
 </article>
 <!--/代码写在这里-->
@@ -232,12 +252,14 @@
     }
 </script>
 <script type="text/javascript">
+    //级别名称
     companyName();
     function companyName() {
         var $parentId=$("#parentId");
         $parentId.empty();
-        var HTML="<option id='parentId-k' value='0' selected>请选择级别</option>" +
-                "<option id='parentId-kk' value='1'>-无-</option>";
+        var HTML="<option id='parentId-k' value='0' selected>请选择级别</option>";
+        /*var HTML="<option id='parentId-k' value='0' selected>请选择级别</option>" +
+                "<option id='parentId-kk' value='1'>-无-</option>";*/
         $.get("${path}/admin/compListAdd/add/companyName.ajax",function (data) {
             if(data!=null){
                 $.each($.parseJSON(data),function (index,value) {
@@ -280,6 +302,46 @@
 
     }
 </script>
+<script>
+    //地址
+    $(function () {
+        threeMove(1,$("#pro"));
+    })
+    $("#pro").change(function () {
+        $("#dis").find("option:gt(0)").remove();
+        var parentId=$("#pro").val();
+        threeMove(parentId,$("#cit"));
+    });
+
+    $("#cit").change(function () {
+        var parentId=$("#cit").val();
+        threeMove(parentId,$("#dis"));
+    });
+
+    function threeMove(parentId,num){
+        num.find("option:gt(0)").remove();
+        $.ajax({
+            //请求类型
+            type:"POST",
+            //预期服务器返回的数据类型
+            dataType:"json",
+            //请求URL
+            url:"/company/selectAddressDict",
+            //传入服务器端的参数值
+            data:{parentId:parentId},
+            //从ajax异步对象中获取服务器响应的html数据
+            success:function(data){
+                $.each(data,function(index,value){
+                    var $option=$("<option value='"+value.id+"'>"+value.name+"</option>");
+                    num.append($option);
+                });
+            },
+            error:function(data){
+                alert("请求失败");
+            }
+        });
+    }
+</script>
 <script type="application/javascript">
     //判断
     function sub() {
@@ -311,13 +373,17 @@
             $("#passwordError").html("<span style=\"color: #FF5722;\">密码不能为空！</span>");
             $("#allError").html("<span style=\"color: #FF5722;\">密码不能为空！</span>");
             return false;
-        }else  if ($('#parentId option:selected') .val()=='0'){
+        }else  if ($('#parentId option:selected').val()=='0'){
             $("#parentIdError").html("<span style=\"color: #FF5722;\">请选择上属公司！</span>");
             $("#allError").html("<span style=\"color: #FF5722;\">请选择上属公司！</span>");
             return false;
-        } else  if ($('#levelId option:selected') .val()==''){
-            $("#levelIdError").html("<span style=\"color: #FF5722;\">请选择公司级别！( 注：此处根据上属公司级别权限设定！)</span>");
-            $("#allError").html("<span style=\"color: #FF5722;\">请选择公司级别！（ 注：此处根据上属公司级别权限设定！）</span>");
+        } else  if ($('#levelId option:selected').val()==''){
+            $("#levelIdError").html("<span style=\"color: #FF5722;\">请选择公司级别！( *此处根据上属公司级别权限设定！)</span>");
+            $("#allError").html("<span style=\"color: #FF5722;\">请选择公司级别！（ *此处根据上属公司级别权限设定！）</span>");
+            return false;
+        }else  if ($("#pro").val()==''||$('#cit').val()==''||$('#dis').val()==''){
+            $("#addressError").html("<span style=\"color: #FF5722;\">请选择公司地址！</span>");
+            $("#allError").html("<span style=\"color: #FF5722;\">请选择公司地址！</span>");
             return false;
         }else {
             return true;
@@ -347,6 +413,23 @@
     }
     function onLevelId() {
         $("#levelIdError").empty();
+        $("#allError").empty();
+    }
+
+    function ad_state() {
+       var stateVal=$("#pro option:selected").html();
+       $("#stateValue").val(stateVal);
+    }
+    function ad_city() {
+        var cityVal=$("#cit option:selected").html();
+        $("#cityValue").val(cityVal);
+    }
+    function ad_district() {
+        var districtVal=$("#dis option:selected").html();
+        $("#districtValue").val(districtVal);
+    }
+    function onAddress() {
+        $("#addressError").empty();
         $("#allError").empty();
     }
 
