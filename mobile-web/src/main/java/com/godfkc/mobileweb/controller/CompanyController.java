@@ -6,6 +6,8 @@ import com.godfkc.common.utils.JsonUtils;
 import com.godfkc.mobileweb.service.CompanyService;
 import com.godfkc.mobileweb.service.OrderService;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -47,6 +49,7 @@ public class CompanyController {
     @Value("${session.key.companyImg}")
     private String sessionkeycompanyImg;
 
+    Logger logger = LoggerFactory.getLogger(CompanyController.class);
     /**
      * 下边栏，点选企业
      *
@@ -299,48 +302,52 @@ public class CompanyController {
     @ResponseBody
     public String confirmWithdrawals(String withdrawlMoney,HttpServletRequest request){
         Long companyId = (Long) request.getSession().getAttribute(sessionKeyCompanyId);
-        System.out.println("要提现的金额："+withdrawlMoney);
+        logger.info("要提现的金额："+withdrawlMoney);
         if (companyId != null){
+            if (withdrawlMoney.equals("0")){
+                logger.info("余额不足");
+                return "2";
+            }
             String companyFundsByCompanyId = companyService.findCompanyFundsByCompanyId(companyId);
-            System.out.println("返回的银行资金信息："+companyFundsByCompanyId);
+            logger.info("返回的银行资金信息："+companyFundsByCompanyId);
             Map<String, Object> map1 = JsonUtils.JsonToMap(companyFundsByCompanyId);
             int bMoney = (Integer) map1.get("money");
-            System.out.println("数据库查出的余额："+bMoney);
+            logger.info("数据库查出的余额："+bMoney);
             int withdraw = Integer.parseInt(withdrawlMoney);
             if (bMoney < withdraw){
-                System.out.println("余额不足");
+                logger.info("余额不足");
                 return "2";
             }else {
                 int afterWithdrawInt = bMoney - withdraw;
-                System.out.println("提现后的余额："+ afterWithdrawInt);
+                logger.info("提现后的余额："+ afterWithdrawInt);
                 boolean chagBal = companyService.changeBalance(afterWithdrawInt, companyId);
                 if(!chagBal){
-                    System.out.println("提现改变余额失败");
+                    logger.info("提现改变余额失败");
                     return "3";
                 }else {
-                    System.out.println("提现改变余额成功");
+                    logger.info("提现改变余额成功");
                     //插入提现表
                     boolean insertFunwith = companyService.insertFundsWithdraw(withdrawlMoney, companyId);
                    if (!insertFunwith){
-                       System.out.println("插入提现表失败");
+                       logger.info("插入提现表失败");
                        return "3";
                    }else {
-                       System.out.println("插入提现表成功");
+                       logger.info("插入提现表成功");
                        //插入业务日志表
                        String descreption = null;
                        boolean fundsLog = companyService.insertFundsLog(afterWithdrawInt, withdrawlMoney, companyId,descreption,1);
                         if (!fundsLog){
-                            System.out.println("插入业务日志表失败");
+                            logger.info("插入业务日志表失败");
                             return "3";
                         }else {
-                            System.out.println("插入业务日志表成功");
+                            logger.info("插入业务日志表成功");
                             return "4";
                         }
                    }
                 }
             }
         }else {
-            System.out.println("连接超时");
+            logger.info("连接超时");
             return "1";
         }
     }
@@ -353,7 +360,7 @@ public class CompanyController {
             String fundsLogList = companyService.findFundsLogByCompanyId(companyId);
             return fundsLogList;
         }else {
-            System.out.println("连接超时");
+            logger.info("连接超时");
             return "1";
         }
     }

@@ -1,6 +1,8 @@
 package com.godfkc.mobileweb.service.imp;
 
 import com.godfkc.mobileweb.service.CompanyService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -20,6 +22,8 @@ public class CompanyServiceImp implements CompanyService {
     RestTemplate restTemplate;
     @Value("${center.url}")
     private String centerUrl;
+
+    Logger logger = LoggerFactory.getLogger(CompanyServiceImp.class);
     @Override
     public boolean findByNameAndPassword(String name,String password) {
         String url=centerUrl+"companyLoginCheck/{name}/{password}";
@@ -63,7 +67,7 @@ public class CompanyServiceImp implements CompanyService {
     public String findByCompanyId(Long companyId) {
         String url = centerUrl + "findByCompanyId";
         String json = restTemplate.postForObject(url,companyId,String.class);
-        System.out.println("查询的绑定的企业银行卡："+json);
+        logger.info("查询的绑定的企业银行卡："+json);
         return json;
     }
 
@@ -77,7 +81,7 @@ public class CompanyServiceImp implements CompanyService {
     public String findBankDictAll() {
         String url = centerUrl + "findBankDictAll";
         String bankDictJson = restTemplate.getForObject(url, String.class);
-        System.out.println("返回的所有银行信息：" + bankDictJson);
+        logger.info("返回的所有银行信息：" + bankDictJson);
         return bankDictJson;
     }
 
@@ -107,7 +111,7 @@ public class CompanyServiceImp implements CompanyService {
     public String findCompanyBankCardByCompanyId(Long companyId) {
         String url = centerUrl + "findCompanyBankCardByCompanyId";
         String s = restTemplate.postForObject(url,companyId,String.class);
-        System.out.println("返回的企业银行卡json:"+s);
+        logger.info("返回的企业银行卡json:"+s);
         return s;
     }
 
@@ -153,7 +157,7 @@ public class CompanyServiceImp implements CompanyService {
     public String findFundsLogByCompanyId(Long companyId) {
         String url = centerUrl + "findAllByCompanyId/{companyId}";
         String fundsLogList = restTemplate.getForObject(url, String.class, companyId);
-        System.out.println("明细json数据:"+fundsLogList);
+        logger.info("明细json数据:"+fundsLogList);
         return fundsLogList;
     }
 

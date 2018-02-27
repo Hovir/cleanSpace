@@ -6,6 +6,8 @@ import com.godfkc.common.utils.JsonUtils;
 import com.godfkc.common.utils.LoginMessageUtils;
 import com.godfkc.mobileweb.service.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -51,6 +53,7 @@ public class UserController {
     @Value("${session.key.userHeadImg}")
     private String sessionKeyUserHeadImg;
 
+    Logger logger = LoggerFactory.getLogger(UserController.class);
     //用户登陆
     @RequestMapping("/doLogin")
     @ResponseBody
@@ -91,21 +94,21 @@ public class UserController {
     public String userRegist(String phone, String verfiy, String pwd) throws Exception {
         Long userId = userService.selectUserIdByPhone(phone);
         if (userId != null) {
-            System.out.println("注册日志：手机号已注册!");
+            logger.info("注册日志：手机号已注册!");
             return "1";
         }
         String rightCode = (String) redisTemplate.opsForValue().get(phone);
         if (rightCode == null || !rightCode.equals(verfiy)) {
-            System.out.println("注册日志：验证码不正确!");
+            logger.info("注册日志：验证码不正确!");
             return "2";
         }
         String password = DigestUtils.md5Hex(pwd);
         boolean sign = userService.insertUserInfo(phone, password);
         if (sign) {
-            System.out.println("注册日志：注册成功!");
+            logger.info("注册日志：注册成功!");
             return "3";
         } else {
-            System.out.println("注册日志：注册失败!");
+            logger.info("注册日志：注册失败!");
             return "4";
         }
     }
@@ -130,19 +133,19 @@ public class UserController {
     public String confirmLogin(String phone, String verfiy, String password, HttpServletRequest request) {
         Long userId = userService.selectUserIdByPhone(phone);
         if (userId == null) {
-            System.out.println("重置密码日志：手机号未注册!");
+            logger.info("重置密码日志：手机号未注册!");
             return "1";
         }
 
         String rightCode = (String) redisTemplate.opsForValue().get(phone);
         if (rightCode == null || !rightCode.equals(verfiy)) {
-            System.out.println("重置密码日志：验证码不正确/失效!");
+            logger.info("重置密码日志：验证码不正确/失效!");
             return "2";
         }
         String pwd = DigestUtils.md5Hex(password);
         boolean sign = userService.updatePwdByPhone(phone, pwd);
         if (sign) {
-            System.out.println("重置密码日志：修改成功!");
+            logger.info("重置密码日志：修改成功!");
             HttpSession httpSession = request.getSession();
             String json = userService.doLogin(phone, pwd);
             Map<String, Object> map = JsonUtils.JsonToMap(json);
@@ -152,7 +155,7 @@ public class UserController {
             httpSession.setAttribute(sessionKeyUserHeadImg, map.get("headImg"));
             return "3";
         } else {
-            System.out.println("重置密码日志：修改失败!");
+            logger.info("重置密码日志：修改失败!");
             return "4";
         }
     }
@@ -229,13 +232,13 @@ public class UserController {
                     String imagePath1 = fastDFSClient.uploadFile(b, imgType);
                     //更改数据库图片
                     String imagePath = PictureServerConstants._PICTURE_SERVER_URL + imagePath1;
-                    System.out.println("图片路径："+imagePath);
+                    logger.info("图片路径："+imagePath);
                     boolean updateImg = userService.updateUserImgById(imagePath, userId.toString());
                     if (!updateImg) {
-                        System.out.println("头像修改失败");
+                        logger.info("头像修改失败");
                         return "1";
                     }else {
-                        System.out.println("头像修改成功");
+                        logger.info("头像修改成功");
                         request.getSession().setAttribute(sessionKeyUserHeadImg,imagePath);
                         return "3";
                     }
@@ -247,7 +250,7 @@ public class UserController {
                 userService.updateUserImgById(imagePath, userId.toString());
             }
         } else {
-            System.out.println("连接超时");
+            logger.info("连接超时");
             return "2";
         }
         return null;
@@ -262,15 +265,15 @@ public class UserController {
             Long userId = userService.selectUserIdByPhone(userPhone);
             boolean b = userService.updateNameById(name, userId);
             if (!b){
-                System.out.println("修改昵称失败");
+                logger.info("修改昵称失败");
                 return "1";
             }else {
-                System.out.println("修改昵称成功");
+                logger.info("修改昵称成功");
                 request.getSession().setAttribute(sessionKeyUserName,name);
                 return "3";
             }
         }else {
-            System.out.println("连接超时");
+            logger.info("连接超时");
             return "2";
         }
     }
