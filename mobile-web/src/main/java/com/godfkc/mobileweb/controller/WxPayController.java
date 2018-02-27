@@ -130,7 +130,6 @@ public class WxPayController {
             logger.info("返回参数：" + wxResult.toString());
 
             String payUrl = wxResult.getPayUrl();
-            redirectUrl = URLEncoder.encode(redirectUrl, "UTF-8");
             payUrl = payUrl + "&redirect_url=" + redirectUrl + "/" + wxResult.getS_no();
             return "redirect:" + payUrl;
         }
