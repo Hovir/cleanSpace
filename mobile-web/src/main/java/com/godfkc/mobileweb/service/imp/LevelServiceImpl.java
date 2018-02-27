@@ -30,4 +30,11 @@ public class LevelServiceImpl implements LevelService{
         System.out.println(json);
         return json;
     }
+
+    @Override
+    public Long selectCommisionByLevelId(Long levelId) {
+        String url = centerUrl + "selectCommisionByLevelId/{levelId}";
+        Long commision= this.restTemplate.getForObject(url,Long.class,levelId);
+        return commision;
+    }
 }

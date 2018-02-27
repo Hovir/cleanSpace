@@ -11,4 +11,6 @@ import java.util.List;
  */
 public interface LevelService {
     List<Level> selectLevels();
+
+    Long selectCommisionByLevelId(Long levelId);
 }

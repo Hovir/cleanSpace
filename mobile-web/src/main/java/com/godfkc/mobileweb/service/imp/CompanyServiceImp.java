@@ -158,6 +158,13 @@ public class CompanyServiceImp implements CompanyService {
     }
 
     @Override
+    public Long selectLevelIdByCompanyId(Long companyId) {
+        String url = centerUrl + "selectLevelIdByCompanyId/{companyId}";
+        Long levelId = restTemplate.getForObject(url, Long.class, companyId);
+        return levelId;
+    }
+
+    @Override
     public String selectCompanies(Long levelId, String state, String city, String district) {
         String url = centerUrl + "selectCompanies/{levelId}/{state}/{city}/{district}";
         Map<String,Object> map = new HashMap<>();

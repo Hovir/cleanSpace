@@ -120,5 +120,10 @@ public class CompanyServiceImp implements CompanyService{
         return companyFundsLogRepository.findAllByCompanyId(companyId);
     }
 
+    @Override
+    public Long selectLevelIdByCompanyId(Long companyId) {
+        return companyRepository.selectLevelIdByCompanyId(companyId);
+    }
+
 
 }

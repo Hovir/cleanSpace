@@ -7,4 +7,7 @@ package com.godfkc.mobileweb.service;
  */
 public interface LevelService {
     String selectLevels();
+
+    //根据levelId查询佣金
+    Long selectCommisionByLevelId(Long levelId);
 }

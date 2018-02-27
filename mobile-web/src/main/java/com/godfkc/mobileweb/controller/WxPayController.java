@@ -6,6 +6,7 @@ import com.godfkc.common.utils.JsonUtils;
 import com.godfkc.common.utils.MD5Util;
 import com.godfkc.mobileweb.service.CardService;
 import com.godfkc.mobileweb.service.CompanyService;
+import com.godfkc.mobileweb.service.LevelService;
 import com.godfkc.mobileweb.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,6 +44,9 @@ public class WxPayController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private LevelService levelService;
 
 
     @Value("${wx.b_id}")
@@ -207,16 +211,17 @@ public class WxPayController {
             String[] split = order_no.split("_");
             String cardId=split[0];
             String phone=split[1];
-            String money=order_price;
-            int money1 = Integer.parseInt(money)*100;
             Long cardId1=Long.parseLong(cardId);
-            logger.info(cardId+"------"+money1+"----------"+cardId1);
             Long userId=userService.selectUserIdByPhone(phone);
             Long companyId = cardService.selectCompanyIdByCard(cardId1);
             String json = companyService.findCompanyFundsByCompanyId(companyId);
             Map<String, Object> map = JsonUtils.JsonToMap(json);
             int bMoney = (Integer) map.get("money");
-            int funds = bMoney + money1;
+            Long levelId = companyService.selectLevelIdByCompanyId(companyId);
+            Long commision = levelService.selectCommisionByLevelId(levelId);
+            logger.info(cardId+"------"+levelId+"----------"+commision.intValue()*100);
+            int funds = bMoney + commision.intValue()*100;
+            int commision1=commision.intValue()*100;
             //改变余额
             boolean chagBal = companyService.changeBalance(funds, companyId);
             if(chagBal){
@@ -224,7 +229,7 @@ public class WxPayController {
             }else {
                 logger.info("账号余额改变失败");
             }
-            boolean fundsLog = companyService.insertFundsLog(funds, money,companyId,cardId,2);
+            boolean fundsLog = companyService.insertFundsLog(funds, commision1+"",companyId,cardId,2);
             if(fundsLog){
                 logger.info("日志表添加成功");
             }else {

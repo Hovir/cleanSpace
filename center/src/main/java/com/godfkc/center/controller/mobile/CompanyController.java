@@ -245,4 +245,9 @@ public class CompanyController {
     public List<CompanyFundsLog> findAllByCompanyId(@PathVariable Long companyId){
         return companyService.findAllByCompanyId(companyId);
     }
+
+    @RequestMapping("/selectLevelIdByCompanyId/{companyId}")
+    public Long selectLevelIdByCompanyId(@PathVariable Long companyId){
+        return companyService.selectLevelIdByCompanyId(companyId);
+    }
 }

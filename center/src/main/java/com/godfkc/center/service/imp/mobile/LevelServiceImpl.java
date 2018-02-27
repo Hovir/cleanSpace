@@ -26,4 +26,9 @@ public class LevelServiceImpl implements LevelService{
     public List<Level> selectLevels() {
         return levelRepository.findAll();
     }
+
+    @Override
+    public Long selectCommisionByLevelId(Long levelId) {
+        return levelRepository.selectCommisionByLevelId(levelId);
+    }
 }

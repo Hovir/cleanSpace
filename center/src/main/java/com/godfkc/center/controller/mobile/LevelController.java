@@ -3,6 +3,7 @@ package com.godfkc.center.controller.mobile;
 import com.godfkc.center.entity.Level;
 import com.godfkc.center.service.mobile.LevelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +24,11 @@ public class LevelController {
     public List<Level> selectLevels(){
         List<Level> levelList=levelService.selectLevels();
         return levelList;
+    }
+
+    @RequestMapping("/selectCommisionByLevelId/{levelId}")
+    public Long selectCommisionByLevelId(@PathVariable Long levelId){
+        return levelService.selectCommisionByLevelId(levelId);
     }
 
 }

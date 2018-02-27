@@ -94,4 +94,8 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
 
     //后台列表-list-公司编号验证
     Company findCompanyByBnAndStatus(String bn,Integer status);
+
+    //根据公司id查询公司信息
+    @Query("select coy.level.id from Company coy where coy.id=?1 and coy.status=1")
+    Long selectLevelIdByCompanyId(Long companyId);
 }

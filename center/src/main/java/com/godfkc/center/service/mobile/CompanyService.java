@@ -40,4 +40,6 @@ public interface CompanyService {
     CompanyFundsLog insertFundsLog(CompanyFundsLog companyFundsLog);
 
     List<CompanyFundsLog> findAllByCompanyId (Long companyId);
+
+    Long selectLevelIdByCompanyId(Long companyId);
 }

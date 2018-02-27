@@ -17,6 +17,11 @@ public interface LevelRepository extends JpaRepository<Level, Long> {
     int updataCommision(Long commision,Long id);
 
 
+    //根据levelId查找佣金
+    @Query(value="select l.commision from Level l where l.id=?1")
+    Long selectCommisionByLevelId(Long levelId);
+
+
 
 
     /**

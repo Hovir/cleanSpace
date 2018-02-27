@@ -26,4 +26,7 @@ public interface CompanyService {
 
     boolean insertFundsLog(int afterWithdrawInt, String withdrawlMoney, Long companyId,String descreption,Integer type);
     String findFundsLogByCompanyId(Long companyId);
+
+    //根据companyId查询levelId
+    Long selectLevelIdByCompanyId(Long companyId);
 }
