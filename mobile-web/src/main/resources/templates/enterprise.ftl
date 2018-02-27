@@ -65,7 +65,7 @@ ${company}
                 <span class="detail"><a href="/detailPage" class="detailCss">明细</a></span>
             <span>今日收益</span>
             <div class="tmoney">
-                <span class="money">${jsonCompany.moneyToday}</span>
+                <span class="money">${jsonCompany.moneyToday/100.00}</span>
                 <span>元</span>
             </div>
         </div>
