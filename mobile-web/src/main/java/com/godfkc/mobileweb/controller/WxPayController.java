@@ -176,8 +176,8 @@ public class WxPayController {
         parameters.put("s_no", s_no);
         parameters.put("sign", sign);
 
-        WxResult wxResult = this.restTemplate.postForObject(checkUrl, parameters, WxResult.class);
-
+        String wxResult1 = this.restTemplate.postForObject(checkUrl, parameters, String.class);
+        WxResult wxResult = JsonUtils.Json2Object(wxResult1, WxResult.class);
         logger.info("请求参数：" + parameters.toString());
         if ("success".equals(wxResult.getStatus())) {
             logger.info("查询成功");
