@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,10 +21,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.AbstractTemplateView;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,6 +52,8 @@ public class CompanyController {
     @Value("${session.key.companyImg}")
     private String sessionkeycompanyImg;
 
+    @Resource
+    private RedisTemplate<Object, Object> redisTemplate;
     Logger logger = LoggerFactory.getLogger(CompanyController.class);
     /**
      * 下边栏，点选企业
@@ -245,6 +250,17 @@ public class CompanyController {
                 return "3";
             }
 
+        }
+        return "1";
+    }
+
+    @RequestMapping("/confirmBind")
+    @ResponseBody
+    public String confirmLogin(String phone, String verfiy) {
+        String rightCode = (String) redisTemplate.opsForValue().get(phone);
+        if (rightCode == null || !rightCode.equals(verfiy)) {
+            logger.info("绑定银行卡日志:验证码不正确/失效!");
+            return "2";
         }
         return "1";
     }

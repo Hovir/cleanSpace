@@ -83,7 +83,7 @@
                 })
             },
             error: function () {
-                alert("请求失败");
+                //alert("请求失败");
             }
         })
     })
@@ -148,6 +148,7 @@
         var banksel = $("option:selected").val(); //选中的银行id
         var phone = $("#phone").val(); //手机号
         var username = $("#username").val();
+        var verfiy = $("#verfiy").val();
         if (!checkBankNo(bankCardNo)) {
             return;
         }
@@ -166,31 +167,48 @@
             $("#info").html("请输入持卡人姓名!").css("color", "red");
             return;
         }
+        //验证验证码
         $.ajax({
-            url:"/company/bindBankCard",
+            url:"/company/confirmBind",
             type:"post",
-            dataType:"text",
-            data:{cardNo:bankCardNo,bankDictId:banksel,phone:phone,username:username},
+            dateType:"text",
+            data:{phone:phone,verfiy:verfiy},
             success:function (data) {
-                if (data == "1"){
-                    alert("链接超时，请重新登录!");
-                    window.location.href = "/";
-                }
                 if (data == "2"){
-                    alert("绑定银行卡成功!");
-                    window.location.href = "/bankCardPage";
-                }
-                if (data == "4"){
-                    alert("您已绑定银行卡，请先解除绑定!");
-                    window.location.href = "/bankCardPage";
-                }
-                if (data == "3"){
-                    alert("绑定失败!");
-                    window.location.href = "/bindCardPage";
+                    $("#info").html("验证码不正确或失效!").css("color", "red");
+                    return ;
+                }else{
+                    $.ajax({
+                        url:"/company/bindBankCard",
+                        type:"post",
+                        dataType:"text",
+                        data:{cardNo:bankCardNo,bankDictId:banksel,phone:phone,username:username},
+                        success:function (data) {
+                            if (data == "1"){
+                                alert("链接超时，请重新登录!");
+                                window.location.href = "/";
+                            }
+                            if (data == "2"){
+                                alert("绑定银行卡成功!");
+                                window.location.href = "/bankCardPage";
+                            }
+                            if (data == "4"){
+                                alert("您已绑定银行卡，请先解除绑定!");
+                                window.location.href = "/bankCardPage";
+                            }
+                            if (data == "3"){
+                                alert("绑定失败!");
+                                window.location.href = "/bindCardPage";
+                            }
+                        },
+                        error:function (data) {
+                            //alert("请求失败");
+                        }
+                    })
                 }
             },
             error:function (data) {
-                alert("请求失败");
+                //alert("请求失败!");
             }
         })
     }
