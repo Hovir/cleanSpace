@@ -39,7 +39,7 @@
 			
 			<div class="card_font">
 				账户余额
-				<span>${money}</span>
+				<span>${money?number/100}</span>
 				元
 			</div>
 			<div class="no-card" style="display: none;">

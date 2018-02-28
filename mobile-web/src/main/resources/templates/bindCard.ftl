@@ -32,12 +32,16 @@
 </div>
 <div class="content">
     <div class="settext bindcard">
-        <span>卡号</span>
-        <input type="text" name="" id="cardNo" value="" onfocus="clearInfo()"/>
+        <#--<span>卡号</span>
+        <input type="text" name="" id="cardNo" value="" onfocus="clearInfo()"/>-->
     <#--<input type="text" name="" id="" value="中国工商银行 借记卡" class="cardtype"/>-->
         <select class="cardtype" id="bankDict" onfocus="clearInfo()">
             <option value="0">--请选择银行--</option>
         </select>
+    </div>
+    <div class="settext">
+        <span>卡号</span>
+        <input type="text" name="" id="cardNo" value="" onfocus="clearInfo()" placeholder="请输入银行卡卡号"/>
     </div>
     <div class="settext">
         <span>持卡人姓名</span>
@@ -90,7 +94,7 @@
         var banksel = $("#bankDict").val(); //选中的银行id
         var phone = $("#phone").val(); //手机号
         var username = $("#username").val();
-        if (checkBankNo(bankCardNo)) {
+        if (!checkBankNo(bankCardNo)) {
             return;
         }
         if (banksel == 0){
@@ -144,11 +148,12 @@
         var banksel = $("option:selected").val(); //选中的银行id
         var phone = $("#phone").val(); //手机号
         var username = $("#username").val();
-        if (checkBankNo(bankCardNo)) {
+        if (!checkBankNo(bankCardNo)) {
             return;
         }
         if (banksel == 0){
             $("#info").html("请选择银行!").css("color", "red");
+            return;
         }
         if ($.trim(phone) == "") {
             $("#info").html("请输入手机号!").css("color", "red");
@@ -211,6 +216,7 @@
             $("#info").html("银行卡号开头两位不符合规范!").css("color", "red");
             return false;
         }
+        return true;
     }
 
     //验证手机号
