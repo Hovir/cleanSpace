@@ -224,6 +224,7 @@ public class WxPayController {
             logger.info(cardId+"------"+levelId+"----------"+commision.intValue()*100);
             int funds = bMoney + commision.intValue()*100;
             int commision1=commision.intValue()*100;
+            String num=cardService.selectCardNumById(cardId1);
             //改变余额
             boolean chagBal = companyService.changeBalance(funds, companyId);
             if(chagBal){
@@ -231,7 +232,7 @@ public class WxPayController {
             }else {
                 logger.info("账号余额改变失败");
             }
-            boolean fundsLog = companyService.insertFundsLog(funds, commision1+"",companyId,cardId,2);
+            boolean fundsLog = companyService.insertFundsLog(funds, commision1+"",companyId,num,2);
             if(fundsLog){
                 logger.info("日志表添加成功");
             }else {

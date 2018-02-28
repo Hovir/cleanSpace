@@ -64,7 +64,7 @@ public class MobileCardController {
     }
 
     @RequestMapping("/updateCardTimes/{cardId}/{times}")
-    private boolean updateCardTimes(@PathVariable("cardId") Long cardId,@PathVariable("times") int times){
+    public boolean updateCardTimes(@PathVariable("cardId") Long cardId,@PathVariable("times") int times){
         int updateRows=cardService.updateCardTimes(cardId,times);
         if (updateRows>0){
             return true;
@@ -72,4 +72,12 @@ public class MobileCardController {
             return false;
         }
     }
+
+    //根据cardId查询卡账号
+    @RequestMapping("/selectCardNumById/{cardId}")
+    public String selectCardNumById(@PathVariable("cardId") Long cardId){
+        String num=cardService.selectCardNumById(cardId);
+        return num;
+    }
+
 }

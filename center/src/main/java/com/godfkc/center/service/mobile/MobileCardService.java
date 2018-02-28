@@ -26,4 +26,7 @@ public interface MobileCardService {
 
     //修改card使用次数
     int updateCardTimes(Long cardId, int times);
+
+    //根据cardId查询卡账号
+    String selectCardNumById(Long cardId);
 }

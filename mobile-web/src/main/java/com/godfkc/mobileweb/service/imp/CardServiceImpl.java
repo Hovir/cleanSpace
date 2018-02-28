@@ -85,4 +85,11 @@ public class CardServiceImpl implements CardService{
         boolean flag=restTemplate.getForObject(url,boolean.class,map);
         return flag;
     }
+
+    @Override
+    public String selectCardNumById(Long cardId) {
+        String url = centerUrl + "selectCardNumById/{cardId}";
+        String num=restTemplate.getForObject(url,String.class,cardId);
+        return num;
+    }
 }

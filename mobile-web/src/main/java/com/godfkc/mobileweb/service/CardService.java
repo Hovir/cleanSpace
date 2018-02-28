@@ -24,4 +24,7 @@ public interface CardService {
     //修改卡次数
     boolean updateCardTimes(Long cardId,int times);
 
+    //根据cardId查询卡账号
+    String selectCardNumById(Long cardId);
+
 }

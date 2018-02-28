@@ -53,4 +53,10 @@ public class MobileCardServiceImpl implements MobileCardService {
     public int updateCardTimes(Long cardId, int times) {
         return cardRepository.updateCardTimes(times,cardId);
     }
+
+    //根据cardId查询卡账号
+    @Override
+    public String selectCardNumById(Long cardId) {
+        return cardRepository.selectCardNumById(cardId);
+    }
 }

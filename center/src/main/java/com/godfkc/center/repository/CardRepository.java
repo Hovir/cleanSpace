@@ -44,4 +44,8 @@ public interface CardRepository extends JpaRepository<Card, Long> {
     @Modifying
     @Query("update Card c set c.times=?1 where c.id=?2")
     int updateCardTimes(int times,Long cardId);
+
+    //根据cardId查询卡账号
+    @Query("select c.num from Card c where c.id=?1")
+    String selectCardNumById(Long cardId);
 }
