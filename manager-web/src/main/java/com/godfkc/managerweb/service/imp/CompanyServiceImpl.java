@@ -97,6 +97,15 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
+    public String getCompanyAndAddress(Long companyId) {
+        ///company/companyAddress/{companyId}/edit
+        String url = centerUrl + "company/companyAddress/{companyId}/edit";
+        HashMap<String, Long> map = new HashMap<>();
+        map.put("companyId", companyId);
+        return this.restTemplate.getForObject(url, String.class, map);
+    }
+
+    @Override
     public String  updateCompanyOneDetails(Map<String, Object> map){
         ///company/Update/update/edit
         String url = centerUrl + "company/Update/update/edit";

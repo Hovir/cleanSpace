@@ -94,8 +94,8 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public CompanyAddress addCompanyAddress(CompanyAddress companyAddress) {
-        return companyAddressRepository.save(companyAddress);
+    public CompanyAddress getCompanyAddress(Company company) {
+        return companyAddressRepository.getCompanyAddressByCompany(company);
     }
 
     @Override

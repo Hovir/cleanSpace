@@ -182,38 +182,48 @@ public class CompanyController {
         return "/admin/compListAdd/add/failer/edit";
     }
 
-
     /**
-     * 企业列表-详情-页面（显示数据）
+     * 企业列表-详情-页面（显示数据-）（时间传值）
      *
      * @param id
      * @param model
      * @return
      */
-    @RequestMapping(value = "/admin/compListShow/{id}/edit", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/html;charset=UTF-8")
-    public String getCompanyShowPage(@PathVariable("id") Long id, Model model) {
-        String companyOneDetails = companyService.getCompanyOneDetails(id);
-        Map<String, Object> editmap = JsonUtils.JsonToMap(companyOneDetails);
-        model.addAttribute("companyShow", editmap);
-        return "company/companyListShow";
-    }
-
-    /**
-     * 企业列表-详情-页面（显示数据）（时间传值）
-     *
-     * @param id
-     * @param model
-     * @return
-     */
-    @RequestMapping(value = "/admin/compListShow/{id}/{date}/edit", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/html;charset=UTF-8")
-    public String getCompanyShowPage2(@PathVariable("id") Long id, @PathVariable("date") String date, Model model) {
+    @RequestMapping(value = "/admin/compListShowD3/{id}/{date}/edit", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/html;charset=UTF-8")
+    public String getCompanyShowPageD3(@PathVariable("id") Long id, @PathVariable("date") String date, Model model) {
+        //公司无地址
         String companyOneDetails = companyService.getCompanyOneDetails(id);
         Map<String, Object> editmap = JsonUtils.JsonToMap(companyOneDetails);
         editmap.put("createTime", date);
         model.addAttribute("companyShow", editmap);
         return "company/companyListShow";
     }
-
+    /**
+     * 企业列表-详情-页面（显示数据+）（时间传值）
+     *
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/admin/compListShow/{id}/{date}/edit", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/html;charset=UTF-8")
+    public String getCompanyShowPage(@PathVariable("id") Long id, @PathVariable("date") String date, Model model) {
+        String companyAndAddressDetail = companyService.getCompanyAndAddress(id);
+        if(companyAndAddressDetail!=null){
+            //公司有地址
+            Map<String, Object> editmap = JsonUtils.JsonToMap(companyAndAddressDetail);
+            //System.out.println("editmap="+editmap);
+            editmap.put("createTime", date);
+            model.addAttribute("companyShowDetail", editmap);
+            return "company/companyListShowDetail";
+        }else{
+            //公司无地址
+            String companyOneDetails = companyService.getCompanyOneDetails(id);
+            Map<String, Object> editmap = JsonUtils.JsonToMap(companyOneDetails);
+            editmap.put("createTime", date);
+            model.addAttribute("companyShow", editmap);
+            return "company/companyListShow";
+        }
+    }
 
     /**
      * 企业列表-修改信息-数据处理
@@ -234,7 +244,7 @@ public class CompanyController {
         if (str != null) {
             return " ";
         }
-        return "/admin/compListEdit/" + id + "/10/edit";
+        return "/admin/compListEdit/" + id + "/0/edit";
     }
 
     /**
@@ -249,7 +259,7 @@ public class CompanyController {
         String companyOneDetails = companyService.getCompanyOneDetails(id);
         Map<String, Object> editmap = JsonUtils.JsonToMap(companyOneDetails);
         model.addAttribute("companyEdit", editmap);
-        if (num == 10) {
+        if (num == 0) {
             model.addAttribute("fail", "保存并提交失败！");
         }
         return "company/companyListEdit";
@@ -357,7 +367,12 @@ public class CompanyController {
     @ResponseBody
     @RequestMapping("/company/selectAddressDict")
     public String selectAddressDict(Long parentId){
-        String json = addressDictService.selectAddressDict(parentId);
-        return json;
+        if(parentId!=null){
+            String json = addressDictService.selectAddressDict(parentId);
+            return json;
+        }else{
+            System.out.println("error");
+            return "error";
+        }
     }
 }

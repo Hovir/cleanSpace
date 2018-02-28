@@ -29,12 +29,12 @@
 <body>
 <article class="cl pd-20">
     <div>
-        <input type="hidden" id="" name="" value="${companyShow.id!''}"/>
+        <input type="hidden" id="" name="" value="${companyShowDetail.company.id!''}"/>
         <div class="cl pd-20" style=" background-color:#5bacb6">
-            <img class="avatar size-XL l" src="${companyShow.imgUrl!''}" height="50" width="50">
+            <img class="avatar size-XL l" src="${companyShowDetail.company.imgUrl!''}" height="50" width="50">
             <dl style="margin-left:80px; color:#fff">
-                <dt><span class="f-18">${companyShow.name!'公司名'}</span> <span class="pl-10 f-12"></span></dt>
-                <dd class="pt-10 f-12" style="margin-left:0;">地址：</dd>
+                <dt><span class="f-18">${companyShowDetail.company.name!'公司名'}</span> <span class="pl-10 f-12"></span></dt>
+                <dd class="pt-10 f-12" style="margin-left:0;">地址：${companyShowDetail.state!''} ${companyShowDetail.city!''} ${companyShowDetail.district!''}</dd>
             </dl>
         </div>
         <div class="pd-20">
@@ -42,15 +42,15 @@
                 <tbody>
                 <tr>
                     <th class="text-r">公司级别：</th>
-                    <td>${companyShow.level.name!''}</td>
+                    <td>${companyShowDetail.company.level.name!''}</td>
                 </tr>
                 <tr>
                     <th class="text-r">创建时间：</th>
-                    <td id="companyCreateTime">${companyShow.createTime!''}</td>
+                    <td id="companyCreateTime">${companyShowDetail.createTime!''}</td>
                 </tr>
                 <tr>
                     <th class="text-r">公司简介：</th>
-                    <td>${(companyShow.profile)!''}</td>
+                    <td>${(companyShowDetail.company.profile)!''}</td>
                 </tr>
                 </tbody>
             </table>

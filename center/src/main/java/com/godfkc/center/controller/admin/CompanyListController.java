@@ -113,7 +113,7 @@ public class CompanyListController {
     }
 
     /**
-     * 企业列表-添加-查询Level-级联
+     * 企业列表-添加-查询Level（级联）
      * @param companyId
      * @return
      */
@@ -125,7 +125,7 @@ public class CompanyListController {
         return levels;
     }
     /**
-     * 企业列表-添加-添加数据-公司信息
+     * 企业列表-添加-添加数据（公司信息）
      * @param company
      * @return
      */
@@ -151,25 +151,24 @@ public class CompanyListController {
     }
 
     /**
-     * 企业列表-添加-添加数据-公司地址
-     * @param companyAddress
+     * 企业列表-编辑/修改-查询数据+公司地址
+     * @param companyId
      * @return
      */
-    @RequestMapping(value = "/company/Add/companyAddress/{companyId}/edit",method = RequestMethod.POST)
-    public CompanyAddress addCompaniesList(@RequestBody CompanyAddress companyAddress,@PathVariable("companyId") Long  companyId) {
+    @RequestMapping(value = "/company/companyAddress/{companyId}/edit")
+    public CompanyAddress getCompanyAndAddressDetail(@PathVariable("companyId") Long companyId) {
         Company company=new Company();
         company.setId(companyId);
-        companyAddress.setCompany(company);
-        return companyService.addCompanyAddress(companyAddress);
+        return companyService.getCompanyAddress(company);
     }
 
     /**
-     * 后台列表-编辑-查询数据
+     * 后台列表-编辑-查询数据(无公司地址)
      * @param id
      * @return
      */
     @RequestMapping("/company/details/{id}/edit")
-    public Company getCompaniesOneDetails(@PathVariable("id") Long id){
+    public Company getCompanyOneDetail(@PathVariable("id") Long id){
         Company companyOne= companyService.getCompanyOneDetails(id);
         return companyOne;
     }
@@ -190,7 +189,7 @@ public class CompanyListController {
     }
 
     /**
-     * 企业列表-pwd-修改密码
+     * 企业列表-修改-修改密码
      * @param id
      * @param password
      * @return
@@ -217,7 +216,7 @@ public class CompanyListController {
     }
 
     /**
-     * 后台列表-list-公司编号验证
+     * 企业列表-添加-查询公司编号（验证）
      * @param bn
      * @return
      */
