@@ -27,11 +27,8 @@ import java.util.Map;
  */
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    @Query(" select o from Order o where o.company.id = :companyId and o.status<>0 or o.user.id = :userId and o.status<>0 order by o.appointmentTime desc")
-    List<Order> findByCompanyIdOrUserId(@Param("companyId") Long companyId,@Param("userId") Long userId);
-
-    @Query(" select o from Order o where o.status<>0 and o.company.id = :companyId and o.user.id = :userId order by o.appointmentTime desc")
-    List<Order> findByCompanyIdAndUserId(@Param("companyId") Long companyId,@Param("userId") Long userId);
+    @Query(" select o from Order o where o.status<>0 and o.user.id = :userId order by o.appointmentTime desc")
+    List<Order> findByCompanyIdAndUserId(@Param("userId") Long userId);
 
     //通过状态（status）查询派遣订单表(order) lqj add 2018-2-1
     //@Query(value = "SELECT cs_order.city,cs_order.name from cs_order WHERE cs_order.status=?1 AND cs_order.id=1 ", nativeQuery = true)

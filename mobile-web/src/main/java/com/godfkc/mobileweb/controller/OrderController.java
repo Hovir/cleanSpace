@@ -51,10 +51,10 @@ public class OrderController {
     @ResponseBody
     public String myReservation(HttpServletRequest request, Model model){
         String phone = (String) request.getSession().getAttribute(sessionKeyUserPhone);
-        Long companyId = (Long) request.getSession().getAttribute(sessionKeyCompanyId);
+        //Long companyId = (Long) request.getSession().getAttribute(sessionKeyCompanyId);
         if(phone!=null&&phone.length()>0){
             Long userId=userService.selectUserIdByPhone(phone);
-            String orderListJson = orderService.findByCompanyIdOrUserId(companyId, userId);
+            String orderListJson = orderService.findByCompanyIdOrUserId(userId);
             //System.out.println("返回第一个controller:"+orderListJson);
             return orderListJson;
         }

@@ -26,21 +26,15 @@ public class OrderServiceImpl implements OrderService {
     private OrderRepository orderRepository;
 
     @Override
-    public List<Order> findByCompanyIdOrUserId(Integer companyId, Integer userId) {
-        Long companyIdLong = null;
+    public List<Order> findByCompanyIdOrUserId(Integer userId) {
         Long userIdLong = null;
-        if(companyId!=null){
-            companyIdLong = Long.parseLong(companyId.toString());
-        }
         if (userId != null){
             userIdLong = Long.parseLong(userId.toString());
+            List<Order> orderList = this.orderRepository.findByCompanyIdAndUserId(userIdLong);
+            return orderList;
+        }else {
+            return null;
         }
-        if (companyId!=null && userId!=null){
-            List<Order> orderList1 = this.orderRepository.findByCompanyIdAndUserId(companyIdLong, userIdLong);
-            return orderList1;
-        }
-        List<Order> orderList = this.orderRepository.findByCompanyIdOrUserId(companyIdLong, userIdLong);
-        return orderList;
     }
 
     @Override

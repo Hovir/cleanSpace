@@ -24,9 +24,8 @@ public class OrderController {
 
     @RequestMapping("/findOrderList")
     public List<Order> findOrderList(@RequestBody Map map) {
-        Integer companyId = (Integer) map.get("companyId");
         Integer userId = (Integer) map.get("userId");
-        List<Order> orderList = orderService.findByCompanyIdOrUserId(companyId, userId);
+        List<Order> orderList = orderService.findByCompanyIdOrUserId(userId);
         return orderList;
     }
 

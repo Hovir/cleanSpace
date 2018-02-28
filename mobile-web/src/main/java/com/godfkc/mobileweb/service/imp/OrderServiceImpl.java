@@ -27,10 +27,9 @@ public class OrderServiceImpl implements OrderService {
     private String centerUrl;
 
     @Override
-    public String findByCompanyIdOrUserId(Long companyId, Long userId) {
+    public String findByCompanyIdOrUserId(Long userId) {
         String url = centerUrl + "findOrderList";
         Map<String, Object> map = new HashMap<>();
-        map.put("companyId", companyId);
         map.put("userId", userId);
         String s = this.restTemplate.postForObject(url, map, String.class);
         return s;

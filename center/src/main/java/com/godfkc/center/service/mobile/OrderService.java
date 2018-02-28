@@ -12,7 +12,7 @@ import java.util.Map;
  **/
 public interface OrderService {
 
-    List<Order> findByCompanyIdOrUserId(Integer companyId,Integer userId);
+    List<Order> findByCompanyIdOrUserId(Integer userId);
 
     Order addOrder(Order order);
 

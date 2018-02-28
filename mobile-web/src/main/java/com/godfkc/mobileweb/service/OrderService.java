@@ -14,7 +14,7 @@ import java.util.Map;
  **/
 public interface OrderService {
 
-    String findByCompanyIdOrUserId(Long companyId, Long userId);
+    String findByCompanyIdOrUserId(Long userId);
 
     boolean addOrder(OrderVo orderVo);
 
