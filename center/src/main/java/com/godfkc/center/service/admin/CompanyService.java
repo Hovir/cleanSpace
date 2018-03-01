@@ -42,6 +42,12 @@ public interface CompanyService {
     //后台列表-list-个体-修改-修改数据
     int updateCompanyOneDetails(Long id, String name, String imgUrl, String profile);
 
+    //后台列表-list-个体-修改-修改公司地址
+    int updateCompanyAdress(String state,String city,String district,Company company);
+
+    //后台列表-list-个体-修改-无地址时，添加地址
+    int addCompanyAddress(String state,String city,String district,Company company);
+
     //后台列表-list-个体-修改-修改密码
     int updateCompanyOnePwd(Long id, String password);
 

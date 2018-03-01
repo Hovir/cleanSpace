@@ -114,6 +114,17 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
+    public String saveAndUpdateCompanyOneAdress(String state, String city, String district, Long companyId) {
+        ///company/saveAndUpdate/adress/{companyId}/edit
+        String url = centerUrl + "company/saveAndUpdate/adress/"+companyId+"/edit";
+        Map<String, Object> map=new HashMap<>();
+        map.put("state",state);
+        map.put("city",city);
+        map.put("district",district);
+        return this.restTemplate.postForObject(url,map, String.class);
+    }
+
+    @Override
     public String updateCompanyOnePwd(Long id, String password) {
         // /company/Update/{id}/{password}/p/edit
         String url=centerUrl +"company/Update/"+id+"/"+password+"/p/edit";

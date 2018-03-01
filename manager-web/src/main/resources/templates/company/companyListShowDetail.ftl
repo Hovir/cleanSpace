@@ -49,7 +49,7 @@
                     <td id="companyCreateTime">${companyShowDetail.createTime!''}</td>
                 </tr>
                 <tr>
-                    <th class="text-r">公司简介：</th>
+                    <th class="text-r" valign="top">公司简介：</th>
                     <td>${(companyShowDetail.company.profile)!''}</td>
                 </tr>
                 </tbody>

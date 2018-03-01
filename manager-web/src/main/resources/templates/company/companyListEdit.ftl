@@ -21,7 +21,7 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>公司名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="title" name="companyName">
+                <input type="text" class="input-text" value="" placeholder="" id="title" name="companyName" onfocus="onTitle()">
                 <div id="titleError"></div>
             </div>
         </div>
@@ -29,7 +29,7 @@
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>公司Logo：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <div class="layui-upload">
-                    <button type="button" class="layui-btn" id="but">上传图片</button>
+                    <button type="button" class="layui-btn" id="but" onmousedown="onImgUrl()">上传图片</button>
                     <div class="layui-upload-list">
                         <div id="img"></div>
                         <p id="demoText"></p>
@@ -39,10 +39,32 @@
             </div>
         </div>
         <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>公司地址：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <span class="select-box">
+                    <select id="pro" style="width: 32.5%;" class="select" size="1" name="state-s" onfocus="onAddress()" onblur="ad_state()">
+                        <option id="pro-k" value="" selected>- 省 -</option>
+                    </select>
+                    <select id="cit" style="width: 33%;" class="select" size="1" name="city-s" onfocus="onAddress()" onblur="ad_city()">
+                        <option id="cit-k" value="" selected>- 市 -</option>
+                    </select>
+                    <select id="dis" style="width: 33%;" class="select" size="1" name="district-s" onfocus="onAddress()" onblur="ad_district()">
+                        <option id="dis-k" value="" selected>- 区 -</option>
+                    </select>
+                </span>
+                <div id="addressError"></div>
+            </div>
+        </div>
+        <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>公司简介：</label>
             <div class="formControls col-xs-8 col-sm-9" id="editort">
             </div>
             <input type="hidden" name="profile" id="details" value=""/>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                <div id="allError"></div>
+            </div>
         </div>
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
@@ -54,9 +76,12 @@
         </div>
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-                <div id="save-fail">${(fail)!''}</div>
+                <div id="save-fail"><span style="color: #FF5722;">${(fail)!''}</span></div>
             </div>
         </div>
+        <input type="hidden" class="input-text" value=""  id="stateValue" name="state"/>
+        <input type="hidden" class="input-text" value=""  id="cityValue" name="city"/>
+        <input type="hidden" class="input-text" value=""  id="districtValue" name="district"/>
     </form>
 </article>
 <!--/代码写在这里-->
@@ -111,43 +136,112 @@
         });
     })
 </script>
+<script>
+    //地址
+    $(function () {
+        threeMove(1,$("#pro"));
+    })
+    $("#pro").change(function () {
+        //$("#currentState").remove();
+        $("#dis").find("option:gt(0)").remove();
+        var parentId=$("#pro").val();
+
+        $("#cit").find("option:gt(0)").remove();
+        threeMove(parentId,$("#cit"));
+    });
+
+    $("#cit").change(function () {
+        var parentId=$("#cit").val();
+
+        $("#dis").find("option:gt(0)").remove();
+        threeMove(parentId,$("#dis"));
+    });
+
+    function threeMove(parentId,num){
+        //num.find("option:gt(0)").remove();
+        $.ajax({
+            //请求类型
+            type:"POST",
+            //预期服务器返回的数据类型
+            dataType:"json",
+            //请求URL
+            url:"/company/selectAddressDict",
+            //传入服务器端的参数值
+            data:{parentId:parentId},
+            //从ajax异步对象中获取服务器响应的html数据
+            success:function(data){
+                $.each(data,function(index,value){
+                    var $option=$("<option value='"+value.id+"'>"+value.name+"</option>");
+                    num.append($option);
+                });
+            },
+            error:function(data){
+                //alert("请求失败");
+            }
+        });
+    }
+    $("#pro").click(function () {
+        $("#currentState").remove();
+        $("#cit").find("option:gt(0)").remove();
+        $("#dis").find("option:gt(0)").remove();
+    });
+</script>
 <script type="text/javascript">
+    //验证
     function subb() {
         $("#titleError").empty();
         $("#demoText").empty();
-        //alert("editor.txt.html()="+editor.txt.html());
+        //alert("add="+editor.txt.html());
         $("#details").val(editor.txt.html());
         if ($("#title").val() == "") {
-            $("#titleError").html("<span style=\"color: #FF5722;\">企业名称不能为空!</span>");
+            $("#titleError").html("<span style=\"color: #FF5722;\">企业名称不能为空！</span>");
+            $("#allError").html("<span style=\"color: #FF5722;\">企业名称不能为空！</span>");
             return false;
         } else if ($("#imgUrl").val() == "") {
-            $("#demoText").html("<span style=\"color: #FF5722;\">请选择图片!</span>");
+            $("#demoText").html("<span style=\"color: #FF5722;\">请选择图片！</span>");
+            $("#allError").html("<span style=\"color: #FF5722;\">请选择图片！</span>");
             return false;
+        }else  if ($("#pro").val()==''||$('#cit').val()==''||$('#dis').val()==''){
+            $("#addressError").html("<span style=\"color: #FF5722;\">请选择公司地址！</span>");
+            $("#allError").html("<span style=\"color: #FF5722;\">请选择公司地址！</span>");
+            return false;
+        }else {
+            return true;
         }
-        return true;
     }
 
     function onTitle() {
-        if($("#title").val()!=""){
-            $("#titleError").html("");
-        }
+        $("#titleError").html("");
+        $("#allError").html("");
     }
     function onImgUrl() {
-        if($("#imgUrl").val()!=""){
-            $("#demoText").empty();
-        }
+        $("#demoText").empty();
+        $("#allError").empty();
     }
     function onBn() {
-        if($("#bn").val()!=""){
-            $("#bnText").empty();
-        }
+        $("#bnError").empty();
+        $("#allError").empty();
     }
     function onPassword() {
-        if($("#password").val()!=""){
-            $("#passwordError").empty();
-        }
+        $("#passwordError").empty();
+        $("#allError").empty();
     }
-
+    function ad_state() {
+        var stateVal=$("#pro option:selected").html();
+        $("#stateValue").val(stateVal);
+    }
+    function ad_city() {
+        var cityVal=$("#cit option:selected").html();
+        $("#cityValue").val(cityVal);
+    }
+    function ad_district() {
+        var districtVal=$("#dis option:selected").html();
+        $("#districtValue").val(districtVal);
+    }
+    function onAddress() {
+        $("#addressError").empty();
+        $("#allError").empty();
+    }
 </script>
 <#--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="${path}/lib/jquery/1.9.1/jquery.min.js"></script>
@@ -217,6 +311,23 @@
     $("#img").html("<img src='${companyEdit.imgUrl!''}' class='layui-upload-img radius' height='100' width='100'>");
     $("#details").val('${(companyEdit.profile)!""}');
     $(".profile-p").before('${(companyEdit.profile)!""}');
+    var adress_state="${state!'adressFalse'}";
+    var adress_city="${city!'adressFalse'}";
+    var adress_district="${district!'adressFalse'}";
+    if(adress_state!="adressFalse"&&adress_city!="adressFalse"&&adress_district!="adressFalse"){
+
+        $("#pro option:selected").removeAttr("selected");
+        $("#pro").append("<option value='6666' id=currentState selected>${state}</option>");
+        $("#stateValue").val("${state}");
+
+        $("#cit option:selected").removeAttr("selected");
+        $("#cit").append("<option value='6666' id=currentCity selected>${city}</option>");
+        $("#cityValue").val("${city}");
+
+        $("#dis option:selected").removeAttr("selected");
+        $("#dis").append("<option value='6666' id=currentDistrict selected>${district}</option>");
+        $("#districtValue").val("${district}");
+    }
 </script>
 <!--请在下方写此页面业务相关的脚本-->
 </body>

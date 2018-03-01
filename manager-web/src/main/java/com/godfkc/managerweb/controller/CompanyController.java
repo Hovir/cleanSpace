@@ -207,6 +207,7 @@ public class CompanyController {
      */
     @RequestMapping(value = "/admin/compListShow/{id}/{date}/edit", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/html;charset=UTF-8")
     public String getCompanyShowPage(@PathVariable("id") Long id, @PathVariable("date") String date, Model model) {
+        //System.out.println("id="+id);
         String companyAndAddressDetail = companyService.getCompanyAndAddress(id);
         if(companyAndAddressDetail!=null){
             //公司有地址
@@ -226,7 +227,7 @@ public class CompanyController {
     }
 
     /**
-     * 企业列表-修改信息-数据处理
+     * 企业列表-编辑-修改信息-数据处理
      *
      * @param companyName
      * @param imgUrl
@@ -234,7 +235,15 @@ public class CompanyController {
      * @return
      */
     @RequestMapping(value = "/admin/compListEditData/update/edit", method = RequestMethod.POST)
-    public String getCompanyEditData(@RequestParam("id") Long id, @RequestParam("companyName") String companyName, @RequestParam("imgUrl") String imgUrl, @RequestParam("profile") String profile) {
+    public String getCompanyEditData(@RequestParam("id") Long id, @RequestParam("companyName") String companyName, @RequestParam("imgUrl") String imgUrl, @RequestParam("profile") String profile,
+                                     @RequestParam("state") String state,@RequestParam("city") String city,@RequestParam("district") String district) {
+        //地址数据处理
+        if(state!=null&&city!=null&&district!=null){
+            //System.out.println("state="+state+"city="+city+"district="+district);
+            String str2=companyService.saveAndUpdateCompanyOneAdress(state,city,district,id);
+            //System.out.println("str2="+str2);
+        }
+        //公司信息
         Map<String, Object> map = new HashMap<>();
         map.put("id", id);
         map.put("name", companyName);
@@ -256,9 +265,22 @@ public class CompanyController {
      */
     @RequestMapping(value = "/admin/compListEdit/{id}/{num}/edit", method = {RequestMethod.GET, RequestMethod.POST}, produces = "text/html;charset=UTF-8")
     public String getCompanyEditPage(@PathVariable("id") Long id, @PathVariable("num") Long num, Model model) {
+        //公司无地址
         String companyOneDetails = companyService.getCompanyOneDetails(id);
         Map<String, Object> editmap = JsonUtils.JsonToMap(companyOneDetails);
         model.addAttribute("companyEdit", editmap);
+        //公司有地址判断
+        String companyAndAddressDetail = companyService.getCompanyAndAddress(id);
+        if(companyAndAddressDetail!=null){
+            Map<String, Object> editmap2 = JsonUtils.JsonToMap(companyAndAddressDetail);
+            model.addAttribute("state", editmap2.get("state"));
+            model.addAttribute("city", editmap2.get("city"));
+            model.addAttribute("district", editmap2.get("district"));
+        }else{
+            model.addAttribute("state", "adressFalse");
+            model.addAttribute("city", "adressFalse");
+            model.addAttribute("district", "adressFalse");
+        }
         if (num == 0) {
             model.addAttribute("fail", "保存并提交失败！");
         }

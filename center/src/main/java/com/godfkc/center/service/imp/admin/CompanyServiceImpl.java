@@ -72,7 +72,8 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public List<Company> getCompanyIdName() {
-        return companyRepository.findCompanyIdName();
+        //return companyRepository.findCompanyIdName();
+        return companyRepository.findCompanyIdName(1,1L);
     }
 
     @Override
@@ -106,6 +107,25 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public int updateCompanyOneDetails(Long id,String name,String imgUrl,String profile){
        return   companyRepository.updateCompanyById(id,name,imgUrl,profile,new Date());
+    }
+
+    @Override
+    public int updateCompanyAdress(String state, String city, String district, Company company) {
+        return companyAddressRepository.updateCompanyAddressByCompany(state,city,district,company);
+    }
+
+    @Override
+    public int addCompanyAddress(String state,String city,String district,Company company) {
+        CompanyAddress companyAddress=new CompanyAddress();
+        companyAddress.setState(state);
+        companyAddress.setCity(city);
+        companyAddress.setDistrict(district);
+        companyAddress.setCompany(company);
+        companyAddress=companyAddressRepository.save(companyAddress);
+        if (companyAddress!=null){
+            return 1;
+        }
+        return -1;
     }
 
     @Override

@@ -72,8 +72,12 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
 
 
     //后台列表-list-添加-查询
-    @Query("select id,name from Company ")
-    List<Company> findCompanyIdName();
+    //@Query("select id,name from Company")
+    //List<Company> findCompanyIdName();
+
+    //后台列表-list-添加-查询
+    @Query("select id,name from Company where status=:status or id=:id")
+    List<Company> findCompanyIdName(@Param("status") Integer status,@Param("id") Long id);
 
 
     //后台列表-list-修改-信息

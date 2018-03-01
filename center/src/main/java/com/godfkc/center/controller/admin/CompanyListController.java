@@ -174,7 +174,7 @@ public class CompanyListController {
     }
 
     /**
-     * 企业列表-编辑-修改数据
+     * 企业列表-编辑-修改数据(公司信息)
      * @param company
      * @return
      */
@@ -186,6 +186,31 @@ public class CompanyListController {
         String profile=company.getProfile();
         Integer companyOne=companyService.updateCompanyOneDetails(id,name,imgUrl,profile);
         return companyOne;
+    }
+
+    /**
+     * 企业列表-编辑-修改数据（公司地址）
+     * @param companyAddress
+     * @param companyId
+     * @return
+     */
+    @RequestMapping("/company/saveAndUpdate/adress/{companyId}/edit")
+    public Integer saveAndUpdateCompaniesAddress(@RequestBody CompanyAddress companyAddress,@PathVariable("companyId") Long companyId){
+        String state=companyAddress.getState();
+        String city=companyAddress.getCity();
+        String district=companyAddress.getDistrict();
+        //System.out.println("state="+state+"city="+city+"district="+district);
+        //修改
+        Company company=new Company();
+        company.setId(companyId);
+        Integer companyAdressResult=companyService.updateCompanyAdress(state,city,district,company);
+        System.out.println("=修改=="+companyAdressResult);
+        //添加
+        if(companyAdressResult==null||companyAdressResult==0){
+            companyAdressResult=companyService.addCompanyAddress(state,city,district,company);
+            System.out.println("=添加=="+companyAdressResult);
+        }
+        return companyAdressResult;
     }
 
     /**

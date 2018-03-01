@@ -42,6 +42,9 @@ public interface CompanyService {
     //后台查询-list-个体-编辑-修改数据
     String  updateCompanyOneDetails(Map<String, Object> map);
 
+    //后台查询-list-个体-编辑-修改公司地址
+    String  saveAndUpdateCompanyOneAdress(String state,String city,String district,Long companyId);
+
     //后台列表-list-个体-修改-修改密码
     String  updateCompanyOnePwd(Long id, String password);
 

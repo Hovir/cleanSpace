@@ -406,7 +406,6 @@
         $("#passwordError").empty();
         $("#allError").empty();
     }
-
     function onParentId() {
         $("#parentIdError").empty();
         $("#allError").empty();
@@ -415,7 +414,6 @@
         $("#levelIdError").empty();
         $("#allError").empty();
     }
-
     function ad_state() {
        var stateVal=$("#pro option:selected").html();
        $("#stateValue").val(stateVal);
