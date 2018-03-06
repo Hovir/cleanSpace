@@ -40,8 +40,12 @@ public class GradeController {
     * 修改佣金
     * */
     @RequestMapping("updataCommision")
-    public String updataCommision( Long commision,Long id){
-        gradeService.updataCommision(commision,id);
+    public String updataCommision( String commision,String id){
+        String s1 = commision.replaceAll(",", "");
+        long l1 = Long.parseLong(s1);
+        String s = id.replaceAll(",", "");
+        long l2 = Long.parseLong(s);
+        gradeService.updataCommision(l1,l2);
         System.out.println("===================");
         return "/admin/index";
     }

@@ -29,8 +29,12 @@ public class GradeController {
     * 根据id修改佣金
     * */
     @RequestMapping("/updataCommision/{commision}/{id}")
-    public boolean updataCommision(@PathVariable("commision") Long commision,@PathVariable("id") Long id){
-        boolean b = gradeService.updataCommision(commision, id);
+    public boolean updataCommision(@PathVariable("commision") String commision,@PathVariable("id") String id){
+        String s1 = commision.replaceAll(",", "");
+        long l1 = Long.parseLong(s1);
+        String s = id.replaceAll(",", "");
+        long l = Long.parseLong(s);
+        boolean b = gradeService.updataCommision(l1, l);
         if(b==true){
             return true;
         }else{
@@ -42,8 +46,10 @@ public class GradeController {
     * 根据id查询数据
     * */
     @RequestMapping("/selectById/{id}")
-    public Level selectById(@PathVariable("id") Long id){
-        Level level = gradeService.selectById(id);
+    public Level selectById(@PathVariable("id") String id){
+        String s = id.replaceAll(",", "");
+        long l = Long.parseLong(s);
+        Level level = gradeService.selectById(l);
         return level;
     }
 

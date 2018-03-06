@@ -24,7 +24,6 @@
             <table class="table table-border table-bordered table-bg table-hover table-sort" id="data_tables">
                 <thead>
                 <tr>
-                    <th width="25"></th>
                     <th width="100">卡号</th>
                     <th width="100">创建时间</th>
                     <th width="75">状态</th>
@@ -44,7 +43,6 @@
             var i = 1;
             /*列对应表*/
             var columns = [
-                {data: null},
                 {data: "num"},
                 {data: null},
                 {data: null},
@@ -52,28 +50,19 @@
             ];
             /*特殊列渲染*/
             var columnDefs = [
-                {name: "id", targets: 0},
-                {name: "num", targets: 1},
-                {name: "createTime", targets: 2},
-                {name: "status", targets: 3},
-                {name: "company.name", targets: 4},
-                {
-                    //表示第0列
-                    targets: 0,
-                    //渲染函数
-                    render: function (data) {
-                        return i++;
-                    }
-                },
+                {name: "num", targets: 0},
+                {name: "createTime", targets: 1},
+                {name: "status", targets: 2},
+                {name: "company.name", targets: 3},
                 {
                     //禁用排序
                     orderable: false,
                     //指定的列
-                    targets: [0, 4]
+                    targets: [0, 3]
                 },
                 {
                     //表示第2列
-                    targets: 2,
+                    targets: 1,
                     //渲染函数
                     render: function (data) {
                         return getMyDate(data.createTime);
@@ -81,7 +70,7 @@
                 },
                 {
                     //表示第3列
-                    targets: 3,
+                    targets: 2,
                     //渲染函数
                     render: function (data) {
                         return typeDate(data.status);

@@ -18,7 +18,7 @@
             <table class="table table-border table-bordered table-bg table-hover table-sort" id="data_tables">
                 <thead>
                 <tr class="text-c">
-                    <th width="50"></th>
+                    <th width="50">卡id</th>
                     <th width="100">公司名称</th>
                     <th width="100">提现金额</th>
                     <th width="150">申请时间</th>
@@ -56,7 +56,7 @@
                     targets: 0,
                     //渲染函数
                     render: function (data) {
-                        return i++;
+                        return data;
                     }
                 },
                 {
