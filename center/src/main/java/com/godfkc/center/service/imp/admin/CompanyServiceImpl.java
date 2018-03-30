@@ -2,9 +2,11 @@ package com.godfkc.center.service.imp.admin;
 
 import com.godfkc.center.entity.Company;
 import com.godfkc.center.entity.CompanyAddress;
+import com.godfkc.center.entity.CompanyFunds;
 import com.godfkc.center.entity.Level;
 import com.godfkc.center.entity.vo.CompanySearchEmp;
 import com.godfkc.center.repository.CompanyAddressRepository;
+import com.godfkc.center.repository.CompanyFundsRepository;
 import com.godfkc.center.repository.CompanyRepository;
 import com.godfkc.center.repository.LevelRepository;
 import com.godfkc.center.service.admin.CompanyService;
@@ -31,6 +33,9 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Autowired
     private CompanyAddressRepository companyAddressRepository;
+
+    @Autowired
+    private CompanyFundsRepository companyFundsRepository;
 
 
     @Override
@@ -91,7 +96,22 @@ public class CompanyServiceImpl implements CompanyService {
         company.setCreateTime(new Date());
         company.setUpdateTime(new Date());
         company.setStatus(1);
-        return companyRepository.save(company);
+        Company companyNew=companyRepository.save(company);
+        CompanyFunds companyFunds=null;
+        if(companyNew!=null){
+            //创建公司账户
+            companyFunds=new CompanyFunds();
+            companyFunds.setCompany(company);
+            companyFunds.setCreateTime(new Date());
+            companyFunds.setMoney(0L);
+            companyFunds.setStatus(1);
+            companyFunds.setUpdateTime(new Date());
+            companyFundsRepository.save(companyFunds);
+        }
+        if(companyFunds!=null){
+            return companyNew;
+        }
+        return null;
     }
 
     @Override
