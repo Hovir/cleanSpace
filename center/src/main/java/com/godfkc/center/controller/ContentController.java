@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -75,4 +76,12 @@ public class ContentController {
     private void saveUpdateContent(@RequestBody Content content) {
         this.contentService.saveUpdateContent(content);
     }
+
+
+    @GetMapping("saveB")
+    public String saveB(){
+        return this.contentService.saveB();
+    }
+
+
 }

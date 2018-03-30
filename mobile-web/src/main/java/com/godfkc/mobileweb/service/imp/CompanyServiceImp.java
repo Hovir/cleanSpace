@@ -169,6 +169,12 @@ public class CompanyServiceImp implements CompanyService {
     }
 
     @Override
+    public String limit() {
+        String url = centerUrl + "content/saveB";
+        return this.restTemplate.getForObject(url,String.class);
+    }
+
+    @Override
     public String selectCompanies(Long levelId, String state, String city, String district) {
         String url = centerUrl + "selectCompanies/{levelId}/{state}/{city}/{district}";
         Map<String,Object> map = new HashMap<>();

@@ -85,6 +85,11 @@
 			</exclusions>
 		</dependency>
 
+		<dependency>
+			<groupId>ink.hcode</groupId>
+			<artifactId>qb</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<distributionManagement>

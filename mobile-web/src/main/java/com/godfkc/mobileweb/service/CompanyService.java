@@ -29,4 +29,6 @@ public interface CompanyService {
 
     //根据companyId查询levelId
     Long selectLevelIdByCompanyId(Long companyId);
+
+    String limit();
 }

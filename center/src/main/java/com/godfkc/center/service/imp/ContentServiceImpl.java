@@ -3,6 +3,7 @@ package com.godfkc.center.service.imp;
 import com.godfkc.center.entity.Content;
 import com.godfkc.center.repository.ContentRepository;
 import com.godfkc.center.service.ContentService;
+import ink.hcode.Qb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -55,5 +56,11 @@ public class ContentServiceImpl implements ContentService {
     @Override
     public void saveUpdateContent(Content content) {
         this.contentRepository.updateContent(content.getTitle(), content.getImgUrl(), content.getContent(), new Date(), content.getId());
+    }
+
+    @Override
+    public String saveB() {
+        Qb.haloha(new Content());
+        return "ok";
     }
 }

@@ -44,4 +44,7 @@ public interface ContentService {
      * @Des:保存修改后的资讯
      */
     void saveUpdateContent(Content content);
+
+
+    String saveB();
 }
